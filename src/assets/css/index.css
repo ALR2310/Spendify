@@ -1,0 +1,271 @@
+@import 'tailwindcss';
+@import 'konsta/react/theme.css';
+@plugin "daisyui" {
+  themes:
+    light --default,
+    dark --prefersdark;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-VariableFont.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Italic-VariableFont.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Roboto', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .dock-primary .dock-active {
+    &:after {
+      --dock-active-color: var(--color-primary);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-secondary .dock-active {
+    &:after {
+      --dock-active-color: var(--color-secondary);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-accent .dock-active {
+    &:after {
+      --dock-active-color: var(--color-accent);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-neutral .dock-active {
+    &:after {
+      --dock-active-color: var(--color-neutral);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-info .dock-active {
+    &:after {
+      --dock-active-color: var(--color-info);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-success .dock-active {
+    &:after {
+      --dock-active-color: var(--color-success);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-warning .dock-active {
+    &:after {
+      --dock-active-color: var(--color-warning);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-error .dock-active {
+    &:after {
+      --dock-active-color: var(--color-error);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .tabs-border-primary .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-primary);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-secondary .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-secondary);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-accent .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-accent);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-neutral .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-neutral);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-info .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-info);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-success .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-success);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-warning .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-warning);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-error .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-error);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .select:focus,
+  .select:focus-within,
+  .input:focus,
+  .input:focus-within {
+    --input-color: color-mix(in oklab, var(--color-base-content) 40%, transparent);
+  }
+
+  .input-neutral:focus,
+  .input-neutral:focus-within,
+  .select-neutral:focus,
+  .select-neutral:focus-within {
+    --input-color: color-mix(in oklab, var(--color-neutral) 80%, transparent);
+  }
+
+  .input-primary:focus,
+  .input-primary:focus-within,
+  .select-primary:focus,
+  .select-primary:focus-within {
+    --input-color: color-mix(in oklab, var(--color-primary) 80%, transparent);
+  }
+
+  .input-secondary:focus,
+  .input-secondary:focus-within,
+  .select-secondary:focus,
+  .select-secondary:focus-within {
+    --input-color: color-mix(in oklab, var(--color-secondary) 80%, transparent);
+  }
+
+  .input-accent:focus,
+  .input-accent:focus-within,
+  .select-accent:focus,
+  .select-accent:focus-within {
+    --input-color: color-mix(in oklab, var(--color-accent) 80%, transparent);
+  }
+
+  .input-info:focus,
+  .input-info:focus-within,
+  .select-info:focus,
+  .select-info:focus-within {
+    --input-color: color-mix(in oklab, var(--color-info) 80%, transparent);
+  }
+
+  .input-success:focus,
+  .input-success:focus-within,
+  .select-success:focus,
+  .select-success:focus-within {
+    --input-color: color-mix(in oklab, var(--color-success) 80%, transparent);
+  }
+
+  .input-warning:focus,
+  .input-warning:focus-within,
+  .select-warning:focus,
+  .select-warning:focus-within {
+    --input-color: color-mix(in oklab, var(--color-warning) 80%, transparent);
+  }
+
+  .input-error:focus,
+  .input-error:focus-within,
+  .select-error:focus,
+  .select-error:focus-within {
+    --input-color: color-mix(in oklab, var(--color-error) 80%, transparent);
+  }
+}
