@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/vite';
-import path from 'path';
-import { analyzer } from 'vite-bundle-analyzer';
-import { config } from 'dotenv';
-import pkg from './package.json' with { type: 'json' };
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { config } from 'dotenv';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import path from 'path';
+import pkg from './package.json' with { type: 'json' };
+import { analyzer } from 'vite-bundle-analyzer';
+import tailwindcss from '@tailwindcss/vite';
 
 config({ quiet: true });
 
@@ -58,10 +58,10 @@ export default defineConfig({
     }),
     viteStaticCopy({
       targets: [
-        // {
-        //   src: 'node_modules/',
-        //   dest: 'assets',
-        // },
+        {
+          src: 'src/assets/sql-wasm.wasm',
+          dest: 'assets',
+        },
       ],
     }),
   ],

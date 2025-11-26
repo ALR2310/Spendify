@@ -1,11 +1,11 @@
 import { ToastContainer } from 'react-toastify';
-import { BrowserRouter, Route, Routes } from 'react-router';
 import { App } from 'konsta/react';
-import TabsLayout from './layouts/TabsLayout';
+import { BrowserRouter, Route, Routes } from 'react-router';
 import { ROUTES } from './shared/constants/routes.const';
-import ExpensesPage from './feature/expenses/ExpensesPage';
-import SettingsPage from './feature/settings/SettingsPage';
-import StatisticsPage from './feature/statistics/StatisticsPage';
+import TabsLayout from './layouts/TabsLayout';
+import ExpensesPage from './pages/expenses/ExpensesPage';
+import SettingsPage from './pages/settings/SettingsPage';
+import StatisticsPage from './pages/statistics/StatisticsPage';
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
