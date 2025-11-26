@@ -1,3 +1,10 @@
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+
 export default function ExpensesPage() {
-  return <div>Expenses Page</div>;
+  useEffect(() => {
+    toast.info('Expenses Page Loaded');
+  }, []);
+
+  return <div className="text-success">Expenses Page</div>;
 }

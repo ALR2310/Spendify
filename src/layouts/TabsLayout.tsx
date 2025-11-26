@@ -5,7 +5,7 @@ import { NavLink, Outlet } from 'react-router';
 
 export default function TabsLayout() {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col pt-[env(safe-area-inset-top)]">
       <div className="flex-1 overflow-auto">
         <Outlet />
       </div>

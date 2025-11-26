@@ -6,7 +6,12 @@
   "private": true,
   "scripts": {
     "dev": "vite --host",
+    "dev:android": "vite build && npx cap sync && npx cap run android",
+    "dev:android-live": "npx cap run android --live-reload --port=2310 --host=172.28.144.1",
+    "dev:tauri": "tauri dev",
     "build": "vite build",
+    "build:android": "vite build && npx cap sync && npx cap build android",
+    "build:tauri": "tauri build",
     "preview": "vite preview",
     "tauri": "tauri",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
@@ -14,6 +19,12 @@
     "update": "npm-check-updates -u"
   },
   "dependencies": {
+    "@capacitor-community/sqlite": "^7.0.2",
+    "@capacitor/android": "7.4.4",
+    "@capacitor/app": "7.1.0",
+    "@capacitor/core": "7.4.4",
+    "@capacitor/splash-screen": "^7.0.3",
+    "@capacitor/status-bar": "7.0.3",
     "daisyui": "^5.5.5",
     "konsta": "^5.0.5",
     "lodash": "^4.17.21",
@@ -24,6 +35,7 @@
     "react-toastify": "^11.0.5"
   },
   "devDependencies": {
+    "@capacitor/cli": "7.4.4",
     "@tailwindcss/vite": "^4.1.17",
     "@tauri-apps/cli": "^2.9.4",
     "@types/lodash": "^4.17.21",
@@ -47,6 +59,7 @@
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.17",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.0",
     "vite": "^7.2.4",

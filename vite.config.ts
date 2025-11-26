@@ -19,7 +19,7 @@ export default defineConfig({
     minify: !isDev,
     cssMinify: !isDev,
     emptyOutDir: true,
-    outDir: path.resolve('..', 'dist'),
+    outDir: 'dist',
     chunkSizeWarningLimit: 1600,
     rollupOptions: {
       external: ['jeep-sqlite'],
