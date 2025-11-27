@@ -6,6 +6,7 @@ import ExpensesPage from './pages/expenses/ExpensesPage';
 import SettingsPage from './pages/settings/SettingsPage';
 import StatisticsPage from './pages/statistics/StatisticsPage';
 import MainLayout from './layouts/MainLayout';
+import NotesPage from './pages/notes/NotesPage';
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -31,6 +32,7 @@ const AppRoutes = () => {
         <Route path={ROUTES.ROOT} element={<MainLayout />}>
           <Route path={ROUTES.EXPENSES} element={<ExpensesPage />} />
           <Route path={ROUTES.STATISTICS} element={<StatisticsPage />} />
+          <Route path={ROUTES.NOTES} element={<NotesPage />} />
           <Route path={ROUTES.SETTINGS} element={<SettingsPage />} />
         </Route>
       </Routes>

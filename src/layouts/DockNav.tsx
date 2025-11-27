@@ -4,7 +4,7 @@ import { Wallet, ChartBarStacked, Settings } from 'lucide-react';
 
 export default function DockNav() {
   return (
-    <div className="dock dock-success dock-xs bg-base-300">
+    <div className="dock dock-success dock-xs bg-base-300 relative">
       <NavLink to={ROUTES.EXPENSES} className={({ isActive }) => (isActive ? 'dock-active' : '')}>
         <Wallet size={20} />
       </NavLink>
