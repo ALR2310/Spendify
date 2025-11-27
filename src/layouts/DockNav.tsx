@@ -1,6 +1,6 @@
 import { ROUTES } from '@/shared/constants/routes.const';
 import { NavLink } from 'react-router';
-import { Wallet, ChartBarStacked, Settings } from 'lucide-react';
+import { Wallet, ChartBarStacked, Settings, NotebookPen } from 'lucide-react';
 
 export default function DockNav() {
   return (
@@ -11,6 +11,10 @@ export default function DockNav() {
 
       <NavLink to={ROUTES.STATISTICS} className={({ isActive }) => (isActive ? 'dock-active' : '')}>
         <ChartBarStacked size={20} />
+      </NavLink>
+
+      <NavLink to={ROUTES.NOTES} className={({ isActive }) => (isActive ? 'dock-active' : '')}>
+        <NotebookPen size={20} />
       </NavLink>
 
       <NavLink to={ROUTES.SETTINGS} className={({ isActive }) => (isActive ? 'dock-active' : '')}>
