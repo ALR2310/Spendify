@@ -11,7 +11,6 @@ config({ quiet: true });
 
 const isDev = process.env.NODE_ENV === 'development';
 const port = process.env.VITE_PORT || 2310;
-const host = process.env.TAURI_DEV_HOST;
 
 export default defineConfig({
   build: {
@@ -35,7 +34,7 @@ export default defineConfig({
   server: {
     port: Number(port),
     strictPort: true,
-    host: host || false,
+    host: true,
     watch: {
       ignored: ['**/src-tauri/**'],
     },

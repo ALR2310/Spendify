@@ -4,6 +4,9 @@ const config: CapacitorConfig = {
   appId: 'com.alr.spendify',
   appName: 'spendify',
   webDir: 'dist',
+  server: {
+    allowNavigation: ['accounts.google.com', '*.googleusercontent.com'],
+  },
   plugins: {
     StatusBar: {
       overlaysWebView: false,

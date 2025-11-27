@@ -1,0 +1,41 @@
+{
+    "cSpell.words": [
+        "AUTOINCREMENT",
+        "googleauth",
+        "Insertable",
+        "Introspector",
+        "konsta",
+        "kysely",
+        "Kysely",
+        "recurrings",
+        "spendify",
+        "tauri",
+        "TAURI",
+        "Updateable",
+        "VITE"
+    ],
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "github.copilot.chat.commitMessageGeneration.instructions": [
+        {
+            "text": "Use conventional commit format: type(scope): description."
+        },
+        {
+            "text": "Use types: feat, fix, docs, style, refactor, perf, test, chore, ci."
+        },
+        {
+            "text": "Limit 50 characters or less."
+        },
+        {
+            "text": "Write in present tense (e.g., 'add', not 'added')."
+        },
+        {
+            "text": "Short but enough context."
+        },
+        {
+            "text": "Focus on main changes only, avoid trivial details."
+        }
+    ]
+}
