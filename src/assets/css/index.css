@@ -269,3 +269,13 @@
     --input-color: color-mix(in oklab, var(--color-error) 80%, transparent);
   }
 }
+
+.toast-container {
+  padding: 1rem !important;
+  gap: 1rem !important;
+}
+
+.toast-container .Toastify__toast {
+  border-radius: 0.5rem !important;
+  padding: 1rem;
+}

@@ -10,7 +10,7 @@ export default function TabsLayout() {
         <Outlet />
       </div>
 
-      <div className="dock dock-success dock-xs">
+      <div className="dock dock-success dock-xs bg-base-300">
         <NavLink to={ROUTES.EXPENSES} className={({ isActive }) => (isActive ? 'dock-active' : '')}>
           <Wallet size={20} />
         </NavLink>

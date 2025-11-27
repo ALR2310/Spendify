@@ -11,7 +11,15 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {children}
-      <ToastContainer autoClose={2000} theme="dark" pauseOnHover={false} />
+      <ToastContainer
+        className="toast-container"
+        autoClose={200000}
+        theme="dark"
+        pauseOnHover={false}
+        position="top-center"
+        hideProgressBar={true}
+        closeOnClick={true}
+      />
     </>
   );
 };
