@@ -2989,13 +2989,6 @@ kleur@^4.1.5:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
 
-konsta@^5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/konsta/-/konsta-5.0.5.tgz#b995090abf970242544d5db8d5abd4c1cdcdfa75"
-  integrity sha512-mkygFSKYXZtQraALLM/24rtSQxf8Hbd8IUgNchztS+9gTad/VvZYn0AnBChHHxESo4zHXvt049uvdZtmfE4F9Q==
-  dependencies:
-    tailwind-merge "^3.3.1"
-
 kysely@^0.28.8:
   version "0.28.8"
   resolved "https://registry.yarnpkg.com/kysely/-/kysely-0.28.8.tgz#064340cfa489833fdb11f026cbc5dacf7e37b5fa"
@@ -4034,11 +4027,6 @@ synckit@^0.11.7:
   integrity sha512-MeQTA1r0litLUf0Rp/iisCaL8761lKAZHaimlbGK4j0HysC4PLfqygQj9srcs0m2RdtDYnF8UuYyKpbjHYp7Jw==
   dependencies:
     "@pkgr/core" "^0.2.9"
-
-tailwind-merge@^3.3.1:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-3.4.0.tgz#5a264e131a096879965f1175d11f8c36e6b64eca"
-  integrity sha512-uSaO4gnW+b3Y2aWoWfFpX62vn2sR3skfhbjsEnaBI81WD1wBLlHZe5sWf0AqjksNdYTbGBEd0UasQMT3SNV15g==
 
 tailwindcss@4.1.17, tailwindcss@^4.1.17:
   version "4.1.17"
