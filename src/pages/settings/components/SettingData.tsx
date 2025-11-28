@@ -1,9 +1,11 @@
-import { Cloud,RefreshCw } from 'lucide-react';
-import { useEffect,useState } from 'react';
+import { Cloud, RefreshCw } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { appConfig } from '@/common/appConfig';
 
 export default function SettingData() {
+  const { t } = useTranslation();
   const [autoUpdate, setAutoUpdate] = useState<boolean>(appConfig.autoUpdate);
 
   useEffect(() => {
@@ -11,7 +13,7 @@ export default function SettingData() {
   }, [autoUpdate]);
 
   const formatDate = (dateString: string | null) => {
-    if (!dateString) return 'Not synced';
+    if (!dateString) return t('settings.dataSync.notSynced');
     const date = new Date(dateString);
     return date.toLocaleString('en-US', {
       day: '2-digit',
@@ -24,7 +26,7 @@ export default function SettingData() {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-semibold text-base text-base-content/80 px-1">Data & Sync</p>
+      <p className="font-semibold text-base text-base-content/80 px-1">{t('settings.dataSync.title')}</p>
       <div className="card shadow-sm bg-base-200 rounded-2xl overflow-hidden">
         {/* Auto Update */}
         <div className="p-1">
@@ -33,8 +35,8 @@ export default function SettingData() {
               <RefreshCw size={20} />
             </div>
             <div className="flex flex-col flex-1">
-              <span className="font-semibold text-sm">Auto Update</span>
-              <span className="text-xs opacity-60">Automatically update data</span>
+              <span className="font-semibold text-sm">{t('settings.dataSync.autoUpdate')}</span>
+              <span className="text-xs opacity-60">{t('settings.dataSync.autoUpdateDesc')}</span>
             </div>
             <input
               type="checkbox"
@@ -52,7 +54,7 @@ export default function SettingData() {
               <Cloud size={20} />
             </div>
             <div className="flex flex-col flex-1">
-              <span className="font-semibold text-sm">Data Sync</span>
+              <span className="font-semibold text-sm">{t('settings.dataSync.dataSyncTitle')}</span>
               <span className="text-xs opacity-60">{formatDate(appConfig.data.lastSync)}</span>
             </div>
             <button className="btn btn-sm btn-ghost btn-circle">

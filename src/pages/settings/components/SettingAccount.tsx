@@ -1,9 +1,11 @@
-import { ChevronRight,LogIn, LogOut, User } from 'lucide-react';
+import { ChevronRight, LogIn, LogOut, User } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { googleAuthService } from '@/services/googleauth.service';
 
 export default function SettingAccount() {
+  const { t } = useTranslation();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const handleLogin = async () => {
@@ -27,7 +29,7 @@ export default function SettingAccount() {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-semibold text-base text-base-content/80 px-1">Account</p>
+      <p className="font-semibold text-base text-base-content/80 px-1">{t('settings.account.title')}</p>
       <div className="card shadow-sm bg-base-200 rounded-2xl overflow-hidden">
         {isLoggedIn ? (
           <>
@@ -37,8 +39,8 @@ export default function SettingAccount() {
                   <User size={20} />
                 </div>
                 <div className="flex flex-col flex-1">
-                  <span className="font-semibold text-sm">Logged in</span>
-                  <span className="text-xs opacity-60">Google Account</span>
+                  <span className="font-semibold text-sm">{t('settings.account.loggedIn')}</span>
+                  <span className="text-xs opacity-60">{t('settings.account.googleAccount')}</span>
                 </div>
               </div>
             </div>
@@ -50,7 +52,7 @@ export default function SettingAccount() {
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-error/10">
                   <LogOut size={20} />
                 </div>
-                <span className="flex-1 text-left font-semibold text-sm">Log out</span>
+                <span className="flex-1 text-left font-semibold text-sm">{t('settings.account.logOut')}</span>
               </button>
             </div>
           </>
@@ -63,7 +65,7 @@ export default function SettingAccount() {
               <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 text-primary">
                 <LogIn size={20} />
               </div>
-              <span className="flex-1 text-left font-semibold text-sm">Sign in with Google</span>
+              <span className="flex-1 text-left font-semibold text-sm">{t('settings.account.signIn')}</span>
               <ChevronRight size={18} className="opacity-40" />
             </button>
           </div>

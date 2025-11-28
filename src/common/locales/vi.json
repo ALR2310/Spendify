@@ -1,0 +1,57 @@
+{
+  "expenses": {
+    "title": "Chi tiêu",
+    "addExpense": "Thêm chi tiêu",
+    "overview": {
+      "totalMonthlyExpenses": "Tổng chi tiêu tháng",
+      "averagePerDay": "Trung bình mỗi ngày",
+      "categories": "Danh mục"
+    },
+    "filter": {
+      "all": "Tất cả",
+      "today": "Hôm nay",
+      "sevenDays": "7 ngày",
+      "thisMonth": "Tháng này",
+      "category": "Danh mục",
+      "type": "Loại",
+      "expense": "Chi tiêu",
+      "income": "Thu nhập",
+      "advancedFilters": "Bộ lọc nâng cao"
+    },
+    "list": {
+      "title": "Danh sách chi tiêu"
+    },
+    "categories": {
+      "food": "Ăn uống",
+      "transportation": "Di chuyển",
+      "housing": "Nhà cửa"
+    }
+  },
+  "settings": {
+    "appearance": {
+      "title": "Giao diện",
+      "theme": "Chủ đề",
+      "light": "Sáng",
+      "dark": "Tối",
+      "system": "Hệ thống"
+    },
+    "dataSync": {
+      "title": "Dữ liệu & Đồng bộ",
+      "autoUpdate": "Tự động cập nhật",
+      "autoUpdateDesc": "Tự động cập nhật dữ liệu",
+      "dataSyncTitle": "Đồng bộ dữ liệu",
+      "notSynced": "Chưa đồng bộ",
+      "syncButton": "Đồng bộ"
+    },
+    "account": {
+      "title": "Tài khoản",
+      "loggedIn": "Đã đăng nhập",
+      "googleAccount": "Tài khoản Google",
+      "logOut": "Đăng xuất",
+      "signIn": "Đăng nhập với Google"
+    },
+    "appInfo": {
+      "version": "Phiên bản ứng dụng"
+    }
+  }
+}

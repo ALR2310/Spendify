@@ -1,10 +1,12 @@
-import { ChevronRight, Globe,Monitor, Moon, Sun } from 'lucide-react';
-import { useEffect,useState } from 'react';
+import { ChevronRight, Globe, Monitor, Moon, Sun } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { appConfig } from '@/common/appConfig';
-import { LanguageEnum,ThemeEnum } from '@/shared/enums/appconfig.enum';
+import { LanguageEnum, ThemeEnum } from '@/shared/enums/appconfig.enum';
 
 export default function SettingAppearance() {
+  const { t } = useTranslation();
   const [theme, setTheme] = useState<ThemeEnum>(appConfig.theme);
   const [language, setLanguage] = useState<LanguageEnum>(appConfig.language);
   const [showThemeOptions, setShowThemeOptions] = useState<boolean>(false);
@@ -20,13 +22,13 @@ export default function SettingAppearance() {
   const getThemeLabel = () => {
     switch (theme) {
       case ThemeEnum.LIGHT:
-        return 'Light';
+        return t('settings.appearance.light');
       case ThemeEnum.DARK:
-        return 'Dark';
+        return t('settings.appearance.dark');
       case ThemeEnum.SYSTEM:
-        return 'System';
+        return t('settings.appearance.system');
       default:
-        return 'System';
+        return t('settings.appearance.system');
     }
   };
 
@@ -45,7 +47,7 @@ export default function SettingAppearance() {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-semibold text-base text-base-content/80 px-1">Appearance</p>
+      <p className="font-semibold text-base text-base-content/80 px-1">{t('settings.appearance.title')}</p>
       <div className="card shadow-sm bg-base-200 rounded-2xl overflow-hidden">
         {/* Theme Selection */}
         <div className="p-1">
@@ -57,7 +59,7 @@ export default function SettingAppearance() {
               {getThemeIcon()}
             </div>
             <div className="flex flex-col flex-1 text-left">
-              <span className="font-semibold text-sm">Theme</span>
+              <span className="font-semibold text-sm">{t('settings.appearance.theme')}</span>
               <span className="text-xs opacity-60">{getThemeLabel()}</span>
             </div>
             <ChevronRight size={18} className="opacity-40" />
@@ -75,7 +77,7 @@ export default function SettingAppearance() {
                 }}
               >
                 <Sun size={18} />
-                <span className="flex-1 text-left text-sm font-medium">Light</span>
+                <span className="flex-1 text-left text-sm font-medium">{t('settings.appearance.light')}</span>
                 {theme === ThemeEnum.LIGHT && <div className="w-2 h-2 rounded-full bg-primary"></div>}
               </button>
               <button
@@ -88,7 +90,7 @@ export default function SettingAppearance() {
                 }}
               >
                 <Moon size={18} />
-                <span className="flex-1 text-left text-sm font-medium">Dark</span>
+                <span className="flex-1 text-left text-sm font-medium">{t('settings.appearance.dark')}</span>
                 {theme === ThemeEnum.DARK && <div className="w-2 h-2 rounded-full bg-primary"></div>}
               </button>
               <button
@@ -101,7 +103,7 @@ export default function SettingAppearance() {
                 }}
               >
                 <Monitor size={18} />
-                <span className="flex-1 text-left text-sm font-medium">System</span>
+                <span className="flex-1 text-left text-sm font-medium">{t('settings.appearance.system')}</span>
                 {theme === ThemeEnum.SYSTEM && <div className="w-2 h-2 rounded-full bg-primary"></div>}
               </button>
             </div>

@@ -1,4 +1,5 @@
 import { Info } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import { appConfig } from '@/common/appConfig';
 
@@ -7,6 +8,8 @@ import SettingAppearance from './components/SettingAppearance';
 import SettingData from './components/SettingData';
 
 export default function SettingsPage() {
+  const { t } = useTranslation();
+
   return (
     <div className="p-4 space-y-6 pb-24">
       <SettingAppearance />
@@ -22,7 +25,7 @@ export default function SettingsPage() {
                 <Info size={20} className="opacity-60" />
               </div>
               <div className="flex flex-col flex-1">
-                <span className="font-semibold text-sm">App Version</span>
+                <span className="font-semibold text-sm">{t('settings.appInfo.version')}</span>
                 <span className="text-xs opacity-60">{appConfig.version}</span>
               </div>
             </div>

@@ -1,0 +1,57 @@
+{
+  "expenses": {
+    "title": "Expenses",
+    "addExpense": "Add Expense",
+    "overview": {
+      "totalMonthlyExpenses": "Total monthly expenses",
+      "averagePerDay": "Average per day",
+      "categories": "Categories"
+    },
+    "filter": {
+      "all": "All",
+      "today": "Today",
+      "sevenDays": "7 Days",
+      "thisMonth": "This Month",
+      "category": "Category",
+      "type": "Type",
+      "expense": "Expense",
+      "income": "Income",
+      "advancedFilters": "Advanced Filters"
+    },
+    "list": {
+      "title": "Expense List"
+    },
+    "categories": {
+      "food": "Food",
+      "transportation": "Transportation",
+      "housing": "Housing"
+    }
+  },
+  "settings": {
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "dataSync": {
+      "title": "Data & Sync",
+      "autoUpdate": "Auto Update",
+      "autoUpdateDesc": "Automatically update data",
+      "dataSyncTitle": "Data Sync",
+      "notSynced": "Not synced",
+      "syncButton": "Sync"
+    },
+    "account": {
+      "title": "Account",
+      "loggedIn": "Logged in",
+      "googleAccount": "Google Account",
+      "logOut": "Log out",
+      "signIn": "Sign in with Google"
+    },
+    "appInfo": {
+      "version": "App Version"
+    }
+  }
+}

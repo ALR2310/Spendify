@@ -21,6 +21,7 @@ export default defineConfig({
     emptyOutDir: true,
     outDir: 'dist',
     chunkSizeWarningLimit: 1600,
+    target: 'esnext',
     rollupOptions: {
       external: ['jeep-sqlite'],
       output: {
