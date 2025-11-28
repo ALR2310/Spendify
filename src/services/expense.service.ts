@@ -1,5 +1,5 @@
-import { db } from '@/database';
-import { NewExpenses, UpdateExpenses } from '@/database/types/tables/expenses';
+import { db } from '@/common/database';
+import { NewExpenses, UpdateExpenses } from '@/common/database/types/tables/expenses';
 
 export const expenseService = new (class ExpenseService {
   async getAll() {

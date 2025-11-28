@@ -1,4 +1,4 @@
-import { UpdateExpenses } from '@/database/types/tables/expenses';
+import { UpdateExpenses } from '@/common/database/types/tables/expenses';
 import { expenseService } from '@/services/expense.service';
 import { useMutation, useQuery } from 'react-query';
 

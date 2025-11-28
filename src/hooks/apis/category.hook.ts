@@ -1,4 +1,4 @@
-import { UpdateCategories } from '@/database/types/tables/categories';
+import { UpdateCategories } from '@/common/database/types/tables/categories';
 import { categoryService } from '@/services/category.service';
 import { useMutation, useQuery } from 'react-query';
 

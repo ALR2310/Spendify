@@ -1,4 +1,4 @@
-import { UpdateRecurring } from '@/database/types/tables/recurring';
+import { UpdateRecurring } from '@/common/database/types/tables/recurring';
 import { recurringService } from '@/services/recurring.service';
 import { useMutation, useQuery } from 'react-query';
 

@@ -1,5 +1,5 @@
-import { db } from '@/database';
-import { NewNotes, UpdateNotes } from '@/database/types/tables/notes';
+import { db } from '@/common/database';
+import { NewNotes, UpdateNotes } from '@/common/database/types/tables/notes';
 
 export const noteService = new (class NoteService {
   async getAll() {

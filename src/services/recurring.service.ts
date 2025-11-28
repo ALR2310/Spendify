@@ -1,5 +1,5 @@
-import { db } from '@/database';
-import { NewRecurring, UpdateRecurring } from '@/database/types/tables/recurring';
+import { db } from '@/common/database';
+import { NewRecurring, UpdateRecurring } from '@/common/database/types/tables/recurring';
 
 export const recurringService = new (class RecurringService {
   async getAll() {
