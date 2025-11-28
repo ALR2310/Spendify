@@ -4,7 +4,7 @@ import DockNav from './DockNav';
 
 export default function MainLayout() {
   return (
-    <div className="h-screen flex flex-col pt-[env(safe-area-inset-top)] bg-neutral">
+    <div id="main-layout" className="h-screen flex flex-col pt-[env(safe-area-inset-top)] bg-neutral">
       <div className="flex-1 overflow-auto no-scrollbar">
         <Outlet />
       </div>

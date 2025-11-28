@@ -1,19 +1,16 @@
 import { ChevronRight, Globe, Monitor, Moon, Sun } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { appConfig } from '@/common/appConfig';
+import { ThemeContext } from '@/context/ThemeContext';
 import { LanguageEnum, ThemeEnum } from '@/shared/enums/appconfig.enum';
 
 export default function SettingAppearance() {
   const { t } = useTranslation();
-  const [theme, setTheme] = useState<ThemeEnum>(appConfig.theme);
+  const { theme, setTheme } = useContext(ThemeContext);
   const [language, setLanguage] = useState<LanguageEnum>(appConfig.language);
   const [showThemeOptions, setShowThemeOptions] = useState<boolean>(false);
-
-  useEffect(() => {
-    appConfig.theme = theme;
-  }, [theme]);
 
   useEffect(() => {
     appConfig.language = language;
