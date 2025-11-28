@@ -1,6 +1,7 @@
-import { googleAuthService } from '@/services/googleauth.service';
-import { User, LogOut, LogIn, ChevronRight } from 'lucide-react';
+import { ChevronRight,LogIn, LogOut, User } from 'lucide-react';
 import { useState } from 'react';
+
+import { googleAuthService } from '@/services/googleauth.service';
 
 export default function SettingAccount() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);

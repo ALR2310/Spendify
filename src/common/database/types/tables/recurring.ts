@@ -1,4 +1,5 @@
 import { Insertable, Selectable, Updateable } from 'node_modules/kysely/dist/cjs/util/column-type';
+
 import { ExpensesTable } from './expenses';
 
 export enum PeriodEnum {

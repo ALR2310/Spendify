@@ -1,6 +1,7 @@
+import { useMutation, useQuery } from 'react-query';
+
 import { UpdateNotes } from '@/common/database/types/tables/notes';
 import { noteService } from '@/services/note.service';
-import { useMutation, useQuery } from 'react-query';
 
 export function useNoteGetAll() {
   return useQuery({

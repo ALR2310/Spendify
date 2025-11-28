@@ -1,6 +1,7 @@
+import { Cloud,RefreshCw } from 'lucide-react';
+import { useEffect,useState } from 'react';
+
 import { appConfig } from '@/common/appConfig';
-import { RefreshCw, Cloud } from 'lucide-react';
-import { useState, useEffect } from 'react';
 
 export default function SettingData() {
   const [autoUpdate, setAutoUpdate] = useState<boolean>(appConfig.autoUpdate);

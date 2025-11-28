@@ -1,5 +1,6 @@
-import { LanguageEnum, ThemeEnum } from '@/shared/enums/appconfig.enum';
 import { Preferences } from '@capacitor/preferences';
+
+import { LanguageEnum, ThemeEnum } from '@/shared/enums/appconfig.enum';
 
 interface AppConfig {
   theme: ThemeEnum;

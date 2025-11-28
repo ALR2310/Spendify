@@ -1,4 +1,6 @@
+import { SQLiteDBConnection } from '@capacitor-community/sqlite';
 import {
+  CompiledQuery,
   DatabaseConnection,
   DatabaseIntrospector,
   Dialect,
@@ -7,12 +9,10 @@ import {
   Kysely,
   QueryCompiler,
   QueryResult,
-  CompiledQuery,
   SqliteAdapter,
   SqliteIntrospector,
   SqliteQueryCompiler,
 } from 'kysely';
-import { SQLiteDBConnection } from '@capacitor-community/sqlite';
 
 export class CapacitorSQLiteConnection implements DatabaseConnection {
   constructor(private db: SQLiteDBConnection) {}
@@ -41,7 +41,7 @@ export class CapacitorSQLiteConnection implements DatabaseConnection {
     }
   }
 
-  async *streamQuery<R>(): AsyncIterableIterator<QueryResult<R>> {
+  streamQuery<R>(): AsyncIterableIterator<QueryResult<R>> {
     throw new Error('Streaming is not supported by CapacitorSQLite');
   }
 }

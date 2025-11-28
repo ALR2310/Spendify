@@ -15,10 +15,16 @@
         "Updateable",
         "VITE"
     ],
+    "eslint.useFlatConfig": true,
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
     },
+    "i18n-ally.localesPaths": [
+        "src/common/locales"
+    ],
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.sourceLanguage": "en",
     "github.copilot.chat.commitMessageGeneration.instructions": [
         {
             "text": "Use conventional commit format: type(scope): description."
@@ -38,5 +44,5 @@
         {
             "text": "Focus on main changes only, avoid trivial details."
         }
-    ]
+    ],
 }

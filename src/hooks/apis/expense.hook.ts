@@ -1,6 +1,7 @@
+import { useMutation, useQuery } from 'react-query';
+
 import { UpdateExpenses } from '@/common/database/types/tables/expenses';
 import { expenseService } from '@/services/expense.service';
-import { useMutation, useQuery } from 'react-query';
 
 export function useExpenseGetAll() {
   return useQuery({

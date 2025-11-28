@@ -1,8 +1,10 @@
 import { Info } from 'lucide-react';
+
 import { appConfig } from '@/common/appConfig';
+
+import SettingAccount from './components/SettingAccount';
 import SettingAppearance from './components/SettingAppearance';
 import SettingData from './components/SettingData';
-import SettingAccount from './components/SettingAccount';
 
 export default function SettingsPage() {
   return (

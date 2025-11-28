@@ -1,15 +1,23 @@
-import { defineConfig } from 'eslint/config';
-import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks';
 import js from '@eslint/js';
-import reactRefresh from 'eslint-plugin-react-refresh';
-import tseslint from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import eslintImport from 'eslint-plugin-import';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
-export default defineConfig({ ignores: ['dist'] },
+export default defineConfig(
   {
-    files: ['src/**/*.{ts,tsx}'],
+    ignores: [
+      '**/dist/**',
+      '**/node_modules/**',
+      '**/android/**',
+      'capacitor.config.ts',
+    ],
+  },
+  {
+    files: ['**/**/*.{ts,tsx}', 'eslint.config.js'],
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     languageOptions: {
       ecmaVersion: 2020,
@@ -17,6 +25,7 @@ export default defineConfig({ ignores: ['dist'] },
       parser: tseslint.parser,
     },
     plugins: {
+      '@typescript-eslint': tseslint.plugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       import: eslintImport,
@@ -34,7 +43,6 @@ export default defineConfig({ ignores: ['dist'] },
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
-      "import-zod/prefer-zod-namespace": "warn",
     },
-  }
+  },
 );

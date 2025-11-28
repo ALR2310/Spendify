@@ -1,7 +1,8 @@
+import { ChevronRight, Globe,Monitor, Moon, Sun } from 'lucide-react';
+import { useEffect,useState } from 'react';
+
 import { appConfig } from '@/common/appConfig';
-import { ThemeEnum, LanguageEnum } from '@/shared/enums/appconfig.enum';
-import { Sun, Moon, Monitor, ChevronRight, Globe } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { LanguageEnum,ThemeEnum } from '@/shared/enums/appconfig.enum';
 
 export default function SettingAppearance() {
   const [theme, setTheme] = useState<ThemeEnum>(appConfig.theme);

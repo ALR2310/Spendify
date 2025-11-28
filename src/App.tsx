@@ -1,12 +1,12 @@
+import { BrowserRouter, Route, Routes } from 'react-router';
 import { ToastContainer } from 'react-toastify';
 
-import { BrowserRouter, Route, Routes } from 'react-router';
-import { ROUTES } from './shared/constants/routes.const';
+import MainLayout from './layouts/MainLayout';
 import ExpensesPage from './pages/expenses/ExpensesPage';
+import NotesPage from './pages/notes/NotesPage';
 import SettingsPage from './pages/settings/SettingsPage';
 import StatisticsPage from './pages/statistics/StatisticsPage';
-import MainLayout from './layouts/MainLayout';
-import NotesPage from './pages/notes/NotesPage';
+import { ROUTES } from './shared/constants/routes.const';
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (

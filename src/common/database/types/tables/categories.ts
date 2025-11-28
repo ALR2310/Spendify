@@ -1,4 +1,5 @@
 import { Insertable, Selectable, Updateable } from 'kysely';
+
 import { BaseTable } from './base';
 
 export type CategoriesTable = BaseTable & {

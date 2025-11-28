@@ -1,11 +1,12 @@
-import { viteStaticCopy } from 'vite-plugin-static-copy';
-import { config } from 'dotenv';
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-import path from 'path';
-import pkg from './package.json' with { type: 'json' };
-import { analyzer } from 'vite-bundle-analyzer';
 import tailwindcss from '@tailwindcss/vite';
+import react from '@vitejs/plugin-react';
+import { config } from 'dotenv';
+import path from 'path';
+import { defineConfig } from 'vite';
+import { analyzer } from 'vite-bundle-analyzer';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+
+import pkg from './package.json' with { type: 'json' };
 
 config({ quiet: true });
 

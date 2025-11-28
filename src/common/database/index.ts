@@ -2,6 +2,7 @@ import { Capacitor } from '@capacitor/core';
 import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from '@capacitor-community/sqlite';
 import { defineCustomElements } from 'jeep-sqlite/loader';
 import { Kysely } from 'kysely';
+
 import { CapacitorSQLiteDialect } from './driver';
 import { Database } from './types';
 import { ExpenseTypeEnum } from './types/tables/expenses';
