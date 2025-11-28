@@ -11,7 +11,7 @@ export default function ExpensesPage() {
       <ExpenseFilter />
       <ExpenseList />
 
-      <div className="fab bottom-[60px]!">
+      <div className="fab bottom-[calc(env(safe-area-inset-bottom)+60px)]!">
         <button className="btn btn-lg btn-circle btn-success btn-soft">
           <Plus size={20} />
         </button>
