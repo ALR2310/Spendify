@@ -45,7 +45,7 @@ export default defineConfig({
     },
   },
   define: {
-    VITE_APP_VERSION: JSON.stringify(pkg.version),
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(pkg.version),
   },
   clearScreen: false,
   plugins: [
