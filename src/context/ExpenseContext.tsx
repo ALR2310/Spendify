@@ -1,0 +1,277 @@
+import { Plus } from 'lucide-react';
+import { createContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useQueryClient } from 'react-query';
+import { toast } from 'react-toastify';
+
+import { NewCategories } from '@/common/database/types/tables/categories';
+import { ExpenseTypeEnum, NewExpenses } from '@/common/database/types/tables/expenses';
+import { CurrencyInput } from '@/components/CurrencyInput';
+import { Modal } from '@/components/Modal';
+import {
+  useCategoryCreate,
+  useCategoryGetAll,
+  useCategoryGetById,
+  useCategoryUpdate,
+} from '@/hooks/apis/category.hook';
+import { useExpenseCreate, useExpenseGetById, useExpenseUpdate } from '@/hooks/apis/expense.hook';
+
+interface ExpenseContextType {
+  openModal(expenseId?: number): void;
+  closeModal(): void;
+}
+
+const ExpenseContext = createContext<ExpenseContextType>(null!);
+
+const ExpenseProvider = ({ children }: { children: React.ReactNode }) => {
+  const modalRef = useRef<HTMLDialogElement>(null!);
+  const [expenseId, setExpenseId] = useState<number | null>(null);
+
+  const openModal = (expenseId: number) => {
+    setExpenseId(expenseId);
+    modalRef.current.showModal();
+  };
+
+  const closeModal = () => {
+    setExpenseId(null);
+    modalRef.current.close();
+  };
+
+  const ctx = useMemo(
+    () => ({
+      openModal,
+      closeModal,
+    }),
+    [],
+  );
+
+  return (
+    <ExpenseContext.Provider value={ctx}>
+      {children}
+      <ExpenseModal modalRef={modalRef} expenseId={expenseId} />
+    </ExpenseContext.Provider>
+  );
+};
+
+const ExpenseModal = ({
+  modalRef,
+  expenseId,
+}: {
+  modalRef: React.RefObject<HTMLDialogElement>;
+  expenseId?: number | null;
+}) => {
+  const queryClient = useQueryClient();
+  const categoryModalRef = useRef<HTMLDialogElement>(null!);
+
+  const [amount, setAmount] = useState<number | null>(null);
+  const [categoryId, setCategoryId] = useState<number>(1);
+  const [date, setDate] = useState<string>('');
+  const [type, setType] = useState<ExpenseTypeEnum>(ExpenseTypeEnum.Expense);
+  const [note, setNote] = useState<string>('');
+
+  const { data: categories } = useCategoryGetAll();
+  const { data: expense, isLoading: isLoadingExpense } = useExpenseGetById(expenseId!);
+  const { mutateAsync: createExpense } = useExpenseCreate();
+  const { mutateAsync: updateExpense } = useExpenseUpdate();
+
+  // Populate form when editing an expense
+  useEffect(() => {
+    if (expense && !isLoadingExpense) {
+      setAmount(expense.amount);
+      setCategoryId(expense.categoryId);
+      setDate(expense.date);
+      setType(expense.type);
+      setNote(expense.note || '');
+    }
+  }, [expense, isLoadingExpense]);
+
+  const handleCreateOrUpdate = async () => {
+    const now = new Date().toISOString();
+    const data: NewExpenses = { categoryId, amount: amount ?? 0, date, type, note, updatedAt: now };
+
+    try {
+      if (expenseId) {
+        await updateExpense({ id: expenseId, data });
+      } else {
+        await createExpense({ ...data, createdAt: now });
+      }
+
+      setAmount(null);
+      setCategoryId(1);
+      setDate('');
+      setType(ExpenseTypeEnum.Expense);
+      setNote('');
+
+      modalRef.current?.close();
+      queryClient.invalidateQueries({ queryKey: ['expenses/getAll'] });
+      toast.success(`Expense ${expenseId ? 'updated' : 'created'} successfully.`);
+    } catch (err) {
+      toast.error('An error occurred while saving the expense.');
+    }
+  };
+
+  return (
+    <>
+      <Modal
+        ref={modalRef}
+        title={<p className="text-center">{`${expenseId ? `Edit` : `New`} Expense`}</p>}
+        iconClose={false}
+        buttonSubmit={{
+          show: true,
+          onClick: handleCreateOrUpdate,
+        }}
+      >
+        <div className="space-y-4">
+          <label className="floating-label">
+            <span>Amount</span>
+            <CurrencyInput value={amount} onChange={setAmount} placeholder="Amount" />
+          </label>
+
+          <div className="flex gap-4">
+            <select
+              className="select select-lg capitalize"
+              value={categoryId}
+              onChange={(e) => setCategoryId(Number(e.target.value))}
+            >
+              {categories?.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.icon} {category.name}
+                </option>
+              ))}
+            </select>
+
+            <button type="button" className="btn btn-lg btn-soft" onClick={() => categoryModalRef.current?.showModal()}>
+              <Plus size={20} />
+            </button>
+          </div>
+
+          <label className="floating-label">
+            <span>Date</span>
+            <input type="date" placeholder="Date" className="input input-lg" />
+          </label>
+
+          <label className="floating-label">
+            <span>Type</span>
+            <select className="select select-lg capitalize">
+              {Object.entries(ExpenseTypeEnum).map(([key, value]) => (
+                <option key={key} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="floating-label">
+            <span>Note</span>
+            <input type="text" placeholder="Note" className="input input-lg" />
+          </label>
+        </div>
+      </Modal>
+
+      <CategoryModal modalRef={categoryModalRef} />
+    </>
+  );
+};
+
+const CategoryModal = ({
+  modalRef,
+  categoryId,
+}: {
+  modalRef: React.RefObject<HTMLDialogElement>;
+  categoryId?: number | null;
+}) => {
+  const queryClient = useQueryClient();
+
+  const [name, setName] = useState<string>('');
+  const [icon, setIcon] = useState<string>('');
+  const [color, setColor] = useState<string>();
+
+  const { data: category, isLoading: isLoadingCategory } = useCategoryGetById(categoryId!);
+  const { mutateAsync: createCategory } = useCategoryCreate();
+  const { mutateAsync: updateCategory } = useCategoryUpdate();
+
+  useEffect(() => {
+    if (category && !isLoadingCategory) {
+      setName(category.name);
+      setIcon(category.icon || '');
+      setColor(category.color);
+    }
+  }, [category, isLoadingCategory]);
+
+  const handleCreateOrUpdate = async () => {
+    if (!name) {
+      toast.error('Name is required.');
+      return;
+    }
+
+    const now = new Date().toISOString();
+    const data: NewCategories = { name, icon, color, updatedAt: now };
+
+    try {
+      if (categoryId) {
+        await updateCategory({ id: categoryId, data });
+      } else {
+        await createCategory({ ...data, createdAt: now });
+      }
+
+      setName('');
+      setIcon('');
+      setColor(undefined);
+
+      modalRef.current?.close();
+      queryClient.invalidateQueries({ queryKey: ['categories/getAll'] });
+      toast.success(`Category ${categoryId ? 'updated' : 'created'} successfully.`);
+    } catch (err) {
+      toast.error('An error occurred while saving the category.');
+    }
+  };
+
+  return (
+    <Modal
+      title={`${categoryId ? 'Edit' : 'New'} Category`}
+      ref={modalRef}
+      iconClose={false}
+      buttonSubmit={{
+        show: true,
+        onClick: handleCreateOrUpdate,
+      }}
+    >
+      <div className="space-y-4">
+        <label className="floating-label">
+          <span>Name</span>
+          <input
+            type="text"
+            placeholder="Category Name"
+            className="input input-lg"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+
+        <label className="floating-label">
+          <span>Icon</span>
+          <input
+            type="text"
+            placeholder="Category Icon"
+            className="input input-lg"
+            value={icon}
+            onChange={(e) => setIcon(e.target.value)}
+          />
+        </label>
+
+        <label className="floating-label">
+          <span>Color</span>
+          <input
+            type="color"
+            placeholder="Category Color"
+            className="input input-lg"
+            value={color}
+            onChange={(e) => setIcon(e.target.value)}
+          />
+        </label>
+      </div>
+    </Modal>
+  );
+};
+
+export { ExpenseContext, ExpenseProvider };
+export type { ExpenseContextType };

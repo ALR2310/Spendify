@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import { ToastContainer } from 'react-toastify';
 
 import { appConfig } from './common/appConfig';
+import { ExpenseProvider } from './context/ExpenseContext';
 import { ThemeProvider } from './context/ThemeContext';
 import MainLayout from './layouts/MainLayout';
 import ExpensesPage from './pages/expenses/ExpensesPage';
@@ -23,18 +24,20 @@ const queryClient = new QueryClient({
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        {children}
-        <ToastContainer
-          className="toast-container"
-          autoClose={200000}
-          theme={appConfig.theme}
-          pauseOnHover={false}
-          position="top-center"
-          hideProgressBar={true}
-          closeOnClick={true}
-        />
-      </ThemeProvider>
+      <ExpenseProvider>
+        <ThemeProvider>
+          {children}
+          <ToastContainer
+            className="toast-container"
+            autoClose={200000}
+            theme={appConfig.theme}
+            pauseOnHover={false}
+            position="top-center"
+            hideProgressBar={true}
+            closeOnClick={true}
+          />
+        </ThemeProvider>
+      </ExpenseProvider>
     </QueryClientProvider>
   );
 };

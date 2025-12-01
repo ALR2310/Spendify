@@ -9,7 +9,6 @@ export enum ExpenseTypeEnum {
 
 export type ExpensesTable = BaseTable & {
   categoryId: number;
-  name: string;
   date: string;
   amount: number;
   type: ExpenseTypeEnum;

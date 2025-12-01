@@ -1,7 +1,7 @@
 import { Capacitor } from '@capacitor/core';
 import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from '@capacitor-community/sqlite';
 import { defineCustomElements } from 'jeep-sqlite/loader';
-import { Kysely } from 'kysely';
+import { Kysely, sql } from 'kysely';
 
 import { CapacitorSQLiteDialect } from './driver';
 import { Database } from './types';
@@ -33,9 +33,6 @@ export async function database(): Promise<SQLiteDBConnection> {
 
     await dbInstance.open();
 
-    // Create tables if they don't exist
-    await initializeTables(dbInstance);
-
     console.log('Connect to database successfully');
 
     return dbInstance;
@@ -45,7 +42,11 @@ export async function database(): Promise<SQLiteDBConnection> {
   }
 }
 
-async function initializeTables(db: SQLiteDBConnection): Promise<void> {
+export const db = new Kysely<Database>({
+  dialect: new CapacitorSQLiteDialect(await database()),
+});
+
+export async function initializeTables() {
   const expenseTypes = Object.values(ExpenseTypeEnum)
     .map((v) => `'${v}'`)
     .join(', ');
@@ -53,74 +54,52 @@ async function initializeTables(db: SQLiteDBConnection): Promise<void> {
     .map((v) => `'${v}'`)
     .join(', ');
 
-  const createCategoriesTable = `
-    CREATE TABLE IF NOT EXISTS categories (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      icon TEXT,
-      color TEXT,
-      createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      updatedAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-    )
-  `;
+  await db.schema
+    .createTable('categories')
+    .addColumn('id', 'integer', (col) => col.primaryKey().autoIncrement())
+    .addColumn('name', 'text', (col) => col.notNull().unique())
+    .addColumn('icon', 'text')
+    .addColumn('color', 'text')
+    .addColumn('createdAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
+    .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
+    .ifNotExists()
+    .execute();
 
-  const createExpensesTable = `
-    CREATE TABLE IF NOT EXISTS expenses (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      categoryId INTEGER NOT NULL,
-      name TEXT NOT NULL,
-      date TEXT NOT NULL,
-      amount REAL NOT NULL,
-      type TEXT NOT NULL CHECK (type IN (${expenseTypes})),
-      note TEXT,
-      createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      updatedAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (categoryId) REFERENCES categories(id)
-    )
-  `;
+  await db.schema
+    .createTable('expenses')
+    .addColumn('id', 'integer', (col) => col.primaryKey().autoIncrement())
+    .addColumn('categoryId', 'integer', (col) => col.references('categories.id').notNull())
+    .addColumn('date', 'text', (col) => col.notNull())
+    .addColumn('amount', 'real', (col) => col.notNull())
+    .addColumn('type', 'text', (col) => col.notNull().check(sql`type IN (${sql.raw(expenseTypes)})`))
+    .addColumn('note', 'text')
+    .addColumn('createdAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
+    .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
+    .ifNotExists()
+    .execute();
 
-  const createRecurringTable = `
-    CREATE TABLE IF NOT EXISTS recurring (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      categoryId INTEGER NOT NULL,
-      name TEXT NOT NULL,
-      amount REAL NOT NULL,
-      type TEXT NOT NULL CHECK (type IN (${expenseTypes})),
-      note TEXT,
-      period TEXT NOT NULL CHECK (period IN (${periodTypes})),
-      startDate TEXT NOT NULL,
-      endDate TEXT,
-      createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      updatedAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (categoryId) REFERENCES categories(id)
-    )
-  `;
+  await db.schema
+    .createTable('recurring')
+    .addColumn('id', 'integer', (col) => col.primaryKey().autoIncrement())
+    .addColumn('categoryId', 'integer', (col) => col.references('categories.id').notNull())
+    .addColumn('amount', 'real', (col) => col.notNull())
+    .addColumn('type', 'text', (col) => col.notNull().check(sql`type IN (${sql.raw(expenseTypes)})`))
+    .addColumn('note', 'text')
+    .addColumn('period', 'text', (col) => col.notNull().check(sql`period IN (${sql.raw(periodTypes)})`))
+    .addColumn('startDate', 'text', (col) => col.notNull())
+    .addColumn('endDate', 'text')
+    .addColumn('createdAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
+    .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
+    .ifNotExists()
+    .execute();
 
-  const createNotesTable = `
-    CREATE TABLE IF NOT EXISTS notes (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      title TEXT NOT NULL,
-      content TEXT NOT NULL,
-      createdAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      updatedAt TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-    )
-  `;
-
-  try {
-    await db.execute(createCategoriesTable);
-    await db.execute(createExpensesTable);
-    await db.execute(createRecurringTable);
-    await db.execute(createNotesTable);
-
-    console.log('Tables initialized successfully');
-  } catch (error) {
-    console.error('Error initializing tables:', error);
-    throw error;
-  }
+  await db.schema
+    .createTable('notes')
+    .addColumn('id', 'integer', (col) => col.primaryKey().autoIncrement())
+    .addColumn('title', 'text', (col) => col.notNull())
+    .addColumn('content', 'text', (col) => col.notNull())
+    .addColumn('createdAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
+    .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
+    .ifNotExists()
+    .execute();
 }
-
-const dbConnection = await database();
-
-export const db = new Kysely<Database>({
-  dialect: new CapacitorSQLiteDialect(dbConnection),
-});
