@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { NewCategories } from '@/common/database/types/tables/categories';
 import { ExpenseTypeEnum, NewExpenses } from '@/common/database/types/tables/expenses';
 import { CurrencyInput } from '@/components/CurrencyInput';
-import { Modal } from '@/components/Modal';
+import Modal, { ModalRef } from '@/components/Modal';
 import {
   useCategoryCreate,
   useCategoryGetAll,
@@ -23,7 +23,7 @@ interface ExpenseContextType {
 const ExpenseContext = createContext<ExpenseContextType>(null!);
 
 const ExpenseProvider = ({ children }: { children: React.ReactNode }) => {
-  const modalRef = useRef<HTMLDialogElement>(null!);
+  const modalRef = useRef<ModalRef>(null!);
   const [expenseId, setExpenseId] = useState<number | null>(null);
 
   const openModal = (expenseId: number) => {
@@ -52,13 +52,7 @@ const ExpenseProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const ExpenseModal = ({
-  modalRef,
-  expenseId,
-}: {
-  modalRef: React.RefObject<HTMLDialogElement>;
-  expenseId?: number | null;
-}) => {
+const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<ModalRef>; expenseId?: number | null }) => {
   const queryClient = useQueryClient();
   const categoryModalRef = useRef<HTMLDialogElement>(null!);
 
@@ -176,7 +170,7 @@ const CategoryModal = ({
   modalRef,
   categoryId,
 }: {
-  modalRef: React.RefObject<HTMLDialogElement>;
+  modalRef: React.RefObject<ModalRef>;
   categoryId?: number | null;
 }) => {
   const queryClient = useQueryClient();

@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import { forwardRef, ReactNode, useImperativeHandle, useState } from 'react';
 
 interface ButtonProps {
   label?: string;
@@ -7,74 +7,88 @@ interface ButtonProps {
   onClick?: () => void | Promise<void>;
 }
 
-export interface ModalProps {
-  ref?: RefObject<HTMLDialogElement | null>;
-  title?: React.ReactNode | string;
+interface ModalProps {
+  title?: ReactNode;
   className?: string;
   modalClassName?: string;
   buttonSubmit?: ButtonProps;
   buttonCancel?: ButtonProps;
   backdropClose?: boolean;
   iconClose?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
-export function Modal({
-  ref,
-  title,
-  className,
-  modalClassName,
-  buttonSubmit = { show: true },
-  buttonCancel = { show: true },
-  backdropClose = true,
-  iconClose = true,
-  children,
-}: ModalProps) {
-  return (
-    <dialog ref={ref} className={`modal outline-none ${modalClassName || ''}`}>
-      <div className={`modal-box outline-none ${className}`}>
-        {iconClose && (
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-          </form>
-        )}
+interface ModalRef {
+  showModal: () => void;
+  close: () => void;
+}
 
-        {title && <div className="text-lg font-bold mb-4">{title}</div>}
-        {children}
+const Modal = forwardRef<ModalRef, ModalProps>(
+  (
+    {
+      title,
+      className = '',
+      modalClassName = '',
+      buttonSubmit = { show: true },
+      buttonCancel = { show: true },
+      backdropClose = true,
+      iconClose = true,
+      children,
+    },
+    ref,
+  ) => {
+    const [open, setOpen] = useState(false);
 
-        {(buttonSubmit?.show || buttonCancel?.show) && (
-          <div className="modal-action">
-            {buttonCancel?.show && (
-              <button
-                className={`btn w-24 ${buttonCancel?.className || 'btn-soft'}`}
-                onClick={() => {
-                  if (buttonCancel.onClick) buttonCancel.onClick();
-                  else ref?.current?.close();
-                }}
-              >
-                {buttonCancel?.label || 'Cancel'}
-              </button>
-            )}
+    useImperativeHandle(ref, () => ({
+      showModal: () => setOpen(true),
+      close: () => setOpen(false),
+    }));
 
-            {buttonSubmit?.show && (
-              <button
-                className={`btn w-24 ${buttonSubmit?.className || 'btn-success'}`}
-                onClick={() => {
-                  if (buttonSubmit.onClick) buttonSubmit.onClick();
-                  else ref?.current?.close();
-                }}
-              >
-                {buttonSubmit?.label || 'OK'}
-              </button>
-            )}
-          </div>
-        )}
+    return (
+      <div className={`modal ${open ? 'modal-open' : ''} outline-none ${modalClassName || ''}`}>
+        <div className={`modal-box outline-none ${className}`}>
+          {iconClose && (
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => setOpen(false)}>
+              ✕
+            </button>
+          )}
+
+          {title && <div className="text-lg font-bold mb-4">{title}</div>}
+          {children}
+
+          {(buttonSubmit?.show || buttonCancel?.show) && (
+            <div className="modal-action">
+              {buttonCancel?.show && (
+                <button
+                  className={`btn w-24 ${buttonCancel?.className || 'btn-soft'}`}
+                  onClick={() => {
+                    if (buttonCancel.onClick) buttonCancel.onClick();
+                    else setOpen(false);
+                  }}
+                >
+                  {buttonCancel?.label || 'Cancel'}
+                </button>
+              )}
+
+              {buttonSubmit?.show && (
+                <button
+                  className={`btn w-24 ${buttonSubmit?.className || 'btn-success'}`}
+                  onClick={() => {
+                    if (buttonSubmit.onClick) buttonSubmit.onClick();
+                    else setOpen(false);
+                  }}
+                >
+                  {buttonSubmit?.label || 'OK'}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+        {backdropClose && <div className="modal-backdrop cursor-pointer" onClick={() => setOpen(false)} />}
       </div>
-      {backdropClose && (
-        <form method="dialog" className="modal-backdrop">
-          <button>close</button>
-        </form>
-      )}
-    </dialog>
-  );
-}
+    );
+  },
+);
+
+export type { ModalRef };
+export default Modal;
