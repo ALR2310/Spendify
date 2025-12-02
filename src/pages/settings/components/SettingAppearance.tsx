@@ -1,14 +1,15 @@
 import { ChevronRight, Globe, Monitor, Moon, Sun } from 'lucide-react';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { appConfig } from '@/common/appConfig';
-import { ThemeContext } from '@/context/ThemeContext';
+import i18n from '@/common/i18n';
+import { useTheme } from '@/hooks/app/useTheme';
 import { LanguageEnum, ThemeEnum } from '@/shared/enums/appconfig.enum';
 
 export default function SettingAppearance() {
   const { t } = useTranslation();
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, setTheme } = useTheme();
   const [language, setLanguage] = useState<LanguageEnum>(appConfig.language);
   const [showThemeOptions, setShowThemeOptions] = useState<boolean>(false);
 
@@ -118,9 +119,16 @@ export default function SettingAppearance() {
               <select
                 className="select select-sm select-ghost w-full max-w-xs mt-1 h-auto py-0 text-xs"
                 value={language}
-                onChange={(e) => setLanguage(e.target.value as LanguageEnum)}
+                onChange={(e) => {
+                  setLanguage(e.target.value as LanguageEnum);
+                  i18n.changeLanguage(e.target.value);
+                }}
               >
-                <option value={LanguageEnum.EN}>English</option>
+                {Object.entries(LanguageEnum).map(([key, value]) => (
+                  <option key={key} value={value} className="capitalize">
+                    {value}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

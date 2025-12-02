@@ -1,14 +1,13 @@
 import { Plus } from 'lucide-react';
-import { useContext } from 'react';
 
-import { ExpenseContext } from '@/context/ExpenseContext';
+import { useExpense } from '@/hooks/app/useExpense';
 
 import ExpenseFilter from './components/ExpenseFilter';
 import ExpenseList from './components/ExpenseList';
 import ExpenseOverview from './components/ExpenseOverview';
 
 export default function ExpensesPage() {
-  const { openModal } = useContext(ExpenseContext);
+  const { openModal } = useExpense();
 
   return (
     <div className="p-4 space-y-4">

@@ -6,4 +6,5 @@ export enum ThemeEnum {
 
 export enum LanguageEnum {
   EN = 'en',
+  VI = 'vi',
 }

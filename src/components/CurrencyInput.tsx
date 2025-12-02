@@ -2,7 +2,7 @@ import { ChangeEvent, KeyboardEvent, useLayoutEffect, useMemo, useRef, useState 
 
 interface Props {
   value?: number | null;
-  onChange?: (value: number | null) => void;
+  onChange?: (value: number) => void;
   placeholder?: string;
   className?: string;
 }
@@ -36,7 +36,7 @@ export function CurrencyInput({ value = null, onChange, placeholder = '', classN
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const num = extractNumber(e.target.value);
     setInternal(formatDisplay(num));
-    onChange?.(num);
+    onChange?.(num ?? 0);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -59,7 +59,7 @@ export function CurrencyInput({ value = null, onChange, placeholder = '', classN
       const newNum = newNumStr === '' ? null : Number(newNumStr);
 
       setInternal(formatDisplay(newNum));
-      onChange?.(newNum);
+      onChange?.(newNum ?? 0);
 
       requestAnimationFrame(() => {
         const pos = (formatDisplay(newNum) || '').length;

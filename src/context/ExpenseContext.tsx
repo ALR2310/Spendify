@@ -1,4 +1,5 @@
-import { Plus } from 'lucide-react';
+import dayjs from 'dayjs';
+import { CalendarDaysIcon, Plus } from 'lucide-react';
 import { createContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
@@ -14,6 +15,7 @@ import {
   useCategoryUpdate,
 } from '@/hooks/apis/category.hook';
 import { useExpenseCreate, useExpenseGetById, useExpenseUpdate } from '@/hooks/apis/expense.hook';
+import { useDayPicker } from '@/hooks/app/useDayPicker';
 
 interface ExpenseContextType {
   openModal(expenseId?: number): void;
@@ -56,11 +58,13 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
   const queryClient = useQueryClient();
   const categoryModalRef = useRef<HTMLDialogElement>(null!);
 
-  const [amount, setAmount] = useState<number | null>(null);
+  const [amount, setAmount] = useState<number>(0);
   const [categoryId, setCategoryId] = useState<number>(1);
   const [date, setDate] = useState<string>('');
   const [type, setType] = useState<ExpenseTypeEnum>(ExpenseTypeEnum.Expense);
   const [note, setNote] = useState<string>('');
+
+  const [pickerValue, openPicker] = useDayPicker();
 
   const { data: categories } = useCategoryGetAll();
   const { data: expense, isLoading: isLoadingExpense } = useExpenseGetById(expenseId!);
@@ -78,9 +82,14 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
     }
   }, [expense, isLoadingExpense]);
 
+  // Update date when picker value changes
+  useEffect(() => {
+    if (pickerValue) setDate(pickerValue.toISOString());
+  }, [pickerValue]);
+
   const handleCreateOrUpdate = async () => {
     const now = new Date().toISOString();
-    const data: NewExpenses = { categoryId, amount: amount ?? 0, date, type, note, updatedAt: now };
+    const data: NewExpenses = { categoryId, amount: amount, date, type, note, updatedAt: now };
 
     try {
       if (expenseId) {
@@ -89,7 +98,7 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
         await createExpense({ ...data, createdAt: now });
       }
 
-      setAmount(null);
+      setAmount(0);
       setCategoryId(1);
       setDate('');
       setType(ExpenseTypeEnum.Expense);
@@ -140,7 +149,15 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
 
           <label className="floating-label">
             <span>Date</span>
-            <input type="date" placeholder="Date" className="input input-lg" />
+            <input
+              type="text"
+              placeholder="dd/mm/yyyy"
+              className="input input-lg"
+              readOnly
+              value={date ? dayjs(date).format('DD/MM/YYYY') : ''}
+              onClick={() => openPicker()}
+            />
+            <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
           </label>
 
           <label className="floating-label">

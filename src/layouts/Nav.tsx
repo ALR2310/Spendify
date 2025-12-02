@@ -4,7 +4,7 @@ export default function Nav() {
   return (
     <div className="navbar min-h-auto">
       <div className="navbar-start">
-        <img src="/src/assets/images/icon.png" alt="" className="rounded-xl w-7" />
+        <img src="/src/assets/images/favicon.ico" alt="" className="rounded-xl w-7" />
         <a className="btn btn-sm btn-ghost font-semibold text-lg">Spendify</a>
       </div>
 
