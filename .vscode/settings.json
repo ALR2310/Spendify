@@ -5,6 +5,7 @@
         "googleauth",
         "Insertable",
         "Introspector",
+        "khỏe",
         "konsta",
         "kysely",
         "Kysely",

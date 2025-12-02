@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 
 import { appConfig } from './common/appConfig';
 import { DayPickerProvider } from './context/DayPickerContext';
+import { EmojiPickerProvider } from './context/EmojiPickerContext';
 import { ExpenseProvider } from './context/ExpenseContext';
 import { ThemeProvider } from './context/ThemeContext';
 import MainLayout from './layouts/MainLayout';
@@ -26,20 +27,22 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <DayPickerProvider>
-        <ExpenseProvider>
-          <ThemeProvider>
-            {children}
-            <ToastContainer
-              className="toast-container"
-              autoClose={200000}
-              theme={appConfig.theme}
-              pauseOnHover={false}
-              position="top-center"
-              hideProgressBar={true}
-              closeOnClick={true}
-            />
-          </ThemeProvider>
-        </ExpenseProvider>
+        <EmojiPickerProvider>
+          <ExpenseProvider>
+            <ThemeProvider>
+              {children}
+              <ToastContainer
+                className="toast-container"
+                autoClose={200000}
+                theme={appConfig.theme}
+                pauseOnHover={false}
+                position="top-center"
+                hideProgressBar={true}
+                closeOnClick={true}
+              />
+            </ThemeProvider>
+          </ExpenseProvider>
+        </EmojiPickerProvider>
       </DayPickerProvider>
     </QueryClientProvider>
   );

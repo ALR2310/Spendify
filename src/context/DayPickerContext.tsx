@@ -112,8 +112,8 @@ function DayPickerDrawer() {
       <div
         className={`fixed bottom-0 left-0 right-0 transition-all duration-200
         ${isOpen ? 'translate-y-0' : 'translate-y-full'}
-        bg-base-100 p-4 shadow-xl rounded-t-2xl pb-[env(safe-area-inset-bottom)]`}
-        style={{ zIndex: 9999 }}
+        bg-base-100 p-2 shadow-xl rounded-t-2xl pb-[env(safe-area-inset-bottom)] flex flex-col min-h-0`}
+        style={{ zIndex: 9999, minHeight: '343px' }}
       >
         <div className="relative flex items-center justify-center mb-2">
           <h3 className="font-semibold">Chọn ngày</h3>
@@ -123,7 +123,7 @@ function DayPickerDrawer() {
         </div>
 
         <div
-          className="touch-none select-none"
+          className="flex-1 touch-none select-none bg-base-200 p-2 rounded-xl"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
@@ -137,7 +137,7 @@ function DayPickerDrawer() {
             selected={value}
             onSelect={setValue}
             navLayout="around"
-            showOutsideDays
+            showOutsideDays={false}
             fixedWeeks
             className="flex justify-center text-sm"
             classNames={{
@@ -146,6 +146,7 @@ function DayPickerDrawer() {
               day_button: 'rdp-day_button w-12!',
               selected: 'text-success bg-success/5 rounded-xl',
               chevron: 'rdp-chevron fill-success!',
+              outside: 'opacity-30',
             }}
           />
         </div>

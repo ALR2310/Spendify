@@ -16,6 +16,7 @@ import {
 } from '@/hooks/apis/category.hook';
 import { useExpenseCreate, useExpenseGetById, useExpenseUpdate } from '@/hooks/apis/expense.hook';
 import { useDayPicker } from '@/hooks/app/useDayPicker';
+import { useEmojiPicker } from '@/hooks/app/useEmojiPicker';
 
 interface ExpenseContextType {
   openModal(expenseId?: number): void;
@@ -196,6 +197,8 @@ const CategoryModal = ({
   const [icon, setIcon] = useState<string>('');
   const [color, setColor] = useState<string>();
 
+  const [emoji, openPicker] = useEmojiPicker();
+
   const { data: category, isLoading: isLoadingCategory } = useCategoryGetById(categoryId!);
   const { mutateAsync: createCategory } = useCategoryCreate();
   const { mutateAsync: updateCategory } = useCategoryUpdate();
@@ -207,6 +210,10 @@ const CategoryModal = ({
       setColor(category.color);
     }
   }, [category, isLoadingCategory]);
+
+  useEffect(() => {
+    if (emoji) setIcon(emoji);
+  }, [emoji]);
 
   const handleCreateOrUpdate = async () => {
     if (!name) {
@@ -258,27 +265,30 @@ const CategoryModal = ({
           />
         </label>
 
-        <label className="floating-label">
-          <span>Icon</span>
-          <input
-            type="text"
-            placeholder="Category Icon"
-            className="input input-lg"
-            value={icon}
-            onChange={(e) => setIcon(e.target.value)}
-          />
-        </label>
+        <div className="flex items-center gap-2">
+          <label className="floating-label flex-1">
+            <span>Emoji</span>
+            <input
+              type="text"
+              placeholder="Emoji"
+              className="input input-lg"
+              readOnly
+              value={icon}
+              onClick={openPicker}
+            />
+          </label>
 
-        <label className="floating-label">
-          <span>Color</span>
-          <input
-            type="color"
-            placeholder="Category Color"
-            className="input input-lg"
-            value={color}
-            onChange={(e) => setIcon(e.target.value)}
-          />
-        </label>
+          <label className="floating-label flex-1">
+            <span>Color</span>
+            <input
+              type="color"
+              placeholder="Category Color"
+              className="input input-lg"
+              value={color}
+              onChange={(e) => setIcon(e.target.value)}
+            />
+          </label>
+        </div>
       </div>
     </Modal>
   );
