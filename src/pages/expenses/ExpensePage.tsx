@@ -15,7 +15,7 @@ export default function ExpensePage() {
       <ExpenseStat />
       <ExpenseList />
 
-      <div className="fab bottom-[calc(env(safe-area-inset-bottom)+60px)]!">
+      <div className="fab bottom-[calc(env(safe-area-inset-bottom)+100px)]!">
         <button className="btn btn-lg btn-circle btn-success btn-soft" onClick={() => openModal()}>
           <Plus size={20} />
         </button>

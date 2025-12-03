@@ -3,11 +3,29 @@ import { useTranslation } from 'react-i18next';
 
 import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
 import { useExpenseListInfinite } from '@/hooks/apis/expense.hook';
+import { useExpenseContext } from '@/hooks/app/useExpense';
 import { useThemeContext } from '@/hooks/app/useTheme';
 import { ThemeEnum } from '@/shared/enums/appconfig.enum';
 import { ExpenseListResponse } from '@/shared/types/expense.type';
 import { groupExpenseByDate } from '@/utils/expense.utils';
 import { formatCurrency } from '@/utils/general.utils';
+
+const NotFoundCard = () => {
+  const { openModal } = useExpenseContext();
+
+  return (
+    <div className="flex flex-col p-6 bg-base-200 rounded-xl text-center">
+      <p>No expenses found</p>
+      <p>
+        Click{' '}
+        <a className="link link-success" onClick={() => openModal()}>
+          here
+        </a>{' '}
+        to add a new expense
+      </p>
+    </div>
+  );
+};
 
 const ExpenseCard = memo(({ data }: { data?: ExpenseListResponse['data'][number] }) => {
   return (
@@ -44,10 +62,11 @@ export default function ExpenseList() {
   };
 
   return (
-    <div className="flex flex-col gap-3 h-[80vh]">
+    <div className="flex flex-col gap-3 max-h-[70vh]">
       <p className="font-semibold text-lg">{t('expenses.list.title')}</p>
 
       <div className="flex-1 overflow-auto" onScroll={handleScroll}>
+        {dates.length === 0 && <NotFoundCard />}
         {dates.map((date) => (
           <div key={date} className="space-y-4">
             <div
