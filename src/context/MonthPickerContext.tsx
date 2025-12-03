@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import Drawer, { type DrawerRef } from '@/components/Drawer';
 import { getMonthLabel } from '@/utils/general.utils';
 
 interface MonthValue {
@@ -68,12 +69,21 @@ function MonthPickerDrawer() {
   const locale = i18n.language;
 
   const { isOpen, value, setValue, closePicker } = useContext(MonthPickerContext);
+  const drawerRef = useRef<DrawerRef>(null);
   const currentYear = new Date().getFullYear();
 
   const [year, setYear] = useState<number>(value?.year ?? currentYear);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+
+  useEffect(() => {
+    if (isOpen) {
+      drawerRef.current?.openDrawer();
+    } else {
+      drawerRef.current?.close();
+    }
+  }, [isOpen]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.changedTouches[0].clientX;
@@ -97,22 +107,8 @@ function MonthPickerDrawer() {
   }, [isOpen, value]);
 
   return (
-    <>
-      {/* Overlay */}
-      <div
-        className={`fixed inset-0 bg-black/40 transition-opacity duration-200
-        ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-        style={{ zIndex: 9998 }}
-        onClick={closePicker}
-      />
-
-      {/* Drawer */}
-      <div
-        className={`fixed bottom-0 left-0 right-0 transition-all duration-200
-        ${isOpen ? 'translate-y-0' : 'translate-y-full'}
-        bg-base-100 p-3 shadow-xl rounded-t-2xl pb-[env(safe-area-inset-bottom)]`}
-        style={{ zIndex: 9999 }}
-      >
+    <Drawer ref={drawerRef} position="bottom" className="w-full rounded-t-2xl" onClose={closePicker}>
+      <div className="p-3 pb-[env(safe-area-inset-bottom)]">
         <div className="relative flex items-center justify-center mb-2">
           <h3 className="font-semibold">Chọn tháng</h3>
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={closePicker}>
@@ -152,7 +148,7 @@ function MonthPickerDrawer() {
           </div>
         </div>
       </div>
-    </>
+    </Drawer>
   );
 }
 
