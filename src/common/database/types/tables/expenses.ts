@@ -14,6 +14,6 @@ export type ExpensesTable = BaseTable & {
   type: ExpenseTypeEnum;
   note?: string;
 };
-export type Expenses = Selectable<ExpensesTable>;
-export type NewExpenses = Insertable<ExpensesTable>;
-export type UpdateExpenses = Updateable<ExpensesTable>;
+export type SelectExpense = Selectable<ExpensesTable>;
+export type NewExpense = Insertable<ExpensesTable>;
+export type UpdateExpense = Updateable<ExpensesTable>;

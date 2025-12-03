@@ -18,7 +18,7 @@ interface FileMetadata {
   [key: string]: any;
 }
 
-interface GetAllOptions<F extends string = string> {
+interface GetListOptions<F extends string = string> {
   q?: string;
   fields?: F[];
   spaces?: 'drive' | 'appDataFolder';
@@ -93,7 +93,7 @@ export class GoogleDriveService {
     }
   }
 
-  async getAll<F extends string = never>(options: GetAllOptions<F>) {
+  async getList<F extends string = never>(options: GetListOptions<F>) {
     const { q, fields, spaces = 'drive', orderBy, pageSize, pageToken } = options;
 
     const fieldsQuery = Array.from(new Set([...this.defaultFields, ...(fields ?? [])])).join(',');

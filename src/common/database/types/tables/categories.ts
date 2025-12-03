@@ -7,6 +7,6 @@ export type CategoriesTable = BaseTable & {
   icon?: string;
   color?: string;
 };
-export type Categories = Selectable<CategoriesTable>;
-export type NewCategories = Insertable<CategoriesTable>;
-export type UpdateCategories = Updateable<CategoriesTable>;
+export type SelectCategory = Selectable<CategoriesTable>;
+export type NewCategory = Insertable<CategoriesTable>;
+export type UpdateCategory = Updateable<CategoriesTable>;

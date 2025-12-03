@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 
 import { DayPickerContext } from '@/context/DayPickerContext';
 
-export function useDayPicker(initial?: Date) {
+export function useDayPickerContext(initial?: Date) {
   const [date, setDate] = useState<Date | undefined>(initial);
   const { openPicker, closePicker } = useContext(DayPickerContext);
 

@@ -2,7 +2,7 @@ import { db } from '@/common/database';
 import { NewRecurring, UpdateRecurring } from '@/common/database/types/tables/recurring';
 
 export const recurringService = new (class RecurringService {
-  async getAll() {
+  async getList() {
     try {
       const recurring = await db.selectFrom('recurring').selectAll().execute();
       return recurring;

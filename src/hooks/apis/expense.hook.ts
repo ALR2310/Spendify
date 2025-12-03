@@ -1,16 +1,28 @@
-import { useMutation, useQuery } from 'react-query';
+import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
 
-import { UpdateExpenses } from '@/common/database/types/tables/expenses';
+import { UpdateExpense } from '@/common/database/types/tables/expenses';
 import { expenseService } from '@/services/expense.service';
+import { ExpenseListQuery } from '@/shared/types/expense.type';
 
-export function useExpenseGetAll() {
+export function useExpenseListQuery(query: ExpenseListQuery) {
   return useQuery({
-    queryFn: expenseService.getAll,
-    queryKey: ['expenses/getAll'],
+    queryFn: () => expenseService.getList(query),
+    queryKey: ['expenses/getList', query],
   });
 }
 
-export function useExpenseGetById(id: number) {
+export function useExpenseListInfinite(query: ExpenseListQuery) {
+  return useInfiniteQuery({
+    queryKey: ['expenses/getList', query],
+    queryFn: ({ pageParam = 1 }) => expenseService.getList({ ...query, page: pageParam }),
+    getNextPageParam: (lastPage) => {
+      const { page, totalPages } = lastPage.pagination;
+      return page < totalPages ? page + 1 : undefined;
+    },
+  });
+}
+
+export function useExpenseByIdQuery(id: number) {
   return useQuery({
     queryFn: () => expenseService.getById(id),
     queryKey: ['expenses/getById', id],
@@ -18,19 +30,19 @@ export function useExpenseGetById(id: number) {
   });
 }
 
-export function useExpenseCreate() {
+export function useExpenseCreateMutation() {
   return useMutation({
     mutationFn: expenseService.create,
   });
 }
 
-export function useExpenseUpdate() {
+export function useExpenseUpdateMutation() {
   return useMutation({
-    mutationFn: ({ id, data }: { id: number; data: UpdateExpenses }) => expenseService.update(id, data),
+    mutationFn: ({ id, data }: { id: number; data: UpdateExpense }) => expenseService.update(id, data),
   });
 }
 
-export function useExpenseDelete() {
+export function useExpenseDeleteMutation() {
   return useMutation({
     mutationFn: expenseService.delete,
   });

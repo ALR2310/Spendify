@@ -2,7 +2,7 @@ import { Insertable, Selectable, Updateable } from 'node_modules/kysely/dist/cjs
 
 import { ExpensesTable } from './expenses';
 
-export enum PeriodEnum {
+export enum RecurringPeriodEnum {
   Daily = 'daily',
   Weekly = 'weekly',
   Monthly = 'monthly',
@@ -10,10 +10,10 @@ export enum PeriodEnum {
 }
 
 export type RecurringTable = Omit<ExpensesTable, 'date'> & {
-  period: PeriodEnum;
+  period: RecurringPeriodEnum;
   startDate: string;
   endDate?: string;
 };
-export type Recurring = Selectable<RecurringTable>;
+export type SelectRecurring = Selectable<RecurringTable>;
 export type NewRecurring = Insertable<RecurringTable>;
 export type UpdateRecurring = Updateable<RecurringTable>;

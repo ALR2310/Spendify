@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite --host",
     "dev:android": "vite build && npx cap sync && npx cap run android",
-    "dev:android-live": "npx cap run android --live-reload --port=2310 --host=172.16.20.41",
+    "dev:android-live": "npx cap run android --live-reload --port=2310 --host",
     "dev:tauri": "tauri dev",
     "build": "vite build",
     "build:android": "vite build && npx cap sync && npx cap build android",

@@ -12,6 +12,7 @@ const container = document.getElementById('root');
 const root = createRoot(container!);
 
 (window as any).toast = toast;
+(window as any).db = db;
 (window as any).query = async (querySQL: string) => {
   return await sql.raw(querySQL).execute(db);
 };

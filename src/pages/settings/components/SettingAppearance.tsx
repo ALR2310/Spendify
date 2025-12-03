@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import { appConfig } from '@/common/appConfig';
 import i18n from '@/common/i18n';
-import { useTheme } from '@/hooks/app/useTheme';
+import { useThemeContext } from '@/hooks/app/useTheme';
 import { LanguageEnum, ThemeEnum } from '@/shared/enums/appconfig.enum';
 
 export default function SettingAppearance() {
   const { t } = useTranslation();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useThemeContext();
   const [language, setLanguage] = useState<LanguageEnum>(appConfig.language);
   const [showThemeOptions, setShowThemeOptions] = useState<boolean>(false);
 

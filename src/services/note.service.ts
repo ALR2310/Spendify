@@ -1,8 +1,8 @@
 import { db } from '@/common/database';
-import { NewNotes, UpdateNotes } from '@/common/database/types/tables/notes';
+import { NewNote, UpdateNote } from '@/common/database/types/tables/notes';
 
 export const noteService = new (class NoteService {
-  async getAll() {
+  async getList() {
     try {
       const notes = await db.selectFrom('notes').selectAll().execute();
       return notes;
@@ -22,7 +22,7 @@ export const noteService = new (class NoteService {
     }
   }
 
-  async create(data: NewNotes) {
+  async create(data: NewNote) {
     try {
       const note = await db.insertInto('notes').values(data).returningAll().executeTakeFirst();
       return note;
@@ -32,7 +32,7 @@ export const noteService = new (class NoteService {
     }
   }
 
-  async update(id: number, data: UpdateNotes) {
+  async update(id: number, data: UpdateNote) {
     try {
       const existing = await this.getById(id);
       if (!existing) throw new Error('Note not found');

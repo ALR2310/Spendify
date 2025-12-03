@@ -6,6 +6,6 @@ export type NotesTable = BaseTable & {
   title: string;
   content: string;
 };
-export type Notes = Selectable<NotesTable>;
-export type NewNotes = Insertable<NotesTable>;
-export type UpdateNotes = Updateable<NotesTable>;
+export type SelectNote = Selectable<NotesTable>;
+export type NewNote = Insertable<NotesTable>;
+export type UpdateNote = Updateable<NotesTable>;

@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 
 import { EmojiPickerContext } from '@/context/EmojiPickerContext';
 
-export function useEmojiPicker() {
+export function useEmojiPickerContext() {
   const [value, setValue] = useState<string>();
   const { openPicker, closePicker } = useContext(EmojiPickerContext);
 

@@ -4,19 +4,19 @@ import { createContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
-import { NewCategories } from '@/common/database/types/tables/categories';
-import { ExpenseTypeEnum, NewExpenses } from '@/common/database/types/tables/expenses';
+import { NewCategory } from '@/common/database/types/tables/categories';
+import { ExpenseTypeEnum, NewExpense } from '@/common/database/types/tables/expenses';
 import { CurrencyInput } from '@/components/CurrencyInput';
 import Modal, { ModalRef } from '@/components/Modal';
 import {
-  useCategoryCreate,
-  useCategoryGetAll,
-  useCategoryGetById,
-  useCategoryUpdate,
+  useCategoryByIdQuery,
+  useCategoryCreateMutation,
+  useCategoryListQuery,
+  useCategoryUpdateMutation,
 } from '@/hooks/apis/category.hook';
-import { useExpenseCreate, useExpenseGetById, useExpenseUpdate } from '@/hooks/apis/expense.hook';
-import { useDayPicker } from '@/hooks/app/useDayPicker';
-import { useEmojiPicker } from '@/hooks/app/useEmojiPicker';
+import { useExpenseByIdQuery, useExpenseCreateMutation, useExpenseUpdateMutation } from '@/hooks/apis/expense.hook';
+import { useDayPickerContext } from '@/hooks/app/useDayPicker';
+import { useEmojiPickerContext } from '@/hooks/app/useEmojiPicker';
 
 interface ExpenseContextType {
   openModal(expenseId?: number): void;
@@ -65,12 +65,12 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
   const [type, setType] = useState<ExpenseTypeEnum>(ExpenseTypeEnum.Expense);
   const [note, setNote] = useState<string>('');
 
-  const [pickerValue, openPicker] = useDayPicker();
+  const [pickerValue, openPicker] = useDayPickerContext();
 
-  const { data: categories } = useCategoryGetAll();
-  const { data: expense, isLoading: isLoadingExpense } = useExpenseGetById(expenseId!);
-  const { mutateAsync: createExpense } = useExpenseCreate();
-  const { mutateAsync: updateExpense } = useExpenseUpdate();
+  const { data: categories } = useCategoryListQuery();
+  const { data: expense, isLoading: isLoadingExpense } = useExpenseByIdQuery(expenseId!);
+  const { mutateAsync: createExpense } = useExpenseCreateMutation();
+  const { mutateAsync: updateExpense } = useExpenseUpdateMutation();
 
   // Populate form when editing an expense
   useEffect(() => {
@@ -90,7 +90,7 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
 
   const handleCreateOrUpdate = async () => {
     const now = new Date().toISOString();
-    const data: NewExpenses = { categoryId, amount: amount, date, type, note, updatedAt: now };
+    const data: NewExpense = { categoryId, amount: amount, date, type, note, updatedAt: now };
 
     try {
       if (expenseId) {
@@ -106,7 +106,7 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
       setNote('');
 
       modalRef.current?.close();
-      queryClient.invalidateQueries({ queryKey: ['expenses/getAll'] });
+      queryClient.invalidateQueries({ queryKey: ['expenses/getList'] });
       toast.success(`Expense ${expenseId ? 'updated' : 'created'} successfully.`);
     } catch (err) {
       toast.error('An error occurred while saving the expense.');
@@ -197,11 +197,11 @@ const CategoryModal = ({
   const [icon, setIcon] = useState<string>('');
   const [color, setColor] = useState<string>();
 
-  const [emoji, openPicker] = useEmojiPicker();
+  const [emoji, openPicker] = useEmojiPickerContext();
 
-  const { data: category, isLoading: isLoadingCategory } = useCategoryGetById(categoryId!);
-  const { mutateAsync: createCategory } = useCategoryCreate();
-  const { mutateAsync: updateCategory } = useCategoryUpdate();
+  const { data: category, isLoading: isLoadingCategory } = useCategoryByIdQuery(categoryId!);
+  const { mutateAsync: createCategory } = useCategoryCreateMutation();
+  const { mutateAsync: updateCategory } = useCategoryUpdateMutation();
 
   useEffect(() => {
     if (category && !isLoadingCategory) {
@@ -222,7 +222,7 @@ const CategoryModal = ({
     }
 
     const now = new Date().toISOString();
-    const data: NewCategories = { name, icon, color, updatedAt: now };
+    const data: NewCategory = { name, icon, color, updatedAt: now };
 
     try {
       if (categoryId) {
@@ -236,7 +236,7 @@ const CategoryModal = ({
       setColor(undefined);
 
       modalRef.current?.close();
-      queryClient.invalidateQueries({ queryKey: ['categories/getAll'] });
+      queryClient.invalidateQueries({ queryKey: ['categories/getList'] });
       toast.success(`Category ${categoryId ? 'updated' : 'created'} successfully.`);
     } catch (err) {
       toast.error('An error occurred while saving the category.');

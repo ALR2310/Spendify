@@ -1,44 +1,67 @@
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
+import { useExpenseListInfinite } from '@/hooks/apis/expense.hook';
+import { useThemeContext } from '@/hooks/app/useTheme';
+import { ThemeEnum } from '@/shared/enums/appconfig.enum';
+import { ExpenseListResponse } from '@/shared/types/expense.type';
+import { groupExpenseByDate } from '@/utils/expense.utils';
+import { formatCurrency } from '@/utils/general.utils';
+
+const ExpenseCard = memo(({ data }: { data?: ExpenseListResponse['data'][number] }) => {
+  return (
+    <div className="card shadow-sm bg-base-200 p-3 rounded-xl flex flex-row items-center gap-3">
+      <div className="text-3xl">{data?.categoryIcon}</div>
+      <div className="flex flex-col flex-1">
+        <span className="font-semibold">
+          {data?.id} - {data?.categoryName}
+        </span>
+        <span className="text-sm opacity-60">{data?.note}</span>
+      </div>
+      <div
+        className={`${data?.type === ExpenseTypeEnum.Income ? 'text-success' : 'text-error'}  font-semibold whitespace-nowrap`}
+      >
+        {formatCurrency(data?.amount ?? 0)}
+      </div>
+    </div>
+  );
+});
 
 export default function ExpenseList() {
   const { t } = useTranslation();
+  const { theme } = useThemeContext();
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useExpenseListInfinite({});
+
+  const items = useMemo(() => data?.pages.flatMap((p) => p.data) ?? [], [data]);
+  const grouped = useMemo(() => groupExpenseByDate(items), [items]);
+  const dates = Object.keys(grouped);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    if (hasNextPage && !isFetchingNextPage && el.scrollTop + el.clientHeight >= el.scrollHeight - 200) {
+      fetchNextPage();
+    }
+  };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 h-[80vh] overflow-y-auto" onScroll={handleScroll}>
       <p className="font-semibold text-lg">{t('expenses.list.title')}</p>
 
-      <div className="card shadow-sm bg-base-200 p-3 rounded-xl flex flex-row items-center gap-3">
-        <div className="text-3xl">🍔</div>
-        <div className="flex flex-col flex-1">
-          <span className="font-semibold">Bún bò</span>
-          <span className="text-sm opacity-60">
-            {t('expenses.categories.food')} • 2025-11-27 • {t('expenses.filter.expense')}
-          </span>
-        </div>
-        <div className="text-error font-semibold whitespace-nowrap">-55.000đ</div>
-      </div>
+      {dates.map((date) => (
+        <div key={date} className="space-y-4">
+          <div className={`divider sticky top-0 z-20 py-4 ${theme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}>
+            {date}
+          </div>
 
-      <div className="card shadow-sm bg-base-200 p-3 rounded-xl flex flex-row items-center gap-3">
-        <div className="text-3xl">🚕</div>
-        <div className="flex flex-col flex-1">
-          <span className="font-semibold">GrabBike</span>
-          <span className="text-sm opacity-60">
-            {t('expenses.categories.transportation')} • 2025-11-27 • {t('expenses.filter.expense')}
-          </span>
+          {grouped[date].map((exp) => (
+            <ExpenseCard key={exp.id} data={exp} />
+          ))}
         </div>
-        <div className="text-error font-semibold whitespace-nowrap">-35.000đ</div>
-      </div>
+      ))}
 
-      <div className="card shadow-sm bg-base-200 p-3 rounded-xl flex flex-row items-center gap-3">
-        <div className="text-3xl">🏠</div>
-        <div className="flex flex-col flex-1">
-          <span className="font-semibold">Tiền nhà</span>
-          <span className="text-sm opacity-60">
-            {t('expenses.categories.housing')} • 2025-11-01 • {t('expenses.filter.expense')}
-          </span>
-        </div>
-        <div className="text-error font-semibold whitespace-nowrap">-3.500.000đ</div>
-      </div>
+      {isFetchingNextPage && <div className="text-center py-4 opacity-60">Đang tải thêm…</div>}
     </div>
   );
 }

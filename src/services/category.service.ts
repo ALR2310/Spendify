@@ -1,8 +1,8 @@
 import { db } from '@/common/database';
-import { NewCategories, UpdateCategories } from '@/common/database/types/tables/categories';
+import { NewCategory, UpdateCategory } from '@/common/database/types/tables/categories';
 
 export const categoryService = new (class CategoryService {
-  async getAll() {
+  async getList() {
     try {
       const categories = await db.selectFrom('categories').selectAll().execute();
       return categories;
@@ -22,7 +22,7 @@ export const categoryService = new (class CategoryService {
     }
   }
 
-  async create(data: NewCategories) {
+  async create(data: NewCategory) {
     try {
       const category = await db.insertInto('categories').values(data).returningAll().executeTakeFirst();
       return category;
@@ -32,7 +32,7 @@ export const categoryService = new (class CategoryService {
     }
   }
 
-  async update(id: number, data: UpdateCategories) {
+  async update(id: number, data: UpdateCategory) {
     try {
       const existing = await this.getById(id);
       if (!existing) throw new Error('Category not found');

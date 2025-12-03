@@ -3,14 +3,14 @@ import { useMutation, useQuery } from 'react-query';
 import { UpdateRecurring } from '@/common/database/types/tables/recurring';
 import { recurringService } from '@/services/recurring.service';
 
-export function useRecurringGetAll() {
+export function useRecurringListQuery() {
   return useQuery({
-    queryFn: recurringService.getAll,
-    queryKey: ['recurring/getAll'],
+    queryFn: recurringService.getList,
+    queryKey: ['recurring/getList'],
   });
 }
 
-export function useRecurringGetById(id: number) {
+export function useRecurringByIdQuery(id: number) {
   return useQuery({
     queryFn: () => recurringService.getById(id),
     queryKey: ['recurring/getById', id],
@@ -18,19 +18,19 @@ export function useRecurringGetById(id: number) {
   });
 }
 
-export function useRecurringCreate() {
+export function useRecurringCreateMutation() {
   return useMutation({
     mutationFn: recurringService.create,
   });
 }
 
-export function useRecurringUpdate() {
+export function useRecurringUpdateMutation() {
   return useMutation({
     mutationFn: ({ id, data }: { id: number; data: UpdateRecurring }) => recurringService.update(id, data),
   });
 }
 
-export function useRecurringDelete() {
+export function useRecurringDeleteMutation() {
   return useMutation({
     mutationFn: recurringService.delete,
   });

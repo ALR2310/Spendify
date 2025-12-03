@@ -6,7 +6,7 @@ import { Kysely, sql } from 'kysely';
 import { CapacitorSQLiteDialect } from './driver';
 import { Database } from './types';
 import { ExpenseTypeEnum } from './types/tables/expenses';
-import { PeriodEnum } from './types/tables/recurring';
+import { RecurringPeriodEnum } from './types/tables/recurring';
 
 let dbInstance: SQLiteDBConnection;
 
@@ -50,7 +50,7 @@ export async function initializeTables() {
   const expenseTypes = Object.values(ExpenseTypeEnum)
     .map((v) => `'${v}'`)
     .join(', ');
-  const periodTypes = Object.values(PeriodEnum)
+  const periodTypes = Object.values(RecurringPeriodEnum)
     .map((v) => `'${v}'`)
     .join(', ');
 
@@ -64,6 +64,8 @@ export async function initializeTables() {
     .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
     .ifNotExists()
     .execute();
+  await db.schema.createIndex('idx_categories_createdAt').on('categories').column('createdAt').ifNotExists().execute();
+  await db.schema.createIndex('idx_categories_updatedAt').on('categories').column('updatedAt').ifNotExists().execute();
 
   await db.schema
     .createTable('expenses')
@@ -77,6 +79,9 @@ export async function initializeTables() {
     .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
     .ifNotExists()
     .execute();
+  await db.schema.createIndex('idx_expenses_date').on('expenses').column('date').ifNotExists().execute();
+  await db.schema.createIndex('idx_expenses_categoryId').on('expenses').column('categoryId').ifNotExists().execute();
+  await db.schema.createIndex('idx_expenses_type').on('expenses').column('type').ifNotExists().execute();
 
   await db.schema
     .createTable('recurring')
@@ -92,6 +97,11 @@ export async function initializeTables() {
     .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
     .ifNotExists()
     .execute();
+  await db.schema.createIndex('idx_recurring_categoryId').on('recurring').column('categoryId').ifNotExists().execute();
+  await db.schema.createIndex('idx_recurring_type').on('recurring').column('type').ifNotExists().execute();
+  await db.schema.createIndex('idx_recurring_period').on('recurring').column('period').ifNotExists().execute();
+  await db.schema.createIndex('idx_recurring_startDate').on('recurring').column('startDate').ifNotExists().execute();
+  await db.schema.createIndex('idx_recurring_endDate').on('recurring').column('endDate').ifNotExists().execute();
 
   await db.schema
     .createTable('notes')
@@ -102,4 +112,7 @@ export async function initializeTables() {
     .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
     .ifNotExists()
     .execute();
+  await db.schema.createIndex('idx_notes_title').on('notes').column('title').ifNotExists().execute();
+  await db.schema.createIndex('idx_notes_createdAt').on('notes').column('createdAt').ifNotExists().execute();
+  await db.schema.createIndex('idx_notes_updatedAt').on('notes').column('updatedAt').ifNotExists().execute();
 }
