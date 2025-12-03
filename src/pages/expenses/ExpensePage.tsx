@@ -4,14 +4,12 @@ import { useExpenseContext } from '@/hooks/app/useExpense';
 
 import ExpenseFilter from './components/ExpenseFilter';
 import ExpenseList from './components/ExpenseList';
-import ExpenseOverview from './components/ExpenseOverview';
 
-export default function ExpensesPage() {
+export default function ExpensePage() {
   const { openModal } = useExpenseContext();
 
   return (
     <div className="p-4 space-y-4">
-      <ExpenseOverview />
       <ExpenseFilter />
       <ExpenseList />
 

@@ -46,22 +46,24 @@ export default function ExpenseList() {
   };
 
   return (
-    <div className="flex flex-col gap-3 h-[80vh] overflow-y-auto" onScroll={handleScroll}>
+    <div className="flex flex-col gap-3 h-[80vh]">
       <p className="font-semibold text-lg">{t('expenses.list.title')}</p>
 
-      {dates.map((date) => (
-        <div key={date} className="space-y-4">
-          <div className={`divider sticky top-0 z-20 py-4 ${theme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}>
-            {date}
+      <div className="flex-1 overflow-auto" onScroll={handleScroll}>
+        {dates.map((date) => (
+          <div key={date} className="space-y-4">
+            <div className={`divider sticky top-0 z-20 py-4 ${theme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}>
+              {date}
+            </div>
+
+            {grouped[date].map((exp) => (
+              <ExpenseCard key={exp.id} data={exp} />
+            ))}
           </div>
+        ))}
 
-          {grouped[date].map((exp) => (
-            <ExpenseCard key={exp.id} data={exp} />
-          ))}
-        </div>
-      ))}
-
-      {isFetchingNextPage && <div className="text-center py-4 opacity-60">Đang tải thêm…</div>}
+        {isFetchingNextPage && <div className="text-center py-4 opacity-60">Đang tải thêm…</div>}
+      </div>
     </div>
   );
 }

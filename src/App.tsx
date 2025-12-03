@@ -9,10 +9,10 @@ import { ExpenseProvider } from './context/ExpenseContext';
 import { MonthPickerProvider } from './context/MonthPickerContext';
 import { ThemeProvider } from './context/ThemeContext';
 import MainLayout from './layouts/MainLayout';
-import ExpensesPage from './pages/expenses/ExpensesPage';
-import NotesPage from './pages/notes/NotesPage';
-import SettingsPage from './pages/settings/SettingsPage';
-import StatisticsPage from './pages/statistics/StatisticsPage';
+import ExpensePage from './pages/expenses/ExpensePage';
+import NotePage from './pages/notes/NotePage';
+import SettingPage from './pages/settings/SettingPage';
+import StatisticPage from './pages/statistics/StatisticPage';
 import { ROUTES } from './shared/constants/routes.const';
 
 const queryClient = new QueryClient({
@@ -56,10 +56,10 @@ const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route path={ROUTES.ROOT} element={<MainLayout />}>
-          <Route path={ROUTES.EXPENSES} element={<ExpensesPage />} />
-          <Route path={ROUTES.STATISTICS} element={<StatisticsPage />} />
-          <Route path={ROUTES.NOTES} element={<NotesPage />} />
-          <Route path={ROUTES.SETTINGS} element={<SettingsPage />} />
+          <Route path={ROUTES.EXPENSES} element={<ExpensePage />} />
+          <Route path={ROUTES.STATISTICS} element={<StatisticPage />} />
+          <Route path={ROUTES.NOTES} element={<NotePage />} />
+          <Route path={ROUTES.SETTINGS} element={<SettingPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

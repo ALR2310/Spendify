@@ -7,7 +7,7 @@ import SettingAccount from './components/SettingAccount';
 import SettingAppearance from './components/SettingAppearance';
 import SettingData from './components/SettingData';
 
-export default function SettingsPage() {
+export default function SettingPage() {
   const { t } = useTranslation();
 
   return (
