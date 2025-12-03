@@ -14,9 +14,7 @@ const ExpenseCard = memo(({ data }: { data?: ExpenseListResponse['data'][number]
     <div className="card shadow-sm bg-base-200 p-3 rounded-xl flex flex-row items-center gap-3">
       <div className="text-3xl">{data?.categoryIcon}</div>
       <div className="flex flex-col flex-1">
-        <span className="font-semibold">
-          {data?.id} - {data?.categoryName}
-        </span>
+        <span className="font-semibold">{data?.categoryName}</span>
         <span className="text-sm opacity-60">{data?.note}</span>
       </div>
       <div
@@ -52,7 +50,9 @@ export default function ExpenseList() {
       <div className="flex-1 overflow-auto" onScroll={handleScroll}>
         {dates.map((date) => (
           <div key={date} className="space-y-4">
-            <div className={`divider sticky top-0 z-20 py-4 ${theme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}>
+            <div
+              className={`divider sticky top-0 z-20 py-4 m-0 ${theme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}
+            >
               {date}
             </div>
 

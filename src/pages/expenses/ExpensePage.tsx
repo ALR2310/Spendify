@@ -4,6 +4,7 @@ import { useExpenseContext } from '@/hooks/app/useExpense';
 
 import ExpenseFilter from './components/ExpenseFilter';
 import ExpenseList from './components/ExpenseList';
+import ExpenseStat from './components/ExpenseStat';
 
 export default function ExpensePage() {
   const { openModal } = useExpenseContext();
@@ -11,6 +12,7 @@ export default function ExpensePage() {
   return (
     <div className="p-4 space-y-4">
       <ExpenseFilter />
+      <ExpenseStat />
       <ExpenseList />
 
       <div className="fab bottom-[calc(env(safe-area-inset-bottom)+60px)]!">
