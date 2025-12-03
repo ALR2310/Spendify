@@ -12,3 +12,9 @@ export function formatCurrency(amount: number, currencyCode = 'VND', locale = 'v
     minimumFractionDigits: 2,
   }).format(amount);
 }
+
+export function getMonthLabel(month: number, locale: string) {
+  return new Intl.DateTimeFormat(locale, { month: 'long' })
+    .format(new Date(2024, month - 1))
+    .replace(/^\w/, (c) => c.toUpperCase());
+}

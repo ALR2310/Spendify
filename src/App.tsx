@@ -6,6 +6,7 @@ import { appConfig } from './common/appConfig';
 import { DayPickerProvider } from './context/DayPickerContext';
 import { EmojiPickerProvider } from './context/EmojiPickerContext';
 import { ExpenseProvider } from './context/ExpenseContext';
+import { MonthPickerProvider } from './context/MonthPickerContext';
 import { ThemeProvider } from './context/ThemeContext';
 import MainLayout from './layouts/MainLayout';
 import ExpensesPage from './pages/expenses/ExpensesPage';
@@ -27,22 +28,24 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <DayPickerProvider>
-        <EmojiPickerProvider>
-          <ExpenseProvider>
-            <ThemeProvider>
-              {children}
-              <ToastContainer
-                className="toast-container"
-                autoClose={200000}
-                theme={appConfig.theme}
-                pauseOnHover={false}
-                position="top-center"
-                hideProgressBar={true}
-                closeOnClick={true}
-              />
-            </ThemeProvider>
-          </ExpenseProvider>
-        </EmojiPickerProvider>
+        <MonthPickerProvider>
+          <EmojiPickerProvider>
+            <ExpenseProvider>
+              <ThemeProvider>
+                {children}
+                <ToastContainer
+                  className="toast-container"
+                  autoClose={200000}
+                  theme={appConfig.theme}
+                  pauseOnHover={false}
+                  position="top-center"
+                  hideProgressBar={true}
+                  closeOnClick={true}
+                />
+              </ThemeProvider>
+            </ExpenseProvider>
+          </EmojiPickerProvider>
+        </MonthPickerProvider>
       </DayPickerProvider>
     </QueryClientProvider>
   );
