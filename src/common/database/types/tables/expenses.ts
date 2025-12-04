@@ -3,8 +3,8 @@ import { Insertable, Selectable, Updateable } from 'kysely';
 import { BaseTable } from './base';
 
 export enum ExpenseTypeEnum {
-  Income = 'income',
   Expense = 'expense',
+  Income = 'income',
 }
 
 export type ExpensesTable = BaseTable & {

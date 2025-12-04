@@ -18,14 +18,14 @@ import { useExpenseByIdQuery, useExpenseCreateMutation, useExpenseUpdateMutation
 import { useDayPickerContext } from '@/hooks/app/useDayPicker';
 import { useEmojiPickerContext } from '@/hooks/app/useEmojiPicker';
 
-interface ExpenseContextType {
+interface ExpenseUIContextType {
   openModal(expenseId?: number): void;
   closeModal(): void;
 }
 
-const ExpenseContext = createContext<ExpenseContextType>(null!);
+const ExpenseUIContext = createContext<ExpenseUIContextType>(null!);
 
-const ExpenseProvider = ({ children }: { children: React.ReactNode }) => {
+const ExpenseUIProvider = ({ children }: { children: React.ReactNode }) => {
   const modalRef = useRef<ModalRef>(null!);
   const [expenseId, setExpenseId] = useState<number | null>(null);
 
@@ -48,10 +48,10 @@ const ExpenseProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   return (
-    <ExpenseContext.Provider value={ctx}>
+    <ExpenseUIContext.Provider value={ctx}>
       {children}
       <ExpenseModal modalRef={modalRef} expenseId={expenseId} />
-    </ExpenseContext.Provider>
+    </ExpenseUIContext.Provider>
   );
 };
 
@@ -163,7 +163,11 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
 
           <label className="floating-label">
             <span>Type</span>
-            <select className="select select-lg capitalize">
+            <select
+              className="select select-lg capitalize"
+              value={type}
+              onChange={(e) => setType(e.target.value as ExpenseTypeEnum)}
+            >
               {Object.entries(ExpenseTypeEnum).map(([key, value]) => (
                 <option key={key} value={value}>
                   {value}
@@ -174,7 +178,13 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
 
           <label className="floating-label">
             <span>Note</span>
-            <input type="text" placeholder="Note" className="input input-lg" />
+            <input
+              type="text"
+              placeholder="Note"
+              className="input input-lg"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+            />
           </label>
         </div>
       </Modal>
@@ -294,5 +304,5 @@ const CategoryModal = ({
   );
 };
 
-export { ExpenseContext, ExpenseProvider };
-export type { ExpenseContextType };
+export { ExpenseUIContext, ExpenseUIProvider };
+export type { ExpenseUIContextType };

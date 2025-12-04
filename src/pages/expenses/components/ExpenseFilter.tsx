@@ -1,12 +1,15 @@
 import { ChevronLeft, ChevronRight, Funnel } from 'lucide-react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import Drawer, { DrawerRef } from '@/components/Drawer';
 import { useMonthPickerContext } from '@/hooks/app/useMonthPicker';
 import { getMonthLabel } from '@/utils/general.utils';
 
 export default function ExpenseFilter() {
   const { i18n } = useTranslation();
   const locale = i18n.language;
+  const drawerRef = useRef<DrawerRef>(null!);
 
   const date = new Date();
   const currentMonth = date.getMonth() + 1;
@@ -55,6 +58,10 @@ export default function ExpenseFilter() {
       </div>
 
       <div className="divider m-0"></div>
+
+      <Drawer ref={drawerRef} position="bottom">
+        {/* Drawer content can be added here in the future */}
+      </Drawer>
     </div>
   );
 }

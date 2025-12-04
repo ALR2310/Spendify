@@ -5,11 +5,11 @@ import { ToastContainer } from 'react-toastify';
 import { appConfig } from './common/appConfig';
 import { DayPickerProvider } from './context/DayPickerContext';
 import { EmojiPickerProvider } from './context/EmojiPickerContext';
-import { ExpenseProvider } from './context/ExpenseContext';
 import { MonthPickerProvider } from './context/MonthPickerContext';
 import { ThemeProvider } from './context/ThemeContext';
 import MainLayout from './layouts/MainLayout';
 import ExpensePage from './pages/expenses/ExpensePage';
+import ExpenseLayout from './pages/expenses/layouts/ExpenseLayout';
 import NotePage from './pages/notes/NotePage';
 import SettingPage from './pages/settings/SettingPage';
 import StatisticPage from './pages/statistics/StatisticPage';
@@ -30,20 +30,18 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
       <DayPickerProvider>
         <MonthPickerProvider>
           <EmojiPickerProvider>
-            <ExpenseProvider>
-              <ThemeProvider>
-                {children}
-                <ToastContainer
-                  className="toast-container"
-                  autoClose={200000}
-                  theme={appConfig.theme}
-                  pauseOnHover={false}
-                  position="top-center"
-                  hideProgressBar={true}
-                  closeOnClick={true}
-                />
-              </ThemeProvider>
-            </ExpenseProvider>
+            <ThemeProvider>
+              {children}
+              <ToastContainer
+                className="toast-container"
+                autoClose={200000}
+                theme={appConfig.theme}
+                pauseOnHover={false}
+                position="top-center"
+                hideProgressBar={true}
+                closeOnClick={true}
+              />
+            </ThemeProvider>
           </EmojiPickerProvider>
         </MonthPickerProvider>
       </DayPickerProvider>
@@ -56,7 +54,9 @@ const AppRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route path={ROUTES.ROOT} element={<MainLayout />}>
-          <Route path={ROUTES.EXPENSES} element={<ExpensePage />} />
+          <Route path={ROUTES.EXPENSES} element={<ExpenseLayout />}>
+            <Route index element={<ExpensePage />} />
+          </Route>
           <Route path={ROUTES.STATISTICS} element={<StatisticPage />} />
           <Route path={ROUTES.NOTES} element={<NotePage />} />
           <Route path={ROUTES.SETTINGS} element={<SettingPage />} />
