@@ -65,7 +65,7 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
   const [type, setType] = useState<ExpenseTypeEnum>(ExpenseTypeEnum.Expense);
   const [note, setNote] = useState<string>('');
 
-  const [pickerValue, openPicker] = useDayPickerContext();
+  const { date: pickerValue, open: openPicker } = useDayPickerContext();
 
   const { data: categories } = useCategoryListQuery();
   const { data: expense, isLoading: isLoadingExpense } = useExpenseByIdQuery(expenseId!);
@@ -207,7 +207,7 @@ const CategoryModal = ({
   const [icon, setIcon] = useState<string>('');
   const [color, setColor] = useState<string>();
 
-  const [emoji, openPicker] = useEmojiPickerContext();
+  const { emoji, open: openPicker } = useEmojiPickerContext();
 
   const { data: category, isLoading: isLoadingCategory } = useCategoryByIdQuery(categoryId!);
   const { mutateAsync: createCategory } = useCategoryCreateMutation();

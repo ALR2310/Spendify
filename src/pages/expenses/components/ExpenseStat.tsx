@@ -4,17 +4,17 @@ export default function ExpenseStat() {
       <div className="grid grid-cols-3 gap-4">
         <div className="text-center">
           <p className="text-base-content/60 text-xs">Total revenue</p>
-          <p className="text-sm text-primary">100.000đ</p>
+          <p className="text-sm text-primary font-semibold">100.000đ</p>
         </div>
 
         <div className="text-center">
           <p className="text-base-content/60 text-xs">Total expenses</p>
-          <p className="text-sm text-accent">80.000đ</p>
+          <p className="text-sm text-accent font-semibold">80.000đ</p>
         </div>
 
         <div className="text-center">
           <p className="text-base-content/60 text-xs">Difference</p>
-          <p className="text-sm text-success">20.000đ</p>
+          <p className="text-sm text-success font-semibold">20.000đ</p>
         </div>
       </div>
 

@@ -17,5 +17,5 @@ export function useMonthPickerContext(initial?: MonthValue) {
     setProviderValue(v);
   };
 
-  return [monthValue, open, closePicker, setValue] as const;
+  return { value: monthValue, open, close: closePicker, setValue };
 }

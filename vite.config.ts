@@ -14,6 +14,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const port = process.env.VITE_PORT || 2310;
 
 export default defineConfig({
+  clearScreen: true,
   build: {
     sourcemap: isDev,
     minify: !isDev,
@@ -49,7 +50,6 @@ export default defineConfig({
   define: {
     'import.meta.env.VITE_APP_VERSION': JSON.stringify(pkg.version),
   },
-  clearScreen: false,
   plugins: [
     react(),
     tailwindcss(),

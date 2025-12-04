@@ -1,4 +1,5 @@
 import { forwardRef, useImperativeHandle, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface DrawerRef {
   openDrawer: () => void;
@@ -32,7 +33,7 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>(({ className = '', position = 
     bottom: `bottom-0 left-0 right-0 ${open ? 'translate-y-0' : 'translate-y-full'} pb-[env(safe-area-inset-bottom)]`,
   };
 
-  return (
+  const drawerContent = (
     <>
       {/* Overlay */}
       <div
@@ -40,7 +41,7 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>(({ className = '', position = 
             fixed inset-0 bg-black/40 transition-opacity duration-200 cursor-pointer
             ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
           `}
-        style={{ zIndex: 9998 }}
+        style={{ zIndex: 999 }}
         onClick={handleClose}
       />
 
@@ -49,7 +50,7 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>(({ className = '', position = 
         className={`
             fixed bg-base-100 shadow-xl p-2 transition-all duration-300
             ${positionClasses[position]}
-            flex flex-col min-h-0 z-9999
+            flex flex-col min-h-0 z-999
             ${className}
           `}
       >
@@ -57,6 +58,8 @@ const Drawer = forwardRef<DrawerRef, DrawerProps>(({ className = '', position = 
       </div>
     </>
   );
+
+  return createPortal(drawerContent, document.body);
 });
 
 export type { DrawerProps, DrawerRef };

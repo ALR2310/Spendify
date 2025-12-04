@@ -70,7 +70,7 @@ export default function ExpenseList() {
         {dates.map((date) => (
           <div key={date} className="space-y-4">
             <div
-              className={`divider sticky top-0 z-20 py-4 m-0 ${theme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}
+              className={`divider sticky top-0 z-10 py-4 m-0 ${theme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}
             >
               {date}
             </div>

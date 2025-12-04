@@ -111,7 +111,7 @@ function DayPickerDrawer() {
   return (
     <Drawer ref={drawerRef} position="bottom" className="min-h-[343px] w-full rounded-t-2xl" onClose={closePicker}>
       <div className="relative flex items-center justify-center mb-2">
-        <h3 className="font-semibold">Chọn ngày</h3>
+        <h3 className="font-semibold text-lg">Select Day</h3>
         <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={closePicker}>
           ✕
         </button>

@@ -14,5 +14,5 @@ export function useEmojiPickerContext() {
     }
   };
 
-  return [value, open, closePicker] as const;
+  return { emoji: value, open, close: closePicker };
 }

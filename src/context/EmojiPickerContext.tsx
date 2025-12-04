@@ -111,7 +111,7 @@ function EmojiPickerDrawer() {
       <div className="p-4 pb-[env(safe-area-inset-bottom)] flex flex-col min-h-0">
         {/* Header */}
         <div className="relative flex items-center justify-center mb-3">
-          <h3 className="font-semibold">Chọn biểu tượng</h3>
+          <h3 className="font-semibold text-lg">Select Emoji</h3>
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={closePicker}>
             ✕
           </button>

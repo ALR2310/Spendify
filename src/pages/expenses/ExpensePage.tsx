@@ -10,8 +10,9 @@ export default function ExpensePage() {
   const { openModal } = useExpenseContext();
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 pt-0 space-y-4">
       <ExpenseFilter />
+      <div className="divider m-0"></div>
       <ExpenseStat />
       <ExpenseList />
 

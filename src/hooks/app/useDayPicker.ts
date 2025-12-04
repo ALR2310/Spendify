@@ -14,5 +14,5 @@ export function useDayPickerContext(initial?: Date) {
     }
   };
 
-  return [date, open, closePicker] as const;
+  return { date, open, close: closePicker };
 }
