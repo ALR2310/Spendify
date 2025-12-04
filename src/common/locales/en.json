@@ -2,56 +2,118 @@
   "expenses": {
     "title": "Expenses",
     "addExpense": "Add Expense",
-    "overview": {
-      "totalMonthlyExpenses": "Total monthly expenses",
-      "averagePerDay": "Average per day",
-      "categories": "Categories"
-    },
     "filter": {
       "all": "All",
-      "today": "Today",
-      "sevenDays": "7 Days",
-      "thisMonth": "This Month",
       "category": "Category",
       "type": "Type",
       "expense": "Expense",
-      "income": "Income",
-      "advancedFilters": "Advanced Filters"
+      "income": "Income"
     },
     "list": {
-      "title": "Expense List"
+      "title": "Expense List",
+      "notFound": "No expenses found",
+      "notFoundClick": "Click",
+      "notFoundHere": "here",
+      "notFoundAdd": "to add a new expense",
+      "loadingMore": "Loading more…"
     },
-    "categories": {
+    "stat": {
+      "totalRevenue": "Total revenue",
+      "totalExpenses": "Total expenses",
+      "difference": "Difference",
+      "categories": "Categories",
       "food": "Food",
-      "transportation": "Transportation",
-      "housing": "Housing"
+      "transport": "Transport",
+      "shopping": "Shopping"
+    },
+    "form": {
+      "filters": "Filters",
+      "dayFrom": "Day from",
+      "dayTo": "Day to",
+      "type": "Type:",
+      "sortBy": "Sort by:",
+      "date": "Date",
+      "amount": "Amount",
+      "name": "Name",
+      "desc": "Desc",
+      "asc": "Asc",
+      "category": "Category:",
+      "reset": "Reset",
+      "apply": "Apply",
+      "thisMonth": "This Month",
+      "edit": "Edit",
+      "new": "New",
+      "expense": "Expense",
+      "note": "Note",
+      "categoryName": "Category Name",
+      "emoji": "Emoji",
+      "color": "Color",
+      "updated": "updated",
+      "created": "created",
+      "successfully": "successfully",
+      "errorSaving": "An error occurred while saving the expense.",
+      "errorSavingCategory": "An error occurred while saving the category.",
+      "nameRequired": "Name is required."
     }
   },
   "settings": {
+    "general": {
+      "title": "General"
+    },
     "appearance": {
       "title": "Appearance",
       "theme": "Theme",
       "light": "Light",
       "dark": "Dark",
-      "system": "System"
+      "system": "System",
+      "language": "Language",
+      "languages": {
+        "en": "English",
+        "vi": "Vietnamese"
+      }
+    },
+    "app": {
+      "title": "App",
+      "appAutoUpdate": "Auto Update App",
+      "appAutoUpdateDesc": "Automatically update the application",
+      "checkUpdate": "Check for Updates",
+      "checkUpdateDesc": "Check for available updates"
     },
     "dataSync": {
       "title": "Data & Sync",
-      "autoUpdate": "Auto Update",
-      "autoUpdateDesc": "Automatically update data",
       "dataSyncTitle": "Data Sync",
+      "dataSyncDesc": "Backup data to Google Drive",
       "notSynced": "Not synced",
-      "syncButton": "Sync"
+      "syncButton": "Sync",
+      "import": "Import Data",
+      "importDesc": "Import data from file",
+      "export": "Export Data",
+      "exportDesc": "Export data to file"
     },
     "account": {
       "title": "Account",
       "loggedIn": "Logged in",
       "googleAccount": "Google Account",
       "logOut": "Log out",
-      "signIn": "Sign in with Google"
+      "logOutDesc": "Sign out from your account",
+      "signIn": "Sign in with Google",
+      "signInDesc": "Sign in to sync data to Google Drive"
     },
     "appInfo": {
       "version": "App Version"
+    }
+  },
+  "pickers": {
+    "dayPicker": {
+      "title": "Select Day"
+    },
+    "emojiPicker": {
+      "title": "Select Emoji",
+      "all": "All",
+      "searchPlaceholder": "Search emoji…"
+    },
+    "monthPicker": {
+      "title": "Select Month"
     }
   }
 }

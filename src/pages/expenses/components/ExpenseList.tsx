@@ -11,17 +11,18 @@ import { groupExpenseByDate } from '@/utils/expense.utils';
 import { formatCurrency } from '@/utils/general.utils';
 
 const NotFoundCard = () => {
+  const { t } = useTranslation();
   const { openModal } = useExpenseContext();
 
   return (
     <div className="flex flex-col p-6 bg-base-200 rounded-xl text-center">
-      <p>No expenses found</p>
+      <p>{t('expenses.list.notFound')}</p>
       <p>
-        Click{' '}
+        {t('expenses.list.notFoundClick')}{' '}
         <a className="link link-success" onClick={() => openModal()}>
-          here
+          {t('expenses.list.notFoundHere')}
         </a>{' '}
-        to add a new expense
+        {t('expenses.list.notFoundAdd')}
       </p>
     </div>
   );
@@ -46,7 +47,7 @@ const ExpenseCard = memo(({ data }: { data?: ExpenseListResponse['data'][number]
 
 export default function ExpenseList() {
   const { t } = useTranslation();
-  const { theme } = useThemeContext();
+  const { resolvedTheme } = useThemeContext();
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useExpenseListInfinite({});
 
@@ -70,7 +71,7 @@ export default function ExpenseList() {
         {dates.map((date) => (
           <div key={date} className="space-y-4">
             <div
-              className={`divider sticky top-0 z-10 py-4 m-0 ${theme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}
+              className={`divider sticky top-0 z-10 py-4 m-0 ${resolvedTheme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}
             >
               {date}
             </div>
@@ -81,7 +82,7 @@ export default function ExpenseList() {
           </div>
         ))}
 
-        {isFetchingNextPage && <div className="text-center py-4 opacity-60">Đang tải thêm…</div>}
+        {isFetchingNextPage && <div className="text-center py-4 opacity-60">{t('expenses.list.loadingMore')}</div>}
       </div>
     </div>
   );

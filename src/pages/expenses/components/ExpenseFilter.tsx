@@ -11,6 +11,7 @@ import { ThemeEnum } from '@/shared/enums/appconfig.enum';
 import { getMonthLabel } from '@/utils/general.utils';
 
 function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
+  const { t } = useTranslation();
   const { date: dayFrom, open: openDayFromPicker } = useDayPickerContext();
   const { date: dayTo, open: openDayToPicker } = useDayPickerContext();
   const [type, setType] = useState<ExpenseTypeEnum | null>(null);
@@ -18,7 +19,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
   return (
     <Drawer ref={ref} position="bottom" className="min-h-[300px] p-4 space-y-4">
       <div className="relative flex items-center justify-center mb-2">
-        <h3 className="font-semibold text-lg">Filters</h3>
+        <h3 className="font-semibold text-lg">{t('expenses.form.filters')}</h3>
         <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={() => ref.current.close()}>
           ✕
         </button>
@@ -27,11 +28,11 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
       {/* to-from filters */}
       <div className="flex items-center justify-between gap-4">
         <label className="floating-label">
-          <span>Day from</span>
+          <span>{t('expenses.form.dayFrom')}</span>
           <input
             type="text"
             className="input input-lg"
-            placeholder="Day from"
+            placeholder={t('expenses.form.dayFrom')}
             readOnly
             value={dayFrom?.toLocaleDateString()}
             onClick={openDayFromPicker}
@@ -40,11 +41,11 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
         </label>
 
         <label className="floating-label">
-          <span>Day to</span>
+          <span>{t('expenses.form.dayTo')}</span>
           <input
             type="text"
             className="input input-lg"
-            placeholder="Day to"
+            placeholder={t('expenses.form.dayTo')}
             readOnly
             value={dayTo?.toLocaleDateString()}
             onClick={openDayToPicker}
@@ -55,60 +56,62 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
 
       {/* type and sort filters */}
       <div className="grid grid-cols-3 items-center gap-y-4">
-        <label className="label text-lg">Type:</label>
+        <label className="label text-lg">{t('expenses.form.type')}</label>
         <select
           className="select select-lg col-span-2 capitalize"
           value={type ?? ''}
           onChange={(e) => setType(e.target.value as ExpenseTypeEnum)}
         >
-          <option>All</option>
+          <option>{t('expenses.filter.all')}</option>
           {Object.values(ExpenseTypeEnum).map((type) => (
             <option key={type} value={type}>
-              {type}
+              {t(`expenses.filter.${type.toLowerCase()}`)}
             </option>
           ))}
         </select>
 
-        <label className="label text-lg">Sort by:</label>
+        <label className="label text-lg">{t('expenses.form.sortBy')}</label>
         <div className="join col-span-2">
           <select className="select select-lg join-item">
-            <option value="expenses.date">Date</option>
-            <option value="expenses.amount">Amount</option>
-            <option value="categories.name">Name</option>
+            <option value="expenses.date">{t('expenses.form.date')}</option>
+            <option value="expenses.amount">{t('expenses.form.amount')}</option>
+            <option value="categories.name">{t('expenses.form.name')}</option>
           </select>
           <select className="select select-lg join-item">
-            <option value="desc">Desc</option>
-            <option value="asc">Asc</option>
+            <option value="desc">{t('expenses.form.desc')}</option>
+            <option value="asc">{t('expenses.form.asc')}</option>
           </select>
         </div>
       </div>
 
       {/* category filter */}
       <div className="flex flex-col">
-        <label className="label text-lg">Category:</label>
+        <label className="label text-lg">{t('expenses.form.category')}</label>
         <div className="grid grid-cols-3 gap-2 max-h-40 overflow-y-auto">
           {Array.from({ length: 9 * 3 }).map((_, index) => (
             <button key={index} className="btn btn-soft btn-lg flex flex-col items-center gap-0">
               <span>🍔</span>
-              <span className="text-xs line-clamp-1">Category {index}</span>
+              <span className="text-xs line-clamp-1">
+                {t('expenses.filter.category')} {index}
+              </span>
             </button>
           ))}
         </div>
       </div>
 
       <div className="flex items-center gap-2">
-        <button className="btn btn-ghost rounded-xl flex-2/5">Reset</button>
-        <button className="btn btn-soft btn-success rounded-xl flex-3/5">Apply</button>
+        <button className="btn btn-ghost rounded-xl flex-2/5">{t('expenses.form.reset')}</button>
+        <button className="btn btn-soft btn-success rounded-xl flex-3/5">{t('expenses.form.apply')}</button>
       </div>
     </Drawer>
   );
 }
 
 export default function ExpenseFilter() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const locale = i18n.language;
   const drawerRef = useRef<DrawerRef>(null!);
-  const { theme } = useThemeContext();
+  const { resolvedTheme } = useThemeContext();
 
   const date = new Date();
   const currentMonth = date.getMonth() + 1;
@@ -124,7 +127,9 @@ export default function ExpenseFilter() {
   });
 
   return (
-    <div className={`flex flex-col sticky top-0 mb-0 z-10 ${theme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}>
+    <div
+      className={`flex flex-col sticky top-0 mb-0 z-10 ${resolvedTheme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}
+    >
       <div className="relative flex items-center justify-center">
         <div className="join w-[65vw]">
           <button
@@ -139,7 +144,7 @@ export default function ExpenseFilter() {
           </button>
           <button className="btn btn-ghost join-item flex-1" onClick={openPicker}>
             {monthValue?.year === currentYear && monthValue?.month === currentMonth
-              ? 'This Month'
+              ? t('expenses.form.thisMonth')
               : getMonthLabel(monthValue!.month, locale)}
           </button>
 

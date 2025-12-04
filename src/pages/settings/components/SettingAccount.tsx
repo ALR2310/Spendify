@@ -32,44 +32,51 @@ export default function SettingAccount() {
       <p className="font-semibold text-base text-base-content/80 px-1">{t('settings.account.title')}</p>
       <div className="card shadow-sm bg-base-200 rounded-2xl overflow-hidden">
         {isLoggedIn ? (
-          <>
-            <div className="p-1">
-              <div className="flex items-center gap-4 p-4 rounded-xl">
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-success/10 text-success">
-                  <User size={20} />
-                </div>
-                <div className="flex flex-col flex-1">
-                  <span className="font-semibold text-sm">{t('settings.account.loggedIn')}</span>
-                  <span className="text-xs opacity-60">{t('settings.account.googleAccount')}</span>
-                </div>
+          <div className="p-1">
+            <div className="flex items-center gap-4 p-4 rounded-xl">
+              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-success/10 text-success">
+                <User size={20} />
+              </div>
+              <div className="flex flex-col flex-1">
+                <span className="font-semibold text-sm">{t('settings.account.loggedIn')}</span>
+                <span className="text-xs opacity-60">{t('settings.account.googleAccount')}</span>
               </div>
             </div>
-            <div className="border-t border-base-300/50 p-1">
-              <button
-                className="w-full flex items-center gap-4 p-4 rounded-xl hover:bg-error/10 active:bg-error/20 transition-colors text-error"
-                onClick={handleLogout}
-              >
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-error/10">
-                  <LogOut size={20} />
-                </div>
-                <span className="flex-1 text-left font-semibold text-sm">{t('settings.account.logOut')}</span>
-              </button>
-            </div>
-          </>
+          </div>
         ) : (
           <div className="p-1">
             <button
-              className="w-full flex items-center gap-4 p-4 rounded-xl hover:bg-primary/10 active:bg-primary/20 transition-colors"
+              className="w-full flex items-center gap-4 p-4 rounded-xl hover:bg-accent/10 active:bg-accent/20 transition-colors"
               onClick={handleLogin}
             >
-              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 text-primary">
+              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-accent/10 text-accent">
                 <LogIn size={20} />
               </div>
-              <span className="flex-1 text-left font-semibold text-sm">{t('settings.account.signIn')}</span>
+              <div className="flex flex-col flex-1 text-left">
+                <span className="font-semibold text-sm">{t('settings.account.signIn')}</span>
+                <span className="text-xs opacity-60">{t('settings.account.signInDesc')}</span>
+              </div>
               <ChevronRight size={18} className="opacity-40" />
             </button>
           </div>
         )}
+
+        {/* Logout (Always visible) */}
+        <div className="border-t border-base-300/50 p-1">
+          <button
+            className="w-full flex items-center gap-4 p-4 rounded-xl hover:bg-error/10 active:bg-error/20 transition-colors text-error"
+            onClick={handleLogout}
+          >
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-error/10">
+              <LogOut size={20} />
+            </div>
+            <div className="flex flex-col flex-1 text-left">
+              <span className="font-semibold text-sm">{t('settings.account.logOut')}</span>
+              <span className="text-xs opacity-60">{t('settings.account.logOutDesc')}</span>
+            </div>
+            <ChevronRight size={18} className="opacity-40" />
+          </button>
+        </div>
       </div>
     </div>
   );

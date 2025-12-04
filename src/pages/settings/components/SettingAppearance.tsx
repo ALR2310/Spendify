@@ -17,31 +17,15 @@ export default function SettingAppearance() {
     appConfig.language = language;
   }, [language]);
 
-  const getThemeLabel = () => {
-    switch (theme) {
-      case ThemeEnum.LIGHT:
-        return t('settings.appearance.light');
-      case ThemeEnum.DARK:
-        return t('settings.appearance.dark');
-      case ThemeEnum.SYSTEM:
-        return t('settings.appearance.system');
-      default:
-        return t('settings.appearance.system');
-    }
+  const themeConfig = {
+    [ThemeEnum.LIGHT]: { icon: Sun, label: t('settings.appearance.light') },
+    [ThemeEnum.DARK]: { icon: Moon, label: t('settings.appearance.dark') },
+    [ThemeEnum.SYSTEM]: { icon: Monitor, label: t('settings.appearance.system') },
   };
 
-  const getThemeIcon = () => {
-    switch (theme) {
-      case ThemeEnum.LIGHT:
-        return <Sun size={20} />;
-      case ThemeEnum.DARK:
-        return <Moon size={20} />;
-      case ThemeEnum.SYSTEM:
-        return <Monitor size={20} />;
-      default:
-        return <Monitor size={20} />;
-    }
-  };
+  const currentTheme = themeConfig[theme] || themeConfig[ThemeEnum.SYSTEM];
+  const CurrentIcon = currentTheme.icon;
+  const themeOptions = Object.values(ThemeEnum);
 
   return (
     <div className="flex flex-col gap-2">
@@ -54,56 +38,39 @@ export default function SettingAppearance() {
             onClick={() => setShowThemeOptions(!showThemeOptions)}
           >
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 text-primary">
-              {getThemeIcon()}
+              <CurrentIcon size={20} />
             </div>
             <div className="flex flex-col flex-1 text-left">
               <span className="font-semibold text-sm">{t('settings.appearance.theme')}</span>
-              <span className="text-xs opacity-60">{getThemeLabel()}</span>
+              <span className="text-xs opacity-60">{currentTheme.label}</span>
             </div>
             <ChevronRight size={18} className="opacity-40" />
           </button>
 
           {showThemeOptions && (
             <div className="px-4 pb-4 space-y-2">
-              <button
-                className={`w-full flex items-center gap-3 p-3 rounded-xl transition-colors ${
-                  theme === ThemeEnum.LIGHT ? 'bg-primary/20 text-primary' : 'hover:bg-base-300/50'
-                }`}
-                onClick={() => {
-                  setTheme(ThemeEnum.LIGHT);
-                  setShowThemeOptions(false);
-                }}
-              >
-                <Sun size={18} />
-                <span className="flex-1 text-left text-sm font-medium">{t('settings.appearance.light')}</span>
-                {theme === ThemeEnum.LIGHT && <div className="w-2 h-2 rounded-full bg-primary"></div>}
-              </button>
-              <button
-                className={`w-full flex items-center gap-3 p-3 rounded-xl transition-colors ${
-                  theme === ThemeEnum.DARK ? 'bg-primary/20 text-primary' : 'hover:bg-base-300/50'
-                }`}
-                onClick={() => {
-                  setTheme(ThemeEnum.DARK);
-                  setShowThemeOptions(false);
-                }}
-              >
-                <Moon size={18} />
-                <span className="flex-1 text-left text-sm font-medium">{t('settings.appearance.dark')}</span>
-                {theme === ThemeEnum.DARK && <div className="w-2 h-2 rounded-full bg-primary"></div>}
-              </button>
-              <button
-                className={`w-full flex items-center gap-3 p-3 rounded-xl transition-colors ${
-                  theme === ThemeEnum.SYSTEM ? 'bg-primary/20 text-primary' : 'hover:bg-base-300/50'
-                }`}
-                onClick={() => {
-                  setTheme(ThemeEnum.SYSTEM);
-                  setShowThemeOptions(false);
-                }}
-              >
-                <Monitor size={18} />
-                <span className="flex-1 text-left text-sm font-medium">{t('settings.appearance.system')}</span>
-                {theme === ThemeEnum.SYSTEM && <div className="w-2 h-2 rounded-full bg-primary"></div>}
-              </button>
+              {themeOptions.map((themeOption) => {
+                const optionConfig = themeConfig[themeOption];
+                const OptionIcon = optionConfig.icon;
+                const isSelected = theme === themeOption;
+
+                return (
+                  <button
+                    key={themeOption}
+                    className={`w-full flex items-center gap-3 p-3 rounded-xl transition-colors ${
+                      isSelected ? 'bg-success/20' : 'hover:bg-base-300/50'
+                    }`}
+                    onClick={() => {
+                      setTheme(themeOption);
+                      setShowThemeOptions(false);
+                    }}
+                  >
+                    <OptionIcon size={18} className="text-accent" />
+                    <span className="flex-1 text-left text-sm font-medium">{optionConfig.label}</span>
+                    {isSelected && <div className="w-2 h-2 rounded-full bg-success"></div>}
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
@@ -115,7 +82,7 @@ export default function SettingAppearance() {
               <Globe size={20} />
             </div>
             <div className="flex flex-col flex-1">
-              <span className="font-semibold text-sm">Language</span>
+              <span className="font-semibold text-sm">{t('settings.appearance.language')}</span>
               <select
                 className="select select-sm select-ghost w-full max-w-xs mt-1 h-auto py-0 text-xs"
                 value={language}
@@ -125,8 +92,8 @@ export default function SettingAppearance() {
                 }}
               >
                 {Object.entries(LanguageEnum).map(([key, value]) => (
-                  <option key={key} value={value} className="capitalize">
-                    {value}
+                  <option key={key} value={value}>
+                    {t(`settings.appearance.languages.${value}`)}
                   </option>
                 ))}
               </select>

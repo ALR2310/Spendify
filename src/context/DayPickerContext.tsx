@@ -62,7 +62,7 @@ function DayPickerProvider({ children }: { children: ReactNode }) {
 }
 
 function DayPickerDrawer() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
   const { isOpen, value, setValue, closePicker } = useContext(DayPickerContext);
@@ -111,7 +111,7 @@ function DayPickerDrawer() {
   return (
     <Drawer ref={drawerRef} position="bottom" className="min-h-[343px] w-full rounded-t-2xl" onClose={closePicker}>
       <div className="relative flex items-center justify-center mb-2">
-        <h3 className="font-semibold text-lg">Select Day</h3>
+        <h3 className="font-semibold text-lg">{t('pickers.dayPicker.title')}</h3>
         <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={closePicker}>
           ✕
         </button>

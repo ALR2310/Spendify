@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Drawer, { type DrawerRef } from '@/components/Drawer';
 
@@ -68,6 +69,7 @@ function EmojiPickerProvider({ children }: { children: ReactNode }) {
 }
 
 function EmojiPickerDrawer() {
+  const { t } = useTranslation();
   const { isOpen, closePicker, list, selectEmoji } = useContext(EmojiPickerContext);
   const drawerRef = useRef<DrawerRef>(null);
   const [query, setQuery] = useState('');
@@ -111,7 +113,7 @@ function EmojiPickerDrawer() {
       <div className="p-4 pb-[env(safe-area-inset-bottom)] flex flex-col min-h-0">
         {/* Header */}
         <div className="relative flex items-center justify-center mb-3">
-          <h3 className="font-semibold text-lg">Select Emoji</h3>
+          <h3 className="font-semibold text-lg">{t('pickers.emojiPicker.title')}</h3>
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={closePicker}>
             ✕
           </button>
@@ -126,7 +128,7 @@ function EmojiPickerDrawer() {
               className={`px-3 py-1 rounded-full whitespace-nowrap text-sm border 
                 ${activeCategory === c ? 'bg-primary text-primary-content border-primary' : 'border-base-300'}`}
             >
-              {c === 'all' ? 'Tất cả' : c}
+              {c === 'all' ? t('pickers.emojiPicker.all') : c}
             </button>
           ))}
         </div>
@@ -135,7 +137,7 @@ function EmojiPickerDrawer() {
         <input
           type="text"
           value={query}
-          placeholder="Tìm emoji…"
+          placeholder={t('pickers.emojiPicker.searchPlaceholder')}
           onChange={(e) => setQuery(e.target.value)}
           className="input input-bordered w-full mb-3"
         />

@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { CalendarDaysIcon, Plus } from 'lucide-react';
 import { createContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
@@ -56,6 +57,7 @@ const ExpenseUIProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<ModalRef>; expenseId?: number | null }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const categoryModalRef = useRef<HTMLDialogElement>(null!);
 
@@ -107,9 +109,11 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
 
       modalRef.current?.close();
       queryClient.invalidateQueries({ queryKey: ['expenses/getList'] });
-      toast.success(`Expense ${expenseId ? 'updated' : 'created'} successfully.`);
+      toast.success(
+        `${t('expenses.form.expense')} ${expenseId ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
+      );
     } catch (err) {
-      toast.error('An error occurred while saving the expense.');
+      toast.error(t('expenses.form.errorSaving'));
     }
   };
 
@@ -117,7 +121,9 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
     <>
       <Modal
         ref={modalRef}
-        title={<p className="text-center">{`${expenseId ? `Edit` : `New`} Expense`}</p>}
+        title={
+          <p className="text-center">{`${expenseId ? t('expenses.form.edit') : t('expenses.form.new')} ${t('expenses.form.expense')}`}</p>
+        }
         iconClose={false}
         buttonSubmit={{
           show: true,
@@ -126,8 +132,8 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
       >
         <div className="space-y-4">
           <label className="floating-label">
-            <span>Amount</span>
-            <CurrencyInput value={amount} onChange={setAmount} placeholder="Amount" />
+            <span>{t('expenses.form.amount')}</span>
+            <CurrencyInput value={amount} onChange={setAmount} placeholder={t('expenses.form.amount')} />
           </label>
 
           <div className="flex gap-4">
@@ -149,7 +155,7 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
           </div>
 
           <label className="floating-label">
-            <span>Date</span>
+            <span>{t('expenses.form.date')}</span>
             <input
               type="text"
               placeholder="dd/mm/yyyy"
@@ -162,7 +168,7 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
           </label>
 
           <label className="floating-label">
-            <span>Type</span>
+            <span>{t('expenses.filter.type')}</span>
             <select
               className="select select-lg capitalize"
               value={type}
@@ -170,17 +176,17 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
             >
               {Object.entries(ExpenseTypeEnum).map(([key, value]) => (
                 <option key={key} value={value}>
-                  {value}
+                  {t(`expenses.filter.${value.toLowerCase()}`)}
                 </option>
               ))}
             </select>
           </label>
 
           <label className="floating-label">
-            <span>Note</span>
+            <span>{t('expenses.form.note')}</span>
             <input
               type="text"
-              placeholder="Note"
+              placeholder={t('expenses.form.note')}
               className="input input-lg"
               value={note}
               onChange={(e) => setNote(e.target.value)}
@@ -201,6 +207,7 @@ const CategoryModal = ({
   modalRef: React.RefObject<ModalRef>;
   categoryId?: number | null;
 }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const [name, setName] = useState<string>('');
@@ -227,7 +234,7 @@ const CategoryModal = ({
 
   const handleCreateOrUpdate = async () => {
     if (!name) {
-      toast.error('Name is required.');
+      toast.error(t('expenses.form.nameRequired'));
       return;
     }
 
@@ -247,15 +254,17 @@ const CategoryModal = ({
 
       modalRef.current?.close();
       queryClient.invalidateQueries({ queryKey: ['categories/getList'] });
-      toast.success(`Category ${categoryId ? 'updated' : 'created'} successfully.`);
+      toast.success(
+        `${t('expenses.filter.category')} ${categoryId ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
+      );
     } catch (err) {
-      toast.error('An error occurred while saving the category.');
+      toast.error(t('expenses.form.errorSavingCategory'));
     }
   };
 
   return (
     <Modal
-      title={`${categoryId ? 'Edit' : 'New'} Category`}
+      title={`${categoryId ? t('expenses.form.edit') : t('expenses.form.new')} ${t('expenses.filter.category')}`}
       ref={modalRef}
       iconClose={false}
       buttonSubmit={{
@@ -265,10 +274,10 @@ const CategoryModal = ({
     >
       <div className="space-y-4">
         <label className="floating-label">
-          <span>Name</span>
+          <span>{t('expenses.form.name')}</span>
           <input
             type="text"
-            placeholder="Category Name"
+            placeholder={t('expenses.form.categoryName')}
             className="input input-lg"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -277,10 +286,10 @@ const CategoryModal = ({
 
         <div className="flex items-center gap-2">
           <label className="floating-label flex-1">
-            <span>Emoji</span>
+            <span>{t('expenses.form.emoji')}</span>
             <input
               type="text"
-              placeholder="Emoji"
+              placeholder={t('expenses.form.emoji')}
               className="input input-lg"
               readOnly
               value={icon}
@@ -289,13 +298,13 @@ const CategoryModal = ({
           </label>
 
           <label className="floating-label flex-1">
-            <span>Color</span>
+            <span>{t('expenses.form.color')}</span>
             <input
               type="color"
-              placeholder="Category Color"
+              placeholder={t('expenses.form.color')}
               className="input input-lg"
               value={color}
-              onChange={(e) => setIcon(e.target.value)}
+              onChange={(e) => setColor(e.target.value)}
             />
           </label>
         </div>

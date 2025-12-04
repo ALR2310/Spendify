@@ -65,7 +65,7 @@ function MonthPickerProvider({ children }: { children: ReactNode }) {
 }
 
 function MonthPickerDrawer() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const locale = i18n.language;
 
   const { isOpen, value, setValue, closePicker } = useContext(MonthPickerContext);
@@ -110,7 +110,7 @@ function MonthPickerDrawer() {
     <Drawer ref={drawerRef} position="bottom" className="w-full rounded-t-2xl" onClose={closePicker}>
       <div className="p-3 pb-[env(safe-area-inset-bottom)]">
         <div className="relative flex items-center justify-center mb-2">
-          <h3 className="font-semibold">Chọn tháng</h3>
+          <h3 className="font-semibold">{t('pickers.monthPicker.title')}</h3>
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={closePicker}>
             ✕
           </button>

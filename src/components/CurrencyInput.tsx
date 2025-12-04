@@ -1,17 +1,81 @@
 import { ChangeEvent, KeyboardEvent, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   value?: number | null;
   onChange?: (value: number) => void;
   placeholder?: string;
   className?: string;
+  currencyCode?: string;
+  locale?: string;
 }
 
-export function CurrencyInput({ value = null, onChange, placeholder = '', className = '' }: Props) {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const SUFFIX = ' đ';
+const getLocaleFromLanguage = (language: string): string => {
+  const localeMap: Record<string, string> = {
+    en: 'en-US',
+    vi: 'vi-VN',
+  };
+  return localeMap[language] || 'vi-VN';
+};
 
-  const formatter = useMemo(() => new Intl.NumberFormat('vi-VN'), []);
+const getCurrencySymbol = (formatted: string, currencyCode: string): string => {
+  const cleaned = formatted.replace(/[\d.,\s]/g, '');
+  if (cleaned.trim()) return cleaned.trim();
+
+  const locales = ['en-US', 'vi-VN', 'en-GB'];
+  for (const loc of locales) {
+    try {
+      const formatter = new Intl.NumberFormat(loc, {
+        style: 'currency',
+        currency: currencyCode,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+      const sample = formatter.format(0);
+      const symbol = sample.replace(/[\d.,\s]/g, '').trim();
+      if (symbol) return symbol;
+    } catch {}
+  }
+
+  return currencyCode;
+};
+
+export function CurrencyInput({
+  value = null,
+  onChange,
+  placeholder = '',
+  className = '',
+  currencyCode = 'VND',
+  locale,
+}: Props) {
+  const { i18n } = useTranslation();
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const resolvedLocale = useMemo(() => {
+    if (locale) return locale;
+    return getLocaleFromLanguage(i18n.language);
+  }, [locale, i18n.language]);
+
+  const numberFormatter = useMemo(
+    () => new Intl.NumberFormat(resolvedLocale, { minimumFractionDigits: 0, maximumFractionDigits: 0 }),
+    [resolvedLocale],
+  );
+
+  const currencyFormatter = useMemo(
+    () =>
+      new Intl.NumberFormat(resolvedLocale, {
+        style: 'currency',
+        currency: currencyCode,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }),
+    [resolvedLocale, currencyCode],
+  );
+
+  const currencySymbol = useMemo(() => {
+    const sample = currencyFormatter.format(0);
+    return getCurrencySymbol(sample, currencyCode);
+  }, [currencyFormatter, currencyCode]);
 
   const [internal, setInternal] = useState('');
 
@@ -20,12 +84,14 @@ export function CurrencyInput({ value = null, onChange, placeholder = '', classN
       setInternal('');
       return;
     }
-    setInternal(formatter.format(value) + SUFFIX);
-  }, [formatter, value]);
+    const formatted = numberFormatter.format(value);
+    setInternal(formatted + ' ' + currencySymbol);
+  }, [numberFormatter, currencySymbol, value]);
 
   const formatDisplay = (num: number | null) => {
     if (num == null) return '';
-    return formatter.format(num) + SUFFIX;
+    const formatted = numberFormatter.format(num);
+    return formatted + ' ' + currencySymbol;
   };
 
   const extractNumber = (text: string) => {
@@ -44,7 +110,8 @@ export function CurrencyInput({ value = null, onChange, placeholder = '', classN
 
     const el = inputRef.current;
     const caret = el.selectionStart ?? 0;
-    const suffixStart = internal.length - SUFFIX.length;
+    const suffix = '' + currencySymbol;
+    const suffixStart = internal.length - suffix.length;
 
     const isCaretAfterSuffix = caret > suffixStart;
     const isBackspace = e.key === 'Backspace';

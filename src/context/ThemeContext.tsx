@@ -7,6 +7,7 @@ import { ThemeEnum } from '@/shared/enums/appconfig.enum';
 
 interface ThemeContextType {
   theme: ThemeEnum;
+  resolvedTheme: ThemeEnum;
   setTheme: (theme: ThemeEnum) => void;
 }
 
@@ -14,6 +15,13 @@ const ThemeContext = createContext<ThemeContextType>(null!);
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<ThemeEnum>(appConfig.theme);
+  const [resolvedTheme, setResolvedTheme] = useState<ThemeEnum>(
+    theme === ThemeEnum.SYSTEM
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? ThemeEnum.DARK
+        : ThemeEnum.LIGHT
+      : theme,
+  );
 
   useEffect(() => {
     appConfig.theme = theme;
@@ -25,6 +33,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
     const applyTheme = (isDark: boolean) => {
       root.setAttribute('data-theme', isDark ? ThemeEnum.DARK : ThemeEnum.LIGHT);
+      setResolvedTheme(isDark ? ThemeEnum.DARK : ThemeEnum.LIGHT);
 
       if (layout && isDark) {
         layout.classList.add('bg-neutral');
@@ -49,7 +58,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     applyTheme(theme === ThemeEnum.DARK);
   }, [theme]);
 
-  const ctx = useMemo(() => ({ theme, setTheme }), [theme]);
+  const ctx = useMemo(() => ({ theme, resolvedTheme, setTheme }), [theme, resolvedTheme]);
 
   return <ThemeContext.Provider value={ctx}>{children}</ThemeContext.Provider>;
 };
