@@ -45,7 +45,7 @@ const ExpenseCard = memo(({ data }: { data?: ExpenseListResponse['data'][number]
   );
 });
 
-export default function ExpenseList() {
+export default function ExpenseListSection() {
   const { t } = useTranslation();
   const { resolvedTheme } = useThemeContext();
 

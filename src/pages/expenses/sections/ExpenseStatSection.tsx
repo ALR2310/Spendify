@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-export default function ExpenseStat() {
+export default function ExpenseStatSection() {
   const { t } = useTranslation();
 
   return (

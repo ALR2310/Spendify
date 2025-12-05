@@ -107,7 +107,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
   );
 }
 
-export default function ExpenseFilter() {
+export default function ExpenseFilterSection() {
   const { t, i18n } = useTranslation();
   const locale = i18n.language;
   const drawerRef = useRef<DrawerRef>(null!);
