@@ -16,7 +16,7 @@ const createConnect = async () => {
   return await sqlite.createConnection('Spendify', false, 'no-encryption', 1, false);
 };
 
-export async function database(): Promise<SQLiteDBConnection> {
+export async function initDatabase(): Promise<SQLiteDBConnection> {
   if (dbInstance) return dbInstance;
 
   try {
@@ -42,8 +42,10 @@ export async function database(): Promise<SQLiteDBConnection> {
   }
 }
 
+export const database = await initDatabase();
+
 export const db = new Kysely<Database>({
-  dialect: new CapacitorSQLiteDialect(await database()),
+  dialect: new CapacitorSQLiteDialect(database),
 });
 
 export async function initializeTables() {
