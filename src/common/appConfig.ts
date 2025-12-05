@@ -8,7 +8,8 @@ interface AppConfig {
   autoUpdate: boolean;
   data: {
     fileId: string | null;
-    lastSync: string | null;
+    dateSync: string | null;
+    firstSync: boolean;
   };
   version: string;
 }
@@ -19,7 +20,8 @@ const defaultConfig: AppConfig = {
   autoUpdate: true,
   data: {
     fileId: null,
-    lastSync: null,
+    dateSync: null,
+    firstSync: true,
   },
   version: import.meta.env.VITE_APP_VERSION,
 };

@@ -3,18 +3,23 @@ import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 import { FilePicker } from '@capawesome/capacitor-file-picker';
 import dayjs from 'dayjs';
 import { Cloud, Download, RefreshCw, Upload } from 'lucide-react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
+import { ModalRef } from '@/components/Modal';
 import { useStorageExportMutation, useStorageImportMutation } from '@/hooks/apis/storage.hook';
 import { StorageExportResponse } from '@/shared/types/storage.type';
 
+import ConflictResolutionModal from '../components/ConflictResolutionModal';
 import SettingItem from '../components/SettingItem';
 import SettingSection from '../components/SettingSection';
 
 export default function SettingDataSection() {
   const queryClient = useQueryClient();
+  const modalRef = useRef<ModalRef>(null!);
+
   const { t } = useTranslation();
   const { mutateAsync: exportData } = useStorageExportMutation();
   const { mutateAsync: importData } = useStorageImportMutation();
@@ -83,46 +88,57 @@ export default function SettingDataSection() {
     }
   };
 
+  const handleSync = () => {
+    
+  };
+
   return (
-    <SettingSection title={t('settings.dataSync.title')}>
-      {/* Data Sync */}
-      <SettingItem
-        icon={Cloud}
-        iconColor="info"
-        title={t('settings.dataSync.dataSyncTitle')}
-        description={t('settings.dataSync.dataSyncDesc')}
-        action={
-          <button className="btn btn-sm btn-soft btn-success btn-circle">
-            <RefreshCw size={16} />
-          </button>
-        }
-      >
-        <span className="text-xs opacity-40 mt-0.5">{'Not sync'}</span>
-      </SettingItem>
+    <>
+      <SettingSection title={t('settings.dataSync.title')}>
+        {/* Data Sync */}
+        <SettingItem
+          icon={Cloud}
+          iconColor="info"
+          title={t('settings.dataSync.dataSyncTitle')}
+          description={t('settings.dataSync.dataSyncDesc')}
+          onClick={() => modalRef.current?.showModal()}
+          action={<RefreshCw size={16} />}
+        >
+          <span className="text-xs opacity-40 mt-0.5">{'Not sync'}</span>
+        </SettingItem>
 
-      {/* Import Data */}
-      <SettingItem
-        icon={Upload}
-        iconColor="accent"
-        title={t('settings.dataSync.import')}
-        description={t('settings.dataSync.importDesc')}
-        onClick={handleImport}
-        showChevron
-        showBorder
-        hoverColor="accent"
-      />
+        {/* Import Data */}
+        <SettingItem
+          icon={Upload}
+          iconColor="accent"
+          title={t('settings.dataSync.import')}
+          description={t('settings.dataSync.importDesc')}
+          onClick={handleImport}
+          showChevron
+          showBorder
+          hoverColor="accent"
+        />
 
-      {/* Export Data */}
-      <SettingItem
-        icon={Download}
-        iconColor="warning"
-        title={t('settings.dataSync.export')}
-        description={t('settings.dataSync.exportDesc')}
-        onClick={handleExport}
-        showChevron
-        showBorder
-        hoverColor="warning"
+        {/* Export Data */}
+        <SettingItem
+          icon={Download}
+          iconColor="warning"
+          title={t('settings.dataSync.export')}
+          description={t('settings.dataSync.exportDesc')}
+          onClick={handleExport}
+          showChevron
+          showBorder
+          hoverColor="warning"
+        />
+      </SettingSection>
+
+      <ConflictResolutionModal
+        modalRef={modalRef}
+        onSelect={(source) => {
+          console.log('Selected source:', source);
+          // TODO: Implement logic to handle selected source
+        }}
       />
-    </SettingSection>
+    </>
   );
 }

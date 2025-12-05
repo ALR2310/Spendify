@@ -1,0 +1,147 @@
+import dayjs from 'dayjs';
+import { Check, Cloud, HardDrive } from 'lucide-react';
+import { useState } from 'react';
+
+import Modal, { ModalRef } from '@/components/Modal';
+
+interface ConflictResolutionModalProps {
+  modalRef: React.RefObject<ModalRef>;
+  onSelect?: (source: 'cloud' | 'local') => void;
+  onCancel?: () => void;
+}
+
+interface DataSource {
+  type: 'cloud' | 'local';
+  title: string;
+  icon: typeof Cloud | typeof HardDrive;
+  iconColor: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error' | 'neutral';
+  fileSize: string;
+  syncDate: string;
+}
+
+// Data cứng cho demo
+const mockDataSources: DataSource[] = [
+  {
+    type: 'cloud',
+    title: 'Google Drive',
+    icon: Cloud,
+    iconColor: 'info',
+    fileSize: '2.4 MB',
+    syncDate: '2024-01-15 14:30:00',
+  },
+  {
+    type: 'local',
+    title: 'Local Storage',
+    icon: HardDrive,
+    iconColor: 'accent',
+    fileSize: '2.1 MB',
+    syncDate: '2024-01-14 09:15:00',
+  },
+];
+
+const iconColorClasses = {
+  primary: 'bg-primary/10 text-primary',
+  secondary: 'bg-secondary/10 text-secondary',
+  accent: 'bg-accent/10 text-accent',
+  info: 'bg-info/10 text-info',
+  success: 'bg-success/10 text-success',
+  warning: 'bg-warning/10 text-warning',
+  error: 'bg-error/10 text-error',
+  neutral: 'bg-base-content/10',
+};
+
+export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }: ConflictResolutionModalProps) {
+  const [selectedSource, setSelectedSource] = useState<'cloud' | 'local' | null>(null);
+
+  const handleSelect = (source: 'cloud' | 'local') => {
+    setSelectedSource(source);
+  };
+
+  const handleConfirm = () => {
+    if (selectedSource && onSelect) {
+      onSelect(selectedSource);
+    }
+    modalRef.current?.close();
+    setSelectedSource(null);
+  };
+
+  const handleCancel = () => {
+    if (onCancel) onCancel();
+    modalRef.current?.close();
+    setSelectedSource(null);
+  };
+
+  const handleClose = () => {
+    if (onCancel) onCancel();
+    setSelectedSource(null);
+  };
+
+  return (
+    <Modal
+      ref={modalRef}
+      title="Phát hiện xung đột dữ liệu"
+      className="max-w-2xl"
+      buttonSubmit={{
+        show: true,
+        onClick: handleConfirm,
+      }}
+      buttonCancel={{
+        show: true,
+        onClick: handleCancel,
+      }}
+      onClose={handleClose}
+    >
+      <div className="flex flex-col gap-4 py-2">
+        <p className="text-sm opacity-70 mb-2">
+          Phát hiện dữ liệu trên cả local và cloud. Vui lòng chọn nguồn dữ liệu bạn muốn sử dụng:
+        </p>
+
+        <div className="flex flex-col gap-3">
+          {mockDataSources.map((source) => {
+            const Icon = source.icon;
+            const isSelected = selectedSource === source.type;
+
+            return (
+              <button
+                key={source.type}
+                onClick={() => handleSelect(source.type)}
+                className={`relative flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${
+                  isSelected
+                    ? 'border-accent bg-accent/5 shadow-md'
+                    : 'border-base-300 hover:border-base-content/20 hover:bg-base-300/30'
+                }`}
+              >
+                <div
+                  className={`flex items-center justify-center w-12 h-12 rounded-xl ${iconColorClasses[source.iconColor]}`}
+                >
+                  <Icon size={24} />
+                </div>
+
+                <div className="flex flex-col flex-1 text-left">
+                  <span className="font-semibold text-base">{source.title}</span>
+                  <div className="flex flex-col gap-1 mt-1">
+                    <span className="text-xs opacity-60">
+                      Kích thước: <span className="font-medium opacity-80">{source.fileSize}</span>
+                    </span>
+                    <span className="text-xs opacity-60">
+                      Đồng bộ lần cuối:{' '}
+                      <span className="font-medium opacity-80">
+                        {dayjs(source.syncDate).format('DD/MM/YYYY HH:mm')}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+
+                {isSelected && (
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-accent text-accent-content">
+                    <Check size={18} />
+                  </div>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </Modal>
+  );
+}

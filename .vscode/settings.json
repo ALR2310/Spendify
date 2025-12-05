@@ -3,6 +3,7 @@
         "appconfig",
         "AUTOINCREMENT",
         "googleauth",
+        "googledrive",
         "Insertable",
         "Introspector",
         "khỏe",

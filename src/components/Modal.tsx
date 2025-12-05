@@ -15,6 +15,7 @@ interface ModalProps {
   buttonCancel?: ButtonProps;
   backdropClose?: boolean;
   iconClose?: boolean;
+  onClose?: () => void;
   children?: ReactNode;
 }
 
@@ -33,22 +34,30 @@ const Modal = forwardRef<ModalRef, ModalProps>(
       buttonCancel = { show: true },
       backdropClose = true,
       iconClose = true,
+      onClose,
       children,
     },
     ref,
   ) => {
     const [open, setOpen] = useState(false);
 
+    const handleClose = () => {
+      setOpen(false);
+      if (onClose) {
+        onClose();
+      }
+    };
+
     useImperativeHandle(ref, () => ({
       showModal: () => setOpen(true),
-      close: () => setOpen(false),
+      close: () => handleClose(),
     }));
 
     return (
       <div className={`modal ${open ? 'modal-open' : ''} outline-none ${modalClassName || ''}`}>
         <div className={`modal-box outline-none ${className}`}>
           {iconClose && (
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => setOpen(false)}>
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleClose}>
               ✕
             </button>
           )}
@@ -84,7 +93,7 @@ const Modal = forwardRef<ModalRef, ModalProps>(
             </div>
           )}
         </div>
-        {backdropClose && <div className="modal-backdrop cursor-pointer" onClick={() => setOpen(false)} />}
+        {backdropClose && <div className="modal-backdrop cursor-pointer" onClick={handleClose} />}
       </div>
     );
   },

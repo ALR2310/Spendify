@@ -10,3 +10,15 @@ export type StorageExportResponse = {
   notes: SelectNote[];
   version: string;
 };
+
+export type StorageGetStatusResponse = {
+  type: 'local' | 'cloud';
+  dateSync: string | null;
+  fileLength: number | null;
+};
+
+export type StorageSyncResponse = {
+  type: 'upload' | 'download' | 'noop';
+  message?: string;
+  fileId?: string;
+};

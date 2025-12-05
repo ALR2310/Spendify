@@ -2,14 +2,14 @@ import { CapacitorHttp } from '@capacitor/core';
 
 interface UploadOptions {
   fileName: string;
-  fileContent: Blob;
+  fileContent: Buffer | Uint8Array;
   mimeType?: string;
   parents?: string[];
   properties?: Record<string, string | number | boolean>;
   appProperties?: Record<string, string | number | boolean>;
 }
 
-interface FileMetadata {
+export interface FileMetadata {
   id: string;
   name: string;
   size: number;
@@ -47,7 +47,7 @@ export class GoogleDriveService {
 
     const form = new FormData();
     form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
-    form.append('file', fileContent, fileName);
+    form.append('file', new Blob([fileContent], { type: mimeType }), fileName);
 
     const response = await CapacitorHttp.post({
       url: `${this.UPLOAD_URL}?uploadType=multipart`,
@@ -61,7 +61,7 @@ export class GoogleDriveService {
       throw new Error(`File upload failed: ${response.status} ${response.data?.error?.message || ''}`);
     }
 
-    return response.data.id;
+    return response.data.id as string;
   }
 
   async download(fileId: string) {
