@@ -11,14 +11,22 @@ export type StorageExportResponse = {
   version: string;
 };
 
-export type StorageGetStatusResponse = {
-  type: 'local' | 'cloud';
-  dateSync: string | null;
-  fileLength: number | null;
+export type StorageStatusResponse = {
+  local: {
+    exists: boolean;
+    dateSync: string | null;
+    fileLength: number;
+  };
+  cloud: {
+    exists: boolean;
+    dateSync: string | null;
+    fileLength: number | null;
+    fileId: string | null;
+  };
 };
 
 export type StorageSyncResponse = {
-  type: 'upload' | 'download' | 'noop';
+  type: 'upload' | 'download' | 'skip';
   message?: string;
-  fileId?: string;
+  fileId?: string | null;
 };

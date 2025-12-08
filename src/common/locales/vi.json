@@ -88,7 +88,16 @@
       "import": "Nhập dữ liệu",
       "importDesc": "Nhập dữ liệu từ file",
       "export": "Xuất dữ liệu",
-      "exportDesc": "Xuất dữ liệu ra file"
+      "exportDesc": "Xuất dữ liệu ra file",
+      "conflictModal": {
+        "title": "Phát hiện dữ liệu trên drive",
+        "message": "Vui lòng chọn nguồn dữ liệu bạn muốn sử dụng để đồng bộ: dữ liệu hiện tại ở local hay dữ liệu trên cloud.",
+        "googleDrive": "Google Drive",
+        "localStorage": "Local Storage",
+        "fileSize": "Kích thước:",
+        "lastSync": "Đồng bộ lần cuối:",
+        "neverSynced": "Chưa đồng bộ"
+      }
     },
     "account": {
       "title": "Tài khoản",

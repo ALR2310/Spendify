@@ -1,6 +1,7 @@
 import { LogIn, LogOut, User } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from 'react-query';
 
 import { googleAuthService } from '@/services/googleauth.service';
 
@@ -9,13 +10,17 @@ import SettingSection from '../components/SettingSection';
 
 export default function SettingAccountSection() {
   const { t } = useTranslation();
+
+  const queryClient = useQueryClient();
+
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const handleLogin = async () => {
     try {
-      const result = await googleAuthService.login();
-      console.log(result);
+      await googleAuthService.login();
       setIsLoggedIn(true);
+
+      queryClient.invalidateQueries();
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -25,6 +30,8 @@ export default function SettingAccountSection() {
     try {
       await googleAuthService.logout();
       setIsLoggedIn(false);
+
+      queryClient.invalidateQueries();
     } catch (error) {
       console.error('Logout failed:', error);
     }

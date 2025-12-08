@@ -1,8 +1,10 @@
 import dayjs from 'dayjs';
 import { Check, Cloud, HardDrive } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Modal, { ModalRef } from '@/components/Modal';
+import { useStorageStatusQuery } from '@/hooks/apis/storage.hook';
 
 interface ConflictResolutionModalProps {
   modalRef: React.RefObject<ModalRef>;
@@ -16,28 +18,8 @@ interface DataSource {
   icon: typeof Cloud | typeof HardDrive;
   iconColor: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error' | 'neutral';
   fileSize: string;
-  syncDate: string;
+  syncDate: string | null;
 }
-
-// Data cứng cho demo
-const mockDataSources: DataSource[] = [
-  {
-    type: 'cloud',
-    title: 'Google Drive',
-    icon: Cloud,
-    iconColor: 'info',
-    fileSize: '2.4 MB',
-    syncDate: '2024-01-15 14:30:00',
-  },
-  {
-    type: 'local',
-    title: 'Local Storage',
-    icon: HardDrive,
-    iconColor: 'accent',
-    fileSize: '2.1 MB',
-    syncDate: '2024-01-14 09:15:00',
-  },
-];
 
 const iconColorClasses = {
   primary: 'bg-primary/10 text-primary',
@@ -50,8 +32,19 @@ const iconColorClasses = {
   neutral: 'bg-base-content/10',
 };
 
+function formatFileSize(bytes: number | null): string {
+  if (!bytes) return '0 B';
+  const kb = bytes / 1024;
+  if (kb < 1024) return `${kb.toFixed(2)} KB`;
+  const mb = kb / 1024;
+  return `${mb.toFixed(2)} MB`;
+}
+
 export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }: ConflictResolutionModalProps) {
+  const { t } = useTranslation();
   const [selectedSource, setSelectedSource] = useState<'cloud' | 'local' | null>(null);
+
+  const { data } = useStorageStatusQuery();
 
   const handleSelect = (source: 'cloud' | 'local') => {
     setSelectedSource(source);
@@ -76,10 +69,31 @@ export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }
     setSelectedSource(null);
   };
 
+  const dataSources: DataSource[] = data
+    ? [
+        {
+          type: 'cloud',
+          title: t('settings.dataSync.conflictModal.googleDrive'),
+          icon: Cloud,
+          iconColor: 'info',
+          fileSize: formatFileSize(data.cloud?.fileLength ?? null),
+          syncDate: data.cloud?.dateSync ?? null,
+        },
+        {
+          type: 'local',
+          title: t('settings.dataSync.conflictModal.localStorage'),
+          icon: HardDrive,
+          iconColor: 'accent',
+          fileSize: formatFileSize(data.local?.fileLength ?? null),
+          syncDate: data.local?.dateSync ?? null,
+        },
+      ]
+    : [];
+
   return (
     <Modal
       ref={modalRef}
-      title="Phát hiện xung đột dữ liệu"
+      title="Phát hiện dữ liệu trên drive"
       className="max-w-2xl"
       buttonSubmit={{
         show: true,
@@ -92,12 +106,10 @@ export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }
       onClose={handleClose}
     >
       <div className="flex flex-col gap-4 py-2">
-        <p className="text-sm opacity-70 mb-2">
-          Phát hiện dữ liệu trên cả local và cloud. Vui lòng chọn nguồn dữ liệu bạn muốn sử dụng:
-        </p>
+        <p className="text-sm opacity-70 mb-2">{t('settings.dataSync.conflictModal.message')}</p>
 
         <div className="flex flex-col gap-3">
-          {mockDataSources.map((source) => {
+          {dataSources.map((source) => {
             const Icon = source.icon;
             const isSelected = selectedSource === source.type;
 
@@ -121,12 +133,15 @@ export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }
                   <span className="font-semibold text-base">{source.title}</span>
                   <div className="flex flex-col gap-1 mt-1">
                     <span className="text-xs opacity-60">
-                      Kích thước: <span className="font-medium opacity-80">{source.fileSize}</span>
+                      {t('settings.dataSync.conflictModal.fileSize')}{' '}
+                      <span className="font-medium opacity-80">{source.fileSize}</span>
                     </span>
                     <span className="text-xs opacity-60">
-                      Đồng bộ lần cuối:{' '}
+                      {t('settings.dataSync.conflictModal.lastSync')}{' '}
                       <span className="font-medium opacity-80">
-                        {dayjs(source.syncDate).format('DD/MM/YYYY HH:mm')}
+                        {source.syncDate
+                          ? dayjs(source.syncDate).format('DD/MM/YYYY HH:mm')
+                          : t('settings.dataSync.conflictModal.neverSynced')}
                       </span>
                     </span>
                   </div>

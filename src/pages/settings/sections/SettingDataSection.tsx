@@ -8,8 +8,16 @@ import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
+import { appConfig } from '@/common/appConfig';
 import { ModalRef } from '@/components/Modal';
-import { useStorageExportMutation, useStorageImportMutation } from '@/hooks/apis/storage.hook';
+import {
+  useStorageDownloadMutation,
+  useStorageExportMutation,
+  useStorageImportMutation,
+  useStorageSyncMutation,
+  useStorageUploadMutation,
+} from '@/hooks/apis/storage.hook';
+import { googleAuthService } from '@/services/googleauth.service';
 import { StorageExportResponse } from '@/shared/types/storage.type';
 
 import ConflictResolutionModal from '../components/ConflictResolutionModal';
@@ -17,12 +25,16 @@ import SettingItem from '../components/SettingItem';
 import SettingSection from '../components/SettingSection';
 
 export default function SettingDataSection() {
+  const { t } = useTranslation();
+
   const queryClient = useQueryClient();
   const modalRef = useRef<ModalRef>(null!);
 
-  const { t } = useTranslation();
   const { mutateAsync: exportData } = useStorageExportMutation();
   const { mutateAsync: importData } = useStorageImportMutation();
+  const { mutateAsync: syncData } = useStorageSyncMutation();
+  const { mutateAsync: uploadData } = useStorageUploadMutation();
+  const { mutateAsync: downloadData } = useStorageDownloadMutation();
 
   const handleImport = async () => {
     const result = await FilePicker.pickFiles({
@@ -88,8 +100,41 @@ export default function SettingDataSection() {
     }
   };
 
-  const handleSync = () => {
-    
+  const handleSync = async () => {
+    try {
+      const isLoggedIn = await googleAuthService.isLoggedIn();
+      if (!isLoggedIn) {
+        toast.error('You need to be logged in to sync data.');
+        return;
+      }
+
+      if (appConfig.data.firstSync) {
+        return modalRef.current.showModal();
+      }
+
+      toast.promise(syncData(), {
+        pending: 'Syncing data...',
+        success: 'Sync completed successfully!',
+        error: 'Failed to sync data.',
+      });
+
+      queryClient.invalidateQueries();
+    } catch (error) {
+      console.error('Error syncing data:', error);
+      toast.error('Failed to sync data.');
+    }
+  };
+
+  const handleSelectSource = async (source: 'local' | 'cloud') => {
+    const actionMethod = source === 'local' ? downloadData : uploadData;
+
+    toast.promise(actionMethod(), {
+      pending: `Syncing data...`,
+      success: `Data synced successfully!`,
+      error: `Failed to sync data.`,
+    });
+
+    queryClient.invalidateQueries();
   };
 
   return (
@@ -101,7 +146,7 @@ export default function SettingDataSection() {
           iconColor="info"
           title={t('settings.dataSync.dataSyncTitle')}
           description={t('settings.dataSync.dataSyncDesc')}
-          onClick={() => modalRef.current?.showModal()}
+          onClick={handleSync}
           action={<RefreshCw size={16} />}
         >
           <span className="text-xs opacity-40 mt-0.5">{'Not sync'}</span>
@@ -132,13 +177,7 @@ export default function SettingDataSection() {
         />
       </SettingSection>
 
-      <ConflictResolutionModal
-        modalRef={modalRef}
-        onSelect={(source) => {
-          console.log('Selected source:', source);
-          // TODO: Implement logic to handle selected source
-        }}
-      />
+      <ConflictResolutionModal modalRef={modalRef} onSelect={handleSelectSource} />
     </>
   );
 }

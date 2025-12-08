@@ -88,7 +88,16 @@
       "import": "Import Data",
       "importDesc": "Import data from file",
       "export": "Export Data",
-      "exportDesc": "Export data to file"
+      "exportDesc": "Export data to file",
+      "conflictModal": {
+        "title": "Data detected on drive",
+        "message": "Please select the data source you want to use for sync: current local data or cloud data.",
+        "googleDrive": "Google Drive",
+        "localStorage": "Local Storage",
+        "fileSize": "Size:",
+        "lastSync": "Last sync:",
+        "neverSynced": "Never synced"
+      }
     },
     "account": {
       "title": "Account",
