@@ -126,7 +126,7 @@ export default function SettingDataSection() {
   };
 
   const handleSelectSource = async (source: 'local' | 'cloud') => {
-    const actionMethod = source === 'local' ? downloadData : uploadData;
+    const actionMethod = source === 'local' ? uploadData : downloadData;
 
     toast.promise(actionMethod(), {
       pending: `Syncing data...`,

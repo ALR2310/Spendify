@@ -30,3 +30,48 @@ export type StorageSyncResponse = {
   message?: string;
   fileId?: string | null;
 };
+
+export type SpendingData = {
+  spendingList: [
+    {
+      id: number;
+      namelist: string;
+      atcreate: string;
+      atupdate: string;
+      lastentry: string;
+      status: number;
+    },
+  ];
+  spendingItem: [
+    {
+      id: number;
+      spendlistid: number;
+      nameitem: string;
+      price: number;
+      details: string;
+      atcreate: string;
+      atupdate: string;
+      status: number;
+    },
+  ];
+  noted: [
+    {
+      id: number;
+      namelist: string;
+      content: string;
+      atcreate: string;
+      atupdate: string;
+      status: number;
+    },
+  ];
+  income: [
+    {
+      id: number;
+      spendlistid: number;
+      price: number;
+      atcreate: string;
+      atupdate: string;
+      status: number;
+    },
+  ];
+};

@@ -5,12 +5,14 @@ import { createRoot } from 'react-dom/client';
 import { toast } from 'react-toastify';
 
 import App from './App';
+import { appConfig } from './common/appConfig';
 import { db, initializeTables } from './common/database';
 import { googleAuthService } from './services/googleauth.service';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
 
+(window as any).appConfig = appConfig;
 (window as any).toast = toast;
 (window as any).db = db;
 (window as any).query = async (querySQL: string) => {

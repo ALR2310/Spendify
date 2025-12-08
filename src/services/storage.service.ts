@@ -1,8 +1,15 @@
+import dayjs from 'dayjs';
 import pako from 'pako';
 
 import { appConfig } from '@/common/appConfig';
 import { db } from '@/common/database';
-import { StorageExportResponse, StorageStatusResponse, StorageSyncResponse } from '@/shared/types/storage.type';
+import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
+import {
+  SpendingData,
+  StorageExportResponse,
+  StorageStatusResponse,
+  StorageSyncResponse,
+} from '@/shared/types/storage.type';
 
 import { googleAuthService } from './googleauth.service';
 import { FileMetadata, GoogleDriveService } from './googledrive.service';
@@ -10,7 +17,59 @@ import { FileMetadata, GoogleDriveService } from './googledrive.service';
 export const storageService = new (class StorageService {
   private googleDriveService: GoogleDriveService | null = null;
 
+  async migrateData(data: SpendingData): Promise<StorageExportResponse> {
+    const dateNow = new Date().toISOString();
+
+    const uniqueCategoryNames = new Set(data.spendingItem.filter((i) => i.status !== 0).map((i) => i.nameitem.trim()));
+    const categories = [...uniqueCategoryNames].map((name, idx) => ({
+      id: idx + 1,
+      name,
+      icon: undefined,
+      color: undefined,
+      createdAt: dateNow,
+      updatedAt: dateNow,
+    }));
+
+    const mapNameToId = new Map(categories.map((c) => [c.name, c.id]));
+    const expenses: any[] = data.spendingItem
+      .filter((i) => i.status !== 0)
+      .map((i) => {
+        const date = dayjs(i.atupdate).toISOString();
+        return {
+          categoryId: mapNameToId.get(i.nameitem.trim()) as number,
+          amount: i.price,
+          note: i.details && i.details.trim() !== 'Không có thông tin' ? i.details.trim() : null,
+          date: date,
+          createdAt: date,
+          updatedAt: date,
+          type: ExpenseTypeEnum.Expense,
+        };
+      });
+
+    const notes: any[] = data.noted
+      .filter((n) => n.status !== 0)
+      .map((n) => {
+        const date = dayjs(n.atupdate).toISOString();
+        return {
+          title: n.namelist?.trim() || 'Không tiêu đề',
+          content: n.content?.trim() || '',
+          createdAt: date,
+          updatedAt: date,
+        };
+      });
+
+    return {
+      expenses: expenses ?? [],
+      categories: categories ?? [],
+      recurring: [],
+      notes: notes ?? [],
+      version: appConfig.version,
+    };
+  }
+
   async import(data: StorageExportResponse) {
+    if ((data as any).spendingList) data = await this.migrateData(data as any);
+
     if (!this.validateData(data)) {
       throw new Error('Invalid file format. Please check the file structure.');
     }
@@ -106,6 +165,7 @@ export const storageService = new (class StorageService {
       fileContent: compressed,
       mimeType: 'application/gzip',
       properties: { dateSync, fileLength: dataStr.length },
+      parents: ['appDataFolder'],
     });
 
     appConfig.data.fileId = fileId;
