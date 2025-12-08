@@ -113,18 +113,14 @@ export const googleAuthService = new (class GoogleAuthService {
             data: `token=${tokens.accessToken}`,
           });
         } catch (revokeError) {
-          // Don't fail logout if revoke fails, just log it
           console.warn('Failed to revoke token from Google:', revokeError);
         }
       }
 
-      // Always clear local storage regardless of revoke result
       await this.clearStoredTokens();
-
       console.log('Logout successful');
     } catch (error) {
       console.error('Logout failed', error);
-      // Still try to clear local storage even if other operations failed
       await this.clearStoredTokens().catch((clearError) => {
         console.error('Failed to clear stored tokens during logout:', clearError);
       });
@@ -134,10 +130,18 @@ export const googleAuthService = new (class GoogleAuthService {
 
   private async clearStoredTokens() {
     await Promise.all([
-      SecureStoragePlugin.remove({ key: 'id_token' }),
-      SecureStoragePlugin.remove({ key: 'access_token' }),
-      SecureStoragePlugin.remove({ key: 'refresh_token' }),
-      SecureStoragePlugin.remove({ key: 'expires_at' }),
+      SecureStoragePlugin.remove({ key: 'id_token' }).catch((error) => {
+        console.warn('Failed to remove id_token:', error);
+      }),
+      SecureStoragePlugin.remove({ key: 'access_token' }).catch((error) => {
+        console.warn('Failed to remove access_token:', error);
+      }),
+      SecureStoragePlugin.remove({ key: 'refresh_token' }).catch((error) => {
+        console.warn('Failed to remove refresh_token:', error);
+      }),
+      SecureStoragePlugin.remove({ key: 'expires_at' }).catch((error) => {
+        console.warn('Failed to remove expires_at:', error);
+      }),
     ]);
   }
 

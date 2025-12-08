@@ -2,7 +2,9 @@ import { LogIn, LogOut, User } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
+import { toast } from 'react-toastify';
 
+import { appConfig } from '@/common/appConfig';
 import { googleAuthService } from '@/services/googleauth.service';
 
 import SettingItem from '../components/SettingItem';
@@ -31,21 +33,37 @@ export default function SettingAccountSection() {
       await googleAuthService.logout();
       setIsLoggedIn(false);
 
+      toast.success('Logged out successfully');
+
       queryClient.invalidateQueries();
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
+      appConfig.data.firstSync = true;
+      appConfig.data.fileId = null;
+      appConfig.data.dateSync = null;
+    } catch (error) {}
   };
 
   return (
     <SettingSection title={t('settings.account.title')}>
       {isLoggedIn ? (
-        <SettingItem
-          icon={User}
-          iconColor="success"
-          title={t('settings.account.loggedIn')}
-          description={t('settings.account.googleAccount')}
-        />
+        <>
+          <SettingItem
+            icon={User}
+            iconColor="success"
+            title={t('settings.account.loggedIn')}
+            description={t('settings.account.googleAccount')}
+          />
+
+          <SettingItem
+            icon={LogOut}
+            iconColor="error"
+            title={t('settings.account.logOut')}
+            description={t('settings.account.logOutDesc')}
+            onClick={handleLogout}
+            showChevron
+            showBorder
+            hoverColor="error"
+          />
+        </>
       ) : (
         <SettingItem
           icon={LogIn}
@@ -57,18 +75,6 @@ export default function SettingAccountSection() {
           hoverColor="accent"
         />
       )}
-
-      {/* Logout (Always visible) */}
-      <SettingItem
-        icon={LogOut}
-        iconColor="error"
-        title={t('settings.account.logOut')}
-        description={t('settings.account.logOutDesc')}
-        onClick={handleLogout}
-        showChevron
-        showBorder
-        hoverColor="error"
-      />
     </SettingSection>
   );
 }

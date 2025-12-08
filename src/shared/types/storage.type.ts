@@ -26,8 +26,7 @@ export type StorageStatusResponse = {
 };
 
 export type StorageSyncResponse = {
-  type: 'upload' | 'download' | 'skip';
-  message?: string;
+  type: 'upload' | 'download';
   fileId?: string | null;
 };
 

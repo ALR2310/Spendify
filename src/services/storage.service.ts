@@ -180,14 +180,12 @@ export const storageService = new (class StorageService {
     const cloudDate = new Date(cloud.dateSync || 0);
     const localDate = new Date(local.dateSync || 0);
 
-    if (cloudDate > localDate) {
-      await this.download();
-      return { type: 'download', fileId: cloud.fileId };
-    } else if (cloudDate < localDate) {
+    if (localDate >= cloudDate) {
       await this.upload();
       return { type: 'upload', fileId: appConfig.data.fileId };
     } else {
-      return { type: 'skip', message: 'Already synced.' };
+      await this.download();
+      return { type: 'download', fileId: cloud.fileId || '' };
     }
   }
 
