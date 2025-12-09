@@ -54,6 +54,18 @@
       "errorSaving": "Đã xảy ra lỗi khi lưu chi tiêu.",
       "errorSavingCategory": "Đã xảy ra lỗi khi lưu danh mục.",
       "nameRequired": "Tên là bắt buộc."
+    },
+    "detail": {
+      "title": "Chi tiết giao dịch",
+      "close": "Đóng",
+      "delete": "Xóa",
+      "edit": "Sửa",
+      "amount": "Số tiền",
+      "transactionDate": "Ngày giao dịch",
+      "transactionType": "Loại giao dịch",
+      "income": "Thu nhập",
+      "expense": "Chi tiêu",
+      "note": "Ghi chú"
     }
   },
   "settings": {

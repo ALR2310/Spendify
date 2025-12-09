@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
 import { useExpenseListInfinite } from '@/hooks/apis/expense.hook';
-import { useExpenseUpsertContext } from '@/hooks/app/useExpenseUpsert';
+import { useExpenseDetailContext, useExpenseUpsertContext } from '@/hooks/app/useExpense';
 import { useThemeContext } from '@/hooks/app/useTheme';
 import { ThemeEnum } from '@/shared/enums/appconfig.enum';
 import { Expense } from '@/shared/types/expense.type';
@@ -51,6 +51,7 @@ const ExpenseCard = memo(({ data, onClick }: { data?: Expense; onClick?: () => v
 export default function ExpenseListSection() {
   const { t } = useTranslation();
   const { resolvedTheme } = useThemeContext();
+  const { showDetail } = useExpenseDetailContext();
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useExpenseListInfinite({});
 
@@ -80,7 +81,7 @@ export default function ExpenseListSection() {
             </div>
 
             {grouped[date].map((exp) => (
-              <ExpenseCard key={exp.id} data={exp} onClick={() => {}} />
+              <ExpenseCard key={exp.id} data={exp} onClick={() => showDetail(exp.id)} />
             ))}
           </div>
         ))}

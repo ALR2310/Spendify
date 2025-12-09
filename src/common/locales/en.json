@@ -54,6 +54,18 @@
       "errorSaving": "An error occurred while saving the expense.",
       "errorSavingCategory": "An error occurred while saving the category.",
       "nameRequired": "Name is required."
+    },
+    "detail": {
+      "title": "Transaction Details",
+      "close": "Close",
+      "delete": "Delete",
+      "edit": "Edit",
+      "amount": "Amount",
+      "transactionDate": "Transaction Date",
+      "transactionType": "Transaction Type",
+      "income": "Income",
+      "expense": "Expense",
+      "note": "Note"
     }
   },
   "settings": {
