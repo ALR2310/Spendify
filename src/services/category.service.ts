@@ -4,7 +4,15 @@ import { NewCategory, UpdateCategory } from '@/common/database/types/tables/cate
 export const categoryService = new (class CategoryService {
   async getList() {
     try {
-      const categories = await db.selectFrom('categories').selectAll().execute();
+      const categories = await db
+        .selectFrom('categories')
+        .leftJoin('expenses', 'categories.id', 'expenses.categoryId')
+        .selectAll('categories')
+        .select((eb) => eb.fn.count('expenses.id').as('expenseCount'))
+        .groupBy('categories.id')
+        .orderBy('expenseCount', 'desc')
+        .orderBy('categories.createdAt', 'asc')
+        .execute();
       return categories;
     } catch (error) {
       console.error('Error fetching categories:', error);

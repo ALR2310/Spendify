@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { CalendarDaysIcon, Plus } from 'lucide-react';
+import { CalendarDaysIcon, Pencil, Plus } from 'lucide-react';
 import { createContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 import { NewCategory } from '@/common/database/types/tables/categories';
 import { ExpenseTypeEnum, NewExpense } from '@/common/database/types/tables/expenses';
+import Combobox from '@/components/Combobox';
 import { CurrencyInput } from '@/components/CurrencyInput';
 import Modal, { ModalRef } from '@/components/Modal';
 import {
@@ -30,20 +31,16 @@ const ExpenseUIProvider = ({ children }: { children: React.ReactNode }) => {
   const modalRef = useRef<ModalRef>(null!);
   const [expenseId, setExpenseId] = useState<number | null>(null);
 
-  const openModal = (expenseId: number) => {
-    setExpenseId(expenseId);
-    modalRef.current.showModal();
-  };
-
-  const closeModal = () => {
-    setExpenseId(null);
-    modalRef.current.close();
-  };
-
   const ctx = useMemo(
     () => ({
-      openModal,
-      closeModal,
+      openModal: (expenseId: number) => {
+        setExpenseId(expenseId);
+        modalRef.current.showModal();
+      },
+      closeModal: () => {
+        setExpenseId(null);
+        modalRef.current.close();
+      },
     }),
     [],
   );
@@ -62,8 +59,8 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
   const categoryModalRef = useRef<HTMLDialogElement>(null!);
 
   const [amount, setAmount] = useState<number>(0);
-  const [categoryId, setCategoryId] = useState<number>(1);
-  const [date, setDate] = useState<string>('');
+  const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
+  const [date, setDate] = useState<string>(new Date().toISOString());
   const [type, setType] = useState<ExpenseTypeEnum>(ExpenseTypeEnum.Expense);
   const [note, setNote] = useState<string>('');
 
@@ -85,12 +82,36 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
     }
   }, [expense, isLoadingExpense]);
 
+  useEffect(() => {
+    if (!expenseId) {
+      setAmount(0);
+      setCategoryId(undefined);
+      setDate(new Date().toISOString());
+      setType(ExpenseTypeEnum.Expense);
+      setNote('');
+    }
+  }, [expenseId]);
+
   // Update date when picker value changes
   useEffect(() => {
     if (pickerValue) setDate(pickerValue.toISOString());
   }, [pickerValue]);
 
+  const categoryOptions = useMemo(
+    () =>
+      categories?.map((category) => ({
+        label: `${category.icon ? `${category.icon} ` : ''}${category.name}`,
+        value: String(category.id),
+      })) || [],
+    [categories],
+  );
+
   const handleCreateOrUpdate = async () => {
+    if (!categoryId) {
+      toast.error('Please select a category.');
+      return;
+    }
+
     const now = new Date().toISOString();
     const data: NewExpense = { categoryId, amount: amount, date, type, note, updatedAt: now };
 
@@ -100,12 +121,6 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
       } else {
         await createExpense({ ...data, createdAt: now });
       }
-
-      setAmount(0);
-      setCategoryId(1);
-      setDate('');
-      setType(ExpenseTypeEnum.Expense);
-      setNote('');
 
       modalRef.current?.close();
       queryClient.invalidateQueries({ queryKey: ['expenses/getList'] });
@@ -137,17 +152,25 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
           </label>
 
           <div className="flex gap-4">
-            <select
-              className="select select-lg capitalize"
-              value={categoryId}
-              onChange={(e) => setCategoryId(Number(e.target.value))}
-            >
-              {categories?.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.icon} {category.name}
-                </option>
-              ))}
-            </select>
+            <Combobox
+              size="lg"
+              value={String(categoryId)}
+              placeholder="Select category"
+              floatingLabel={true}
+              onChange={(val) => setCategoryId(Number(val))}
+              options={categoryOptions}
+              render={(option) => (
+                <div className="w-full flex items-center justify-between px-1">
+                  <span className="line-clamp-1">{option.label}</span>
+                  <button
+                    className="btn btn-sm btn-circle btn-ghost"
+                    onClick={() => categoryModalRef.current.showModal()}
+                  >
+                    <Pencil size={16} />
+                  </button>
+                </div>
+              )}
+            />
 
             <button type="button" className="btn btn-lg btn-soft" onClick={() => categoryModalRef.current?.showModal()}>
               <Plus size={20} />
@@ -195,7 +218,7 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
         </div>
       </Modal>
 
-      <CategoryModal modalRef={categoryModalRef} />
+      <CategoryModal modalRef={categoryModalRef} categoryId={categoryId} />
     </>
   );
 };
@@ -212,7 +235,7 @@ const CategoryModal = ({
 
   const [name, setName] = useState<string>('');
   const [icon, setIcon] = useState<string>('');
-  const [color, setColor] = useState<string>();
+  const [color, setColor] = useState<string>('');
 
   const { emoji, open: openPicker } = useEmojiPickerContext();
 
@@ -224,9 +247,17 @@ const CategoryModal = ({
     if (category && !isLoadingCategory) {
       setName(category.name);
       setIcon(category.icon || '');
-      setColor(category.color);
+      setColor(category.color || '');
     }
   }, [category, isLoadingCategory]);
+
+  useEffect(() => {
+    if (!categoryId) {
+      setName('');
+      setIcon('');
+      setColor('');
+    }
+  }, [categoryId]);
 
   useEffect(() => {
     if (emoji) setIcon(emoji);
@@ -247,10 +278,6 @@ const CategoryModal = ({
       } else {
         await createCategory({ ...data, createdAt: now });
       }
-
-      setName('');
-      setIcon('');
-      setColor(undefined);
 
       modalRef.current?.close();
       queryClient.invalidateQueries({ queryKey: ['categories/getList'] });

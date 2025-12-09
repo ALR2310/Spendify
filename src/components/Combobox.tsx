@@ -26,6 +26,7 @@ interface ComboboxProps {
   value?: string;
   options?: Option[];
   placeholder?: string;
+  floatingLabel?: boolean;
   onChange?: (value: Option['value']) => void;
   onInputChange?: (value: string) => void;
   render?: (option: Option) => React.ReactNode;
@@ -38,6 +39,7 @@ export default function Combobox({
   value,
   options = [],
   placeholder,
+  floatingLabel,
   onChange,
   onInputChange,
   render,
@@ -82,19 +84,31 @@ export default function Combobox({
     return option.label.toLowerCase().includes(q) || option.value.toLowerCase().includes(q);
   });
 
+  const inputElement = (
+    <input
+      type="search"
+      className={`select ${className} ${classSizes[size as keyof typeof classSizes].input} ${classNames?.input}`}
+      value={inputValue}
+      placeholder={placeholder}
+      onChange={handleInputChange}
+      onBlur={handleInputBlur}
+    />
+  );
+
   return (
     <div ref={containerRef} className={`dropdown ${classNames?.container}`}>
-      <input
-        type="text"
-        className={`select ${className} ${classSizes[size as keyof typeof classSizes].input} ${classNames?.input}`}
-        value={inputValue}
-        placeholder={placeholder}
-        onChange={handleInputChange}
-        onBlur={handleInputBlur}
-      />
+      {floatingLabel ? (
+        <label className="floating-label">
+          <span>{placeholder}</span>
+          {inputElement}
+        </label>
+      ) : (
+        inputElement
+      )}
+
       <ul
         tabIndex={-1}
-        className={`dropdown-content menu bg-base-100 rounded-box z-1 p-2 shadow-sm mt-2 w-full ${classSizes[size as keyof typeof classSizes].option} ${classNames?.option}`}
+        className={`dropdown-content flex-nowrap menu max-h-60 overflow-y-auto bg-base-100 border border-base-content/10 no-scrollbar rounded-box z-10 p-2 shadow-sm mt-2 w-full ${classSizes[size as keyof typeof classSizes].option} ${classNames?.option}`}
       >
         {filteredOptions.length === 0 && (
           <li>
@@ -102,8 +116,8 @@ export default function Combobox({
           </li>
         )}
         {filteredOptions.map((option) => (
-          <li key={option.value}>
-            <a onClick={() => handleOptionSelect(option)}>{render ? render(option) : option.label}</a>
+          <li key={option.value} className="w-full" onClick={() => handleOptionSelect(option)}>
+            {render ? render(option) : <span className="line-clamp-1">{option.label}</span>}
           </li>
         ))}
       </ul>
