@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 
 import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
 import { useExpenseListInfinite } from '@/hooks/apis/expense.hook';
-import { useExpenseContext } from '@/hooks/app/useExpense';
+import { useExpenseUpsertContext } from '@/hooks/app/useExpenseUpsert';
 import { useThemeContext } from '@/hooks/app/useTheme';
 import { ThemeEnum } from '@/shared/enums/appconfig.enum';
-import { ExpenseListResponse } from '@/shared/types/expense.type';
+import { Expense } from '@/shared/types/expense.type';
 import { groupExpenseByDate } from '@/utils/expense.utils';
 import { formatCurrency } from '@/utils/general.utils';
 
 const NotFoundCard = () => {
   const { t } = useTranslation();
-  const { openModal } = useExpenseContext();
+  const { openModal } = useExpenseUpsertContext();
 
   return (
     <div className="flex flex-col p-6 bg-base-200 rounded-xl text-center">
@@ -28,9 +28,12 @@ const NotFoundCard = () => {
   );
 };
 
-const ExpenseCard = memo(({ data }: { data?: ExpenseListResponse['data'][number] }) => {
+const ExpenseCard = memo(({ data, onClick }: { data?: Expense; onClick?: () => void }) => {
   return (
-    <div className="card shadow-sm bg-base-200 p-3 rounded-xl flex flex-row items-center gap-3">
+    <div
+      className={`card shadow-sm bg-base-200 p-3 rounded-xl flex flex-row items-center gap-3 ${onClick ? 'cursor-pointer' : ''}`}
+      onClick={onClick}
+    >
       <div className="text-3xl">{data?.categoryIcon}</div>
       <div className="flex flex-col flex-1">
         <span className="font-semibold">{data?.categoryName}</span>
@@ -77,7 +80,7 @@ export default function ExpenseListSection() {
             </div>
 
             {grouped[date].map((exp) => (
-              <ExpenseCard key={exp.id} data={exp} />
+              <ExpenseCard key={exp.id} data={exp} onClick={() => {}} />
             ))}
           </div>
         ))}

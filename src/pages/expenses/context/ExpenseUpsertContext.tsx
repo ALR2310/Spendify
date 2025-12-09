@@ -20,14 +20,14 @@ import { useExpenseByIdQuery, useExpenseCreateMutation, useExpenseUpdateMutation
 import { useDayPickerContext } from '@/hooks/app/useDayPicker';
 import { useEmojiPickerContext } from '@/hooks/app/useEmojiPicker';
 
-interface ExpenseUIContextType {
+interface ExpenseUpsertContextType {
   openModal(expenseId?: number): void;
   closeModal(): void;
 }
 
-const ExpenseUIContext = createContext<ExpenseUIContextType>(null!);
+const ExpenseUpsertContext = createContext<ExpenseUpsertContextType>(null!);
 
-const ExpenseUIProvider = ({ children }: { children: React.ReactNode }) => {
+const ExpenseUpsertProvider = ({ children }: { children: React.ReactNode }) => {
   const modalRef = useRef<ModalRef>(null!);
   const [expenseId, setExpenseId] = useState<number | null>(null);
 
@@ -46,10 +46,10 @@ const ExpenseUIProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   return (
-    <ExpenseUIContext.Provider value={ctx}>
+    <ExpenseUpsertContext.Provider value={ctx}>
       {children}
       <ExpenseModal modalRef={modalRef} expenseId={expenseId} />
-    </ExpenseUIContext.Provider>
+    </ExpenseUpsertContext.Provider>
   );
 };
 
@@ -340,5 +340,5 @@ const CategoryModal = ({
   );
 };
 
-export { ExpenseUIContext, ExpenseUIProvider };
-export type { ExpenseUIContextType };
+export { ExpenseUpsertContext, ExpenseUpsertProvider };
+export type { ExpenseUpsertContextType };

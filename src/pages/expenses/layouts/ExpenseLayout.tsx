@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router';
 
-import { ExpenseUIProvider } from '../context/ExpenseUIContext';
+import { ExpenseUpsertProvider } from '../context/ExpenseUpsertContext';
 
 export default function ExpenseLayout() {
   return (
-    <ExpenseUIProvider>
+    <ExpenseUpsertProvider>
       <Outlet />
-    </ExpenseUIProvider>
+    </ExpenseUpsertProvider>
   );
 }

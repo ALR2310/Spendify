@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import Modal, { ModalRef } from '@/components/Modal';
 import { useStorageStatusQuery } from '@/hooks/apis/storage.hook';
+import { formatBytes } from '@/utils/general.utils';
 
 interface ConflictResolutionModalProps {
   modalRef: React.RefObject<ModalRef>;
@@ -31,14 +32,6 @@ const iconColorClasses = {
   error: 'bg-error/10 text-error',
   neutral: 'bg-base-content/10',
 };
-
-function formatFileSize(bytes: number | null): string {
-  if (!bytes) return '0 B';
-  const kb = bytes / 1024;
-  if (kb < 1024) return `${kb.toFixed(2)} KB`;
-  const mb = kb / 1024;
-  return `${mb.toFixed(2)} MB`;
-}
 
 export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }: ConflictResolutionModalProps) {
   const { t } = useTranslation();
@@ -76,7 +69,7 @@ export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }
           title: t('settings.dataSync.conflictModal.googleDrive'),
           icon: Cloud,
           iconColor: 'info',
-          fileSize: formatFileSize(data.cloud?.fileLength ?? null),
+          fileSize: formatBytes(data.cloud?.fileLength ?? 0),
           syncDate: data.cloud?.dateSync ?? null,
         },
         {
@@ -84,7 +77,7 @@ export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }
           title: t('settings.dataSync.conflictModal.localStorage'),
           icon: HardDrive,
           iconColor: 'accent',
-          fileSize: formatFileSize(data.local?.fileLength ?? null),
+          fileSize: formatBytes(data.local?.fileLength ?? 0),
           syncDate: data.local?.dateSync ?? null,
         },
       ]
