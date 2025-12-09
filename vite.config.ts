@@ -57,13 +57,17 @@ export default defineConfig({
       openAnalyzer: false,
       analyzerMode: 'static',
     }),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'src/assets/sql-wasm.wasm',
-          dest: 'assets',
-        },
-      ],
-    }),
+    ...(isDev
+      ? [
+          viteStaticCopy({
+            targets: [
+              {
+                src: 'src/assets/sql-wasm.wasm',
+                dest: 'assets',
+              },
+            ],
+          }),
+        ]
+      : []),
   ],
 });
