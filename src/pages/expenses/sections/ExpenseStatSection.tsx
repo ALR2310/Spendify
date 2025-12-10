@@ -1,24 +1,31 @@
 import { useTranslation } from 'react-i18next';
 
+import { formatCurrency } from '@/utils/general.utils';
+
 export default function ExpenseStatSection() {
   const { t } = useTranslation();
 
+  const formatAuto = (amount: number) => {
+    const useCompact = Math.abs(amount) >= 100_000_000;
+    return formatCurrency(amount, useCompact ? { notation: 'compact' } : {});
+  };
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 p-4 pb-0">
       <div className="grid grid-cols-3 gap-4">
         <div className="text-center">
           <p className="text-base-content/60 text-xs">{t('expenses.stat.totalRevenue')}</p>
-          <p className="text-sm text-primary font-semibold">100.000đ</p>
+          <p className="text-lg text-primary font-semibold">{formatAuto(10000000)}</p>
         </div>
 
         <div className="text-center">
           <p className="text-base-content/60 text-xs">{t('expenses.stat.totalExpenses')}</p>
-          <p className="text-sm text-accent font-semibold">80.000đ</p>
+          <p className="text-lg text-accent font-semibold">{formatAuto(10000000)}</p>
         </div>
 
         <div className="text-center">
           <p className="text-base-content/60 text-xs">{t('expenses.stat.difference')}</p>
-          <p className="text-sm text-success font-semibold">20.000đ</p>
+          <p className="text-lg text-success font-semibold">{formatAuto(10000000)}</p>
         </div>
       </div>
 

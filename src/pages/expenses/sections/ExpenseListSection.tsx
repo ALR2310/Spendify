@@ -67,7 +67,7 @@ export default function ExpenseListSection() {
   };
 
   return (
-    <div className="flex flex-col gap-3 max-h-[70vh]">
+    <div className="flex flex-col gap-3 max-h-[70vh] p-4 mb-0">
       <p className="font-semibold text-lg">{t('expenses.list.title')}</p>
 
       <div className="flex-1 overflow-auto" onScroll={handleScroll}>

@@ -128,7 +128,7 @@ export default function ExpenseFilterSection() {
 
   return (
     <div
-      className={`flex flex-col sticky top-0 mb-0 z-10 ${resolvedTheme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}
+      className={`flex flex-col px-4 pb-2 border-b border-base-content/20 sticky top-0 mb-0 z-10 ${resolvedTheme === ThemeEnum.DARK ? 'bg-neutral' : 'bg-white'}`}
     >
       <div className="relative flex items-center justify-center">
         <div className="join w-[65vw]">

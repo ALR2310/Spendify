@@ -1,6 +1,6 @@
 import { Bell } from 'lucide-react';
 
-export default function Nav() {
+export default function Header() {
   return (
     <div className="navbar min-h-auto">
       <div className="navbar-start">

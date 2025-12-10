@@ -5,12 +5,65 @@ export function abbreviateNumber(num: number): string {
   return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B';
 }
 
-export function formatCurrency(amount: number, currencyCode = 'VND', locale = 'vi-VN'): string {
-  return new Intl.NumberFormat(locale, {
+export function formatCurrency(
+  amount: number,
+  opts: {
+    locale?: string;
+    currencyCode?: string;
+    notation?: 'standard' | 'compact';
+    minFractionDigits?: number;
+    maxFractionDigits?: number;
+    shortCurrency?: boolean;
+  } = {},
+): string {
+  const {
+    locale = 'vi-VN',
+    currencyCode = 'VND',
+    notation = 'standard',
+    minFractionDigits,
+    maxFractionDigits,
+    shortCurrency = false,
+  } = opts;
+
+  const currencyInfo = new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: currencyCode,
-    minimumFractionDigits: 2,
-  }).format(amount);
+  }).resolvedOptions();
+
+  const minimumFractionDigits = minFractionDigits ?? currencyInfo.minimumFractionDigits;
+  const maximumFractionDigits = maxFractionDigits ?? currencyInfo.maximumFractionDigits;
+
+  const formatter = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currencyCode,
+    notation,
+    minimumFractionDigits,
+    maximumFractionDigits,
+  });
+
+  let formatted = formatter.format(amount);
+
+  if (shortCurrency) {
+    const shortMap: Record<string, string> = {
+      VND: '₫',
+      USD: '$',
+      EUR: '€',
+      JPY: '¥',
+      GBP: '£',
+    };
+
+    const short = shortMap[currencyCode] ?? currencyCode;
+
+    const numberPart = new Intl.NumberFormat(locale, {
+      notation,
+      minimumFractionDigits,
+      maximumFractionDigits,
+    }).format(amount);
+
+    formatted = `${numberPart} ${short}`;
+  }
+
+  return formatted;
 }
 
 export function getMonthLabel(month: number, locale: string) {
