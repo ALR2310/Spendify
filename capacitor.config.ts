@@ -1,3 +1,6 @@
+import 'dotenv/config';
+
+import path from 'path';
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
@@ -30,6 +33,13 @@ const config: CapacitorConfig = {
   android: {
     allowMixedContent: true,
     webContentsDebuggingEnabled: true,
+    buildOptions: {
+      keystorePath: path.resolve(__dirname, 'spendify-key.jks'),
+      keystoreAlias: process.env.ANDROID_KEY_ALIAS,
+      keystorePassword: process.env.ANDROID_KEYSTORE_PASSWORD,
+      releaseType: 'APK',
+      signingType: 'apksigner',
+    },
   },
 };
 

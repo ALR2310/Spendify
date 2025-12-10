@@ -2,6 +2,8 @@ import { Capacitor, CapacitorHttp } from '@capacitor/core';
 import { SocialLogin } from '@capgo/capacitor-social-login';
 import { SecureStoragePlugin } from 'capacitor-secure-storage-plugin';
 
+import { logger } from '../common/logger';
+
 interface GoogleTokens {
   idToken: string;
   accessToken: string;
@@ -22,7 +24,7 @@ export const googleAuthService = new (class GoogleAuthService {
       },
     });
 
-    console.log('GoogleAuthService initialized');
+    logger.log('GoogleAuthService initialized');
   }
 
   async login() {
@@ -33,7 +35,12 @@ export const googleAuthService = new (class GoogleAuthService {
           forceRefreshToken: true,
           scopes: ['https://www.googleapis.com/auth/drive.appfolder', 'https://www.googleapis.com/auth/drive.file'],
         },
-      }).then((result: any) => result.result.serverAuthCode);
+      })
+        .then((result: any) => result.result.serverAuthCode)
+        .catch((error: any) => {
+          logger.error('Google login failed', error.message || error);
+          throw error;
+        });
 
       const tokens = await this.exchangeAuthCodeForTokens(authCode);
 
@@ -43,8 +50,8 @@ export const googleAuthService = new (class GoogleAuthService {
         message: 'Google login successful',
         data: tokens,
       };
-    } catch (error) {
-      console.error('Google login failed', error);
+    } catch (error: any) {
+      logger.error('Google login failed', error.message || error);
       throw error;
     }
   }
@@ -94,8 +101,8 @@ export const googleAuthService = new (class GoogleAuthService {
         message: 'Token refresh successful',
         data: newTokens,
       };
-    } catch (error) {
-      console.error('Token refresh failed', error);
+    } catch (error: any) {
+      logger.error('Token refresh failed', error.message || error);
       throw error;
     }
   }
@@ -113,16 +120,16 @@ export const googleAuthService = new (class GoogleAuthService {
             data: `token=${tokens.accessToken}`,
           });
         } catch (revokeError) {
-          console.warn('Failed to revoke token from Google:', revokeError);
+          logger.warn('Failed to revoke token from Google:', revokeError);
         }
       }
 
       await this.clearStoredTokens();
-      console.log('Logout successful');
-    } catch (error) {
-      console.error('Logout failed', error);
+      logger.log('Logout successful');
+    } catch (error: any) {
+      logger.error('Logout failed', error.message || error);
       await this.clearStoredTokens().catch((clearError) => {
-        console.error('Failed to clear stored tokens during logout:', clearError);
+        logger.error('Failed to clear stored tokens during logout:', clearError);
       });
       throw error;
     }
@@ -130,18 +137,10 @@ export const googleAuthService = new (class GoogleAuthService {
 
   private async clearStoredTokens() {
     await Promise.all([
-      SecureStoragePlugin.remove({ key: 'id_token' }).catch((error) => {
-        console.warn('Failed to remove id_token:', error);
-      }),
-      SecureStoragePlugin.remove({ key: 'access_token' }).catch((error) => {
-        console.warn('Failed to remove access_token:', error);
-      }),
-      SecureStoragePlugin.remove({ key: 'refresh_token' }).catch((error) => {
-        console.warn('Failed to remove refresh_token:', error);
-      }),
-      SecureStoragePlugin.remove({ key: 'expires_at' }).catch((error) => {
-        console.warn('Failed to remove expires_at:', error);
-      }),
+      SecureStoragePlugin.remove({ key: 'id_token' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'access_token' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'refresh_token' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'expires_at' }).catch(() => {}),
     ]);
   }
 
@@ -174,11 +173,11 @@ export const googleAuthService = new (class GoogleAuthService {
         const refreshResult = await this.refresh();
         return !!(refreshResult && refreshResult.data);
       } catch (refreshError) {
-        console.error('Failed to refresh token', refreshError);
+        logger.error('Failed to refresh token', refreshError);
         return false;
       }
-    } catch (error) {
-      console.error('Error checking login status', error);
+    } catch (error: any) {
+      logger.error('Error checking login status', error.message || error);
       return false;
     }
   }
@@ -204,14 +203,14 @@ export const googleAuthService = new (class GoogleAuthService {
           const refreshResult = await this.refresh();
           return refreshResult?.data?.accessToken || null;
         } catch (refreshError) {
-          console.error('Failed to refresh token when getting access token', refreshError);
+          logger.error('Failed to refresh token when getting access token', refreshError);
           return null;
         }
       }
 
       return null;
-    } catch (error) {
-      console.error('Error getting access token', error);
+    } catch (error: any) {
+      logger.error('Error getting access token', error.message || error);
       return null;
     }
   }
@@ -234,8 +233,8 @@ export const googleAuthService = new (class GoogleAuthService {
       if (expiresIn <= 0) return false;
 
       return true;
-    } catch (error) {
-      console.error('Error validating access token', error);
+    } catch (error: any) {
+      logger.error('Error validating access token', error.message || error);
       return false;
     }
   }
@@ -282,20 +281,28 @@ export const googleAuthService = new (class GoogleAuthService {
 
   private async storeTokens(tokens: GoogleTokens) {
     await Promise.all([
-      SecureStoragePlugin.set({ key: 'id_token', value: tokens.idToken }),
-      SecureStoragePlugin.set({ key: 'access_token', value: tokens.accessToken }),
-      SecureStoragePlugin.set({ key: 'refresh_token', value: tokens.refreshToken || '' }),
-      SecureStoragePlugin.set({ key: 'expires_at', value: tokens.expiresAt }),
+      SecureStoragePlugin.set({ key: 'id_token', value: tokens.idToken }).catch((error) => {
+        logger.error('Error storing id_token', error);
+      }),
+      SecureStoragePlugin.set({ key: 'access_token', value: tokens.accessToken }).catch((error) => {
+        logger.error('Error storing access_token', error);
+      }),
+      SecureStoragePlugin.set({ key: 'refresh_token', value: tokens.refreshToken || '' }).catch((error) => {
+        logger.error('Error storing refresh_token', error);
+      }),
+      SecureStoragePlugin.set({ key: 'expires_at', value: tokens.expiresAt }).catch((error) => {
+        logger.error('Error storing expires_at', error);
+      }),
     ]);
   }
 
   private async getStoredTokens(): Promise<GoogleTokens | null> {
     try {
       const [idTokenRes, accessTokenRes, refreshTokenRes, expiresAtRes] = await Promise.all([
-        SecureStoragePlugin.get({ key: 'id_token' }),
-        SecureStoragePlugin.get({ key: 'access_token' }),
-        SecureStoragePlugin.get({ key: 'refresh_token' }),
-        SecureStoragePlugin.get({ key: 'expires_at' }),
+        SecureStoragePlugin.get({ key: 'id_token' }).catch(() => ({ value: '' })),
+        SecureStoragePlugin.get({ key: 'access_token' }).catch(() => ({ value: '' })),
+        SecureStoragePlugin.get({ key: 'refresh_token' }).catch(() => ({ value: '' })),
+        SecureStoragePlugin.get({ key: 'expires_at' }).catch(() => ({ value: '' })),
       ]);
 
       // Only require accessToken and expiresAt, refreshToken is optional
@@ -309,8 +316,8 @@ export const googleAuthService = new (class GoogleAuthService {
         refreshToken: refreshTokenRes.value || undefined,
         expiresAt: expiresAtRes.value,
       };
-    } catch (error) {
-      console.error('Error retrieving stored tokens', error);
+    } catch (error: any) {
+      logger.error('Error retrieving stored tokens', error.message || error);
       return null;
     }
   }
