@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { createContext, RefObject, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Drawer, { type DrawerRef } from '@/components/Drawer';
@@ -12,76 +12,65 @@ interface EmojiItem {
   category: string;
 }
 
-interface InternalState {
-  resolve?: (val?: EmojiItem) => void;
-}
+type EmojiPickerSession = {
+  onChange?: (emoji?: EmojiItem) => void;
+};
 
 interface EmojiPickerContextValue {
-  openPicker: () => Promise<EmojiItem | undefined>;
-  closePicker: () => void;
-  isOpen: boolean;
-  list: EmojiItem[];
-  selectEmoji: (item: EmojiItem) => void;
+  open: (onChange?: (emoji?: EmojiItem) => void) => void;
+  close: () => void;
 }
 
 const EmojiPickerContext = createContext<EmojiPickerContextValue>(null!);
 
-function EmojiPickerProvider({ children }: { children: ReactNode }) {
-  const [isOpen, setIsOpen] = useState(false);
+function EmojiPickerProvider({ children }: { children: React.ReactNode }) {
+  const drawerRef = useRef<DrawerRef>(null!);
+  const [session, setSession] = useState<EmojiPickerSession | null>(null);
   const [list, setList] = useState<EmojiItem[]>([]);
-  const [internal, setInternal] = useState<InternalState>({});
 
-  const openPicker = async () => {
+  const open = async (onChange?: (emoji?: EmojiItem) => void) => {
     const { default: emojiData } = await import('../assets/data/emojis.json');
-
-    setList(emojiData); // full list
-
-    return new Promise<EmojiItem | undefined>((resolve) => {
-      setInternal({ resolve });
-      setIsOpen(true);
-    });
+    setList(emojiData);
+    setSession({ onChange });
+    drawerRef.current?.openDrawer();
   };
 
-  const closePicker = () => {
-    internal.resolve?.(undefined);
-    setIsOpen(false);
+  const close = () => {
+    drawerRef.current?.close();
+    setSession(null);
   };
 
-  const selectEmoji = (item: EmojiItem) => {
-    internal.resolve?.(item);
-    setIsOpen(false);
+  const handleSelect = (emoji?: EmojiItem) => {
+    if (session?.onChange) {
+      session.onChange(emoji);
+    }
+    close();
   };
+
+  const ctx = useMemo(() => ({ open, close }), []);
 
   return (
-    <EmojiPickerContext.Provider
-      value={{
-        openPicker,
-        closePicker,
-        isOpen,
-        list,
-        selectEmoji,
-      }}
-    >
+    <EmojiPickerContext.Provider value={ctx}>
       {children}
-      <EmojiPickerDrawer />
+      <EmojiPickerDrawer drawerRef={drawerRef} list={list} onSelect={handleSelect} close={close} />
     </EmojiPickerContext.Provider>
   );
 }
 
-function EmojiPickerDrawer() {
+function EmojiPickerDrawer({
+  drawerRef,
+  list,
+  onSelect,
+  close,
+}: {
+  drawerRef: RefObject<DrawerRef>;
+  list: EmojiItem[];
+  onSelect: (emoji?: EmojiItem) => void;
+  close: () => void;
+}) {
   const { t } = useTranslation();
-  const { isOpen, closePicker, list, selectEmoji } = useContext(EmojiPickerContext);
-  const drawerRef = useRef<DrawerRef>(null);
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
-
-  useEffect(() => {
-    if (isOpen) {
-      drawerRef.current?.openDrawer();
-    } else {
-      drawerRef.current?.close();
-    }
-  }, [isOpen]);
 
   const categories = useMemo(() => {
     const set = new Set(list.map((e) => e.category));
@@ -108,13 +97,17 @@ function EmojiPickerDrawer() {
     return result;
   }, [query, list, activeCategory]);
 
+  const handleSelect = (item: EmojiItem) => {
+    onSelect(item);
+  };
+
   return (
-    <Drawer ref={drawerRef} position="bottom" className="h-[60vh] w-full rounded-t-2xl" onClose={closePicker}>
+    <Drawer ref={drawerRef} position="bottom" className="h-[60vh] w-full rounded-t-2xl" onClose={close}>
       <div className="p-4 pb-[env(safe-area-inset-bottom)] flex flex-col min-h-0">
         {/* Header */}
         <div className="relative flex items-center justify-center mb-3">
           <h3 className="font-semibold text-lg">{t('pickers.emojiPicker.title')}</h3>
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={closePicker}>
+          <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={close}>
             ✕
           </button>
         </div>
@@ -147,7 +140,7 @@ function EmojiPickerDrawer() {
           {filtered.map((item) => (
             <button
               key={item.id}
-              onClick={() => selectEmoji(item)}
+              onClick={() => handleSelect(item)}
               className="text-3xl p-2 rounded-xl active:scale-95 transition cursor-pointer"
             >
               {item.emoji}
@@ -160,4 +153,4 @@ function EmojiPickerDrawer() {
 }
 
 export { EmojiPickerContext, EmojiPickerProvider };
-export type { EmojiItem };
+export type { EmojiItem, EmojiPickerContextValue };

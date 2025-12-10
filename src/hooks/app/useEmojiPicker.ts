@@ -3,16 +3,20 @@ import { useContext, useState } from 'react';
 import { EmojiPickerContext } from '@/context/EmojiPickerContext';
 
 export function useEmojiPickerContext() {
-  const [value, setValue] = useState<string>();
-  const { openPicker, closePicker } = useContext(EmojiPickerContext);
+  const ctx = useContext(EmojiPickerContext);
+  if (!ctx) {
+    throw new Error('useEmojiPickerContext must be used within an EmojiPickerProvider');
+  }
 
-  const open = async () => {
-    const result = await openPicker();
+  const [emoji, setEmoji] = useState<string | undefined>();
 
-    if (result !== undefined) {
-      setValue(result.emoji);
-    }
+  const open = () => {
+    ctx.open((picked) => {
+      if (picked !== undefined) {
+        setEmoji(picked.emoji);
+      }
+    });
   };
 
-  return { emoji: value, open, close: closePicker };
+  return { emoji, setEmoji, open, close: ctx.close };
 }

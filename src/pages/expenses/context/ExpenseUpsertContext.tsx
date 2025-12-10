@@ -238,7 +238,7 @@ const CategoryModal = ({
   const [icon, setIcon] = useState<string>('');
   const [color, setColor] = useState<string>('');
 
-  const { emoji, open: openPicker } = useEmojiPickerContext();
+  const { emoji, setEmoji, open: openPicker } = useEmojiPickerContext();
 
   const { data: category, isLoading: isLoadingCategory } = useCategoryByIdQuery(categoryId!);
   const { mutateAsync: createCategory } = useCategoryCreateMutation();
@@ -249,16 +249,18 @@ const CategoryModal = ({
       setName(category.name);
       setIcon(category.icon || '');
       setColor(category.color || '');
+      setEmoji(category.icon || undefined);
     }
-  }, [category, isLoadingCategory]);
+  }, [category, isLoadingCategory, setEmoji]);
 
   useEffect(() => {
     if (!categoryId) {
       setName('');
       setIcon('');
       setColor('');
+      setEmoji(undefined);
     }
-  }, [categoryId]);
+  }, [categoryId, setEmoji]);
 
   useEffect(() => {
     if (emoji) setIcon(emoji);
