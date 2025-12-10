@@ -86,7 +86,7 @@ export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }
   return (
     <Modal
       ref={modalRef}
-      title="Phát hiện dữ liệu trên drive"
+      title={t('settings.dataSync.conflictModal.title')}
       className="max-w-2xl"
       buttonSubmit={{
         show: true,

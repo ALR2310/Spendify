@@ -45,7 +45,13 @@ export const expenseService = new (class ExpenseService {
 
   async getById(id: number) {
     try {
-      const expense = await db.selectFrom('expenses').selectAll().where('id', '=', id).executeTakeFirst();
+      const expense = await db
+        .selectFrom('expenses')
+        .innerJoin('categories', 'expenses.categoryId', 'categories.id')
+        .where('expenses.id', '=', id)
+        .selectAll('expenses')
+        .select(['categories.name as categoryName', 'categories.icon as categoryIcon'])
+        .executeTakeFirst();
       return expense;
     } catch (error) {
       console.error('Error fetching expense by ID:', error);

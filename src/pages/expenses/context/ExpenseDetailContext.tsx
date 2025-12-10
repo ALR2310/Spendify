@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
 import Drawer, { DrawerRef } from '@/components/Drawer';
+import Skeleton from '@/components/Skeleton';
+import { useExpenseByIdQuery } from '@/hooks/apis/expense.hook';
 import { formatCurrency } from '@/utils/general.utils';
 
 interface ExpenseDetailContextValue {
@@ -42,7 +44,7 @@ const ExpenseDetailProvider = ({ children }: { children: React.ReactNode }) => {
 
 const ExpenseDetailDrawer = ({
   isOpen,
-  expenseId: _expenseId,
+  expenseId,
   onClose,
 }: {
   isOpen: boolean;
@@ -52,20 +54,12 @@ const ExpenseDetailDrawer = ({
   const { t } = useTranslation();
   const drawerRef = useRef<DrawerRef>(null);
 
+  const { data: expense, isLoading } = useExpenseByIdQuery(expenseId!);
+
   useEffect(() => {
     if (isOpen) drawerRef.current?.openDrawer();
     else drawerRef.current?.close();
   }, [isOpen]);
-
-  // Dữ liệu mẫu để thiết kế giao diện
-  const mockData = {
-    categoryIcon: '🍔',
-    categoryName: 'Ăn uống',
-    amount: 150000,
-    type: ExpenseTypeEnum.Expense,
-    date: new Date().toISOString(),
-    note: 'Bữa trưa tại nhà hàng',
-  };
 
   const handleClose = () => {
     drawerRef.current?.close();
@@ -85,27 +79,34 @@ const ExpenseDetailDrawer = ({
 
         <div className="divider m-0"></div>
 
-        {/* Content */}
         <div className="flex-1 overflow-y-auto space-y-4 px-2">
-          {/* Icon và Category */}
+          {/* Category */}
           <div className="flex flex-col items-center gap-2">
-            <div className="text-5xl">{mockData.categoryIcon}</div>
-            <h2 className="font-semibold text-xl">{mockData.categoryName}</h2>
+            <div className="text-5xl">{isLoading ? <Skeleton className="w-20 h-12" /> : expense?.categoryIcon}</div>
+
+            {isLoading ? (
+              <Skeleton className="w-[70%] h-7" />
+            ) : (
+              <h2 className="font-semibold text-xl">{expense?.categoryName}</h2>
+            )}
           </div>
 
           {/* Amount */}
           <div className="flex flex-col items-center gap-2">
             <span className="text-sm opacity-60">{t('expenses.detail.amount')}</span>
-            <span
-              className={`text-2xl font-bold ${
-                mockData.type === ExpenseTypeEnum.Income ? 'text-success' : 'text-error'
-              }`}
-            >
-              {formatCurrency(mockData.amount)}
-            </span>
+            {isLoading ? (
+              <Skeleton className="w-[50%] h-8" />
+            ) : (
+              <span
+                className={`text-2xl font-bold ${
+                  expense?.type === ExpenseTypeEnum.Income ? 'text-success' : 'text-error'
+                }`}
+              >
+                {formatCurrency(expense?.amount ?? 0)}
+              </span>
+            )}
           </div>
 
-          {/* Info Cards */}
           <div className="space-y-3">
             {/* Date */}
             <div className="card bg-base-200 p-4 rounded-xl">
@@ -115,7 +116,11 @@ const ExpenseDetailDrawer = ({
                 </div>
                 <div className="flex flex-col flex-1">
                   <span className="text-xs opacity-60">{t('expenses.detail.transactionDate')}</span>
-                  <span className="font-semibold">{dayjs(mockData.date).format('DD/MM/YYYY')}</span>
+                  {isLoading ? (
+                    <Skeleton className="w-[60%] h-6" />
+                  ) : (
+                    <span className="font-semibold">{dayjs(expense?.date).format('DD/MM/YYYY')}</span>
+                  )}
                 </div>
               </div>
             </div>
@@ -125,22 +130,26 @@ const ExpenseDetailDrawer = ({
               <div className="flex items-center gap-3">
                 <div
                   className={`flex items-center justify-center w-10 h-10 rounded-xl ${
-                    mockData.type === ExpenseTypeEnum.Income ? 'bg-success/10 text-success' : 'bg-error/10 text-error'
+                    expense?.type === ExpenseTypeEnum.Income ? 'bg-success/10 text-success' : 'bg-error/10 text-error'
                   }`}
                 >
-                  {mockData.type === ExpenseTypeEnum.Income ? <TrendingUp size={20} /> : <TrendingDown size={20} />}
+                  {expense?.type === ExpenseTypeEnum.Income ? <TrendingUp size={20} /> : <TrendingDown size={20} />}
                 </div>
                 <div className="flex flex-col flex-1">
                   <span className="text-xs opacity-60">{t('expenses.detail.transactionType')}</span>
-                  <span className="font-semibold capitalize">
-                    {t(`expenses.detail.${mockData.type === ExpenseTypeEnum.Income ? 'income' : 'expense'}`)}
-                  </span>
+                  {isLoading ? (
+                    <Skeleton className="w-[60%] h-6" />
+                  ) : (
+                    <span className="font-semibold capitalize">
+                      {t(`expenses.detail.${expense?.type === ExpenseTypeEnum.Income ? 'income' : 'expense'}`)}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
 
             {/* Note */}
-            {mockData.note && (
+            {expense?.note && (
               <div className="card bg-base-200 p-4 rounded-xl">
                 <div className="flex items-start gap-3">
                   <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-info/10 text-info shrink-0">
@@ -148,7 +157,7 @@ const ExpenseDetailDrawer = ({
                   </div>
                   <div className="flex flex-col flex-1">
                     <span className="text-xs opacity-60">{t('expenses.detail.note')}</span>
-                    <span className="font-medium">{mockData.note}</span>
+                    <span className="font-medium">{expense.note}</span>
                   </div>
                 </div>
               </div>

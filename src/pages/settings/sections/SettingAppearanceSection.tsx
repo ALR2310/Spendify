@@ -36,7 +36,7 @@ export default function SettingAppearanceSection() {
       <div className="p-1">
         <SettingItem
           icon={CurrentIcon}
-          iconColor="primary"
+          iconColor="accent"
           title={t('settings.appearance.theme')}
           description={currentTheme.label}
           onClick={() => setShowThemeOptions(!showThemeOptions)}
