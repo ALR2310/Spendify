@@ -64,37 +64,43 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
   const [type, setType] = useState<ExpenseTypeEnum>(ExpenseTypeEnum.Expense);
   const [note, setNote] = useState<string>('');
 
-  const { date: pickerValue, open: openPicker } = useDayPickerContext();
+  const { date: pickerValue, open: openDatePicker, setDate: setDatePicker } = useDayPickerContext();
 
   const { data: categories } = useCategoryListQuery();
   const { data: expense, isLoading: isLoadingExpense } = useExpenseByIdQuery(expenseId!);
   const { mutateAsync: createExpense } = useExpenseCreateMutation();
   const { mutateAsync: updateExpense } = useExpenseUpdateMutation();
 
-  // Populate form when editing an expense
+  // Reset form when modal opens/closes
   useEffect(() => {
-    if (expense && !isLoadingExpense) {
-      setAmount(expense.amount);
-      setCategoryId(expense.categoryId);
-      setDate(expense.date);
-      setType(expense.type);
-      setNote(expense.note || '');
-    }
-  }, [expense, isLoadingExpense]);
-
-  useEffect(() => {
-    if (!expenseId) {
+    if (expenseId === null) {
+      // Reset when creating new expense
       setAmount(0);
       setCategoryId(undefined);
       setDate(new Date().toISOString());
       setType(ExpenseTypeEnum.Expense);
       setNote('');
+      setDatePicker(undefined);
     }
-  }, [expenseId]);
+  }, [expenseId, setDatePicker]);
+
+  // Populate form when editing an expense
+  useEffect(() => {
+    if (expense && !isLoadingExpense && expenseId) {
+      setAmount(expense.amount);
+      setCategoryId(expense.categoryId);
+      setDate(expense.date);
+      setType(expense.type);
+      setNote(expense.note || '');
+      setDatePicker(new Date(expense.date));
+    }
+  }, [expense, isLoadingExpense, expenseId, setDatePicker]);
 
   // Update date when picker value changes
   useEffect(() => {
-    if (pickerValue) setDate(pickerValue.toISOString());
+    if (pickerValue) {
+      setDate(pickerValue.toISOString());
+    }
   }, [pickerValue]);
 
   const categoryOptions = useMemo(
@@ -185,7 +191,7 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
               className="input input-lg"
               readOnly
               value={date ? dayjs(date).format('DD/MM/YYYY') : ''}
-              onClick={() => openPicker()}
+              onClick={() => openDatePicker()}
             />
             <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
           </label>

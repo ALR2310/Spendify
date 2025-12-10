@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from 'react-query';
 
-import { UpdateCategory } from '@/common/database/types/tables/categories';
+import { NewCategory, UpdateCategory } from '@/common/database/types/tables/categories';
 import { categoryService } from '@/services/category.service';
 
 export function useCategoryListQuery() {
   return useQuery({
-    queryFn: categoryService.getList,
+    queryFn: () => categoryService.getList(),
     queryKey: ['categories/getList'],
   });
 }
@@ -20,7 +20,7 @@ export function useCategoryByIdQuery(id: number) {
 
 export function useCategoryCreateMutation() {
   return useMutation({
-    mutationFn: categoryService.create,
+    mutationFn: (data: NewCategory) => categoryService.create(data),
   });
 }
 
@@ -32,6 +32,6 @@ export function useCategoryUpdateMutation() {
 
 export function useCategoryDeleteMutation() {
   return useMutation({
-    mutationFn: categoryService.delete,
+    mutationFn: (id: number) => categoryService.delete(id),
   });
 }

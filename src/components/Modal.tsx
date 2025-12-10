@@ -7,10 +7,15 @@ interface ButtonProps {
   onClick?: () => void | Promise<void>;
 }
 
+interface ClassNames {
+  modal?: string;
+  modalBox?: string;
+}
+
 interface ModalProps {
   title?: ReactNode;
   className?: string;
-  modalClassName?: string;
+  classNames?: ClassNames;
   buttonSubmit?: ButtonProps;
   buttonCancel?: ButtonProps;
   backdropClose?: boolean;
@@ -29,9 +34,9 @@ const Modal = forwardRef<ModalRef, ModalProps>(
     {
       title,
       className = '',
-      modalClassName = '',
-      buttonSubmit = { show: true },
-      buttonCancel = { show: true },
+      classNames = { modal: '', modalBox: '' },
+      buttonSubmit,
+      buttonCancel,
       backdropClose = true,
       iconClose = true,
       onClose,
@@ -54,8 +59,8 @@ const Modal = forwardRef<ModalRef, ModalProps>(
     }));
 
     return (
-      <div className={`modal ${open ? 'modal-open' : ''} outline-none ${modalClassName || ''}`}>
-        <div className={`modal-box outline-none ${className}`}>
+      <div className={`modal outline-none ${open ? 'modal-open' : ''} ${classNames.modal} ${className}`}>
+        <div className={`modal-box outline-none ${classNames.modalBox}`}>
           {iconClose && (
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleClose}>
               ✕
@@ -65,13 +70,13 @@ const Modal = forwardRef<ModalRef, ModalProps>(
           {title && <div className="text-lg font-bold mb-4">{title}</div>}
           {children}
 
-          {(buttonSubmit?.show || buttonCancel?.show) && (
+          {(buttonSubmit?.show !== false || buttonCancel?.show !== false) && (
             <div className="modal-action">
-              {buttonCancel?.show && (
+              {buttonCancel?.show !== false && (
                 <button
                   className={`btn w-24 ${buttonCancel?.className || 'btn-soft'}`}
                   onClick={() => {
-                    if (buttonCancel.onClick) buttonCancel.onClick();
+                    if (buttonCancel?.onClick) buttonCancel.onClick();
                     else setOpen(false);
                   }}
                 >
@@ -79,11 +84,11 @@ const Modal = forwardRef<ModalRef, ModalProps>(
                 </button>
               )}
 
-              {buttonSubmit?.show && (
+              {buttonSubmit?.show !== false && (
                 <button
                   className={`btn w-24 ${buttonSubmit?.className || 'btn-success'}`}
                   onClick={() => {
-                    if (buttonSubmit.onClick) buttonSubmit.onClick();
+                    if (buttonSubmit?.onClick) buttonSubmit.onClick();
                     else setOpen(false);
                   }}
                 >

@@ -1,12 +1,16 @@
 import dayjs from 'dayjs';
-import { CalendarDaysIcon, MessageSquare, Pencil, Trash2, TrendingDown, TrendingUp } from 'lucide-react';
+import { CalendarDaysIcon, CircleAlert, MessageSquare, Pencil, Trash2, TrendingDown, TrendingUp } from 'lucide-react';
 import { createContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from 'react-query';
+import { toast } from 'react-toastify';
 
 import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
 import Drawer, { DrawerRef } from '@/components/Drawer';
 import Skeleton from '@/components/Skeleton';
-import { useExpenseByIdQuery } from '@/hooks/apis/expense.hook';
+import { confirm } from '@/global/confirm';
+import { useExpenseByIdQuery, useExpenseDeleteMutation } from '@/hooks/apis/expense.hook';
+import { useExpenseUpsertContext } from '@/hooks/app/useExpense';
 import { formatCurrency } from '@/utils/general.utils';
 
 interface ExpenseDetailContextValue {
@@ -52,9 +56,12 @@ const ExpenseDetailDrawer = ({
   onClose: () => void;
 }) => {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const drawerRef = useRef<DrawerRef>(null);
 
+  const { openModal } = useExpenseUpsertContext();
   const { data: expense, isLoading } = useExpenseByIdQuery(expenseId!);
+  const { mutateAsync: deleteExpense } = useExpenseDeleteMutation();
 
   useEffect(() => {
     if (isOpen) drawerRef.current?.openDrawer();
@@ -64,6 +71,31 @@ const ExpenseDetailDrawer = ({
   const handleClose = () => {
     drawerRef.current?.close();
     onClose();
+  };
+
+  const handleDelete = async () => {
+    const confirmed = await confirm(
+      'Are you sure you want to delete this expense?. This action cannot be undone.',
+      <span className="inline-flex items-center gap-2 text-error font-semibold">
+        <CircleAlert />
+        Confirm Deletion
+      </span>,
+    );
+    if (!confirmed) return;
+
+    try {
+      await deleteExpense(expenseId!);
+      queryClient.invalidateQueries(['expenses/getList']);
+      handleClose();
+    } catch (error) {
+      console.error('Error deleting expense:', error);
+      toast.error('Failed to delete expense. Please try again.');
+    }
+  };
+
+  const handleEdit = () => {
+    handleClose();
+    openModal(expenseId!);
   };
 
   return (
@@ -170,11 +202,11 @@ const ExpenseDetailDrawer = ({
           <button className="btn btn-lg btn-ghost flex-1" onClick={handleClose}>
             {t('expenses.detail.close')}
           </button>
-          <button className="btn btn-lg btn-error btn-soft flex-1 gap-2">
+          <button className="btn btn-lg btn-error btn-soft flex-1 gap-2" onClick={handleDelete}>
             <Trash2 size={18} />
             {t('expenses.detail.delete')}
           </button>
-          <button className="btn btn-lg btn-success btn-soft flex-1 gap-2">
+          <button className="btn btn-lg btn-success btn-soft flex-1 gap-2" onClick={handleEdit}>
             <Pencil size={18} />
             {t('expenses.detail.edit')}
           </button>

@@ -87,7 +87,7 @@ export default function ConflictResolutionModal({ modalRef, onSelect, onCancel }
     <Modal
       ref={modalRef}
       title={t('settings.dataSync.conflictModal.title')}
-      className="max-w-2xl"
+      classNames={{ modalBox: 'max-w-2xl' }}
       buttonSubmit={{
         show: true,
         onClick: handleConfirm,

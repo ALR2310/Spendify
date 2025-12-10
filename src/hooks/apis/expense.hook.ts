@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
 
-import { UpdateExpense } from '@/common/database/types/tables/expenses';
+import { NewExpense, UpdateExpense } from '@/common/database/types/tables/expenses';
 import { expenseService } from '@/services/expense.service';
 import { ExpenseListQuery } from '@/shared/types/expense.type';
 
@@ -32,7 +32,7 @@ export function useExpenseByIdQuery(id: number) {
 
 export function useExpenseCreateMutation() {
   return useMutation({
-    mutationFn: expenseService.create,
+    mutationFn: (data: NewExpense) => expenseService.create(data),
   });
 }
 
@@ -44,6 +44,6 @@ export function useExpenseUpdateMutation() {
 
 export function useExpenseDeleteMutation() {
   return useMutation({
-    mutationFn: expenseService.delete,
+    mutationFn: (id: number) => expenseService.delete(id),
   });
 }

@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from 'react-query';
 
-import { UpdateNote } from '@/common/database/types/tables/notes';
+import { NewNote, UpdateNote } from '@/common/database/types/tables/notes';
 import { noteService } from '@/services/note.service';
 
 export function useNoteListQuery() {
   return useQuery({
-    queryFn: noteService.getList,
+    queryFn: () => noteService.getList(),
     queryKey: ['notes/getList'],
   });
 }
@@ -20,7 +20,7 @@ export function useNoteByIdQuery(id: number) {
 
 export function useNoteCreateMutation() {
   return useMutation({
-    mutationFn: noteService.create,
+    mutationFn: (data: NewNote) => noteService.create(data),
   });
 }
 
@@ -32,6 +32,6 @@ export function useNoteUpdateMutation() {
 
 export function useNoteDeleteMutation() {
   return useMutation({
-    mutationFn: noteService.delete,
+    mutationFn: (id: number) => noteService.delete(id),
   });
 }
