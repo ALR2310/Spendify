@@ -2,20 +2,21 @@ import { useContext, useState } from 'react';
 
 import { MonthPickerContext, MonthValue } from '@/context/MonthPickerContext';
 
-export function useMonthPickerContext(initial?: MonthValue) {
-  const [monthValue, setMonthValue] = useState<MonthValue | undefined>(initial);
+export function useMonthPickerContext() {
+  const ctx = useContext(MonthPickerContext);
+  if (!ctx) {
+    throw new Error('useMonthPickerContext must be used within a MonthPickerProvider');
+  }
 
-  const { openPicker, closePicker, setValue: setProviderValue } = useContext(MonthPickerContext);
+  const [month, setMonth] = useState<MonthValue | undefined>();
 
-  const open = async () => {
-    const result = await openPicker(monthValue);
-    if (result !== undefined) setMonthValue(result);
+  const open = (initial?: MonthValue) => {
+    ctx.open(initial ?? month, (picked) => {
+      if (picked !== undefined) {
+        setMonth(picked);
+      }
+    });
   };
 
-  const setValue = (v: MonthValue) => {
-    setMonthValue(v);
-    setProviderValue(v);
-  };
-
-  return { value: monthValue, open, close: closePicker, setValue };
+  return { month, setMonth, open, close: ctx.close };
 }

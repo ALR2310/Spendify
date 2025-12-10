@@ -1,5 +1,5 @@
 import { CalendarDaysIcon, ChevronLeft, ChevronRight, Funnel } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
@@ -108,23 +108,23 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
 }
 
 export default function ExpenseFilterSection() {
+  const drawerRef = useRef<DrawerRef>(null!);
+
   const { t, i18n } = useTranslation();
   const locale = i18n.language;
-  const drawerRef = useRef<DrawerRef>(null!);
+
   const { resolvedTheme } = useThemeContext();
 
   const date = new Date();
   const currentMonth = date.getMonth() + 1;
   const currentYear = date.getFullYear();
 
-  const {
-    value: monthValue,
-    open: openPicker,
-    setValue: setMonthValue,
-  } = useMonthPickerContext({
-    year: currentYear,
-    month: currentMonth,
-  });
+  const { month: monthValue, setMonth: setMonthValue, open: openMonthPicker } = useMonthPickerContext();
+
+  useEffect(() => {
+    if (monthValue) return;
+    setMonthValue({ year: currentYear, month: currentMonth });
+  }, [currentMonth, currentYear, monthValue, setMonthValue]);
 
   return (
     <div
@@ -142,10 +142,10 @@ export default function ExpenseFilterSection() {
           >
             <ChevronLeft size={20} />
           </button>
-          <button className="btn btn-ghost join-item flex-1" onClick={openPicker}>
+          <button className="btn btn-ghost join-item flex-1" onClick={() => openMonthPicker()}>
             {monthValue?.year === currentYear && monthValue?.month === currentMonth
               ? t('expenses.form.thisMonth')
-              : getMonthLabel(monthValue!.month, locale)}
+              : monthValue?.month && getMonthLabel(monthValue.month, locale)}
           </button>
 
           <button

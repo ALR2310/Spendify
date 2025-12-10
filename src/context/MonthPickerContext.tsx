@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Drawer, { type DrawerRef } from '@/components/Drawer';
@@ -10,80 +10,74 @@ interface MonthValue {
   month: number;
 }
 
-interface InternalState {
-  resolve?: (v?: MonthValue) => void;
-}
+type MonthPickerSession = {
+  initial?: MonthValue;
+  onChange?: (month?: MonthValue) => void;
+};
 
 interface MonthPickerContextValue {
-  openPicker: (initial?: MonthValue) => Promise<MonthValue | undefined>;
-  closePicker: () => void;
-  isOpen: boolean;
-  value?: MonthValue;
-  setValue: (v?: MonthValue) => void;
+  open: (initial?: MonthValue, onChange?: (month?: MonthValue) => void) => void;
+  close: () => void;
 }
 
 const MonthPickerContext = createContext<MonthPickerContextValue>(null!);
 
-function MonthPickerProvider({ children }: { children: ReactNode }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [value, setValueState] = useState<MonthValue>();
-  const [internal, setInternal] = useState<InternalState>({});
+function MonthPickerProvider({ children }: { children: React.ReactNode }) {
+  const drawerRef = useRef<DrawerRef>(null!);
+  const [session, setSession] = useState<MonthPickerSession | null>(null);
 
-  const openPicker = (initial?: MonthValue) => {
-    return new Promise<MonthValue | undefined>((resolve) => {
-      setValueState(initial);
-      setInternal({ resolve });
-      setIsOpen(true);
-    });
+  const open = (initial?: MonthValue, onChange?: (month?: MonthValue) => void) => {
+    setSession({ initial, onChange });
+    drawerRef.current?.openDrawer();
   };
 
-  const closePicker = () => {
-    internal.resolve?.(undefined);
-    setIsOpen(false);
+  const close = () => {
+    drawerRef.current?.close();
+    setSession(null);
   };
 
-  const setValue = (v?: MonthValue) => {
-    setValueState(v);
-    internal.resolve?.(v);
-    setIsOpen(false);
+  const handleSelect = (month?: MonthValue) => {
+    if (session?.onChange) {
+      session.onChange(month);
+    }
+    close();
   };
+
+  const ctx = useMemo(() => ({ open, close }), []);
 
   return (
-    <MonthPickerContext.Provider
-      value={{
-        openPicker,
-        closePicker,
-        isOpen,
-        value,
-        setValue,
-      }}
-    >
+    <MonthPickerContext.Provider value={ctx}>
       {children}
-      <MonthPickerDrawer />
+      <MonthPickerDrawer drawerRef={drawerRef} session={session} onSelect={handleSelect} close={close} />
     </MonthPickerContext.Provider>
   );
 }
 
-function MonthPickerDrawer() {
+function MonthPickerDrawer({
+  drawerRef,
+  session,
+  onSelect,
+  close,
+}: {
+  drawerRef: RefObject<DrawerRef>;
+  session: MonthPickerSession | null;
+  onSelect: (month?: MonthValue) => void;
+  close: () => void;
+}) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language;
-
-  const { isOpen, value, setValue, closePicker } = useContext(MonthPickerContext);
-  const drawerRef = useRef<DrawerRef>(null);
   const currentYear = new Date().getFullYear();
 
-  const [year, setYear] = useState<number>(value?.year ?? currentYear);
+  const [year, setYear] = useState<number>(session?.initial?.year ?? currentYear);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
   useEffect(() => {
-    if (isOpen) {
-      drawerRef.current?.openDrawer();
-    } else {
-      drawerRef.current?.close();
+    if (session?.initial) {
+      setYear(session.initial.year);
     }
-  }, [isOpen]);
+  }, [session?.initial]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.changedTouches[0].clientX;
@@ -100,18 +94,16 @@ function MonthPickerDrawer() {
     if (delta > 50) setYear((y) => y - 1);
   };
 
-  useEffect(() => {
-    if (isOpen && value) {
-      setYear(value.year);
-    }
-  }, [isOpen, value]);
+  const handleSelect = (month: number) => {
+    onSelect({ year, month });
+  };
 
   return (
-    <Drawer ref={drawerRef} position="bottom" className="w-full rounded-t-2xl" onClose={closePicker}>
+    <Drawer ref={drawerRef} position="bottom" className="w-full rounded-t-2xl" onClose={close}>
       <div className="p-3 pb-[env(safe-area-inset-bottom)]">
         <div className="relative flex items-center justify-center mb-2">
           <h3 className="font-semibold">{t('pickers.monthPicker.title')}</h3>
-          <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={closePicker}>
+          <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={close}>
             ✕
           </button>
         </div>
@@ -138,9 +130,9 @@ function MonthPickerDrawer() {
                 key={m}
                 className={`
                 btn btn-sm
-                ${value?.year === year && value?.month === m ? 'btn-soft btn-success' : 'btn-ghost'}
+                ${session?.initial?.year === year && session?.initial?.month === m ? 'btn-soft btn-success' : 'btn-ghost'}
               `}
-                onClick={() => setValue({ year, month: m })}
+                onClick={() => handleSelect(m)}
               >
                 {getMonthLabel(m, locale)}
               </button>
@@ -153,4 +145,4 @@ function MonthPickerDrawer() {
 }
 
 export { MonthPickerContext, MonthPickerProvider };
-export type { MonthValue };
+export type { MonthPickerContextValue, MonthValue };
