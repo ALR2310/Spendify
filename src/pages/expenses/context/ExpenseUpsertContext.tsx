@@ -60,11 +60,10 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
 
   const [amount, setAmount] = useState<number>(0);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
-  const [date, setDate] = useState<string>(new Date().toISOString());
   const [type, setType] = useState<ExpenseTypeEnum>(ExpenseTypeEnum.Expense);
   const [note, setNote] = useState<string>('');
 
-  const { date: pickerValue, open: openDatePicker, setDate: setDatePicker } = useDayPickerContext();
+  const { date, setDate, open: openDatePicker } = useDayPickerContext();
 
   const { data: categories } = useCategoryListQuery();
   const { data: expense, isLoading: isLoadingExpense } = useExpenseByIdQuery(expenseId!);
@@ -77,31 +76,22 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
       // Reset when creating new expense
       setAmount(0);
       setCategoryId(undefined);
-      setDate(new Date().toISOString());
+      setDate(new Date());
       setType(ExpenseTypeEnum.Expense);
       setNote('');
-      setDatePicker(undefined);
     }
-  }, [expenseId, setDatePicker]);
+  }, [expenseId, setDate]);
 
   // Populate form when editing an expense
   useEffect(() => {
-    if (expense && !isLoadingExpense && expenseId) {
+    if (expense && !isLoadingExpense) {
       setAmount(expense.amount);
       setCategoryId(expense.categoryId);
-      setDate(expense.date);
+      setDate(new Date(expense.date));
       setType(expense.type);
       setNote(expense.note || '');
-      setDatePicker(new Date(expense.date));
     }
-  }, [expense, isLoadingExpense, expenseId, setDatePicker]);
-
-  // Update date when picker value changes
-  useEffect(() => {
-    if (pickerValue) {
-      setDate(pickerValue.toISOString());
-    }
-  }, [pickerValue]);
+  }, [expense, isLoadingExpense, setDate]);
 
   const categoryOptions = useMemo(
     () =>
@@ -118,8 +108,13 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
       return;
     }
 
+    if (!date) {
+      toast.error('Please select a date.');
+      return;
+    }
+
     const now = new Date().toISOString();
-    const data: NewExpense = { categoryId, amount: amount, date, type, note, updatedAt: now };
+    const data: NewExpense = { categoryId, amount: amount, date: date.toISOString(), type, note, updatedAt: now };
 
     try {
       if (expenseId) {

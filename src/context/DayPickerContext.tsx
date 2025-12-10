@@ -1,94 +1,82 @@
 import 'react-day-picker/style.css';
 
 import { enUS, vi } from 'date-fns/locale';
-import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, RefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import { useTranslation } from 'react-i18next';
 
-import Drawer, { type DrawerRef } from '@/components/Drawer';
+import Drawer, { DrawerRef } from '@/components/Drawer';
 import { LanguageEnum } from '@/shared/enums/appconfig.enum';
 
-interface InternalState {
-  resolve?: (d?: Date) => void;
-}
+type DayPickerSession = {
+  initial?: Date;
+  onChange?: (date?: Date) => void;
+};
 
 interface DayPickerContextValue {
-  openPicker: (initial?: Date) => Promise<Date | undefined>;
-  closePicker: () => void;
-  isOpen: boolean;
-  value?: Date;
-  setValue: (d?: Date) => void;
+  open: (initial?: Date, onChange?: (date?: Date) => void) => void;
+  close: () => void;
 }
 
 const DayPickerContext = createContext<DayPickerContextValue>(null!);
 
-function DayPickerProvider({ children }: { children: ReactNode }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [value, setValueState] = useState<Date | undefined>();
-  const [internal, setInternal] = useState<InternalState>({});
+function DayPickerProvider({ children }: { children: React.ReactNode }) {
+  const drawerRef = useRef<DrawerRef>(null!);
+  const [session, setSession] = useState<DayPickerSession | null>(null);
 
-  const openPicker = (initial?: Date) => {
-    return new Promise<Date | undefined>((resolve) => {
-      setValueState(initial);
-      setInternal({ resolve });
-      setIsOpen(true);
-    });
+  const open = (initial?: Date, onChange?: (date?: Date) => void) => {
+    setSession({ initial, onChange });
+    drawerRef.current?.openDrawer();
   };
 
-  const closePicker = () => {
-    internal.resolve?.(undefined);
-    setIsOpen(false);
+  const close = () => {
+    drawerRef.current?.close();
+    setSession(null);
   };
 
-  const setValue = (d?: Date) => {
-    internal.resolve?.(d);
-    setIsOpen(false);
+  const handleSelect = (date?: Date) => {
+    if (session?.onChange) {
+      session.onChange(date);
+    }
+    close();
   };
+
+  const ctx = useMemo(() => ({ open, close }), []);
 
   return (
-    <DayPickerContext.Provider
-      value={{
-        openPicker,
-        closePicker,
-        isOpen,
-        value,
-        setValue,
-      }}
-    >
+    <DayPickerContext.Provider value={ctx}>
       {children}
-      <DayPickerDrawer />
+      <DayPickerDrawer drawerRef={drawerRef} session={session} onSelect={handleSelect} close={close} />
     </DayPickerContext.Provider>
   );
 }
 
-function DayPickerDrawer() {
+function DayPickerDrawer({
+  drawerRef,
+  session,
+  onSelect,
+  close,
+}: {
+  drawerRef: RefObject<DrawerRef>;
+  session: DayPickerSession | null;
+  onSelect: (date?: Date) => void;
+  close: () => void;
+}) {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
-  const { isOpen, value, setValue, closePicker } = useContext(DayPickerContext);
-  const drawerRef = useRef<DrawerRef>(null);
-
-  const [month, setMonth] = useState<Date>(value ?? new Date());
-
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
+  const [month, setMonth] = useState<Date>(session?.initial ?? new Date());
 
   useEffect(() => {
-    if (isOpen) {
-      drawerRef.current?.openDrawer();
-    } else {
-      drawerRef.current?.close();
+    if (session?.initial) {
+      setMonth(session.initial);
     }
-  }, [isOpen]);
+  }, [session?.initial]);
+
+  const touchStartX = useRef(0);
 
   const onTouchStart = (e: React.TouchEvent) => {
-    const x = e.changedTouches[0].clientX;
-    touchStartX.current = x;
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    const x = e.changedTouches[0].clientX;
-    touchEndX.current = x;
+    touchStartX.current = e.changedTouches[0].clientX;
   };
 
   const onTouchEnd = (e: React.TouchEvent) => {
@@ -99,20 +87,22 @@ function DayPickerDrawer() {
       const next = new Date(month);
       next.setMonth(next.getMonth() + 1);
       setMonth(next);
-    }
-
-    if (delta > 50) {
+    } else if (delta > 50) {
       const prev = new Date(month);
       prev.setMonth(prev.getMonth() - 1);
       setMonth(prev);
     }
   };
 
+  const handleSelect = (date?: Date) => {
+    onSelect(date);
+  };
+
   return (
-    <Drawer ref={drawerRef} position="bottom" className="min-h-[343px] w-full rounded-t-2xl" onClose={closePicker}>
+    <Drawer ref={drawerRef} position="bottom" className="min-h-[343px] w-full rounded-t-2xl">
       <div className="relative flex items-center justify-center mb-2">
         <h3 className="font-semibold text-lg">{t('pickers.dayPicker.title')}</h3>
-        <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={closePicker}>
+        <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={close}>
           ✕
         </button>
       </div>
@@ -120,7 +110,6 @@ function DayPickerDrawer() {
       <div
         className="flex-1 touch-none select-none bg-base-200 p-2 rounded-xl"
         onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
         <DayPicker
@@ -129,8 +118,8 @@ function DayPickerDrawer() {
           onMonthChange={setMonth}
           animate
           mode="single"
-          selected={value}
-          onSelect={setValue}
+          selected={session?.initial}
+          onSelect={handleSelect}
           navLayout="around"
           showOutsideDays={false}
           fixedWeeks
@@ -150,3 +139,4 @@ function DayPickerDrawer() {
 }
 
 export { DayPickerContext, DayPickerProvider };
+export type { DayPickerContextValue };

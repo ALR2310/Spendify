@@ -2,17 +2,21 @@ import { useContext, useState } from 'react';
 
 import { DayPickerContext } from '@/context/DayPickerContext';
 
-export function useDayPickerContext(initial?: Date) {
-  const [date, setDate] = useState<Date | undefined>(initial);
-  const { openPicker, closePicker } = useContext(DayPickerContext);
+export function useDayPickerContext() {
+  const ctx = useContext(DayPickerContext);
+  if (!ctx) {
+    throw new Error('useDayPickerContext must be used within a DayPickerProvider');
+  }
 
-  const open = async () => {
-    const result = await openPicker(date);
+  const [date, setDate] = useState<Date | undefined>();
 
-    if (result !== undefined) {
-      setDate(result);
-    }
+  const open = (initial?: Date) => {
+    ctx.open(initial ?? date, (picked) => {
+      if (picked !== undefined) {
+        setDate(picked);
+      }
+    });
   };
 
-  return { date, open, close: closePicker, setDate };
+  return { date, setDate, open, close: ctx.close };
 }

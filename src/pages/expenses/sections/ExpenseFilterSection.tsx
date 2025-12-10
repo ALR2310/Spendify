@@ -35,7 +35,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
             placeholder={t('expenses.form.dayFrom')}
             readOnly
             value={dayFrom?.toLocaleDateString()}
-            onClick={openDayFromPicker}
+            onClick={() => openDayFromPicker()}
           />
           <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
         </label>
@@ -48,7 +48,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
             placeholder={t('expenses.form.dayTo')}
             readOnly
             value={dayTo?.toLocaleDateString()}
-            onClick={openDayToPicker}
+            onClick={() => openDayToPicker()}
           />
           <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
         </label>
