@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import pako from 'pako';
 
 import { appConfig } from '@/common/appConfig';
-import { db } from '@/common/database';
+import { db, saveWebStore } from '@/common/database';
 import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
 import {
   SpendingData,
@@ -87,6 +87,8 @@ export const storageService = new (class StorageService {
       if (recurring.length > 0) await trx.insertInto('recurring').values(recurring).execute();
       if (notes.length > 0) await trx.insertInto('notes').values(notes).execute();
     });
+
+    await saveWebStore();
   }
 
   async export(): Promise<StorageExportResponse> {

@@ -33,7 +33,7 @@ export class CapacitorSQLiteConnection implements DatabaseConnection {
       }
 
       if (this.isInTransactionRef.value) {
-        const result = await (this.db as any).run(sql, values, false);
+        const result = await this.db.run(sql, values, false);
         return {
           rows: [],
           insertId: result.changes?.lastId ? BigInt(result.changes.lastId) : undefined,

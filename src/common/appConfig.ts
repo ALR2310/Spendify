@@ -12,6 +12,7 @@ interface AppConfig {
     firstSync: boolean;
   };
   version: string;
+  schemaVersion: number;
 }
 
 const defaultConfig: AppConfig = {
@@ -24,6 +25,7 @@ const defaultConfig: AppConfig = {
     firstSync: true,
   },
   version: import.meta.env.VITE_APP_VERSION,
+  schemaVersion: 1,
 };
 
 const STORAGE_KEY = 'appConfig';
@@ -128,6 +130,7 @@ export async function initAppConfig(): Promise<AppConfig> {
     deepMerge(config, defaultConfig);
     deepRemoveUnknown(config, defaultConfig);
     config.version = defaultConfig.version;
+    config.schemaVersion = defaultConfig.schemaVersion;
   }
 
   await save(config);

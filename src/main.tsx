@@ -6,7 +6,8 @@ import { toast } from 'react-toastify';
 
 import App from './App';
 import { appConfig } from './common/appConfig';
-import { db, initializeTables } from './common/database';
+import { db } from './common/database';
+import { initializeTables } from './common/database/tables';
 import { googleAuthService } from './services/googleauth.service';
 
 const container = document.getElementById('root');
