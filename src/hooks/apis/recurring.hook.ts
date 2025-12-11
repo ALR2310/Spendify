@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from 'react-query';
 
-import { NewRecurring, UpdateRecurring } from '@/common/database/types/tables/recurring';
+import { NewRecurring, UpdateRecurring } from '@/database/types/tables/recurring';
 import { recurringService } from '@/services/recurring.service';
 
 export function useRecurringListQuery() {

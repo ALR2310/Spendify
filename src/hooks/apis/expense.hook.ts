@@ -1,8 +1,8 @@
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
 
-import { NewExpense, UpdateExpense } from '@/common/database/types/tables/expenses';
+import { NewExpense, UpdateExpense } from '@/database/types/tables/expenses';
 import { expenseService } from '@/services/expense.service';
-import { ExpenseListQuery } from '@/shared/types/expense.type';
+import { ExpenseListQuery } from '@/common/types/expense.type';
 
 export function useExpenseListQuery(query: ExpenseListQuery) {
   return useQuery({

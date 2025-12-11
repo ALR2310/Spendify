@@ -1,5 +1,5 @@
-import { db } from '@/common/database';
-import { NewCategory, UpdateCategory } from '@/common/database/types/tables/categories';
+import { db } from '@/database';
+import { NewCategory, UpdateCategory } from '@/database/types/tables/categories';
 
 export const categoryService = new (class CategoryService {
   async getList() {

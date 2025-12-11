@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import en from '@/assets/locales/en.json';
 import vi from '@/assets/locales/vi.json';
 
-import { appConfig } from './appConfig';
+import { appConfig } from './app.config';
 
 const language = appConfig.language;
 

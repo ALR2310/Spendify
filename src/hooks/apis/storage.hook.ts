@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from 'react-query';
 
 import { storageService } from '@/services/storage.service';
-import { StorageExportResponse } from '@/shared/types/storage.type';
+import { StorageExportResponse } from '@/common/types/storage.type';
 
 export function useStorageImportMutation() {
   return useMutation({

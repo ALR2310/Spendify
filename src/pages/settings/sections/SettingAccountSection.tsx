@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
-import { appConfig } from '@/common/appConfig';
+import { appConfig } from '@/configs/app.config';
 import { googleAuthService } from '@/services/googleauth.service';
 
 import SettingItem from '../components/SettingItem';

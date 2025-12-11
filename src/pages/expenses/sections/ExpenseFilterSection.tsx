@@ -2,12 +2,12 @@ import { CalendarDaysIcon, ChevronLeft, ChevronRight, Funnel } from 'lucide-reac
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
+import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import Drawer, { DrawerRef } from '@/components/Drawer';
 import { useDayPickerContext } from '@/hooks/app/useDayPicker';
 import { useMonthPickerContext } from '@/hooks/app/useMonthPicker';
 import { useThemeContext } from '@/hooks/app/useTheme';
-import { ThemeEnum } from '@/shared/enums/appconfig.enum';
+import { ThemeEnum } from '@/common/enums/appconfig.enum';
 import { getMonthLabel } from '@/utils/general.utils';
 
 function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {

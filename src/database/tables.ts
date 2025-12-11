@@ -1,7 +1,7 @@
 import { Capacitor } from '@capacitor/core';
 import { sql } from 'kysely';
 
-import { appConfig } from '../appConfig';
+import { appConfig } from '../configs/app.config';
 import { db, saveWebStore } from '.';
 import { ExpenseTypeEnum } from './types/tables/expenses';
 import { RecurringPeriodEnum } from './types/tables/recurring';

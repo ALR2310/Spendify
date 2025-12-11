@@ -1,12 +1,12 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
+import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import { useExpenseListInfinite } from '@/hooks/apis/expense.hook';
 import { useExpenseDetailContext, useExpenseUpsertContext } from '@/hooks/app/useExpense';
 import { useThemeContext } from '@/hooks/app/useTheme';
-import { ThemeEnum } from '@/shared/enums/appconfig.enum';
-import { Expense } from '@/shared/types/expense.type';
+import { ThemeEnum } from '@/common/enums/appconfig.enum';
+import { Expense } from '@/common/types/expense.type';
 import { groupExpenseByDate } from '@/utils/expense.utils';
 import { formatCurrency } from '@/utils/general.utils';
 

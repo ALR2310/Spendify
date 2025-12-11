@@ -14,7 +14,7 @@ import ExpenseLayout from './pages/expenses/layouts/ExpenseLayout';
 import NotePage from './pages/notes/NotePage';
 import SettingPage from './pages/settings/SettingPage';
 import StatisticPage from './pages/statistics/StatisticPage';
-import { ROUTES } from './shared/constants/routes.const';
+import { ROUTES } from './common/constants/routes.const';
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from 'react-query';
 
-import { NewNote, UpdateNote } from '@/common/database/types/tables/notes';
+import { NewNote, UpdateNote } from '@/database/types/tables/notes';
 import { noteService } from '@/services/note.service';
 
 export function useNoteListQuery() {

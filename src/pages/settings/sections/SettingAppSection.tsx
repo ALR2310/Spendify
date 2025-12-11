@@ -2,7 +2,7 @@ import { Info, RefreshCw, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { appConfig } from '@/common/appConfig';
+import { appConfig } from '@/configs/app.config';
 
 import SettingItem from '../components/SettingItem';
 import SettingSection from '../components/SettingSection';

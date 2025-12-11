@@ -2,10 +2,10 @@ import { Globe, Monitor, Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { appConfig } from '@/common/appConfig';
-import i18n from '@/common/i18n';
+import { appConfig } from '@/configs/app.config';
+import i18n from '@/configs/i18n.config';
 import { useThemeContext } from '@/hooks/app/useTheme';
-import { LanguageEnum, ThemeEnum } from '@/shared/enums/appconfig.enum';
+import { LanguageEnum, ThemeEnum } from '@/common/enums/appconfig.enum';
 
 import SettingItem from '../components/SettingItem';
 import SettingSection from '../components/SettingSection';

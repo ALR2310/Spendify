@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
-import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
+import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import Drawer, { DrawerRef } from '@/components/Drawer';
 import Skeleton from '@/components/Skeleton';
 import { confirm } from '@/global/confirm';

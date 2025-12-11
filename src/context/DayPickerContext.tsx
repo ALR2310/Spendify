@@ -6,7 +6,7 @@ import { DayPicker } from 'react-day-picker';
 import { useTranslation } from 'react-i18next';
 
 import Drawer, { DrawerRef } from '@/components/Drawer';
-import { LanguageEnum } from '@/shared/enums/appconfig.enum';
+import { LanguageEnum } from '@/common/enums/appconfig.enum';
 
 type DayPickerSession = {
   initial?: Date;

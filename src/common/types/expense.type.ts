@@ -1,4 +1,4 @@
-import { ExpenseTypeEnum, SelectExpense } from '@/common/database/types/tables/expenses';
+import { ExpenseTypeEnum, SelectExpense } from '@/database/types/tables/expenses';
 
 import { BaseQueryParams, PaginatedResponse } from './base.type';
 

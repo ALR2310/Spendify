@@ -1,7 +1,7 @@
-import { ChartBarStacked, NotebookPen,Settings, Wallet } from 'lucide-react';
+import { ChartBarStacked, NotebookPen, Settings, Wallet } from 'lucide-react';
 import { NavLink } from 'react-router';
 
-import { ROUTES } from '@/shared/constants/routes.const';
+import { ROUTES } from '@/common/constants/routes.const';
 
 export default function DockNav() {
   return (

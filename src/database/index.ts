@@ -3,7 +3,7 @@ import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from '@capacito
 import { defineCustomElements } from 'jeep-sqlite/loader';
 import { Kysely } from 'kysely';
 
-import { logger } from '../logger';
+import { logger } from '../common/logger';
 import { CapacitorSQLiteDialect } from './driver';
 import { Database as DatabaseType } from './types';
 

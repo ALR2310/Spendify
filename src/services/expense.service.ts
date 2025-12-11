@@ -1,8 +1,8 @@
 import { sql } from 'kysely';
 
-import { db } from '@/common/database';
-import { NewExpense, UpdateExpense } from '@/common/database/types/tables/expenses';
-import { ExpenseListQuery, ExpenseListResponse } from '@/shared/types/expense.type';
+import { db } from '@/database';
+import { NewExpense, UpdateExpense } from '@/database/types/tables/expenses';
+import { ExpenseListQuery, ExpenseListResponse } from '@/common/types/expense.type';
 
 export const expenseService = new (class ExpenseService {
   async getList(query: ExpenseListQuery): Promise<ExpenseListResponse> {

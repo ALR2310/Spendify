@@ -1,7 +1,7 @@
-import { SelectCategory } from '@/common/database/types/tables/categories';
-import { SelectExpense } from '@/common/database/types/tables/expenses';
-import { SelectNote } from '@/common/database/types/tables/notes';
-import { SelectRecurring } from '@/common/database/types/tables/recurring';
+import { SelectCategory } from '@/database/types/tables/categories';
+import { SelectExpense } from '@/database/types/tables/expenses';
+import { SelectNote } from '@/database/types/tables/notes';
+import { SelectRecurring } from '@/database/types/tables/recurring';
 
 export type StorageExportResponse = {
   expenses: SelectExpense[];

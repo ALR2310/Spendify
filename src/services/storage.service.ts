@@ -1,15 +1,15 @@
 import dayjs from 'dayjs';
 import pako from 'pako';
 
-import { appConfig } from '@/common/appConfig';
-import { db, saveWebStore } from '@/common/database';
-import { ExpenseTypeEnum } from '@/common/database/types/tables/expenses';
+import { appConfig } from '@/configs/app.config';
+import { db, saveWebStore } from '@/database';
+import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import {
   SpendingData,
   StorageExportResponse,
   StorageStatusResponse,
   StorageSyncResponse,
-} from '@/shared/types/storage.type';
+} from '@/common/types/storage.type';
 
 import { googleAuthService } from './googleauth.service';
 import { FileMetadata, GoogleDriveService } from './googledrive.service';

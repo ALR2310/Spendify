@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
-import { NewCategory } from '@/common/database/types/tables/categories';
-import { ExpenseTypeEnum, NewExpense } from '@/common/database/types/tables/expenses';
+import { NewCategory } from '@/database/types/tables/categories';
+import { ExpenseTypeEnum, NewExpense } from '@/database/types/tables/expenses';
 import Combobox from '@/components/Combobox';
 import { CurrencyInput } from '@/components/CurrencyInput';
 import Modal, { ModalRef } from '@/components/Modal';

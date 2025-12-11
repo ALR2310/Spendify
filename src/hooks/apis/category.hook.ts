@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from 'react-query';
 
-import { NewCategory, UpdateCategory } from '@/common/database/types/tables/categories';
+import { NewCategory, UpdateCategory } from '@/database/types/tables/categories';
 import { categoryService } from '@/services/category.service';
 
 export function useCategoryListQuery() {
