@@ -1,3 +1,4 @@
+import { logger } from '@/common/logger';
 import { db } from '@/database';
 import { NewRecurring, UpdateRecurring } from '@/database/types/tables/recurring';
 
@@ -7,7 +8,7 @@ export const recurringService = new (class RecurringService {
       const recurring = await db.selectFrom('recurring').selectAll().execute();
       return recurring;
     } catch (error) {
-      console.error('Error fetching recurrings:', error);
+      logger.error('Error fetching recurrings:', error);
       throw error;
     }
   }
@@ -17,7 +18,7 @@ export const recurringService = new (class RecurringService {
       const recurring = await db.selectFrom('recurring').selectAll().where('id', '=', id).executeTakeFirst();
       return recurring;
     } catch (error) {
-      console.error('Error fetching recurring by ID:', error);
+      logger.error('Error fetching recurring by ID:', error);
       throw error;
     }
   }
@@ -27,7 +28,7 @@ export const recurringService = new (class RecurringService {
       const recurring = await db.insertInto('recurring').values(data).returningAll().executeTakeFirst();
       return recurring;
     } catch (error) {
-      console.error('Error creating recurring:', error);
+      logger.error('Error creating recurring:', error);
       throw error;
     }
   }
@@ -45,7 +46,7 @@ export const recurringService = new (class RecurringService {
         .executeTakeFirst();
       return recurring;
     } catch (error) {
-      console.error('Error updating recurring:', error);
+      logger.error('Error updating recurring:', error);
       throw error;
     }
   }
@@ -58,7 +59,7 @@ export const recurringService = new (class RecurringService {
       await db.deleteFrom('recurring').where('id', '=', id).execute();
       return existing;
     } catch (error) {
-      console.error('Error deleting recurring:', error);
+      logger.error('Error deleting recurring:', error);
       throw error;
     }
   }

@@ -1,15 +1,30 @@
 import { sql } from 'kysely';
 
-import { db } from '@/database';
-import { NewExpense, UpdateExpense } from '@/database/types/tables/expenses';
+import { logger } from '@/common/logger';
 import { ExpenseListQuery, ExpenseListResponse } from '@/common/types/expense.type';
+import { db, paginateQuery } from '@/database';
+import { NewExpense, UpdateExpense } from '@/database/types/tables/expenses';
 
 export const expenseService = new (class ExpenseService {
   async getList(query: ExpenseListQuery): Promise<ExpenseListResponse> {
-    const { page, pageSize = 20, searchField, sortField, sortOrder, categoryId, type, dateFrom, dateTo } = query;
+    const {
+      page,
+      pageSize = 20,
+      searchField,
+      sortField = 'expenses.date',
+      sortOrder = 'desc',
+      categoryId,
+      type,
+      dateFrom,
+      dateTo,
+    } = query;
 
     try {
-      let builder = db.selectFrom('expenses').innerJoin('categories', 'expenses.categoryId', 'categories.id');
+      let builder = db
+        .selectFrom('expenses')
+        .innerJoin('categories', 'expenses.categoryId', 'categories.id')
+        .selectAll('expenses')
+        .select(['categories.name as categoryName', 'categories.icon as categoryIcon']);
 
       if (categoryId) builder = builder.where('expenses.categoryId', '=', categoryId);
       if (type) builder = builder.where('expenses.type', '=', type);
@@ -20,25 +35,15 @@ export const expenseService = new (class ExpenseService {
           eb.or([eb('expenses.note', 'like', `%${searchField}%`), eb('categories.name', 'like', `%${searchField}%`)]),
         );
 
-      const totalResult = await builder.select(db.fn.countAll().as('count')).executeTakeFirst();
-      const total = Number(totalResult?.count ?? 0);
-      const totalPages = Math.ceil(total / pageSize);
+      builder = builder.orderBy(sql.raw(sortField), sortOrder);
 
-      const offset = page && page > 0 ? (page - 1) * pageSize : 0;
-
-      const pagination = { page: page || 1, pageSize, totalItems: total, totalPages };
-
-      const data = await builder
-        .selectAll('expenses')
-        .select(['categories.name as categoryName', 'categories.icon as categoryIcon'])
-        .limit(pageSize)
-        .offset(offset)
-        .orderBy(sql.raw(sortField || 'expenses.date'), sortOrder || 'desc')
-        .execute();
-
-      return { data, pagination };
+      return await paginateQuery(builder, {
+        page,
+        pageSize,
+        countColumn: 'expenses.id',
+      });
     } catch (error) {
-      console.error('Error fetching expenses:', error);
+      logger.error('Error fetching expenses:', error);
       throw error;
     }
   }
@@ -54,7 +59,7 @@ export const expenseService = new (class ExpenseService {
         .executeTakeFirst();
       return expense;
     } catch (error) {
-      console.error('Error fetching expense by ID:', error);
+      logger.error('Error fetching expense by ID:', error);
       throw error;
     }
   }
@@ -64,7 +69,7 @@ export const expenseService = new (class ExpenseService {
       const expense = await db.insertInto('expenses').values(data).returningAll().executeTakeFirst();
       return expense;
     } catch (error) {
-      console.error('Error creating expense:', error);
+      logger.error('Error creating expense:', error);
       throw error;
     }
   }
@@ -77,7 +82,7 @@ export const expenseService = new (class ExpenseService {
       const expense = await db.updateTable('expenses').set(data).where('id', '=', id).returningAll().executeTakeFirst();
       return expense;
     } catch (error) {
-      console.error('Error updating expense:', error);
+      logger.error('Error updating expense:', error);
       throw error;
     }
   }
@@ -90,7 +95,7 @@ export const expenseService = new (class ExpenseService {
       await db.deleteFrom('expenses').where('id', '=', id).execute();
       return existing;
     } catch (error) {
-      console.error('Error deleting expense:', error);
+      logger.error('Error deleting expense:', error);
       throw error;
     }
   }

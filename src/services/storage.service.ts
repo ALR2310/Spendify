@@ -1,15 +1,16 @@
 import dayjs from 'dayjs';
 import pako from 'pako';
 
-import { appConfig } from '@/configs/app.config';
-import { db, saveWebStore } from '@/database';
-import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
+import { logger } from '@/common/logger';
 import {
   SpendingData,
   StorageExportResponse,
   StorageStatusResponse,
   StorageSyncResponse,
 } from '@/common/types/storage.type';
+import { appConfig } from '@/configs/app.config';
+import { db, saveWebStore } from '@/database';
+import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 
 import { googleAuthService } from './googleauth.service';
 import { FileMetadata, GoogleDriveService } from './googledrive.service';
@@ -154,7 +155,7 @@ export const storageService = new (class StorageService {
 
       await Promise.all(existingFiles.map((file) => googleDriveService.delete(file.id)));
     } catch (error) {
-      console.warn('Failed to delete existing files:', error);
+      logger.warn('Failed to delete existing files:', error);
     }
 
     const data = await this.export();

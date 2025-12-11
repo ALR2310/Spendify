@@ -3,6 +3,8 @@ export type Pagination = {
   pageSize: number;
   totalItems: number;
   totalPages: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
 };
 
 export type PaginatedResponse<T> = {

@@ -1,4 +1,8 @@
-import { db } from '@/database';
+import { sql } from 'kysely';
+
+import { logger } from '@/common/logger';
+import { CategoryStatsQuery, CategoryStatsResponse } from '@/common/types/categories.type';
+import { db, paginateQuery } from '@/database';
 import { NewCategory, UpdateCategory } from '@/database/types/tables/categories';
 
 export const categoryService = new (class CategoryService {
@@ -15,7 +19,7 @@ export const categoryService = new (class CategoryService {
         .execute();
       return categories;
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      logger.error('Error fetching categories:', error);
       throw error;
     }
   }
@@ -25,7 +29,39 @@ export const categoryService = new (class CategoryService {
       const category = await db.selectFrom('categories').selectAll().where('id', '=', id).executeTakeFirst();
       return category;
     } catch (error) {
-      console.error('Error fetching category by ID:', error);
+      logger.error('Error fetching category by ID:', error);
+      throw error;
+    }
+  }
+
+  async getStats(query: CategoryStatsQuery): Promise<CategoryStatsResponse> {
+    const { page, pageSize = 20, sortField = 'expenses.amount', sortOrder = 'desc', type, dateFrom, dateTo } = query;
+
+    try {
+      let builder = db
+        .selectFrom('categories')
+        .leftJoin('expenses', 'categories.id', 'expenses.categoryId')
+        .selectAll('categories')
+        .select((eb) => [
+          eb.fn.count<number>('expenses.id').as('expenseCount'),
+          eb.fn.coalesce(eb.fn.sum<number>('expenses.amount'), eb.val(0)).as('totalAmount'),
+        ])
+        .groupBy('categories.id')
+        .orderBy(sql.raw(sortField), sortOrder);
+
+      if (type) builder = builder.where('expenses.type', '=', type);
+      if (dateFrom) builder = builder.where('expenses.date', '>=', dateFrom);
+      if (dateTo) builder = builder.where('expenses.date', '<=', dateTo);
+
+      const { data, pagination } = await paginateQuery(builder, {
+        page,
+        pageSize,
+        countColumn: 'categories.id',
+      });
+
+      return { data, pagination };
+    } catch (error) {
+      logger.error('Error fetching category stats:', error);
       throw error;
     }
   }
@@ -35,7 +71,7 @@ export const categoryService = new (class CategoryService {
       const category = await db.insertInto('categories').values(data).returningAll().executeTakeFirst();
       return category;
     } catch (error) {
-      console.error('Error creating category:', error);
+      logger.error('Error creating category:', error);
       throw error;
     }
   }
@@ -53,7 +89,7 @@ export const categoryService = new (class CategoryService {
         .executeTakeFirst();
       return category;
     } catch (error) {
-      console.error('Error updating category:', error);
+      logger.error('Error updating category:', error);
       throw error;
     }
   }
@@ -66,7 +102,7 @@ export const categoryService = new (class CategoryService {
       await db.deleteFrom('categories').where('id', '=', id).execute();
       return existing;
     } catch (error) {
-      console.error('Error deleting category:', error);
+      logger.error('Error deleting category:', error);
       throw error;
     }
   }

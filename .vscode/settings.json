@@ -24,7 +24,7 @@
         "source.fixAll.eslint": "explicit"
     },
     "i18n-ally.localesPaths": [
-        "src/common/locales"
+        "src/assets/locales"
     ],
     "i18n-ally.keystyle": "nested",
     "i18n-ally.sourceLanguage": "en",
