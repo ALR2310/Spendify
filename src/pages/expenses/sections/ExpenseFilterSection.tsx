@@ -1,23 +1,69 @@
-import { CalendarDaysIcon, ChevronLeft, ChevronRight, Funnel } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { CalendarDaysIcon, ChevronLeft, ChevronRight, Funnel, ListRestart } from 'lucide-react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
+import { ThemeEnum } from '@/common/enums/appconfig.enum';
 import Drawer, { DrawerRef } from '@/components/Drawer';
+import Skeleton from '@/components/Skeleton';
+import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
+import { useCategoryListQuery } from '@/hooks/apis/category.hook';
 import { useDayPickerContext } from '@/hooks/app/useDayPicker';
+import { useExpenseFilterContext } from '@/hooks/app/useExpense';
 import { useMonthPickerContext } from '@/hooks/app/useMonthPicker';
 import { useThemeContext } from '@/hooks/app/useTheme';
-import { ThemeEnum } from '@/common/enums/appconfig.enum';
 import { getMonthLabel } from '@/utils/general.utils';
 
 function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
   const { t } = useTranslation();
-  const { date: dayFrom, open: openDayFromPicker } = useDayPickerContext();
-  const { date: dayTo, open: openDayToPicker } = useDayPickerContext();
-  const [type, setType] = useState<ExpenseTypeEnum | null>(null);
+  const filterContext = useExpenseFilterContext();
+  const { date: dayFromPicker, setDate: setDayFromPicker, open: openDayFromPicker } = useDayPickerContext();
+  const { date: dayToPicker, setDate: setDayToPicker, open: openDayToPicker } = useDayPickerContext();
+  const { setMonth: setMonthValue } = useMonthPickerContext();
+
+  const { data: categories, isLoading: isCategoryLoading } = useCategoryListQuery();
+
+  // Sync dayFrom/dayTo from picker to context
+  useEffect(() => {
+    if (dayFromPicker) filterContext.setDayFrom(dayFromPicker);
+  }, [dayFromPicker, filterContext]);
+
+  useEffect(() => {
+    if (dayToPicker) filterContext.setDayTo(dayToPicker);
+  }, [dayToPicker, filterContext]);
+
+  const handleResetFilters = () => {
+    filterContext.resetFilters();
+
+    // Reset dayPicker contexts
+    setDayFromPicker(undefined);
+    setDayToPicker(undefined);
+
+    // Reset month picker về this month
+    const now = new Date();
+    setMonthValue({ year: now.getFullYear(), month: now.getMonth() + 1 });
+  };
+
+  const handleSelectCategory = (categoryId: number | null) => {
+    filterContext.setCategoryId(filterContext.categoryId === categoryId ? null : categoryId);
+  };
+
+  const handleSelectSortField = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    filterContext.setSortField(e.target.value);
+  };
+
+  const handleSelectSortOrder = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    filterContext.setSortOrder(e.target.value as 'asc' | 'desc');
+  };
 
   return (
-    <Drawer ref={ref} position="bottom" className="min-h-[300px] p-4 space-y-4">
+    <Drawer
+      ref={ref}
+      position="bottom"
+      classNames={{
+        drawer: 'min-h-[300px] p-4 space-y-4 z-99!',
+        overlay: 'z-99!',
+      }}
+    >
       <div className="relative flex items-center justify-center mb-2">
         <h3 className="font-semibold text-lg">{t('expenses.form.filters')}</h3>
         <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={() => ref.current.close()}>
@@ -34,7 +80,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
             className="input input-lg"
             placeholder={t('expenses.form.dayFrom')}
             readOnly
-            value={dayFrom?.toLocaleDateString()}
+            value={filterContext.dayFrom?.toLocaleDateString() ?? ''}
             onClick={() => openDayFromPicker()}
           />
           <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
@@ -47,7 +93,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
             className="input input-lg"
             placeholder={t('expenses.form.dayTo')}
             readOnly
-            value={dayTo?.toLocaleDateString()}
+            value={filterContext.dayTo?.toLocaleDateString() ?? ''}
             onClick={() => openDayToPicker()}
           />
           <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
@@ -59,10 +105,10 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
         <label className="label text-lg">{t('expenses.form.type')}</label>
         <select
           className="select select-lg col-span-2 capitalize"
-          value={type ?? ''}
-          onChange={(e) => setType(e.target.value as ExpenseTypeEnum)}
+          value={filterContext.type ?? ''}
+          onChange={(e) => filterContext.setType(e.target.value ? (e.target.value as ExpenseTypeEnum) : null)}
         >
-          <option>{t('expenses.filter.all')}</option>
+          <option value="">{t('expenses.filter.all')}</option>
           {Object.values(ExpenseTypeEnum).map((type) => (
             <option key={type} value={type}>
               {t(`expenses.filter.${type.toLowerCase()}`)}
@@ -72,12 +118,20 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
 
         <label className="label text-lg">{t('expenses.form.sortBy')}</label>
         <div className="join col-span-2">
-          <select className="select select-lg join-item">
+          <select
+            className="select select-lg join-item"
+            value={filterContext.sortField}
+            onChange={handleSelectSortField}
+          >
             <option value="expenses.date">{t('expenses.form.date')}</option>
             <option value="expenses.amount">{t('expenses.form.amount')}</option>
             <option value="categories.name">{t('expenses.form.name')}</option>
           </select>
-          <select className="select select-lg join-item">
+          <select
+            className="select select-lg join-item"
+            value={filterContext.sortOrder}
+            onChange={handleSelectSortOrder}
+          >
             <option value="desc">{t('expenses.form.desc')}</option>
             <option value="asc">{t('expenses.form.asc')}</option>
           </select>
@@ -88,20 +142,34 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
       <div className="flex flex-col">
         <label className="label text-lg">{t('expenses.form.category')}</label>
         <div className="grid grid-cols-3 gap-2 max-h-40 overflow-y-auto">
-          {Array.from({ length: 9 * 3 }).map((_, index) => (
-            <button key={index} className="btn btn-soft btn-lg flex flex-col items-center gap-0">
-              <span>🍔</span>
-              <span className="text-xs line-clamp-1">
-                {t('expenses.filter.category')} {index}
-              </span>
-            </button>
-          ))}
+          {isCategoryLoading && <Skeleton className="w-full h-12" />}
+          {!isCategoryLoading && categories?.length === 0 && (
+            <p className="text-center col-span-3">No categories found</p>
+          )}
+          {!isCategoryLoading &&
+            categories?.map((category) => (
+              <button
+                key={category.id}
+                className={`btn btn-lg flex flex-col items-center gap-0 ${
+                  filterContext.categoryId === category.id ? 'btn-soft btn-success' : 'btn-soft'
+                }`}
+                onClick={() => handleSelectCategory(category.id)}
+              >
+                <span>{category.icon}</span>
+                <span className="text-xs line-clamp-1">{category.name}</span>
+              </button>
+            ))}
         </div>
       </div>
 
-      <div className="flex items-center gap-2">
-        <button className="btn btn-ghost rounded-xl flex-2/5">{t('expenses.form.reset')}</button>
-        <button className="btn btn-soft btn-success rounded-xl flex-3/5">{t('expenses.form.apply')}</button>
+      <div className="flex items-center justify-center gap-2">
+        <button className="btn btn-ghost rounded-xl flex-1/3" onClick={() => ref.current.close()}>
+          {t('expenses.form.close')}
+        </button>
+        <button className="btn btn-soft rounded-xl flex-2/3" onClick={handleResetFilters}>
+          <ListRestart />
+          {t('expenses.form.reset')}
+        </button>
       </div>
     </Drawer>
   );
@@ -114,6 +182,7 @@ export default function ExpenseFilterSection() {
   const locale = i18n.language;
 
   const { resolvedTheme } = useThemeContext();
+  const filterContext = useExpenseFilterContext();
 
   const date = new Date();
   const currentMonth = date.getMonth() + 1;
@@ -121,10 +190,43 @@ export default function ExpenseFilterSection() {
 
   const { month: monthValue, setMonth: setMonthValue, open: openMonthPicker } = useMonthPickerContext();
 
+  // Sync month from picker to filter context
+  useEffect(() => {
+    if (monthValue) {
+      filterContext.setMonth(monthValue);
+    }
+  }, [monthValue, filterContext]);
+
+  // Set default month
   useEffect(() => {
     if (monthValue) return;
     setMonthValue({ year: currentYear, month: currentMonth });
   }, [currentMonth, currentYear, monthValue, setMonthValue]);
+
+  const monthDisplayText = useMemo(() => {
+    if (filterContext.dayFrom || filterContext.dayTo) {
+      return t('expenses.form.custom');
+    }
+    if (monthValue?.year === currentYear && monthValue?.month === currentMonth) {
+      return t('expenses.form.thisMonth');
+    }
+    if (monthValue?.month) {
+      return getMonthLabel(monthValue.month, locale);
+    }
+    return t('expenses.form.thisMonth');
+  }, [filterContext.dayFrom, filterContext.dayTo, monthValue, currentYear, currentMonth, t, locale]);
+
+  const handleNextMonth = () => {
+    if (!monthValue) return;
+    if (monthValue.month < 12) setMonthValue({ year: monthValue.year, month: monthValue.month + 1 });
+    else setMonthValue({ year: monthValue.year + 1, month: 1 });
+  };
+
+  const handlePrevMonth = () => {
+    if (!monthValue) return;
+    if (monthValue.month > 1) setMonthValue({ year: monthValue.year, month: monthValue.month - 1 });
+    else setMonthValue({ year: monthValue.year - 1, month: 12 });
+  };
 
   return (
     <div
@@ -132,30 +234,14 @@ export default function ExpenseFilterSection() {
     >
       <div className="relative flex items-center justify-center">
         <div className="join w-[65vw]">
-          <button
-            className="btn btn-ghost join-item"
-            onClick={() => {
-              if (!monthValue) return;
-              if (monthValue.month > 1) setMonthValue({ year: monthValue.year, month: monthValue.month - 1 });
-              else setMonthValue({ year: monthValue.year - 1, month: 12 });
-            }}
-          >
+          <button className="btn btn-ghost join-item" onClick={handlePrevMonth}>
             <ChevronLeft size={20} />
           </button>
           <button className="btn btn-ghost join-item flex-1" onClick={() => openMonthPicker()}>
-            {monthValue?.year === currentYear && monthValue?.month === currentMonth
-              ? t('expenses.form.thisMonth')
-              : monthValue?.month && getMonthLabel(monthValue.month, locale)}
+            {monthDisplayText}
           </button>
 
-          <button
-            className="btn btn-ghost join-item"
-            onClick={() => {
-              if (!monthValue) return;
-              if (monthValue.month < 12) setMonthValue({ year: monthValue.year, month: monthValue.month + 1 });
-              else setMonthValue({ year: monthValue.year + 1, month: 1 });
-            }}
-          >
+          <button className="btn btn-ghost join-item" onClick={handleNextMonth}>
             <ChevronRight size={20} />
           </button>
         </div>

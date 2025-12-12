@@ -53,7 +53,9 @@
       "successfully": "thành công",
       "errorSaving": "Đã xảy ra lỗi khi lưu chi tiêu.",
       "errorSavingCategory": "Đã xảy ra lỗi khi lưu danh mục.",
-      "nameRequired": "Tên là bắt buộc."
+      "nameRequired": "Tên là bắt buộc.",
+      "custom": "Tuỳ chỉnh",
+      "close": "Đóng"
     },
     "detail": {
       "title": "Chi tiết giao dịch",

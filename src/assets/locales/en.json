@@ -53,7 +53,9 @@
       "successfully": "successfully",
       "errorSaving": "An error occurred while saving the expense.",
       "errorSavingCategory": "An error occurred while saving the category.",
-      "nameRequired": "Name is required."
+      "nameRequired": "Name is required.",
+      "custom": "Custom",
+      "close": "Close"
     },
     "detail": {
       "title": "Transaction Details",

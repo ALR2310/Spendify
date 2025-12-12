@@ -12,7 +12,7 @@ export const categoryService = new (class CategoryService {
         .selectFrom('categories')
         .leftJoin('expenses', 'categories.id', 'expenses.categoryId')
         .selectAll('categories')
-        .select((eb) => eb.fn.count('expenses.id').as('expenseCount'))
+        .select((eb) => eb.fn.count<number>('expenses.id').as('expenseCount'))
         .groupBy('categories.id')
         .orderBy('expenseCount', 'desc')
         .orderBy('categories.createdAt', 'asc')

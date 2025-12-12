@@ -1,12 +1,12 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
-import { useExpenseListInfinite } from '@/hooks/apis/expense.hook';
-import { useExpenseDetailContext, useExpenseUpsertContext } from '@/hooks/app/useExpense';
-import { useThemeContext } from '@/hooks/app/useTheme';
 import { ThemeEnum } from '@/common/enums/appconfig.enum';
 import { Expense } from '@/common/types/expense.type';
+import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
+import { useExpenseListInfinite } from '@/hooks/apis/expense.hook';
+import { useExpenseDetailContext, useExpenseFilterContext, useExpenseUpsertContext } from '@/hooks/app/useExpense';
+import { useThemeContext } from '@/hooks/app/useTheme';
 import { groupExpenseByDate } from '@/utils/expense.utils';
 import { formatCurrency } from '@/utils/general.utils';
 
@@ -52,8 +52,10 @@ export default function ExpenseListSection() {
   const { t } = useTranslation();
   const { resolvedTheme } = useThemeContext();
   const { showDetail } = useExpenseDetailContext();
+  const { buildExpenseListQuery } = useExpenseFilterContext();
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useExpenseListInfinite({});
+  const query = useMemo(() => buildExpenseListQuery(), [buildExpenseListQuery]);
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useExpenseListInfinite(query);
 
   const items = useMemo(() => data?.pages.flatMap((p) => p.data) ?? [], [data]);
   const grouped = useMemo(() => groupExpenseByDate(items), [items]);

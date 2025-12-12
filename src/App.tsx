@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router';
 import { ToastContainer } from 'react-toastify';
 
+import { ROUTES } from './common/constants/routes.const';
 import { DayPickerProvider } from './context/DayPickerContext';
 import { EmojiPickerProvider } from './context/EmojiPickerContext';
 import { MonthPickerProvider } from './context/MonthPickerContext';
@@ -14,7 +15,6 @@ import ExpenseLayout from './pages/expenses/layouts/ExpenseLayout';
 import NotePage from './pages/notes/NotePage';
 import SettingPage from './pages/settings/SettingPage';
 import StatisticPage from './pages/statistics/StatisticPage';
-import { ROUTES } from './common/constants/routes.const';
 
 const queryClient = new QueryClient({
   defaultOptions: {
