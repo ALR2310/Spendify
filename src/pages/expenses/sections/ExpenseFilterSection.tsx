@@ -24,11 +24,11 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
 
   // Sync dayFrom/dayTo from picker to context
   useEffect(() => {
-    if (dayFromPicker) filterContext.setDayFrom(dayFromPicker);
+    if (dayFromPicker) filterContext.setDateFrom(dayFromPicker);
   }, [dayFromPicker, filterContext]);
 
   useEffect(() => {
-    if (dayToPicker) filterContext.setDayTo(dayToPicker);
+    if (dayToPicker) filterContext.setDateTo(dayToPicker);
   }, [dayToPicker, filterContext]);
 
   const handleResetFilters = () => {
@@ -80,7 +80,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
             className="input input-lg"
             placeholder={t('expenses.form.dayFrom')}
             readOnly
-            value={filterContext.dayFrom?.toLocaleDateString() ?? ''}
+            value={filterContext.dateFrom?.toLocaleDateString() ?? ''}
             onClick={() => openDayFromPicker()}
           />
           <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
@@ -93,7 +93,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
             className="input input-lg"
             placeholder={t('expenses.form.dayTo')}
             readOnly
-            value={filterContext.dayTo?.toLocaleDateString() ?? ''}
+            value={filterContext.dateTo?.toLocaleDateString() ?? ''}
             onClick={() => openDayToPicker()}
           />
           <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
@@ -204,7 +204,7 @@ export default function ExpenseFilterSection() {
   }, [currentMonth, currentYear, monthValue, setMonthValue]);
 
   const monthDisplayText = useMemo(() => {
-    if (filterContext.dayFrom || filterContext.dayTo) {
+    if (filterContext.dateFrom || filterContext.dateTo) {
       return t('expenses.form.custom');
     }
     if (monthValue?.year === currentYear && monthValue?.month === currentMonth) {
@@ -214,7 +214,7 @@ export default function ExpenseFilterSection() {
       return getMonthLabel(monthValue.month, locale);
     }
     return t('expenses.form.thisMonth');
-  }, [filterContext.dayFrom, filterContext.dayTo, monthValue, currentYear, currentMonth, t, locale]);
+  }, [filterContext.dateFrom, filterContext.dateTo, monthValue, currentYear, currentMonth, t, locale]);
 
   const handleNextMonth = () => {
     if (!monthValue) return;
