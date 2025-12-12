@@ -1,7 +1,5 @@
 {
   "expenses": {
-    "title": "Chi tiêu",
-    "addExpense": "Thêm chi tiêu",
     "filter": {
       "all": "Tất cả",
       "category": "Danh mục",
@@ -39,7 +37,6 @@
       "asc": "Tăng dần",
       "category": "Danh mục:",
       "reset": "Đặt lại",
-      "apply": "Áp dụng",
       "thisMonth": "Tháng này",
       "edit": "Chỉnh sửa",
       "new": "Mới",
@@ -71,9 +68,6 @@
     }
   },
   "settings": {
-    "general": {
-      "title": "Chung"
-    },
     "appearance": {
       "title": "Giao diện",
       "theme": "Chủ đề",
@@ -97,8 +91,6 @@
       "title": "Dữ liệu & Đồng bộ",
       "dataSyncTitle": "Đồng bộ dữ liệu",
       "dataSyncDesc": "Sao lưu dữ liệu lên Google Drive",
-      "notSynced": "Chưa đồng bộ",
-      "syncButton": "Đồng bộ",
       "import": "Nhập dữ liệu",
       "importDesc": "Nhập dữ liệu từ file",
       "export": "Xuất dữ liệu",

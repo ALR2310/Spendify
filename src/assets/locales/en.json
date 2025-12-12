@@ -1,7 +1,5 @@
 {
   "expenses": {
-    "title": "Expenses",
-    "addExpense": "Add Expense",
     "filter": {
       "all": "All",
       "category": "Category",
@@ -39,7 +37,6 @@
       "asc": "Asc",
       "category": "Category:",
       "reset": "Reset",
-      "apply": "Apply",
       "thisMonth": "This Month",
       "edit": "Edit",
       "new": "New",
@@ -71,9 +68,6 @@
     }
   },
   "settings": {
-    "general": {
-      "title": "General"
-    },
     "appearance": {
       "title": "Appearance",
       "theme": "Theme",
@@ -97,8 +91,6 @@
       "title": "Data & Sync",
       "dataSyncTitle": "Data Sync",
       "dataSyncDesc": "Backup data to Google Drive",
-      "notSynced": "Not synced",
-      "syncButton": "Sync",
       "import": "Import Data",
       "importDesc": "Import data from file",
       "export": "Export Data",
