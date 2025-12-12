@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from 'react-query';
 
+import { CategoryStatsQuery } from '@/common/types/categories.type';
 import { NewCategory, UpdateCategory } from '@/database/types/tables/categories';
 import { categoryService } from '@/services/category.service';
 
@@ -15,6 +16,13 @@ export function useCategoryByIdQuery(id: number) {
     queryFn: () => categoryService.getById(id),
     queryKey: ['categories/getById', id],
     enabled: !!id,
+  });
+}
+
+export function useCategoryStats(query: CategoryStatsQuery) {
+  return useQuery({
+    queryFn: () => categoryService.getStats(query),
+    queryKey: ['categories/getStats', query],
   });
 }
 

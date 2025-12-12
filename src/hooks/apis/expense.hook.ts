@@ -1,8 +1,8 @@
 import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
 
+import { ExpenseListQuery, ExpenseOverviewQuery } from '@/common/types/expense.type';
 import { NewExpense, UpdateExpense } from '@/database/types/tables/expenses';
 import { expenseService } from '@/services/expense.service';
-import { ExpenseListQuery } from '@/common/types/expense.type';
 
 export function useExpenseListQuery(query: ExpenseListQuery) {
   return useQuery({
@@ -27,6 +27,13 @@ export function useExpenseByIdQuery(id: number) {
     queryFn: () => expenseService.getById(id),
     queryKey: ['expenses/getById', id],
     enabled: !!id,
+  });
+}
+
+export function useExpenseOverview(query: ExpenseOverviewQuery) {
+  return useQuery({
+    queryFn: () => expenseService.getOverview(query),
+    queryKey: ['expenses/getOverview', query],
   });
 }
 

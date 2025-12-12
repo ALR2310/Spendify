@@ -1,9 +1,14 @@
 import { sql } from 'kysely';
 
 import { logger } from '@/common/logger';
-import { ExpenseListQuery, ExpenseListResponse } from '@/common/types/expense.type';
+import {
+  ExpenseListQuery,
+  ExpenseListResponse,
+  ExpenseOverview,
+  ExpenseOverviewQuery,
+} from '@/common/types/expense.type';
 import { db, paginateQuery } from '@/database';
-import { NewExpense, UpdateExpense } from '@/database/types/tables/expenses';
+import { ExpenseTypeEnum, NewExpense, UpdateExpense } from '@/database/types/tables/expenses';
 
 export const expenseService = new (class ExpenseService {
   async getList(query: ExpenseListQuery): Promise<ExpenseListResponse> {
@@ -62,6 +67,56 @@ export const expenseService = new (class ExpenseService {
       logger.error('Error fetching expense by ID:', error);
       throw error;
     }
+  }
+
+  async getOverview(query: ExpenseOverviewQuery): Promise<ExpenseOverview> {
+    const { dateFrom, dateTo } = query;
+
+    let expenseByCategoryBuilder = db
+      .selectFrom('expenses')
+      .innerJoin('categories', 'expenses.categoryId', 'categories.id')
+      .select(['categories.id', 'categories.name', sql<number>`SUM(expenses.amount)`.as('amount')])
+      .where('expenses.type', '=', ExpenseTypeEnum.Expense)
+      .groupBy(['categories.id', 'categories.name']);
+
+    let totalRevenueBuilder = db
+      .selectFrom('expenses')
+      .select((eb) => [eb.fn.coalesce(eb.fn.sum<number>('amount'), eb.val(0)).as('total')])
+      .where('type', '=', ExpenseTypeEnum.Income);
+
+    if (dateFrom) {
+      expenseByCategoryBuilder = expenseByCategoryBuilder.where('expenses.date', '>=', dateFrom);
+      totalRevenueBuilder = totalRevenueBuilder.where('date', '>=', dateFrom);
+    }
+    if (dateTo) {
+      expenseByCategoryBuilder = expenseByCategoryBuilder.where('expenses.date', '<=', dateTo);
+      totalRevenueBuilder = totalRevenueBuilder.where('date', '<=', dateTo);
+    }
+
+    // Execute queries
+    const [totalRevenue, expenseByCategory] = await Promise.all([
+      totalRevenueBuilder.executeTakeFirst().then((res) => res?.total || 0),
+      expenseByCategoryBuilder.execute(),
+    ]);
+
+    const totalExpenses = expenseByCategory.reduce((sum, curr) => sum + Number(curr.amount), 0);
+
+    const categoryDistribution = expenseByCategory
+      .map((item) => ({
+        ...item,
+        percentage: totalExpenses === 0 ? 0 : +((item.amount / totalExpenses) * 100).toFixed(2),
+      }))
+      .sort((a, b) => b.percentage - a.percentage)
+      .slice(0, 3);
+
+    return {
+      summary: {
+        totalRevenue,
+        totalExpenses,
+        difference: totalRevenue - totalExpenses,
+      },
+      categoryDistribution,
+    };
   }
 
   async create(data: NewExpense) {

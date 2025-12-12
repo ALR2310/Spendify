@@ -10,8 +10,8 @@ export type CategoryStats = SelectCategory & {
 
 export type CategoryStatsQuery = Omit<BaseQueryParams, 'searchField'> & {
   type?: ExpenseTypeEnum;
-  dateFrom?: string;
-  dateTo?: string;
+  dateFrom?: string | null;
+  dateTo?: string | null;
 };
 
 export type CategoryStatsResponse = PaginatedResponse<CategoryStats>;

@@ -15,3 +15,22 @@ export type ExpenseListQuery = BaseQueryParams & {
 };
 
 export type ExpenseListResponse = PaginatedResponse<Expense>;
+
+export type ExpenseOverview = {
+  summary: {
+    totalRevenue: number;
+    totalExpenses: number;
+    difference: number;
+  };
+  categoryDistribution: {
+    id: number;
+    name: string;
+    amount: number;
+    percentage: number;
+  }[];
+};
+
+export type ExpenseOverviewQuery = {
+  dateFrom?: string | null;
+  dateTo?: string | null;
+};
