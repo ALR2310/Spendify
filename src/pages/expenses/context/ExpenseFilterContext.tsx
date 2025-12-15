@@ -21,8 +21,12 @@ interface ExpenseFilterContextValue {
   endDate: Date | null;
   setEndDate: (dateTo: Date | null) => void;
 
-  month: { year: number; month: number } | null;
-  setMonth: (month: { year: number; month: number } | null) => void;
+  // Derived month from startDate/endDate
+  getCurrentMonth: () => { year: number; month: number } | null;
+  isValidMonthRange: () => boolean;
+  setMonthRange: (year: number, month: number) => void;
+  goToNextMonth: () => void;
+  goToPreviousMonth: () => void;
 
   buildExpenseListQuery: (monthValue?: { year: number; month: number } | null) => ExpenseListQuery;
   resetFilters: () => void;
@@ -38,7 +42,70 @@ export const ExpenseFilterProvider = ({ children }: { children: React.ReactNode 
   const [searchField, setSearchField] = useState<string | undefined>(undefined);
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
-  const [month, setMonth] = useState<{ year: number; month: number } | null>(null);
+
+  // Helper function to get current month from startDate/endDate
+  const getCurrentMonth = useCallback((): { year: number; month: number } | null => {
+    if (!startDate || !endDate) return null;
+
+    const start = dayjs(startDate);
+    const end = dayjs(endDate);
+
+    // Check if both dates are in the same month
+    if (start.year() === end.year() && start.month() === end.month()) {
+      // Check if it covers the full month
+      const monthStart = start.clone().startOf('month');
+      const monthEnd = start.clone().endOf('month');
+
+      if (start.isSame(monthStart, 'day') && end.isSame(monthEnd, 'day')) {
+        return { year: start.year(), month: start.month() + 1 };
+      }
+    }
+
+    return null;
+  }, [startDate, endDate]);
+
+  // Check if current date range is a valid month range
+  const isValidMonthRange = useCallback((): boolean => {
+    return getCurrentMonth() !== null;
+  }, [getCurrentMonth]);
+
+  // Set date range for a specific month
+  const setMonthRange = useCallback((year: number, month: number) => {
+    const start = dayjs(`${year}-${month}-01`).startOf('day');
+    const end = start.endOf('month').endOf('day');
+    setStartDate(start.toDate());
+    setEndDate(end.toDate());
+  }, []);
+
+  // Navigate to next month
+  const goToNextMonth = useCallback(() => {
+    const current = getCurrentMonth();
+    if (!current) return;
+
+    let { year, month } = current;
+    if (month < 12) {
+      month += 1;
+    } else {
+      year += 1;
+      month = 1;
+    }
+    setMonthRange(year, month);
+  }, [getCurrentMonth, setMonthRange]);
+
+  // Navigate to previous month
+  const goToPreviousMonth = useCallback(() => {
+    const current = getCurrentMonth();
+    if (!current) return;
+
+    let { year, month } = current;
+    if (month > 1) {
+      month -= 1;
+    } else {
+      year -= 1;
+      month = 12;
+    }
+    setMonthRange(year, month);
+  }, [getCurrentMonth, setMonthRange]);
 
   const buildExpenseListQuery = useCallback(
     (monthValue?: { year: number; month: number } | null): ExpenseListQuery => {
@@ -51,23 +118,24 @@ export const ExpenseFilterProvider = ({ children }: { children: React.ReactNode 
       if (type) query.type = type;
       if (categoryId) query.categoryId = categoryId;
 
-      // Priority: dayFrom/dayTo > month filter
+      // Use startDate/endDate if they are set
       if (startDate || endDate) {
         if (startDate) query.startDate = dayjs(startDate).startOf('day').toISOString();
         if (endDate) query.endDate = dayjs(endDate).endOf('day').toISOString();
-      } else if (monthValue || month) {
-        const { year: y, month: m } = monthValue || month || {};
+      } else if (monthValue) {
+        // Fallback to monthValue parameter if provided
+        const { year: y, month: m } = monthValue;
         if (y && m) {
-          const startDate = dayjs(`${y}-${m}-01`).startOf('day');
-          const endDate = startDate.endOf('month').endOf('day');
-          query.startDate = startDate.toISOString();
-          query.endDate = endDate.toISOString();
+          const start = dayjs(`${y}-${m}-01`).startOf('day');
+          const end = start.endOf('month').endOf('day');
+          query.startDate = start.toISOString();
+          query.endDate = end.toISOString();
         }
       }
 
       return query;
     },
-    [sortField, sortOrder, searchField, type, categoryId, startDate, endDate, month],
+    [sortField, sortOrder, searchField, type, categoryId, startDate, endDate],
   );
 
   const resetFilters = useCallback(() => {
@@ -76,12 +144,15 @@ export const ExpenseFilterProvider = ({ children }: { children: React.ReactNode 
     setSortField('expenses.date');
     setSortOrder('desc');
     setSearchField(undefined);
-    setStartDate(null);
-    setEndDate(null);
 
-    // Reset month to current month
+    // Reset to current month
     const now = new Date();
-    setMonth({ year: now.getFullYear(), month: now.getMonth() + 1 });
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const start = dayjs(`${year}-${month}-01`).startOf('day');
+    const end = start.endOf('month').endOf('day');
+    setStartDate(start.toDate());
+    setEndDate(end.toDate());
   }, []);
 
   const ctx = useMemo(
@@ -100,8 +171,11 @@ export const ExpenseFilterProvider = ({ children }: { children: React.ReactNode 
       setStartDate,
       endDate,
       setEndDate,
-      month,
-      setMonth,
+      getCurrentMonth,
+      isValidMonthRange,
+      setMonthRange,
+      goToNextMonth,
+      goToPreviousMonth,
       buildExpenseListQuery,
       resetFilters,
     }),
@@ -113,9 +187,13 @@ export const ExpenseFilterProvider = ({ children }: { children: React.ReactNode 
       searchField,
       startDate,
       endDate,
-      month,
       buildExpenseListQuery,
       resetFilters,
+      getCurrentMonth,
+      isValidMonthRange,
+      setMonthRange,
+      goToNextMonth,
+      goToPreviousMonth,
     ],
   );
 

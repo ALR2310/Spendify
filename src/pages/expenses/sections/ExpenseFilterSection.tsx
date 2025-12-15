@@ -9,38 +9,32 @@ import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import { useCategoryListQuery } from '@/hooks/apis/category.hook';
 import { useDayPickerContext } from '@/hooks/app/useDayPicker';
 import { useExpenseFilterContext } from '@/hooks/app/useExpense';
-import { useMonthPickerContext } from '@/hooks/app/useMonthPicker';
 import { useThemeContext } from '@/hooks/app/useTheme';
 import { getMonthLabel } from '@/utils/general.utils';
 
 function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
   const { t } = useTranslation();
   const filterContext = useExpenseFilterContext();
-  const { date: dayFromPicker, setDate: setDayFromPicker, open: openDayFromPicker } = useDayPickerContext();
-  const { date: dayToPicker, setDate: setDayToPicker, open: openDayToPicker } = useDayPickerContext();
-  const { setMonth: setMonthValue } = useMonthPickerContext();
+  const { date: startDatePicker, setDate: setStartDatePicker, open: openStartDatePicker } = useDayPickerContext();
+  const { date: endDatePicker, setDate: setEndDatePicker, open: openEndDatePicker } = useDayPickerContext();
 
   const { data: categories, isLoading: isCategoryLoading } = useCategoryListQuery();
 
   // Sync dayFrom/dayTo from picker to context
   useEffect(() => {
-    if (dayFromPicker) filterContext.setStartDate(dayFromPicker);
-  }, [dayFromPicker, filterContext]);
+    if (startDatePicker) filterContext.setStartDate(startDatePicker);
+  }, [startDatePicker, filterContext]);
 
   useEffect(() => {
-    if (dayToPicker) filterContext.setEndDate(dayToPicker);
-  }, [dayToPicker, filterContext]);
+    if (endDatePicker) filterContext.setEndDate(endDatePicker);
+  }, [endDatePicker, filterContext]);
 
   const handleResetFilters = () => {
     filterContext.resetFilters();
 
     // Reset dayPicker contexts
-    setDayFromPicker(undefined);
-    setDayToPicker(undefined);
-
-    // Reset month picker về this month
-    const now = new Date();
-    setMonthValue({ year: now.getFullYear(), month: now.getMonth() + 1 });
+    setStartDatePicker(undefined);
+    setEndDatePicker(undefined);
   };
 
   const handleSelectCategory = (categoryId: number | null) => {
@@ -75,28 +69,32 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
       <div className="flex items-center justify-between gap-4">
         <label className="floating-label">
           <span>{t('expenses.form.dayFrom')}</span>
-          <input
-            type="text"
-            className="input input-lg"
-            placeholder={t('expenses.form.dayFrom')}
-            readOnly
-            value={filterContext.startDate?.toLocaleDateString() ?? ''}
-            onClick={() => openDayFromPicker()}
-          />
-          <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
+          <label className="input input-lg">
+            <CalendarDaysIcon size={20} />
+            <input
+              type="search"
+              className="grow"
+              placeholder={t('expenses.form.dayFrom')}
+              readOnly
+              value={filterContext.startDate?.toLocaleDateString() ?? ''}
+              onClick={() => openStartDatePicker()}
+            />
+          </label>
         </label>
 
         <label className="floating-label">
           <span>{t('expenses.form.dayTo')}</span>
-          <input
-            type="text"
-            className="input input-lg"
-            placeholder={t('expenses.form.dayTo')}
-            readOnly
-            value={filterContext.endDate?.toLocaleDateString() ?? ''}
-            onClick={() => openDayToPicker()}
-          />
-          <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
+          <label className="input input-lg">
+            <CalendarDaysIcon size={20} />
+            <input
+              type="search"
+              className="grow"
+              placeholder={t('expenses.form.dayTo')}
+              readOnly
+              value={filterContext.endDate?.toLocaleDateString() ?? ''}
+              onClick={() => openEndDatePicker()}
+            />
+          </label>
         </label>
       </div>
 
@@ -188,44 +186,42 @@ export default function ExpenseFilterSection() {
   const currentMonth = date.getMonth() + 1;
   const currentYear = date.getFullYear();
 
-  const { month: monthValue, setMonth: setMonthValue, open: openMonthPicker } = useMonthPickerContext();
-
-  // Sync month from picker to filter context
+  // Initialize to current month on first mount
   useEffect(() => {
-    if (monthValue) {
-      filterContext.setMonth(monthValue);
+    if (!filterContext.startDate || !filterContext.endDate) {
+      filterContext.setMonthRange(currentYear, currentMonth);
     }
-  }, [monthValue, filterContext]);
+  }, [currentMonth, currentYear, filterContext]);
 
-  // Set default month
-  useEffect(() => {
-    if (monthValue) return;
-    setMonthValue({ year: currentYear, month: currentMonth });
-  }, [currentMonth, currentYear, monthValue, setMonthValue]);
+  // Get current month from filter context (derived from startDate/endDate)
+  const monthValue = filterContext.getCurrentMonth();
+  const isValidRange = filterContext.isValidMonthRange();
 
   const monthDisplayText = useMemo(() => {
-    if (filterContext.startDate || filterContext.endDate) {
+    // If date range is not a valid full month, show "Custom"
+    if (!isValidRange) {
       return t('expenses.form.custom');
     }
+
+    // If current month matches today's month, show "This month"
     if (monthValue?.year === currentYear && monthValue?.month === currentMonth) {
       return t('expenses.form.thisMonth');
     }
+
+    // Otherwise show the month label
     if (monthValue?.month) {
       return getMonthLabel(monthValue.month, locale);
     }
+
     return t('expenses.form.thisMonth');
-  }, [filterContext.startDate, filterContext.endDate, monthValue, currentYear, currentMonth, t, locale]);
+  }, [isValidRange, monthValue, currentYear, currentMonth, t, locale]);
 
   const handleNextMonth = () => {
-    if (!monthValue) return;
-    if (monthValue.month < 12) setMonthValue({ year: monthValue.year, month: monthValue.month + 1 });
-    else setMonthValue({ year: monthValue.year + 1, month: 1 });
+    filterContext.goToNextMonth();
   };
 
   const handlePrevMonth = () => {
-    if (!monthValue) return;
-    if (monthValue.month > 1) setMonthValue({ year: monthValue.year, month: monthValue.month - 1 });
-    else setMonthValue({ year: monthValue.year - 1, month: 12 });
+    filterContext.goToPreviousMonth();
   };
 
   return (
@@ -237,9 +233,7 @@ export default function ExpenseFilterSection() {
           <button className="btn btn-ghost join-item" onClick={handlePrevMonth}>
             <ChevronLeft size={20} />
           </button>
-          <button className="btn btn-ghost join-item flex-1" onClick={() => openMonthPicker()}>
-            {monthDisplayText}
-          </button>
+          <button className="btn btn-ghost join-item flex-1">{monthDisplayText}</button>
 
           <button className="btn btn-ghost join-item" onClick={handleNextMonth}>
             <ChevronRight size={20} />
