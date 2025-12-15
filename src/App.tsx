@@ -8,6 +8,7 @@ import { EmojiPickerProvider } from './context/EmojiPickerContext';
 import { MonthPickerProvider } from './context/MonthPickerContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ConfirmContainer } from './global/confirm/confirmContainer';
+import DatePickerContainer from './global/datepicker/DatePickerContainer';
 import { useThemeContext } from './hooks/app/useTheme';
 import MainLayout from './layouts/MainLayout';
 import ExpensePage from './pages/expenses/ExpensePage';
@@ -34,6 +35,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         <MonthPickerProvider>
           <EmojiPickerProvider>
             {children}
+            <DatePickerContainer />
             <ConfirmContainer />
             <ToastContainer
               className="toast-container"
