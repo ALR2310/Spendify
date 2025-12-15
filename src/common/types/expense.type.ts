@@ -10,8 +10,8 @@ export type Expense = SelectExpense & {
 export type ExpenseListQuery = BaseQueryParams & {
   categoryId?: number;
   type?: ExpenseTypeEnum;
-  dateFrom?: string;
-  dateTo?: string;
+  startDate?: string;
+  endDate?: string;
 };
 
 export type ExpenseListResponse = PaginatedResponse<Expense>;
@@ -31,6 +31,6 @@ export type ExpenseOverview = {
 };
 
 export type ExpenseOverviewQuery = {
-  dateFrom?: string | null;
-  dateTo?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
 };

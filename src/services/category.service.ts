@@ -35,7 +35,7 @@ export const categoryService = new (class CategoryService {
   }
 
   async getStats(query: CategoryStatsQuery): Promise<CategoryStatsResponse> {
-    const { page, pageSize = 20, sortField = 'expenses.amount', sortOrder = 'desc', type, dateFrom, dateTo } = query;
+    const { page, pageSize = 20, sortField = 'expenses.amount', sortOrder = 'desc', type, startDate, endDate } = query;
 
     try {
       let builder = db
@@ -50,8 +50,8 @@ export const categoryService = new (class CategoryService {
         .orderBy(sql.raw(sortField), sortOrder);
 
       if (type) builder = builder.where('expenses.type', '=', type);
-      if (dateFrom) builder = builder.where('expenses.date', '>=', dateFrom);
-      if (dateTo) builder = builder.where('expenses.date', '<=', dateTo);
+      if (startDate) builder = builder.where('expenses.date', '>=', startDate);
+      if (endDate) builder = builder.where('expenses.date', '<=', endDate);
 
       const { data, pagination } = await paginateQuery(builder, {
         page,

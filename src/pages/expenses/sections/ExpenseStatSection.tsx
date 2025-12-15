@@ -11,11 +11,11 @@ const progressColors = ['progress-primary', 'progress-accent', 'progress-seconda
 export default function ExpenseStatSection() {
   const { t } = useTranslation();
 
-  const { dateFrom, dateTo } = useExpenseFilterContext();
+  const { startDate, endDate } = useExpenseFilterContext();
 
   const { data: expenseOverview } = useExpenseOverview({
-    dateFrom: dateFrom && dayjs(dateFrom).startOf('month').startOf('day').toISOString(),
-    dateTo: dateTo && dayjs(dateTo).endOf('month').endOf('day').toISOString(),
+    startDate: startDate && dayjs(startDate).startOf('month').startOf('day').toISOString(),
+    endDate: endDate && dayjs(endDate).endOf('month').endOf('day').toISOString(),
   });
 
   const { totalRevenue = 0, totalExpenses = 0, difference = 0 } = expenseOverview?.summary || {};

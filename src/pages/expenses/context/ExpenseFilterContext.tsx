@@ -16,10 +16,10 @@ interface ExpenseFilterContextValue {
   setSortOrder: (sortOrder: 'asc' | 'desc') => void;
   searchField: string | undefined;
   setSearchField: (searchField: string | undefined) => void;
-  dateFrom: Date | null;
-  setDateFrom: (dateFrom: Date | null) => void;
-  dateTo: Date | null;
-  setDateTo: (dateTo: Date | null) => void;
+  startDate: Date | null;
+  setStartDate: (dateFrom: Date | null) => void;
+  endDate: Date | null;
+  setEndDate: (dateTo: Date | null) => void;
 
   month: { year: number; month: number } | null;
   setMonth: (month: { year: number; month: number } | null) => void;
@@ -36,8 +36,8 @@ export const ExpenseFilterProvider = ({ children }: { children: React.ReactNode 
   const [sortField, setSortField] = useState<string>('expenses.date');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [searchField, setSearchField] = useState<string | undefined>(undefined);
-  const [dateFrom, setDateFrom] = useState<Date | null>(null);
-  const [dateTo, setDateTo] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
   const [month, setMonth] = useState<{ year: number; month: number } | null>(null);
 
   const buildExpenseListQuery = useCallback(
@@ -52,22 +52,22 @@ export const ExpenseFilterProvider = ({ children }: { children: React.ReactNode 
       if (categoryId) query.categoryId = categoryId;
 
       // Priority: dayFrom/dayTo > month filter
-      if (dateFrom || dateTo) {
-        if (dateFrom) query.dateFrom = dayjs(dateFrom).startOf('day').toISOString();
-        if (dateTo) query.dateTo = dayjs(dateTo).endOf('day').toISOString();
+      if (startDate || endDate) {
+        if (startDate) query.startDate = dayjs(startDate).startOf('day').toISOString();
+        if (endDate) query.endDate = dayjs(endDate).endOf('day').toISOString();
       } else if (monthValue || month) {
         const { year: y, month: m } = monthValue || month || {};
         if (y && m) {
           const startDate = dayjs(`${y}-${m}-01`).startOf('day');
           const endDate = startDate.endOf('month').endOf('day');
-          query.dateFrom = startDate.toISOString();
-          query.dateTo = endDate.toISOString();
+          query.startDate = startDate.toISOString();
+          query.endDate = endDate.toISOString();
         }
       }
 
       return query;
     },
-    [sortField, sortOrder, searchField, type, categoryId, dateFrom, dateTo, month],
+    [sortField, sortOrder, searchField, type, categoryId, startDate, endDate, month],
   );
 
   const resetFilters = useCallback(() => {
@@ -76,8 +76,8 @@ export const ExpenseFilterProvider = ({ children }: { children: React.ReactNode 
     setSortField('expenses.date');
     setSortOrder('desc');
     setSearchField(undefined);
-    setDateFrom(null);
-    setDateTo(null);
+    setStartDate(null);
+    setEndDate(null);
 
     // Reset month to current month
     const now = new Date();
@@ -96,16 +96,27 @@ export const ExpenseFilterProvider = ({ children }: { children: React.ReactNode 
       setSortOrder,
       searchField,
       setSearchField,
-      dateFrom,
-      setDateFrom,
-      dateTo,
-      setDateTo,
+      startDate,
+      setStartDate,
+      endDate,
+      setEndDate,
       month,
       setMonth,
       buildExpenseListQuery,
       resetFilters,
     }),
-    [type, categoryId, sortField, sortOrder, searchField, dateFrom, dateTo, month, buildExpenseListQuery, resetFilters],
+    [
+      type,
+      categoryId,
+      sortField,
+      sortOrder,
+      searchField,
+      startDate,
+      endDate,
+      month,
+      buildExpenseListQuery,
+      resetFilters,
+    ],
   );
 
   return <ExpenseFilterContext.Provider value={ctx}>{children}</ExpenseFilterContext.Provider>;

@@ -20,8 +20,8 @@ export const expenseService = new (class ExpenseService {
       sortOrder = 'desc',
       categoryId,
       type,
-      dateFrom,
-      dateTo,
+      startDate: dateFrom,
+      endDate: dateTo,
     } = query;
 
     try {
@@ -70,7 +70,7 @@ export const expenseService = new (class ExpenseService {
   }
 
   async getOverview(query: ExpenseOverviewQuery): Promise<ExpenseOverview> {
-    const { dateFrom, dateTo } = query;
+    const { startDate, endDate } = query;
 
     let expenseByCategoryBuilder = db
       .selectFrom('expenses')
@@ -84,13 +84,13 @@ export const expenseService = new (class ExpenseService {
       .select((eb) => [eb.fn.coalesce(eb.fn.sum<number>('amount'), eb.val(0)).as('total')])
       .where('type', '=', ExpenseTypeEnum.Income);
 
-    if (dateFrom) {
-      expenseByCategoryBuilder = expenseByCategoryBuilder.where('expenses.date', '>=', dateFrom);
-      totalRevenueBuilder = totalRevenueBuilder.where('date', '>=', dateFrom);
+    if (startDate) {
+      expenseByCategoryBuilder = expenseByCategoryBuilder.where('expenses.date', '>=', startDate);
+      totalRevenueBuilder = totalRevenueBuilder.where('date', '>=', startDate);
     }
-    if (dateTo) {
-      expenseByCategoryBuilder = expenseByCategoryBuilder.where('expenses.date', '<=', dateTo);
-      totalRevenueBuilder = totalRevenueBuilder.where('date', '<=', dateTo);
+    if (endDate) {
+      expenseByCategoryBuilder = expenseByCategoryBuilder.where('expenses.date', '<=', endDate);
+      totalRevenueBuilder = totalRevenueBuilder.where('date', '<=', endDate);
     }
 
     // Execute queries
