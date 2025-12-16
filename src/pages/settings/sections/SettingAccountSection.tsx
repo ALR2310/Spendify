@@ -11,7 +11,7 @@ import SettingSection from '../components/SettingSection';
 export default function SettingAccountSection() {
   const { t } = useTranslation();
 
-  const { isLoggedIn, login, logout } = useAuthContext();
+  const { isLoggedIn, userInfo, login, logout } = useAuthContext();
 
   const handleLogin = async () => {
     try {
@@ -39,12 +39,11 @@ export default function SettingAccountSection() {
     <SettingSection title={t('settings.account.title')}>
       {isLoggedIn ? (
         <>
-          <SettingItem
-            icon={User}
-            iconColor="success"
-            title={t('settings.account.loggedIn')}
-            description={t('settings.account.googleAccount')}
-          />
+          <SettingItem icon={User} iconColor="success" title={t('settings.account.loggedIn')}>
+            <span className="text-xs text-base-content/60">
+              hello: <span className="text-success font-semibold">{userInfo?.email}</span>
+            </span>
+          </SettingItem>
 
           <SettingItem
             icon={LogOut}

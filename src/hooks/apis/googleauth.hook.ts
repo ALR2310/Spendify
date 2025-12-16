@@ -39,3 +39,10 @@ export function useGoogleValidateAccessToken() {
     mutationFn: ({ accessToken }: { accessToken: string }) => googleAuthService.validateAccessToken(accessToken),
   });
 }
+
+export function useGoogleGetUserInfoQuery() {
+  return useQuery({
+    queryKey: 'googleauth/getUserInfo',
+    queryFn: () => googleAuthService.getUserInfo(),
+  });
+}

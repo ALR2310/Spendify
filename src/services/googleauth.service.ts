@@ -5,10 +5,19 @@ import { SecureStoragePlugin } from 'capacitor-secure-storage-plugin';
 import { logger } from '../common/logger';
 
 interface GoogleTokens {
+  email?: string;
   idToken: string;
   accessToken: string;
   refreshToken?: string;
   expiresAt: string;
+}
+
+export interface GoogleUserInfo {
+  email: string;
+  name?: string;
+  picture?: string;
+  given_name?: string;
+  family_name?: string;
 }
 
 export const googleAuthService = new (class GoogleAuthService {
@@ -33,7 +42,10 @@ export const googleAuthService = new (class GoogleAuthService {
         provider: 'google',
         options: {
           forceRefreshToken: true,
-          scopes: ['https://www.googleapis.com/auth/drive.appfolder', 'https://www.googleapis.com/auth/drive.file'],
+          scopes: [
+            'https://www.googleapis.com/auth/drive.appfolder',
+            'https://www.googleapis.com/auth/drive.file',
+          ],
         },
       })
         .then((result: any) => result.result.serverAuthCode)
@@ -43,6 +55,11 @@ export const googleAuthService = new (class GoogleAuthService {
         });
 
       const tokens = await this.exchangeAuthCodeForTokens(authCode);
+
+      const tokenValid = await this.validateAccessToken(tokens.accessToken);
+      if (!tokenValid) {
+        throw new Error('Obtained access token is invalid');
+      }
 
       await this.storeTokens(tokens);
 
@@ -133,15 +150,6 @@ export const googleAuthService = new (class GoogleAuthService {
       });
       throw error;
     }
-  }
-
-  private async clearStoredTokens() {
-    await Promise.all([
-      SecureStoragePlugin.remove({ key: 'id_token' }).catch(() => {}),
-      SecureStoragePlugin.remove({ key: 'access_token' }).catch(() => {}),
-      SecureStoragePlugin.remove({ key: 'refresh_token' }).catch(() => {}),
-      SecureStoragePlugin.remove({ key: 'expires_at' }).catch(() => {}),
-    ]);
   }
 
   async isLoggedIn(): Promise<boolean> {
@@ -239,6 +247,47 @@ export const googleAuthService = new (class GoogleAuthService {
     }
   }
 
+  async getUserInfo(): Promise<GoogleUserInfo | null> {
+    try {
+      const tokens = await this.getStoredTokens();
+      if (!tokens?.idToken) {
+        return null;
+      }
+
+      const userInfo = this.decodeIdToken(tokens.idToken);
+      return userInfo;
+    } catch (error: any) {
+      logger.error('Error getting user info', error.message || error);
+      return null;
+    }
+  }
+
+  private decodeIdToken(idToken: string): GoogleUserInfo | null {
+    try {
+      const parts = idToken.split('.');
+      if (parts.length !== 3) {
+        throw new Error('Invalid token format');
+      }
+
+      const decoded = JSON.parse(atob(parts[1]));
+
+      if (!decoded.email) {
+        throw new Error('No email in token');
+      }
+
+      return {
+        email: decoded.email,
+        name: decoded.name,
+        picture: decoded.picture,
+        given_name: decoded.given_name,
+        family_name: decoded.family_name,
+      };
+    } catch (error: any) {
+      logger.error('Error decoding ID token', error.message || error);
+      return null;
+    }
+  }
+
   private async exchangeAuthCodeForTokens(authCode: string): Promise<GoogleTokens> {
     const params = new URLSearchParams({
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
@@ -271,7 +320,10 @@ export const googleAuthService = new (class GoogleAuthService {
 
     const expiresAt = (Date.now() + Number(expires_in) * 1000).toString();
 
+    const userInfo = this.decodeIdToken(id_token || '');
+
     return {
+      email: userInfo?.email,
       idToken: id_token || '',
       accessToken: access_token,
       refreshToken: refresh_token || undefined,
@@ -293,16 +345,20 @@ export const googleAuthService = new (class GoogleAuthService {
       SecureStoragePlugin.set({ key: 'expires_at', value: tokens.expiresAt }).catch((error) => {
         logger.error('Error storing expires_at', error);
       }),
+      SecureStoragePlugin.set({ key: 'email', value: tokens.email || '' }).catch((error) => {
+        logger.error('Error storing email', error);
+      }),
     ]);
   }
 
   private async getStoredTokens(): Promise<GoogleTokens | null> {
     try {
-      const [idTokenRes, accessTokenRes, refreshTokenRes, expiresAtRes] = await Promise.all([
+      const [idTokenRes, accessTokenRes, refreshTokenRes, expiresAtRes, emailRes] = await Promise.all([
         SecureStoragePlugin.get({ key: 'id_token' }).catch(() => ({ value: '' })),
         SecureStoragePlugin.get({ key: 'access_token' }).catch(() => ({ value: '' })),
         SecureStoragePlugin.get({ key: 'refresh_token' }).catch(() => ({ value: '' })),
         SecureStoragePlugin.get({ key: 'expires_at' }).catch(() => ({ value: '' })),
+        SecureStoragePlugin.get({ key: 'email' }).catch(() => ({ value: '' })),
       ]);
 
       // Only require accessToken and expiresAt, refreshToken is optional
@@ -311,6 +367,7 @@ export const googleAuthService = new (class GoogleAuthService {
       }
 
       return {
+        email: emailRes.value || undefined,
         idToken: idTokenRes.value || '',
         accessToken: accessTokenRes.value,
         refreshToken: refreshTokenRes.value || undefined,
@@ -320,5 +377,15 @@ export const googleAuthService = new (class GoogleAuthService {
       logger.error('Error retrieving stored tokens', error.message || error);
       return null;
     }
+  }
+
+  private async clearStoredTokens() {
+    await Promise.all([
+      SecureStoragePlugin.remove({ key: 'id_token' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'access_token' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'refresh_token' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'expires_at' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'email' }).catch(() => {}),
+    ]);
   }
 })();

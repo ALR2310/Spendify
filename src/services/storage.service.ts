@@ -21,7 +21,9 @@ export const storageService = new (class StorageService {
   async migrateData(data: SpendingData): Promise<StorageExportResponse> {
     const dateNow = new Date().toISOString();
 
-    const uniqueCategoryNames = new Set(data.spendingItem.filter((i) => i.status !== 0).map((i) => i.nameitem.trim()));
+    const uniqueCategoryNames = new Set(
+      data.spendingItem.filter((i) => i.status !== 0).map((i) => i.nameitem.trim()),
+    );
     const categories = [...uniqueCategoryNames].map((name, idx) => ({
       id: idx + 1,
       name,
@@ -206,6 +208,12 @@ export const storageService = new (class StorageService {
     const accessToken = await googleAuthService.getAccessToken();
     if (!accessToken) throw new Error('Please login to Google');
     if (this.googleDriveService) return this.googleDriveService;
+
+    const isTokenValid = await googleAuthService.validateAccessToken(accessToken);
+    if (!isTokenValid) {
+      throw new Error('Google access token is invalid. Please login again.');
+    }
+
     return (this.googleDriveService = new GoogleDriveService(accessToken));
   }
 
