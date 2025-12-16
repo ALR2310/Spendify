@@ -10,14 +10,18 @@ import { CurrencyInput } from '@/components/CurrencyInput';
 import Modal, { ModalRef } from '@/components/Modal';
 import { NewCategory } from '@/database/types/tables/categories';
 import { ExpenseTypeEnum, NewExpense } from '@/database/types/tables/expenses';
+import { useDatePicker } from '@/global/datepicker';
 import {
   useCategoryByIdQuery,
   useCategoryCreateMutation,
   useCategoryListQuery,
   useCategoryUpdateMutation,
 } from '@/hooks/apis/category.hook';
-import { useExpenseByIdQuery, useExpenseCreateMutation, useExpenseUpdateMutation } from '@/hooks/apis/expense.hook';
-import { useDayPickerContext } from '@/hooks/app/useDayPicker';
+import {
+  useExpenseByIdQuery,
+  useExpenseCreateMutation,
+  useExpenseUpdateMutation,
+} from '@/hooks/apis/expense.hook';
 import { useEmojiPickerContext } from '@/hooks/app/useEmojiPicker';
 
 interface ExpenseUpsertContextType {
@@ -53,7 +57,13 @@ const ExpenseUpsertProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<ModalRef>; expenseId?: number | null }) => {
+const ExpenseModal = ({
+  modalRef,
+  expenseId,
+}: {
+  modalRef: React.RefObject<ModalRef>;
+  expenseId?: number | null;
+}) => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const categoryModalRef = useRef<HTMLDialogElement>(null!);
@@ -63,7 +73,7 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
   const [type, setType] = useState<ExpenseTypeEnum>(ExpenseTypeEnum.Expense);
   const [note, setNote] = useState<string>('');
 
-  const { date, setDate, open: openDatePicker } = useDayPickerContext();
+  const { date, setDate, open: openDatePicker } = useDatePicker();
 
   const { data: categories } = useCategoryListQuery();
   const { data: expense, isLoading: isLoadingExpense } = useExpenseByIdQuery(expenseId!);
@@ -173,7 +183,11 @@ const ExpenseModal = ({ modalRef, expenseId }: { modalRef: React.RefObject<Modal
               )}
             />
 
-            <button type="button" className="btn btn-lg btn-soft" onClick={() => categoryModalRef.current?.showModal()}>
+            <button
+              type="button"
+              className="btn btn-lg btn-soft"
+              onClick={() => categoryModalRef.current?.showModal()}
+            >
               <Plus size={20} />
             </button>
           </div>

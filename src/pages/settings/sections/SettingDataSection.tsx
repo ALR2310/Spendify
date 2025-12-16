@@ -8,8 +8,9 @@ import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
-import { appConfig } from '@/configs/app.config';
+import { StorageExportResponse } from '@/common/types/storage.type';
 import { ModalRef } from '@/components/Modal';
+import { appConfig } from '@/configs/app.config';
 import {
   useStorageDownloadMutation,
   useStorageExportMutation,
@@ -18,7 +19,6 @@ import {
   useStorageUploadMutation,
 } from '@/hooks/apis/storage.hook';
 import { googleAuthService } from '@/services/googleauth.service';
-import { StorageExportResponse } from '@/common/types/storage.type';
 
 import ConflictResolutionModal from '../components/ConflictResolutionModal';
 import SettingItem from '../components/SettingItem';
