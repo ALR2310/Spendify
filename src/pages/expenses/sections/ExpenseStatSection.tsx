@@ -44,7 +44,7 @@ export default function ExpenseStatSection() {
 
       {expenseOverview?.categoryDistribution.length && (
         <div className="flex flex-col gap-4">
-          <p className="font-semibold text-lg">{t('expenses.stat.categories')}</p>
+          <p className="font-semibold text-lg">{t('expenses.stat.expenseDistribution')}</p>
 
           <div className="grid grid-cols-3 items-center gap-y-2">
             {expenseOverview?.categoryDistribution.map((category, index) => (
