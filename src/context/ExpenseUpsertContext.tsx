@@ -134,7 +134,7 @@ const ExpenseModal = ({
       }
 
       modalRef.current?.close();
-      queryClient.invalidateQueries({ queryKey: ['expenses/getList'] });
+      queryClient.invalidateQueries({ queryKey: ['expenses', 'getList'] });
       toast.success(
         `${t('expenses.form.expense')} ${expenseId ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
       );
@@ -297,7 +297,7 @@ const CategoryModal = ({
       }
 
       modalRef.current?.close();
-      queryClient.invalidateQueries({ queryKey: ['categories/getList'] });
+      queryClient.invalidateQueries({ queryKey: ['categories', 'getList'] });
       toast.success(
         `${t('expenses.filter.category')} ${categoryId ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
       );

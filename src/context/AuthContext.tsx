@@ -30,7 +30,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const login = async () => {
     try {
       await loginGoogle();
-      queryClient.setQueryData(['googleauth/isLoggedIn'], true);
+      queryClient.setQueryData(['googleauth', 'isLoggedIn'], true);
       refetchUserInfo();
     } catch (error) {
       console.error('Login failed:', error);
@@ -41,8 +41,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const logout = async () => {
     try {
       await logoutGoogle();
-      queryClient.setQueryData(['googleauth/isLoggedIn'], false);
-      queryClient.setQueryData(['googleauth/getUserInfo'], null);
+      queryClient.setQueryData(['googleauth', 'isLoggedIn'], false);
+      queryClient.setQueryData(['googleauth', 'getUserInfo'], null);
     } catch (error) {
       console.error('Logout failed:', error);
       throw error;

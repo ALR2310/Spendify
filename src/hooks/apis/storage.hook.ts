@@ -17,7 +17,7 @@ export function useStorageExportMutation() {
 
 export function useStorageStatusQuery(enabled = true) {
   return useQuery({
-    queryKey: ['storage/status'],
+    queryKey: ['storage', 'status'],
     queryFn: () => storageService.status(),
     enabled,
   });

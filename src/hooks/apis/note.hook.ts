@@ -6,14 +6,14 @@ import { noteService } from '@/services/note.service';
 export function useNoteListQuery() {
   return useQuery({
     queryFn: () => noteService.getList(),
-    queryKey: ['notes/getList'],
+    queryKey: ['notes', 'getList'],
   });
 }
 
 export function useNoteByIdQuery(id: number) {
   return useQuery({
     queryFn: () => noteService.getById(id),
-    queryKey: ['notes/getById', id],
+    queryKey: ['notes', 'getById', id],
     enabled: !!id,
   });
 }

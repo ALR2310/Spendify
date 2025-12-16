@@ -1,5 +1,13 @@
 import dayjs from 'dayjs';
-import { CalendarDaysIcon, CircleAlert, MessageSquare, Pencil, Trash2, TrendingDown, TrendingUp } from 'lucide-react';
+import {
+  CalendarDaysIcon,
+  CircleAlert,
+  MessageSquare,
+  Pencil,
+  Trash2,
+  TrendingDown,
+  TrendingUp,
+} from 'lucide-react';
 import { createContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
@@ -85,7 +93,7 @@ const ExpenseDetailDrawer = ({
 
     try {
       await deleteExpense(expenseId!);
-      queryClient.invalidateQueries(['expenses/getList']);
+      queryClient.invalidateQueries(['expenses', 'getList']);
       handleClose();
     } catch (error) {
       console.error('Error deleting expense:', error);
@@ -114,7 +122,9 @@ const ExpenseDetailDrawer = ({
         <div className="flex-1 overflow-y-auto space-y-4 px-2">
           {/* Category */}
           <div className="flex flex-col items-center gap-2">
-            <div className="text-5xl">{isLoading ? <Skeleton className="w-20 h-12" /> : expense?.categoryIcon}</div>
+            <div className="text-5xl">
+              {isLoading ? <Skeleton className="w-20 h-12" /> : expense?.categoryIcon}
+            </div>
 
             {isLoading ? (
               <Skeleton className="w-[70%] h-7" />
@@ -162,10 +172,16 @@ const ExpenseDetailDrawer = ({
               <div className="flex items-center gap-3">
                 <div
                   className={`flex items-center justify-center w-10 h-10 rounded-xl ${
-                    expense?.type === ExpenseTypeEnum.Income ? 'bg-success/10 text-success' : 'bg-error/10 text-error'
+                    expense?.type === ExpenseTypeEnum.Income
+                      ? 'bg-success/10 text-success'
+                      : 'bg-error/10 text-error'
                   }`}
                 >
-                  {expense?.type === ExpenseTypeEnum.Income ? <TrendingUp size={20} /> : <TrendingDown size={20} />}
+                  {expense?.type === ExpenseTypeEnum.Income ? (
+                    <TrendingUp size={20} />
+                  ) : (
+                    <TrendingDown size={20} />
+                  )}
                 </div>
                 <div className="flex flex-col flex-1">
                   <span className="text-xs opacity-60">{t('expenses.detail.transactionType')}</span>

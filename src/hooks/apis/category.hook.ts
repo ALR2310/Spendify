@@ -7,14 +7,14 @@ import { categoryService } from '@/services/category.service';
 export function useCategoryListQuery() {
   return useQuery({
     queryFn: () => categoryService.getList(),
-    queryKey: ['categories/getList'],
+    queryKey: ['categories', 'getList'],
   });
 }
 
 export function useCategoryByIdQuery(id: number) {
   return useQuery({
     queryFn: () => categoryService.getById(id),
-    queryKey: ['categories/getById', id],
+    queryKey: ['categories', 'getById', id],
     enabled: !!id,
   });
 }
@@ -22,7 +22,7 @@ export function useCategoryByIdQuery(id: number) {
 export function useCategoryStats(query: CategoryStatsQuery) {
   return useQuery({
     queryFn: () => categoryService.getStats(query),
-    queryKey: ['categories/getStats', query],
+    queryKey: ['categories', 'getStats', query],
   });
 }
 

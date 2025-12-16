@@ -22,14 +22,14 @@ export function useGoogleRefreshTokenMutation() {
 
 export function useGoogleIsLoggedInQuery() {
   return useQuery({
-    queryKey: 'googleauth/isLoggedIn',
+    queryKey: ['googleauth', 'isLoggedIn'],
     queryFn: () => googleAuthService.isLoggedIn(),
   });
 }
 
 export function useGoogleGetAccessTokenQuery() {
   return useQuery({
-    queryKey: 'googleauth/getAccessToken',
+    queryKey: ['googleauth', 'getAccessToken'],
     queryFn: () => googleAuthService.getAccessToken(),
   });
 }
@@ -42,7 +42,7 @@ export function useGoogleValidateAccessToken() {
 
 export function useGoogleGetUserInfoQuery() {
   return useQuery({
-    queryKey: 'googleauth/getUserInfo',
+    queryKey: ['googleauth', 'getUserInfo'],
     queryFn: () => googleAuthService.getUserInfo(),
   });
 }

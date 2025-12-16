@@ -6,14 +6,14 @@ import { recurringService } from '@/services/recurring.service';
 export function useRecurringListQuery() {
   return useQuery({
     queryFn: () => recurringService.getList(),
-    queryKey: ['recurring/getList'],
+    queryKey: ['recurring', 'getList'],
   });
 }
 
 export function useRecurringByIdQuery(id: number) {
   return useQuery({
     queryFn: () => recurringService.getById(id),
-    queryKey: ['recurring/getById', id],
+    queryKey: ['recurring', 'getById', id],
     enabled: !!id,
   });
 }

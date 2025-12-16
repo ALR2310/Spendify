@@ -7,13 +7,13 @@ import { expenseService } from '@/services/expense.service';
 export function useExpenseListQuery(query: ExpenseListQuery) {
   return useQuery({
     queryFn: () => expenseService.getList(query),
-    queryKey: ['expenses/getList', query],
+    queryKey: ['expenses', 'getList', query],
   });
 }
 
 export function useExpenseListInfinite(query: ExpenseListQuery) {
   return useInfiniteQuery({
-    queryKey: ['expenses/getList', query],
+    queryKey: ['expenses', 'getList', query],
     queryFn: ({ pageParam = 1 }) => expenseService.getList({ ...query, page: pageParam }),
     getNextPageParam: (lastPage) => {
       const { page, totalPages } = lastPage.pagination;
@@ -25,7 +25,7 @@ export function useExpenseListInfinite(query: ExpenseListQuery) {
 export function useExpenseByIdQuery(id: number) {
   return useQuery({
     queryFn: () => expenseService.getById(id),
-    queryKey: ['expenses/getById', id],
+    queryKey: ['expenses', 'getById', id],
     enabled: !!id,
   });
 }
@@ -33,7 +33,7 @@ export function useExpenseByIdQuery(id: number) {
 export function useExpenseOverview(query: ExpenseOverviewQuery) {
   return useQuery({
     queryFn: () => expenseService.getOverview(query),
-    queryKey: ['expenses/getOverview', query],
+    queryKey: ['expenses', 'getOverview', query],
   });
 }
 
