@@ -14,15 +14,15 @@ export default function MainLayout() {
   const direction = useMemo(() => getPageDirection(location.pathname), [location.pathname]);
 
   const variants = {
-    initial: (dir: number) => ({ opacity: 0, x: dir * 100 }),
     animate: { opacity: 1, x: 0 },
-    exit: (dir: number) => ({ opacity: 0, x: dir * -100 }),
+    initial: (dir: number) => ({ opacity: 0, x: `${dir * 100}%` }),
+    exit: (dir: number) => ({ opacity: 0, x: `${dir * -100}%` }),
   };
 
   return (
     <div id="main-layout" className="h-screen flex flex-col pt-[env(safe-area-inset-top)] bg-neutral">
       <Header />
-      <div className="flex-1 overflow-auto no-scrollbar relative">
+      <div className="flex-1 overflow-hidden relative">
         <AnimatePresence mode="wait" initial={false} custom={direction}>
           <motion.div
             key={location.pathname}
@@ -36,6 +36,7 @@ export default function MainLayout() {
               ease: 'easeInOut',
             }}
             className="absolute inset-0 overflow-auto no-scrollbar"
+            style={{ willChange: 'transform, opacity' }}
           >
             {outlet}
           </motion.div>
