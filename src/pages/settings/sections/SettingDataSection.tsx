@@ -20,7 +20,7 @@ import {
 } from '@/hooks/apis/storage.hook';
 import { googleAuthService } from '@/services/googleauth.service';
 
-import ConflictResolutionModal from '../components/ConflictResolutionModal';
+import ModalSelectSource from '../components/ModalSelectSource';
 import SettingItem from '../components/SettingItem';
 import SettingSection from '../components/SettingSection';
 
@@ -125,13 +125,15 @@ export default function SettingDataSection() {
     }
   };
 
-  const handleSelectSource = async (source: 'local' | 'cloud') => {
+  const handleImportFromSource = async (source?: 'cloud' | 'local') => {
+    if (!source) return;
+
     const actionMethod = source === 'local' ? uploadData : downloadData;
 
     toast.promise(actionMethod(), {
-      pending: `Syncing data...`,
-      success: `Data synced successfully!`,
-      error: `Failed to sync data.`,
+      pending: 'Syncing data...',
+      success: 'Data synced successfully!',
+      error: 'Failed to sync data.',
     });
 
     queryClient.invalidateQueries();
@@ -177,7 +179,7 @@ export default function SettingDataSection() {
         />
       </SettingSection>
 
-      <ConflictResolutionModal modalRef={modalRef} onSelect={handleSelectSource} />
+      <ModalSelectSource modalRef={modalRef} onSelect={handleImportFromSource} />
     </>
   );
 }
