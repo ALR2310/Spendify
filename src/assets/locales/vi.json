@@ -10,6 +10,8 @@
     "list": {
       "title": "Danh sách chi tiêu",
       "notFound": "Không tìm thấy chi tiêu nào",
+      "notFoundDateFilter": "Không có chi tiêu trong khoản thời gian này",
+      "notFoundMonthFilter": "Chưa có chi tiêu trong tháng này",
       "notFoundClick": "Nhấp",
       "notFoundHere": "vào đây",
       "notFoundAdd": "để thêm chi tiêu mới",

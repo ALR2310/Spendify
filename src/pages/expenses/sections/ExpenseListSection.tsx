@@ -7,23 +7,32 @@ import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import { useExpenseListInfinite } from '@/hooks/apis/expense.hook';
 import { useExpenseDetailContext, useExpenseFilterContext, useExpenseUpsertContext } from '@/hooks/app/useExpense';
 import { useThemeContext } from '@/hooks/app/useTheme';
-import { groupExpenseByDate } from '@/utils/expense.utils';
+import { groupExpenseByDate, isValidMonthRange } from '@/utils/expense.utils';
 import { formatCurrency } from '@/utils/general.utils';
 
-const NotFoundCard = () => {
+const NotFoundCard = ({ hasDateFilter, isValidMonth }: { hasDateFilter: boolean; isValidMonth: boolean }) => {
   const { t } = useTranslation();
   const { openModal } = useExpenseUpsertContext();
 
+  let notFoundMessage = t('expenses.list.notFound');
+  if (isValidMonth) {
+    notFoundMessage = t('expenses.list.notFoundMonthFilter');
+  } else if (hasDateFilter) {
+    notFoundMessage = t('expenses.list.notFoundDateFilter');
+  }
+
   return (
     <div className="flex flex-col p-6 bg-base-200 rounded-xl text-center">
-      <p>{t('expenses.list.notFound')}</p>
-      <p>
-        {t('expenses.list.notFoundClick')}{' '}
-        <a className="link link-success" onClick={() => openModal()}>
-          {t('expenses.list.notFoundHere')}
-        </a>{' '}
-        {t('expenses.list.notFoundAdd')}
-      </p>
+      <p>{notFoundMessage}</p>
+      {!hasDateFilter && (
+        <p>
+          {t('expenses.list.notFoundClick')}{' '}
+          <a className="link link-success" onClick={() => openModal()}>
+            {t('expenses.list.notFoundHere')}
+          </a>{' '}
+          {t('expenses.list.notFoundAdd')}
+        </p>
+      )}
     </div>
   );
 };
@@ -52,9 +61,12 @@ export default function ExpenseListSection() {
   const { t } = useTranslation();
   const { resolvedTheme } = useThemeContext();
   const { showDetail } = useExpenseDetailContext();
-  const { buildExpenseListQuery } = useExpenseFilterContext();
+  const { buildExpenseListQuery, startDate, endDate } = useExpenseFilterContext();
 
   const query = useMemo(() => buildExpenseListQuery(), [buildExpenseListQuery]);
+  const hasDateFilter = useMemo(() => !!query.startDate, [query]);
+  const isValidMonth = useMemo(() => isValidMonthRange(startDate, endDate), [startDate, endDate]);
+
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useExpenseListInfinite(query);
 
   const items = useMemo(() => data?.pages.flatMap((p) => p.data) ?? [], [data]);
@@ -73,7 +85,7 @@ export default function ExpenseListSection() {
       <p className="font-semibold text-lg">{t('expenses.list.title')}</p>
 
       <div className="flex-1 overflow-auto" onScroll={handleScroll}>
-        {dates.length === 0 && <NotFoundCard />}
+        {dates.length === 0 && <NotFoundCard hasDateFilter={hasDateFilter} isValidMonth={isValidMonth} />}
         {dates.map((date) => (
           <div key={date} className="space-y-4">
             <div

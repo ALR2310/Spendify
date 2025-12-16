@@ -10,6 +10,8 @@
     "list": {
       "title": "Expense List",
       "notFound": "No expenses found",
+      "notFoundDateFilter": "No expenses in this time period",
+      "notFoundMonthFilter": "No expenses in this month yet",
       "notFoundClick": "Click",
       "notFoundHere": "here",
       "notFoundAdd": "to add a new expense",
