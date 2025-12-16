@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 
 import { ROUTES } from './common/constants/routes.const';
 import { EmojiPickerProvider } from './context/EmojiPickerContext';
+import { ExpenseUpsertProvider } from './context/ExpenseUpsertContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ConfirmContainer } from './global/confirm/confirmContainer';
 import DatePickerContainer from './global/datepicker/DatePickerContainer';
@@ -31,19 +32,21 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <EmojiPickerProvider>
-        {children}
-        <DatePickerContainer />
-        <MonthPickerContainer />
-        <ConfirmContainer />
-        <ToastContainer
-          className="toast-container"
-          autoClose={2000}
-          theme={resolvedTheme}
-          pauseOnHover={false}
-          position="top-center"
-          hideProgressBar={true}
-          closeOnClick={true}
-        />
+        <ExpenseUpsertProvider>
+          {children}
+          <DatePickerContainer />
+          <MonthPickerContainer />
+          <ConfirmContainer />
+          <ToastContainer
+            className="toast-container"
+            autoClose={2000}
+            theme={resolvedTheme}
+            pauseOnHover={false}
+            position="top-center"
+            hideProgressBar={true}
+            closeOnClick={true}
+          />
+        </ExpenseUpsertProvider>
       </EmojiPickerProvider>
     </QueryClientProvider>
   );
