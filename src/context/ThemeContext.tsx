@@ -2,8 +2,8 @@ import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { createContext, useEffect, useMemo, useState } from 'react';
 
-import { appConfig } from '@/configs/app.config';
 import { ThemeEnum } from '@/common/enums/appconfig.enum';
+import { appConfig } from '@/configs/app.config';
 
 interface ThemeContextType {
   theme: ThemeEnum;

@@ -47,7 +47,16 @@ export class GoogleDriveService {
 
     const form = new FormData();
     form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
-    form.append('file', new Blob([fileContent], { type: mimeType }), fileName);
+
+    const arrayBuffer =
+      fileContent instanceof Uint8Array
+        ? (fileContent.buffer.slice(
+            fileContent.byteOffset,
+            fileContent.byteOffset + fileContent.byteLength,
+          ) as ArrayBuffer)
+        : (fileContent as ArrayBuffer);
+
+    form.append('file', new Blob([arrayBuffer], { type: mimeType }), fileName);
 
     const response = await CapacitorHttp.post({
       url: `${this.UPLOAD_URL}?uploadType=multipart`,

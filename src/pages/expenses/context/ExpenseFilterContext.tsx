@@ -1,10 +1,24 @@
 import dayjs from 'dayjs';
-import { createContext, useCallback, useMemo, useState } from 'react';
+import { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { ExpenseListQuery } from '@/common/types/expense.type';
 import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import { useDatePicker } from '@/global/datepicker';
+import { useMonthPicker } from '@/global/monthpicker';
 import { getCurrentMonth, isValidMonthRange } from '@/utils/expense.utils';
+
+const setMonthRange = (
+  year: number,
+  month: number,
+  setStartDate: (date?: Date) => void,
+  setEndDate: (date?: Date) => void,
+) => {
+  const date = dayjs()
+    .year(year)
+    .month(month - 1);
+  setStartDate(date.startOf('month').toDate());
+  setEndDate(date.endOf('month').toDate());
+};
 
 interface ExpenseFilterContextValue {
   // Filter states
@@ -25,6 +39,7 @@ interface ExpenseFilterContextValue {
 
   // Helpers
   resetFilters: () => void;
+  openMonthPicker: () => void;
   openStartDatePicker: () => void;
   openEndDatePicker: () => void;
   goToNextMonth: () => void;
@@ -32,9 +47,9 @@ interface ExpenseFilterContextValue {
   buildExpenseListQuery: () => ExpenseListQuery;
 }
 
-const today = dayjs();
-
 const ExpenseFilterContext = createContext<ExpenseFilterContextValue>(null!);
+
+const today = dayjs();
 
 const ExpenseFilterProvider = ({ children }: { children: React.ReactNode }) => {
   const [type, setType] = useState<ExpenseTypeEnum | undefined>(undefined);
@@ -54,16 +69,13 @@ const ExpenseFilterProvider = ({ children }: { children: React.ReactNode }) => {
     open: openEndDatePicker,
   } = useDatePicker(today.endOf('month').toDate());
 
-  const setMonth = useCallback(
-    (year: number, month: number) => {
-      const date = dayjs()
-        .year(year)
-        .month(month - 1);
-      setStartDate(date.startOf('month').toDate());
-      setEndDate(date.endOf('month').toDate());
-    },
-    [setEndDate, setStartDate],
-  );
+  const { month: monthPickerValue, open: openMonthPicker } = useMonthPicker(today.toDate());
+
+  useEffect(() => {
+    if (monthPickerValue) {
+      setMonthRange(monthPickerValue.getFullYear(), monthPickerValue.getMonth() + 1, setStartDate, setEndDate);
+    }
+  }, [monthPickerValue, setEndDate, setStartDate]);
 
   const resetFilters = useCallback(() => {
     setType(undefined);
@@ -73,8 +85,8 @@ const ExpenseFilterProvider = ({ children }: { children: React.ReactNode }) => {
     setSearchField(undefined);
     setStartDate(today.startOf('month').toDate());
     setEndDate(today.endOf('month').toDate());
-    setMonth(today.year(), today.month() + 1);
-  }, [setEndDate, setMonth, setStartDate]);
+    setMonthRange(today.year(), today.month() + 1, setStartDate, setEndDate);
+  }, [setEndDate, setStartDate]);
 
   const goToNextMonth = useCallback(() => {
     const isValid = isValidMonthRange(startDate, endDate);
@@ -87,8 +99,8 @@ const ExpenseFilterProvider = ({ children }: { children: React.ReactNode }) => {
       year += 1;
     }
 
-    setMonth(year, month);
-  }, [endDate, setMonth, startDate]);
+    setMonthRange(year, month, setStartDate, setEndDate);
+  }, [endDate, setEndDate, setStartDate, startDate]);
 
   const goToPrevMonth = useCallback(() => {
     const isValid = isValidMonthRange(startDate, endDate);
@@ -101,8 +113,8 @@ const ExpenseFilterProvider = ({ children }: { children: React.ReactNode }) => {
       year -= 1;
     }
 
-    setMonth(year, month);
-  }, [endDate, setMonth, startDate]);
+    setMonthRange(year, month, setStartDate, setEndDate);
+  }, [endDate, setEndDate, setStartDate, startDate]);
 
   const buildExpenseListQuery = useCallback(() => {
     const query: ExpenseListQuery = {
@@ -136,6 +148,7 @@ const ExpenseFilterProvider = ({ children }: { children: React.ReactNode }) => {
       setEndDate,
       // Helpers
       resetFilters,
+      openMonthPicker,
       openStartDatePicker,
       openEndDatePicker,
       goToNextMonth,
@@ -149,6 +162,7 @@ const ExpenseFilterProvider = ({ children }: { children: React.ReactNode }) => {
       goToNextMonth,
       goToPrevMonth,
       openEndDatePicker,
+      openMonthPicker,
       openStartDatePicker,
       resetFilters,
       searchField,

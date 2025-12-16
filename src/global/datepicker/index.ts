@@ -6,7 +6,7 @@ let pickerIdCounter = 0;
 
 export function useDatePicker(initial?: Date) {
   const [date, setDate] = useState<Date | undefined>(initial);
-  const [pickerId] = useState(() => `picker-${++pickerIdCounter}`);
+  const [pickerId] = useState(() => `date-picker-${++pickerIdCounter}`);
 
   const open = useCallback(() => {
     datePickerBus.emit('open', { initial: date, pickerId });

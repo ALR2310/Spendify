@@ -151,7 +151,7 @@ export default function ExpenseFilterSection() {
 
   const drawerRef = useRef<DrawerRef>(null!);
 
-  const { startDate, endDate, goToNextMonth, goToPrevMonth } = useExpenseFilterContext();
+  const { startDate, endDate, goToNextMonth, goToPrevMonth, openMonthPicker } = useExpenseFilterContext();
 
   const monthDisplayText = useMemo(() => {
     if (!isValidMonthRange(startDate, endDate)) {
@@ -177,7 +177,10 @@ export default function ExpenseFilterSection() {
           <button className="btn btn-ghost join-item" onClick={goToPrevMonth}>
             <ChevronLeft size={20} />
           </button>
-          <button className="btn btn-ghost join-item flex-1">{monthDisplayText}</button>
+
+          <button className="btn btn-ghost join-item flex-1" onClick={openMonthPicker}>
+            {monthDisplayText}
+          </button>
 
           <button className="btn btn-ghost join-item" onClick={goToNextMonth}>
             <ChevronRight size={20} />

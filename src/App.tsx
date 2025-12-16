@@ -3,12 +3,11 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import { ToastContainer } from 'react-toastify';
 
 import { ROUTES } from './common/constants/routes.const';
-import { DayPickerProvider } from './context/DayPickerContext';
 import { EmojiPickerProvider } from './context/EmojiPickerContext';
-import { MonthPickerProvider } from './context/MonthPickerContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ConfirmContainer } from './global/confirm/confirmContainer';
 import DatePickerContainer from './global/datepicker/DatePickerContainer';
+import MonthPickerContainer from './global/monthpicker/MonthPickerContainer';
 import { useThemeContext } from './hooks/app/useTheme';
 import MainLayout from './layouts/MainLayout';
 import ExpensePage from './pages/expenses/ExpensePage';
@@ -31,24 +30,21 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <DayPickerProvider>
-        <MonthPickerProvider>
-          <EmojiPickerProvider>
-            {children}
-            <DatePickerContainer />
-            <ConfirmContainer />
-            <ToastContainer
-              className="toast-container"
-              autoClose={2000}
-              theme={resolvedTheme}
-              pauseOnHover={false}
-              position="top-center"
-              hideProgressBar={true}
-              closeOnClick={true}
-            />
-          </EmojiPickerProvider>
-        </MonthPickerProvider>
-      </DayPickerProvider>
+      <EmojiPickerProvider>
+        {children}
+        <DatePickerContainer />
+        <MonthPickerContainer />
+        <ConfirmContainer />
+        <ToastContainer
+          className="toast-container"
+          autoClose={2000}
+          theme={resolvedTheme}
+          pauseOnHover={false}
+          position="top-center"
+          hideProgressBar={true}
+          closeOnClick={true}
+        />
+      </EmojiPickerProvider>
     </QueryClientProvider>
   );
 };
