@@ -1,11 +1,9 @@
 import { LogIn, LogOut, User } from 'lucide-react';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
 import { appConfig } from '@/configs/app.config';
-import { googleAuthService } from '@/services/googleauth.service';
+import { useAuthContext } from '@/hooks/app/useAuth';
 
 import SettingItem from '../components/SettingItem';
 import SettingSection from '../components/SettingSection';
@@ -13,33 +11,28 @@ import SettingSection from '../components/SettingSection';
 export default function SettingAccountSection() {
   const { t } = useTranslation();
 
-  const queryClient = useQueryClient();
-
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const { isLoggedIn, login, logout } = useAuthContext();
 
   const handleLogin = async () => {
     try {
-      await googleAuthService.login();
-      setIsLoggedIn(true);
-
-      queryClient.invalidateQueries();
+      await login();
+      toast.success('Logged in successfully');
     } catch (error) {
       console.error('Login failed:', error);
+      toast.error('Login failed');
     }
   };
 
   const handleLogout = async () => {
-    try {
-      await googleAuthService.logout();
-      setIsLoggedIn(false);
+    await toast.promise(logout(), {
+      pending: 'Logging out...',
+      success: 'Logged out successfully',
+      error: 'Logout failed',
+    });
 
-      toast.success('Logged out successfully');
-
-      queryClient.invalidateQueries();
-      appConfig.data.firstSync = true;
-      appConfig.data.fileId = null;
-      appConfig.data.dateSync = null;
-    } catch (error) {}
+    appConfig.data.firstSync = true;
+    appConfig.data.fileId = null;
+    appConfig.data.dateSync = null;
   };
 
   return (

@@ -32,7 +32,7 @@ export default function MainLayout() {
             animate="animate"
             exit="exit"
             transition={{
-              duration: 0.25,
+              duration: 0.15,
               ease: 'easeInOut',
             }}
             className="absolute inset-0 overflow-auto no-scrollbar"

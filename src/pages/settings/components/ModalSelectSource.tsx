@@ -3,21 +3,11 @@ import { Check, Cloud, HardDrive } from 'lucide-react';
 import { memo, RefObject, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { iconColorClasses } from '@/common/constants/colorClasses';
 import Modal, { ModalRef } from '@/components/Modal';
-import { useGoogleIsLoggedInQuery } from '@/hooks/apis/googleauth.hook';
 import { useStorageStatusQuery } from '@/hooks/apis/storage.hook';
+import { useAuthContext } from '@/hooks/app/useAuth';
 import { formatBytes } from '@/utils/general.utils';
-
-const iconColorClasses = {
-  primary: 'bg-primary/10 text-primary',
-  secondary: 'bg-secondary/10 text-secondary',
-  accent: 'bg-accent/10 text-accent',
-  info: 'bg-info/10 text-info',
-  success: 'bg-success/10 text-success',
-  warning: 'bg-warning/10 text-warning',
-  error: 'bg-error/10 text-error',
-  neutral: 'bg-base-content/10',
-};
 
 interface DataSource {
   type: 'cloud' | 'local';
@@ -38,8 +28,8 @@ export default function ModalSelectSource({ modalRef, onSelect }: ModalSelectSou
 
   const [selectedSource, setSelectedSource] = useState<DataSource['type']>();
 
-  const { data: isLoggedIn } = useGoogleIsLoggedInQuery();
-  const { data: storages } = useStorageStatusQuery(isLoggedIn ?? false);
+  const { isLoggedIn } = useAuthContext();
+  const { data: storages } = useStorageStatusQuery(isLoggedIn);
 
   const data: DataSource[] = storages
     ? [

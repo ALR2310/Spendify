@@ -18,7 +18,7 @@ import {
   useStorageSyncMutation,
   useStorageUploadMutation,
 } from '@/hooks/apis/storage.hook';
-import { googleAuthService } from '@/services/googleauth.service';
+import { useAuthContext } from '@/hooks/app/useAuth';
 
 import ModalSelectSource from '../components/ModalSelectSource';
 import SettingItem from '../components/SettingItem';
@@ -29,6 +29,8 @@ export default function SettingDataSection() {
 
   const queryClient = useQueryClient();
   const modalRef = useRef<ModalRef>(null!);
+
+  const { isLoggedIn } = useAuthContext();
 
   const { mutateAsync: exportData } = useStorageExportMutation();
   const { mutateAsync: importData } = useStorageImportMutation();
@@ -53,7 +55,7 @@ export default function SettingDataSection() {
       const jsonString = textDecoder.decode(Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0)));
       const data: StorageExportResponse = JSON.parse(jsonString);
 
-      toast.promise(importData(data), {
+      await toast.promise(importData(data), {
         pending: 'Importing data...',
         success: 'Data imported successfully!',
         error: 'Failed to import data. Invalid file format.',
@@ -102,7 +104,6 @@ export default function SettingDataSection() {
 
   const handleSync = async () => {
     try {
-      const isLoggedIn = await googleAuthService.isLoggedIn();
       if (!isLoggedIn) {
         toast.error('You need to be logged in to sync data.');
         return;
@@ -112,7 +113,7 @@ export default function SettingDataSection() {
         return modalRef.current.showModal();
       }
 
-      toast.promise(syncData(), {
+      await toast.promise(syncData(), {
         pending: 'Syncing data...',
         success: 'Sync completed successfully!',
         error: 'Failed to sync data.',
@@ -125,18 +126,20 @@ export default function SettingDataSection() {
     }
   };
 
-  const handleImportFromSource = async (source?: 'cloud' | 'local') => {
+  const handleSelect = async (source?: 'cloud' | 'local') => {
     if (!source) return;
 
     const actionMethod = source === 'local' ? uploadData : downloadData;
 
-    toast.promise(actionMethod(), {
-      pending: 'Syncing data...',
-      success: 'Data synced successfully!',
-      error: 'Failed to sync data.',
-    });
-
-    queryClient.invalidateQueries();
+    toast
+      .promise(actionMethod(), {
+        pending: 'Syncing data...',
+        success: 'Data synced successfully!',
+        error: 'Failed to sync data.',
+      })
+      .then(() => {
+        queryClient.invalidateQueries();
+      });
   };
 
   return (
@@ -179,7 +182,7 @@ export default function SettingDataSection() {
         />
       </SettingSection>
 
-      <ModalSelectSource modalRef={modalRef} onSelect={handleImportFromSource} />
+      <ModalSelectSource modalRef={modalRef} onSelect={handleSelect} />
     </>
   );
 }
