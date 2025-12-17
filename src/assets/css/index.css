@@ -26,6 +26,15 @@
     --font-sans: 'Roboto', system-ui, sans-serif;
   }
 
+  /* Disable outline on SVG charts (Recharts) */
+  svg:focus {
+    outline: none;
+  }
+
+  svg:focus-visible {
+    outline: none;
+  }
+
   /*hidden spinner in Chrome, Safari, Edge, Opera */
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
