@@ -26,6 +26,7 @@ export default function SettingAppSection() {
       <SettingItem
         icon={RefreshCw}
         iconColor="accent"
+        hoverColor="accent"
         title={t('settings.app.appAutoUpdate')}
         description={t('settings.app.appAutoUpdateDesc')}
         action={

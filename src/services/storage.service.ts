@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { Transaction } from 'kysely';
 import pako from 'pako';
 
 import { logger } from '@/common/logger';
@@ -9,7 +10,8 @@ import {
   StorageSyncResponse,
 } from '@/common/types/storage.type';
 import { appConfig } from '@/configs/app.config';
-import { db, saveWebStore } from '@/database';
+import { database, db, saveWebStore } from '@/database';
+import { Database } from '@/database/types';
 import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 
 import { googleAuthService } from './googleauth.service';
@@ -17,6 +19,29 @@ import { FileMetadata, GoogleDriveService } from './googledrive.service';
 
 export const storageService = new (class StorageService {
   private googleDriveService: GoogleDriveService | null = null;
+
+  async delete(): Promise<void> {
+    try {
+      await this.clearAllData();
+      await database.execute('VACUUM', false);
+      await saveWebStore();
+    } catch (error) {
+      logger.error('Error when deleting all data', error);
+      throw error;
+    }
+  }
+
+  private async clearAllData<T>(fn?: (trx: Transaction<Database>) => Promise<T>): Promise<T | void> {
+    return db.transaction().execute(async (trx) => {
+      await trx.deleteFrom('expenses').execute();
+      await trx.deleteFrom('recurring').execute();
+      await trx.deleteFrom('categories').execute();
+      await trx.deleteFrom('notes').execute();
+      await trx.deleteFrom(<any>'sqlite_sequence').execute();
+
+      if (fn) return await fn(trx);
+    });
+  }
 
   async migrateData(data: SpendingData): Promise<StorageExportResponse> {
     const dateNow = new Date().toISOString();
@@ -79,19 +104,19 @@ export const storageService = new (class StorageService {
 
     const { expenses, categories, recurring, notes } = data;
 
-    await db.transaction().execute(async (trx) => {
-      await trx.deleteFrom('expenses').execute();
-      await trx.deleteFrom('recurring').execute();
-      await trx.deleteFrom('categories').execute();
-      await trx.deleteFrom('notes').execute();
+    try {
+      await this.clearAllData(async (trx) => {
+        if (categories.length > 0) await trx.insertInto('categories').values(categories).execute();
+        if (expenses.length > 0) await trx.insertInto('expenses').values(expenses).execute();
+        if (recurring.length > 0) await trx.insertInto('recurring').values(recurring).execute();
+        if (notes.length > 0) await trx.insertInto('notes').values(notes).execute();
+      });
 
-      if (categories.length > 0) await trx.insertInto('categories').values(categories).execute();
-      if (expenses.length > 0) await trx.insertInto('expenses').values(expenses).execute();
-      if (recurring.length > 0) await trx.insertInto('recurring').values(recurring).execute();
-      if (notes.length > 0) await trx.insertInto('notes').values(notes).execute();
-    });
-
-    await saveWebStore();
+      await saveWebStore();
+    } catch (error) {
+      logger.error('Error when importing data', error);
+      throw error;
+    }
   }
 
   async export(): Promise<StorageExportResponse> {

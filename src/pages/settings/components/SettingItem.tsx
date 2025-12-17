@@ -12,7 +12,7 @@ interface SettingItemProps {
   onClick?: () => void;
   showChevron?: boolean;
   showBorder?: boolean;
-  hoverColor?: 'accent' | 'info' | 'warning' | 'error' | 'base';
+  hoverColor?: 'primary' | 'accent' | 'info' | 'warning' | 'error' | 'base';
   className?: string;
   children?: ReactNode;
 }
@@ -26,7 +26,7 @@ export default function SettingItem({
   onClick,
   showChevron = false,
   showBorder = false,
-  hoverColor = 'accent',
+  hoverColor,
   className = '',
   children,
 }: SettingItemProps) {
@@ -35,10 +35,10 @@ export default function SettingItem({
   const containerProps = isClickable
     ? {
         onClick,
-        className: `w-full flex items-center gap-4 p-4 rounded-xl transition-colors cursor-pointer ${className} ${hoverColorClasses[hoverColor]}`,
+        className: `w-full flex items-center gap-4 p-4 rounded-xl transition-colors cursor-pointer ${className} ${hoverColor && hoverColorClasses[hoverColor]}`,
       }
     : {
-        className: `flex items-center gap-4 p-4 rounded-xl ${className}`,
+        className: `flex items-center gap-4 p-4 rounded-xl ${className} ${hoverColor && hoverColorClasses[hoverColor]}`,
       };
 
   return (
@@ -55,7 +55,7 @@ export default function SettingItem({
           {children}
         </div>
         {action}
-        {showChevron && !action && <ChevronRight size={18} className="opacity-40" />}
+        {showChevron && !action && <ChevronRight className="opacity-40" />}
       </Container>
     </div>
   );
