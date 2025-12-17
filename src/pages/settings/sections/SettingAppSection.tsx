@@ -32,7 +32,7 @@ export default function SettingAppSection() {
         action={
           <input
             type="checkbox"
-            className="toggle toggle-success"
+            className="toggle toggle-accent"
             checked={autoUpdate}
             onChange={(e) => setAutoUpdate(e.target.checked)}
           />

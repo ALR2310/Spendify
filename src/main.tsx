@@ -1,10 +1,11 @@
 import './configs/i18n.config';
 
+import { App } from '@capacitor/app';
 import { sql } from 'kysely';
 import { createRoot } from 'react-dom/client';
 import { toast } from 'react-toastify';
 
-import App from './App';
+import AppContainer from './App';
 import { appConfig } from './configs/app.config';
 import { db } from './database';
 import { initializeTables } from './database/tables';
@@ -26,4 +27,8 @@ await googleAuthService.init();
 // Init Database
 await initializeTables();
 
-root.render(<App />);
+App.addListener('backButton', () => {
+  App.minimizeApp();
+});
+
+root.render(<AppContainer />);
