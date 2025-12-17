@@ -35,7 +35,7 @@ const config: CapacitorConfig = {
     webContentsDebuggingEnabled: true,
     buildOptions: {
       keystorePath: path.resolve(__dirname, 'spendify-key.jks'),
-      keystoreAlias: process.env.ANDROID_KEY_ALIAS,
+      keystoreAlias: process.env.ANDROID_KEYSTORE_ALIAS,
       keystorePassword: process.env.ANDROID_KEYSTORE_PASSWORD,
       releaseType: 'APK',
       signingType: 'apksigner',

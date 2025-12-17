@@ -21,7 +21,7 @@ export default defineConfig({
     cssMinify: !isDev,
     emptyOutDir: true,
     outDir: 'dist',
-    chunkSizeWarningLimit: 1600,
+    chunkSizeWarningLimit: 5000,
     target: 'esnext',
     rollupOptions: {
       external: ['jeep-sqlite'],
