@@ -16,6 +16,7 @@ import ExpensePage from './pages/expenses/ExpensePage';
 import ExpenseLayout from './pages/expenses/layouts/ExpenseLayout';
 import NotePage from './pages/notes/NotePage';
 import SettingPage from './pages/settings/SettingPage';
+import StatisticLayout from './pages/statistics/layouts/StatisticLayout';
 import StatisticPage from './pages/statistics/StatisticPage';
 
 const queryClient = new QueryClient({
@@ -63,7 +64,9 @@ const AppRoutes = () => {
           <Route path={ROUTES.EXPENSES} element={<ExpenseLayout />}>
             <Route index element={<ExpensePage />} />
           </Route>
-          <Route path={ROUTES.STATISTICS} element={<StatisticPage />} />
+          <Route path={ROUTES.STATISTICS} element={<StatisticLayout />}>
+            <Route index element={<StatisticPage />} />
+          </Route>
           <Route path={ROUTES.NOTES} element={<NotePage />} />
           <Route path={ROUTES.SETTINGS} element={<SettingPage />} />
         </Route>

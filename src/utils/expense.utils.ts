@@ -34,6 +34,8 @@ export function isValidMonthRange(startDate?: Date | null, endDate?: Date | null
   if (end.isBefore(start, 'day')) return false;
 
   return (
-    start.isSame(start.startOf('month'), 'day') && end.isSame(end.endOf('month'), 'day') && start.isSame(end, 'month')
+    start.isSame(start.startOf('month'), 'day') &&
+    end.isSame(end.endOf('month'), 'day') &&
+    start.isSame(end, 'month')
   );
 }

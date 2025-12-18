@@ -120,6 +120,21 @@
       "version": "Phiên bản ứng dụng"
     }
   },
+  "statistics": {
+    "filter": {
+      "period": "Kỳ",
+      "startDate": "Ngày bắt đầu",
+      "endDate": "Ngày kết thúc",
+      "oneDay": "1 ngày",
+      "oneWeek": "1 tuần",
+      "oneMonth": "1 tháng",
+      "sixMonths": "6 tháng"
+    },
+    "form": {
+      "close": "Đóng",
+      "reset": "Đặt lại"
+    }
+  },
   "pickers": {
     "dayPicker": {
       "title": "Chọn ngày"

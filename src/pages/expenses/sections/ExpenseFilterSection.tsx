@@ -41,7 +41,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
         <label className="floating-label">
           <span>{t('expenses.form.dayFrom')}</span>
           <label className="input input-lg">
-            <CalendarDaysIcon size={20} />
+            <CalendarDaysIcon size={20} className="text-base-content/70" />
             <input
               type="search"
               className="grow"
@@ -56,7 +56,7 @@ function ExpenseFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
         <label className="floating-label">
           <span>{t('expenses.form.dayTo')}</span>
           <label className="input input-lg">
-            <CalendarDaysIcon size={20} />
+            <CalendarDaysIcon size={20} className="text-base-content/70" />
             <input
               type="search"
               className="grow"

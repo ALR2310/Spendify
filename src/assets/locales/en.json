@@ -120,6 +120,21 @@
       "version": "App Version"
     }
   },
+  "statistics": {
+    "filter": {
+      "period": "Period",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "oneDay": "1 day",
+      "oneWeek": "1 week",
+      "oneMonth": "1 month",
+      "sixMonths": "6 months"
+    },
+    "form": {
+      "close": "Close",
+      "reset": "Reset"
+    }
+  },
   "pickers": {
     "dayPicker": {
       "title": "Select Day"
