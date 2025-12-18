@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useExpenseOverview } from '@/hooks/apis/expense.hook';
 import { useExpenseFilterContext } from '@/hooks/app/useExpense';
-import { formatCurrencyWithCompact } from '@/utils/expense.utils';
+import { formatCurrencyWithCompact } from '@/utils/general.utils';
 
 const progressColors = ['progress-primary', 'progress-accent', 'progress-secondary'];
 

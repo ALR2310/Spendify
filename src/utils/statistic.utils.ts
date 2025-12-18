@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { TrendingDown, TrendingUp, Wallet } from 'lucide-react';
 
 export function formatDateRange(startDate?: Date | null, endDate?: Date | null): string {
   if (!startDate || !endDate) return '';
@@ -27,4 +28,28 @@ export function formatDateRange(startDate?: Date | null, endDate?: Date | null):
 
   // Different years: "1/1/2025 - 30/2/2026"
   return `${start.format('D/M/YYYY')} - ${end.format('D/M/YYYY')}`;
+}
+
+type ChangeType = 'income' | 'expense' | 'balance';
+
+export function resolveChangeUI(change: number, type: ChangeType) {
+  if (!change || change === 0) {
+    return {
+      text: '—',
+      Icon: Wallet,
+      color: 'text-base-content/50',
+      bgColor: 'bg-base-200',
+    };
+  }
+
+  const isIncrease = change > 0;
+
+  const isPositive = type === 'expense' ? !isIncrease : isIncrease;
+
+  return {
+    text: `${Math.abs(change * 100).toFixed(1)}%`,
+    Icon: isIncrease ? TrendingUp : TrendingDown,
+    color: isPositive ? 'text-success' : 'text-error',
+    bgColor: isPositive ? 'bg-success/10' : 'bg-error/10',
+  };
 }

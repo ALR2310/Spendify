@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { createContext, useCallback, useMemo, useState } from 'react';
 
+import { StatisticTimeUnitEnum } from '@/common/types/statistic.type';
 import { useDatePicker } from '@/global/datepicker';
 import { getCurrentMonth, isValidMonthRange } from '@/utils/expense.utils';
 
@@ -21,6 +22,8 @@ const setMonthRange = (
 
 interface StatisticFilterContextValue {
   // Filter states
+  timeUnit: StatisticTimeUnitEnum;
+  setTimeUnit: (timeUnit: StatisticTimeUnitEnum) => void;
   categoryIds: number[];
   setCategoryIds: (categoryIds: number[]) => void;
   startDate: Date | undefined;
@@ -39,6 +42,7 @@ interface StatisticFilterContextValue {
 const StatisticFilterContext = createContext<StatisticFilterContextValue>(null!);
 
 const StatisticFilterProvider = ({ children }: { children: React.ReactNode }) => {
+  const [timeUnit, setTimeUnit] = useState<StatisticTimeUnitEnum>(StatisticTimeUnitEnum.Day);
   const [categoryIds, setCategoryIds] = useState<number[]>([]);
 
   const {
@@ -88,6 +92,8 @@ const StatisticFilterProvider = ({ children }: { children: React.ReactNode }) =>
 
   const ctx = useMemo(
     () => ({
+      timeUnit,
+      setTimeUnit,
       categoryIds,
       setCategoryIds,
       startDate,
@@ -107,6 +113,7 @@ const StatisticFilterProvider = ({ children }: { children: React.ReactNode }) =>
       goToPrevMonth,
       openEndDatePicker,
       openStartDatePicker,
+      timeUnit,
       resetFilters,
       setEndDate,
       setStartDate,

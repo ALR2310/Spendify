@@ -133,6 +133,24 @@
     "form": {
       "close": "Đóng",
       "reset": "Đặt lại"
+    },
+    "chart": {
+      "categoryDistribution": "Phân bổ danh mục",
+      "incomeVsExpense": "Thu nhập vs Chi tiêu",
+      "balanceTrend": "Xu hướng số dư",
+      "income": "Thu nhập",
+      "expense": "Chi tiêu",
+      "balance": "Số dư"
+    },
+    "summary": {
+      "title": "Thống kê tóm tắt",
+      "avgTransaction": "Giao dịch trung bình",
+      "totalTransaction": "Tổng giao dịch",
+      "maxExpense": "Chi tiêu tối đa",
+      "minExpense": "Chi tiêu tối thiểu",
+      "totalIncome": "Tổng thu nhập",
+      "totalExpense": "Tổng chi tiêu",
+      "balance": "Số dư"
     }
   },
   "pickers": {

@@ -1,3 +1,20 @@
+export const COLORS = [
+  'var(--color-primary)',
+  'var(--color-secondary)',
+  'var(--color-accent)',
+  'var(--color-info)',
+  'var(--color-success)',
+  'var(--color-warning)',
+  'var(--color-error)',
+  'var(--color-primary-content)',
+  'var(--color-secondary-content)',
+  'var(--color-accent-content)',
+  'var(--color-info-content)',
+  'var(--color-success-content)',
+  'var(--color-warning-content)',
+  'var(--color-error-content)',
+] as const;
+
 export const iconColorClasses = {
   primary: 'bg-primary/10 text-primary',
   secondary: 'bg-secondary/10 text-secondary',

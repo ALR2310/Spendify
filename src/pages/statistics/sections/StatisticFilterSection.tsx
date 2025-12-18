@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ThemeEnum } from '@/common/enums/appconfig.enum';
+import { StatisticTimeUnitEnum } from '@/common/types/statistic.type';
 import Drawer, { DrawerRef } from '@/components/Drawer';
 import Skeleton from '@/components/Skeleton';
 import { useCategoryListQuery } from '@/hooks/apis/category.hook';
@@ -20,10 +21,7 @@ function StatisticFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
 
   const handlePredefinedDateRange = (days: number) => {
     const today = dayjs();
-    const startDate = today
-      .subtract(days - 1, 'day')
-      .startOf('day')
-      .toDate();
+    const startDate = today.subtract(days, 'day').startOf('day').toDate();
     const endDate = today.endOf('day').toDate();
     filterContext.setStartDate(startDate);
     filterContext.setEndDate(endDate);
@@ -91,6 +89,21 @@ function StatisticFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
         <button className="btn btn-sm btn-soft" onClick={() => handlePredefinedDateRange(180)}>
           {t('statistics.filter.sixMonths')}
         </button>
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 items-center">
+        <label className="label text-lg">Time Unit:</label>
+        <select
+          className="select select-lg capitalize col-span-2"
+          value={filterContext.timeUnit}
+          onChange={(e) => filterContext.setTimeUnit(e.target.value as StatisticTimeUnitEnum)}
+        >
+          {Object.entries(StatisticTimeUnitEnum).map(([key, value]) => (
+            <option key={key} value={value}>
+              {value}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Category Filter */}

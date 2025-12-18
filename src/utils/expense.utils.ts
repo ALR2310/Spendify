@@ -15,11 +15,6 @@ export function groupExpenseByDate(expenses: ExpenseListResponse['data']) {
   return groups;
 }
 
-export function formatCurrencyWithCompact(amount: number) {
-  const useCompact = Math.abs(amount) >= 100_000_000;
-  return formatCurrency(amount, useCompact ? { notation: 'compact' } : {});
-}
-
 export function getCurrentMonth(date?: Date | undefined) {
   const currentDate = date ? dayjs(date) : dayjs();
   return { year: currentDate.year(), month: currentDate.month() + 1 };

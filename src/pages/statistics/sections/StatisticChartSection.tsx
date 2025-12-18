@@ -16,40 +16,20 @@ import {
   YAxis,
 } from 'recharts';
 
+import { COLORS } from '@/common/constants/colorClasses';
+import { useStatisticOverview } from '@/hooks/apis/statistic.hook';
+import { useStatisticFilterContext } from '@/hooks/app/useStatistic';
+
 export default function StatisticChartSection() {
   const { t } = useTranslation();
 
-  const chartData = useMemo(
-    () => [
-      { month: 'Jan', income: 4000, expense: 2400 },
-      { month: 'Feb', income: 3000, expense: 1398 },
-      { month: 'Mar', income: 2000, expense: 9800 },
-      { month: 'Apr', income: 2780, expense: 3908 },
-      { month: 'May', income: 1890, expense: 4800 },
-      { month: 'Jun', income: 2390, expense: 3800 },
-    ],
-    [],
-  );
+  const { timeUnit, startDate, endDate } = useStatisticFilterContext();
 
-  const categoryData = useMemo(
-    () => [
-      { name: t('statistics.category.food'), value: 35 },
-      { name: t('statistics.category.transport'), value: 25 },
-      { name: t('statistics.category.entertainment'), value: 20 },
-      { name: t('statistics.category.utilities'), value: 20 },
-    ],
-    [t],
-  );
-
-  const COLORS = [
-    'var(--color-primary)',
-    'var(--color-secondary)',
-    'var(--color-accent)',
-    'var(--color-info)',
-    'var(--color-success)',
-    'var(--color-warning)',
-    'var(--color-error)',
-  ];
+  const { data } = useStatisticOverview({
+    timeUnit,
+    startDate: startDate?.toISOString(),
+    endDate: endDate?.toISOString(),
+  });
 
   // Memoize theme colors to reduce re-renders
   const themeStyles = useMemo(
@@ -61,9 +41,6 @@ export default function StatisticChartSection() {
     }),
     [],
   );
-
-  // Memoize chart margin to prevent object recreation
-  const chartMargin = useMemo(() => ({ top: 10, right: 20, left: -20, bottom: 0 }), []);
 
   // Memoize tooltip styles
   const tooltipContentStyle = useMemo(
@@ -90,21 +67,21 @@ export default function StatisticChartSection() {
         <ResponsiveContainer width="100%" height={288}>
           <PieChart>
             <Pie
-              data={categoryData}
+              data={data?.categoryDistribution}
               cx="50%"
               cy="50%"
               innerRadius={60}
               outerRadius={110}
               paddingAngle={5}
-              dataKey="value"
-              label={({ name, value }) => `${name}: ${value}%`}
+              dataKey="percentage"
+              label={({ name, value }) => `${name}: ${value.toFixed(1)}%`}
             >
-              {categoryData.map((_, index) => (
+              {data?.categoryDistribution.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} className="outline-none" />
               ))}
             </Pie>
             <Tooltip
-              formatter={(value) => `${value}%`}
+              formatter={(value) => `${Number(value).toFixed(1)}%`}
               contentStyle={tooltipContentStyle}
               itemStyle={{ color: themeStyles.textColor }}
             />
@@ -120,9 +97,9 @@ export default function StatisticChartSection() {
         </h3>
 
         <ResponsiveContainer width="100%" height={288} debounce={300}>
-          <BarChart data={chartData} margin={chartMargin}>
+          <BarChart data={data?.cashFlow}>
             <CartesianGrid strokeDasharray="3 3" stroke={themeStyles.gridColor} vertical={false} />
-            <XAxis dataKey="month" stroke={themeStyles.textColor} tick={{ fontSize: 11 }} interval={0} />
+            <XAxis dataKey="date" stroke={themeStyles.textColor} tick={{ fontSize: 11 }} interval={0} />
             <YAxis stroke={themeStyles.textColor} tick={{ fontSize: 11 }} />
             <Tooltip contentStyle={tooltipContentStyle} labelStyle={tooltipLabelStyle} cursor={false} />
             <Legend wrapperStyle={{ color: themeStyles.textColor }} />
@@ -151,16 +128,26 @@ export default function StatisticChartSection() {
         </h3>
 
         <ResponsiveContainer width="100%" height={288} debounce={300}>
-          <LineChart data={chartData} margin={chartMargin}>
+          <LineChart data={data?.cashFlow}>
             <CartesianGrid strokeDasharray="3 3" stroke={themeStyles.gridColor} vertical={false} />
-            <XAxis dataKey="month" stroke={themeStyles.textColor} tick={{ fontSize: 11 }} interval={0} />
+            <XAxis dataKey="date" stroke={themeStyles.textColor} tick={{ fontSize: 11 }} interval={0} />
             <YAxis stroke={themeStyles.textColor} tick={{ fontSize: 11 }} />
             <Tooltip contentStyle={tooltipContentStyle} labelStyle={tooltipLabelStyle} cursor={false} />
             <Legend wrapperStyle={{ color: themeStyles.textColor }} />
             <Line
               type="monotone"
+              dataKey="balance"
+              stroke="var(--color-secondary)"
+              strokeWidth={2}
+              dot={false}
+              activeDot={{ r: 5 }}
+              name={t('statistics.chart.balance')}
+              isAnimationActive={false}
+            />
+            <Line
+              type="monotone"
               dataKey="income"
-              stroke="#10b981"
+              stroke="var(--color-success)"
               strokeWidth={2}
               dot={false}
               activeDot={{ r: 5 }}
@@ -170,7 +157,7 @@ export default function StatisticChartSection() {
             <Line
               type="monotone"
               dataKey="expense"
-              stroke="#f87171"
+              stroke="var(--color-error)"
               strokeWidth={2}
               dot={false}
               activeDot={{ r: 5 }}

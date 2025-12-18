@@ -133,6 +133,24 @@
     "form": {
       "close": "Close",
       "reset": "Reset"
+    },
+    "chart": {
+      "categoryDistribution": "Category Distribution",
+      "incomeVsExpense": "Income vs Expense",
+      "balanceTrend": "Balance Trend",
+      "income": "Income",
+      "expense": "Expense",
+      "balance": "Balance"
+    },
+    "summary": {
+      "title": "Summary Statistics",
+      "avgTransaction": "Avg Transaction",
+      "totalTransaction": "Total Transaction",
+      "maxExpense": "Max Expense",
+      "minExpense": "Min Expense",
+      "totalIncome": "Total Income",
+      "totalExpense": "Total Expense",
+      "balance": "Balance"
     }
   },
   "pickers": {

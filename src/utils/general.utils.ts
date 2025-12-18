@@ -84,3 +84,9 @@ export function formatBytes(bytes: number, decimals = 2): string {
 
   return `${value} ${sizes[i]}`;
 }
+
+export function formatCurrencyWithCompact(amount: number, compactThreshold = 100_000_000) {
+  const useCompact = Math.abs(amount) >= compactThreshold;
+
+  return formatCurrency(amount, useCompact ? { notation: 'compact' } : {});
+}
