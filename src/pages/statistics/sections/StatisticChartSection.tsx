@@ -59,8 +59,8 @@ export default function StatisticChartSection() {
   return (
     <div className="space-y-4">
       {/* Pie Chart */}
-      <div className="bg-base-200 rounded-lg md:rounded-xl p-2 md:p-4">
-        <h3 className="font-semibold text-base-content mb-2 text-sm md:text-base px-2 md:px-0">
+      <div className="bg-base-200 rounded-lg p-2">
+        <h3 className="font-semibold text-base-content mb-2 text-sm px-2">
           {t('statistics.chart.categoryDistribution')}
         </h3>
 
@@ -85,21 +85,25 @@ export default function StatisticChartSection() {
               contentStyle={tooltipContentStyle}
               itemStyle={{ color: themeStyles.textColor }}
             />
-            <Legend wrapperStyle={{ color: themeStyles.textColor }} />
           </PieChart>
         </ResponsiveContainer>
       </div>
 
       {/* Bar Chart */}
-      <div className="bg-base-200 rounded-lg md:rounded-xl p-2 md:p-4">
-        <h3 className="font-semibold text-base-content mb-2 text-sm md:text-base px-2 md:px-0">
+      <div className="bg-base-200 rounded-lg p-2">
+        <h3 className="font-semibold text-base-content mb-2 text-sm px-2">
           {t('statistics.chart.incomeVsExpense')}
         </h3>
 
         <ResponsiveContainer width="100%" height={288} debounce={300}>
           <BarChart data={data?.cashFlow}>
             <CartesianGrid strokeDasharray="3 3" stroke={themeStyles.gridColor} vertical={false} />
-            <XAxis dataKey="date" stroke={themeStyles.textColor} tick={{ fontSize: 11 }} interval={0} />
+            <XAxis
+              dataKey="date"
+              stroke={themeStyles.textColor}
+              tick={{ fontSize: 11 }}
+              interval={'preserveStartEnd'}
+            />
             <YAxis stroke={themeStyles.textColor} tick={{ fontSize: 11 }} />
             <Tooltip contentStyle={tooltipContentStyle} labelStyle={tooltipLabelStyle} cursor={false} />
             <Legend wrapperStyle={{ color: themeStyles.textColor }} />
@@ -122,15 +126,18 @@ export default function StatisticChartSection() {
       </div>
 
       {/* Line Chart */}
-      <div className="bg-base-200 rounded-lg md:rounded-xl p-2 md:p-4">
-        <h3 className="font-semibold text-base-content mb-2 text-sm md:text-base px-2 md:px-0">
-          {t('statistics.chart.balanceTrend')}
-        </h3>
+      <div className="bg-base-200 rounded-lg p-2">
+        <h3 className="font-semibold text-base-content mb-2 text-sm px-2">{t('statistics.chart.balanceTrend')}</h3>
 
         <ResponsiveContainer width="100%" height={288} debounce={300}>
           <LineChart data={data?.cashFlow}>
             <CartesianGrid strokeDasharray="3 3" stroke={themeStyles.gridColor} vertical={false} />
-            <XAxis dataKey="date" stroke={themeStyles.textColor} tick={{ fontSize: 11 }} interval={0} />
+            <XAxis
+              dataKey="date"
+              stroke={themeStyles.textColor}
+              tick={{ fontSize: 11 }}
+              interval={'preserveStartEnd'}
+            />
             <YAxis stroke={themeStyles.textColor} tick={{ fontSize: 11 }} />
             <Tooltip contentStyle={tooltipContentStyle} labelStyle={tooltipLabelStyle} cursor={false} />
             <Legend wrapperStyle={{ color: themeStyles.textColor }} />

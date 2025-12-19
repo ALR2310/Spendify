@@ -169,8 +169,8 @@ export default function StatisticFilterSection() {
           </button>
 
           <div className="text-center flex-1">
-            <p className="font-semibold text-sm md:text-base text-base-content">{t('statistics.filter.period')}</p>
-            <p className="text-xs md:text-sm text-base-content/60">{formatDateRange(startDate, endDate)}</p>
+            <p className="font-semibold text-sm text-base-content">{t('statistics.filter.period')}</p>
+            <p className="text-xs text-base-content/60">{formatDateRange(startDate, endDate)}</p>
           </div>
 
           <button className="btn btn-ghost join-item" onClick={goToNextMonth}>

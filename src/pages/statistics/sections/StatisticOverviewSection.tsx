@@ -37,7 +37,7 @@ function SummaryStats({ data }: { data?: StatisticOverview['summary'] }) {
     const Icon = item.Icon ?? Wallet;
 
     return (
-      <div key={index} className="bg-base-200 rounded-lg md:rounded-xl p-2 md:p-4 space-y-2">
+      <div key={index} className="bg-base-200 rounded-lg p-2 space-y-2">
         <div className="flex items-center justify-between gap-1">
           <p className="text-xs text-base-content/60 line-clamp-1">{item.label}</p>
 
@@ -72,36 +72,36 @@ export default function StatisticOverviewSection() {
   return (
     <div className="space-y-4">
       {/* Overview Cards */}
-      <div className="grid grid-cols-3 gap-2 md:gap-3">
+      <div className="grid grid-cols-3 gap-2">
         <SummaryStats data={data?.summary} />
       </div>
 
       {/* Summary Stats */}
-      <div className="bg-base-200 rounded-lg md:rounded-xl p-3 md:p-4 space-y-3">
-        <h3 className="font-semibold text-base-content text-sm md:text-base">{t('statistics.summary.title')}</h3>
+      <div className="bg-base-200 rounded-lg p-3 space-y-3">
+        <h3 className="font-semibold text-base-content text-sm">{t('statistics.summary.title')}</h3>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+        <div className="grid grid-cols-2 gap-2">
           <div className="p-2 md:p-3 bg-base-100 rounded-lg">
             <p className="text-xs text-base-content/60">{t('statistics.summary.avgTransaction')}</p>
-            <p className="font-semibold text-sm md:text-base text-base-content">
+            <p className="font-semibold text-sm text-base-content">
               {formatCurrencyWithCompact(data?.summary.expense.average ?? 0)}
             </p>
           </div>
           <div className="p-2 md:p-3 bg-base-100 rounded-lg">
             <p className="text-xs text-base-content/60">{t('statistics.summary.totalTransaction')}</p>
-            <p className="font-semibold text-sm md:text-base text-base-content">
+            <p className="font-semibold text-sm text-base-content">
               {formatCurrencyWithCompact(data?.summary.expense.total ?? 0)}
             </p>
           </div>
           <div className="p-2 md:p-3 bg-base-100 rounded-lg">
             <p className="text-xs text-base-content/60">{t('statistics.summary.maxExpense')}</p>
-            <p className="font-semibold text-sm md:text-base text-base-content">
+            <p className="font-semibold text-sm text-base-content">
               {formatCurrencyWithCompact(data?.summary.expense.max ?? 0)}
             </p>
           </div>
           <div className="p-2 md:p-3 bg-base-100 rounded-lg">
             <p className="text-xs text-base-content/60">{t('statistics.summary.minExpense')}</p>
-            <p className="font-semibold text-sm md:text-base text-success">
+            <p className="font-semibold text-sm text-success">
               {formatCurrencyWithCompact(data?.summary.expense.min ?? 0)}
             </p>
           </div>
