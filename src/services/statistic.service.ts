@@ -10,8 +10,13 @@ export const statisticService = new (class StatisticService {
 
     const data = await this.getExpenses(startDate, endDate, categoryIds);
 
-    const expenses = data.filter((item) => item.type === ExpenseTypeEnum.Expense);
-    const incomes = data.filter((item) => item.type === ExpenseTypeEnum.Income);
+    const expenses: typeof data = [];
+    const incomes: typeof data = [];
+
+    for (const item of data) {
+      if (item.type === ExpenseTypeEnum.Expense) expenses.push(item);
+      else if (item.type === ExpenseTypeEnum.Income) incomes.push(item);
+    }
 
     const expenseStats = this.calcStat(expenses);
     const incomeStats = this.calcStat(incomes);
