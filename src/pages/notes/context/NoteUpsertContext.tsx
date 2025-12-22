@@ -1,5 +1,6 @@
 import { X } from 'lucide-react';
 import { createContext, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
@@ -37,6 +38,7 @@ const NoteUpsertProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<DrawerRef>; noteId?: number }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -63,7 +65,7 @@ const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
 
   const handleSave = async () => {
     if (!title.trim() && !content.trim()) {
-      toast.error('Vui lòng nhập tiêu đề hoặc nội dung');
+      toast.error(t('notes.form.validationError'));
       return;
     }
 
@@ -73,23 +75,23 @@ const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
       if (!noteId) {
         // Create
         await createNote({
-          title: title.trim() || 'Không tiêu đề',
+          title: title.trim() || t('notes.item.untitled'),
           content: content.trim() || '',
           createdAt: now,
           updatedAt: now,
         });
-        toast.success('Đã tạo ghi chú thành công!');
+        toast.success(t('notes.form.createSuccess'));
       } else {
         // Update
         await updateNote({
           id: noteId,
           data: {
-            title: title.trim() || 'Không tiêu đề',
+            title: title.trim() || t('notes.item.untitled'),
             content: content.trim() || '',
             updatedAt: now,
           },
         });
-        toast.success('Đã cập nhật ghi chú thành công!');
+        toast.success(t('notes.form.updateSuccess'));
       }
 
       queryClient.invalidateQueries({ queryKey: ['notes', 'getList'] });
@@ -97,9 +99,11 @@ const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
       if (noteId) {
         queryClient.invalidateQueries({ queryKey: ['notes', 'getById', noteId] });
       }
+
+      drawerRef.current?.close();
     } catch (error) {
       console.error('Error saving note:', error);
-      toast.error(noteId === null ? 'Tạo ghi chú thất bại' : 'Cập nhật ghi chú thất bại');
+      toast.error(noteId === null ? t('notes.form.createError') : t('notes.form.updateError'));
     }
   };
 
@@ -107,7 +111,9 @@ const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
     <Drawer ref={drawerRef} className="h-[calc(100vh-env(safe-area-inset-top))]" position="bottom">
       <div className="flex flex-col min-h-0 h-full">
         <div className="relative flex items-center justify-center p-4 border-b border-base-content/10">
-          <h3 className="font-semibold text-lg">{noteId === null ? 'Tạo ghi chú mới' : 'Chỉnh sửa ghi chú'}</h3>
+          <h3 className="font-semibold text-lg">
+            {noteId === null ? t('notes.form.createTitle') : t('notes.form.editTitle')}
+          </h3>
           <button className="btn btn-circle btn-ghost absolute right-2" onClick={() => drawerRef.current?.close()}>
             <X />
           </button>
@@ -120,16 +126,16 @@ const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
             </div>
           ) : (
             <>
-              <span className="text-sm font-medium mb-0">Tiêu đề:</span>
+              <span className="text-sm font-medium mb-0">{t('notes.form.titleLabel')}</span>
               <input
                 type="text"
                 className="input input-lg"
-                placeholder="Nhập tiêu đề..."
+                placeholder={t('notes.form.titlePlaceholder')}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
 
-              <span className="text-sm font-medium mb-0">Nội dung:</span>
+              <span className="text-sm font-medium mb-0">{t('notes.form.contentLabel')}</span>
               <TipTapEditor content={content} onChange={setContent} className="flex-1" />
             </>
           )}
@@ -137,10 +143,10 @@ const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
 
         <div className="flex items-center gap-2 p-4 border-t border-base-content/10">
           <button className="btn btn-ghost rounded-xl flex-1" onClick={() => drawerRef.current?.close()}>
-            Hủy
+            {t('notes.form.cancel')}
           </button>
           <button className="btn btn-accent rounded-xl flex-1" onClick={handleSave}>
-            Lưu
+            {t('notes.form.save')}
           </button>
         </div>
       </div>

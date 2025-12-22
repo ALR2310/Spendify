@@ -1,5 +1,6 @@
 import { CircleAlert, Pencil, Trash2, X } from 'lucide-react';
 import { createContext, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 
@@ -38,6 +39,7 @@ const NoteDetailProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 const NoteDetailDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<DrawerRef>; noteId?: number }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { openForm } = useNoteUpsertContext();
   const { data: note, isLoading } = useNoteByIdQuery(noteId || 0);
@@ -53,10 +55,10 @@ const NoteDetailDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
     if (!noteId) return;
 
     const confirmed = await confirm(
-      'Bạn có chắc chắn muốn xóa ghi chú này? Hành động này không thể hoàn tác.',
+      t('notes.delete.confirm'),
       <span className="inline-flex items-center gap-2 text-error font-semibold">
         <CircleAlert />
-        Xác nhận xóa
+        {t('notes.delete.title')}
       </span>,
     );
     if (!confirmed) return;
@@ -64,11 +66,11 @@ const NoteDetailDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
     try {
       await deleteNote(noteId);
       queryClient.invalidateQueries({ queryKey: ['notes', 'getList'] });
-      toast.success('Đã xóa ghi chú thành công!');
+      toast.success(t('notes.delete.success'));
       drawerRef.current?.close();
     } catch (error) {
       console.error('Error deleting note:', error);
-      toast.error('Xóa ghi chú thất bại. Vui lòng thử lại.');
+      toast.error(t('notes.delete.error'));
     }
   };
 
@@ -79,7 +81,7 @@ const NoteDetailDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
           {isLoading ? (
             <span className="loading loading-spinner loading-sm"></span>
           ) : (
-            <h3 className="font-semibold text-lg">{note?.title || 'Không tiêu đề'}</h3>
+            <h3 className="font-semibold text-lg">{note?.title || t('notes.detail.untitled')}</h3>
           )}
           <button className="btn btn-circle btn-ghost absolute right-2" onClick={() => drawerRef.current?.close()}>
             <X />
@@ -94,7 +96,8 @@ const NoteDetailDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
           ) : (
             <div className="space-y-4">
               <div className="text-sm text-base-content/60">
-                Cập nhật: {note?.updatedAt ? new Date(note.updatedAt).toLocaleString('vi-VN') : ''}
+                {t('notes.detail.updated')}{' '}
+                {note?.updatedAt ? new Date(note.updatedAt).toLocaleString('vi-VN') : ''}
               </div>
               <div
                 className="text-base-content/90 prose prose-sm max-w-none prose-headings:text-base-content prose-p:text-base-content/90 prose-strong:text-base-content prose-ul:text-base-content/90 prose-ol:text-base-content/90 prose-li:text-base-content/90 prose-a:text-accent prose-code:text-base-content/90"
@@ -106,13 +109,13 @@ const NoteDetailDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
 
         <div className="grid grid-cols-3 items-center gap-2 p-4 border-t border-base-content/10">
           <button className="btn btn-ghost rounded-xl" onClick={() => drawerRef.current?.close()}>
-            Đóng
+            {t('notes.detail.close')}
           </button>
           <button className="btn btn-soft btn-accent rounded-xl" onClick={handleEdit}>
-            <Pencil size={20} /> Sửa
+            <Pencil size={20} /> {t('notes.detail.edit')}
           </button>
           <button className="btn btn-error rounded-xl" onClick={handleDelete}>
-            <Trash2 size={20} /> Xóa
+            <Trash2 size={20} /> {t('notes.detail.delete')}
           </button>
         </div>
       </div>

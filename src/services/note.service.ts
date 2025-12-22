@@ -5,7 +5,7 @@ import { NewNote, UpdateNote } from '@/database/types/tables/notes';
 export const noteService = new (class NoteService {
   async getList() {
     try {
-      const notes = await db.selectFrom('notes').selectAll().execute();
+      const notes = await db.selectFrom('notes').selectAll().orderBy('updatedAt', 'desc').execute();
       return notes;
     } catch (error) {
       logger.error('Error fetching notes:', error);

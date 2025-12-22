@@ -165,5 +165,44 @@
     "monthPicker": {
       "title": "Chọn tháng"
     }
+  },
+  "notes": {
+    "list": {
+      "title": "Ghi chú",
+      "searchPlaceholder": "Tìm kiếm ghi chú...",
+      "notFound": "Không tìm thấy ghi chú nào",
+      "empty": "Chưa có ghi chú nào",
+      "createFirst": "Tạo ghi chú đầu tiên"
+    },
+    "item": {
+      "untitled": "Không tiêu đề"
+    },
+    "detail": {
+      "untitled": "Không tiêu đề",
+      "updated": "Cập nhật:",
+      "close": "Đóng",
+      "edit": "Sửa",
+      "delete": "Xóa"
+    },
+    "form": {
+      "createTitle": "Tạo ghi chú mới",
+      "editTitle": "Chỉnh sửa ghi chú",
+      "titleLabel": "Tiêu đề:",
+      "contentLabel": "Nội dung:",
+      "titlePlaceholder": "Nhập tiêu đề...",
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "validationError": "Vui lòng nhập tiêu đề hoặc nội dung",
+      "createSuccess": "Đã tạo ghi chú thành công!",
+      "updateSuccess": "Đã cập nhật ghi chú thành công!",
+      "createError": "Tạo ghi chú thất bại",
+      "updateError": "Cập nhật ghi chú thất bại"
+    },
+    "delete": {
+      "confirm": "Bạn có chắc chắn muốn xóa ghi chú này? Hành động này không thể hoàn tác.",
+      "title": "Xác nhận xóa",
+      "success": "Đã xóa ghi chú thành công!",
+      "error": "Xóa ghi chú thất bại. Vui lòng thử lại."
+    }
   }
 }
