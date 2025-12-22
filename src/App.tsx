@@ -19,6 +19,7 @@ import NotePage from './pages/notes/NotePage';
 import SettingPage from './pages/settings/SettingPage';
 import StatisticLayout from './pages/statistics/layouts/StatisticLayout';
 import StatisticPage from './pages/statistics/StatisticPage';
+import TestPage from './pages/Test';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,6 +73,7 @@ const AppRoutes = () => {
             <Route index element={<NotePage />} />
           </Route>
           <Route path={ROUTES.SETTINGS} element={<SettingPage />} />
+          <Route path="/test" element={<TestPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
