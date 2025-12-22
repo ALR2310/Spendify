@@ -120,26 +120,17 @@ const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
             </div>
           ) : (
             <>
-              <div>
-                <span className="text-sm font-medium">Tiêu đề</span>
-                <input
-                  type="text"
-                  className="input input-lg"
-                  placeholder="Nhập tiêu đề..."
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </div>
+              <span className="text-sm font-medium mb-0">Tiêu đề:</span>
+              <input
+                type="text"
+                className="input input-lg"
+                placeholder="Nhập tiêu đề..."
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
 
-              <div className="flex-1 overflow-auto">
-                <span className="text-sm font-medium">Nội dung</span>
-                <TipTapEditor
-                  content={content}
-                  onChange={setContent}
-                  placeholder="Nhập nội dung..."
-                  className="flex-1"
-                />
-              </div>
+              <span className="text-sm font-medium mb-0">Nội dung:</span>
+              <TipTapEditor content={content} onChange={setContent} className="flex-1" />
             </>
           )}
         </div>
