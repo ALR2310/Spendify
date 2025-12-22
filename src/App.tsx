@@ -14,6 +14,7 @@ import { useThemeContext } from './hooks/app/useTheme';
 import MainLayout from './layouts/MainLayout';
 import ExpensePage from './pages/expenses/ExpensePage';
 import ExpenseLayout from './pages/expenses/layouts/ExpenseLayout';
+import NoteLayout from './pages/notes/layouts/NoteLayout';
 import NotePage from './pages/notes/NotePage';
 import SettingPage from './pages/settings/SettingPage';
 import StatisticLayout from './pages/statistics/layouts/StatisticLayout';
@@ -67,7 +68,9 @@ const AppRoutes = () => {
           <Route path={ROUTES.STATISTICS} element={<StatisticLayout />}>
             <Route index element={<StatisticPage />} />
           </Route>
-          <Route path={ROUTES.NOTES} element={<NotePage />} />
+          <Route path={ROUTES.NOTES} element={<NoteLayout />}>
+            <Route index element={<NotePage />} />
+          </Route>
           <Route path={ROUTES.SETTINGS} element={<SettingPage />} />
         </Route>
       </Routes>

@@ -22,7 +22,7 @@ export default function MainLayout() {
   return (
     <div id="main-layout" className="h-screen flex flex-col pt-[env(safe-area-inset-top)] bg-neutral">
       <Header />
-      <div className="flex-1 overflow-hidden relative">
+      <div className="flex-1 min-h-0 overflow-hidden relative">
         <AnimatePresence mode="wait" initial={false} custom={direction}>
           <motion.div
             key={location.pathname}
