@@ -128,7 +128,12 @@
       "oneDay": "1 day",
       "oneWeek": "1 week",
       "oneMonth": "1 month",
-      "sixMonths": "6 months"
+      "sixMonths": "6 months",
+      "oneYear": "1 year",
+      "twoYears": "2 years",
+      "fiveYears": "5 years",
+      "allTime": "All Time",
+      "timeUnit": "Time Unit"
     },
     "form": {
       "close": "Close",

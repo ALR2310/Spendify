@@ -128,7 +128,12 @@
       "oneDay": "1 ngày",
       "oneWeek": "1 tuần",
       "oneMonth": "1 tháng",
-      "sixMonths": "6 tháng"
+      "sixMonths": "6 tháng",
+      "oneYear": "1 năm",
+      "twoYears": "2 năm",
+      "fiveYears": "5 năm",
+      "allTime": "Tất cả thời gian",
+      "timeUnit": "Đơn vị thời gian"
     },
     "form": {
       "close": "Đóng",

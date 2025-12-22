@@ -27,6 +27,11 @@ function StatisticFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
     filterContext.setEndDate(endDate);
   };
 
+  const handleAllTime = () => {
+    filterContext.setStartDate(undefined);
+    filterContext.setEndDate(undefined);
+  };
+
   return (
     <Drawer
       ref={ref}
@@ -89,10 +94,23 @@ function StatisticFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
         <button className="btn btn-sm btn-soft" onClick={() => handlePredefinedDateRange(180)}>
           {t('statistics.filter.sixMonths')}
         </button>
+
+        <button className="btn btn-sm btn-soft" onClick={() => handlePredefinedDateRange(365)}>
+          {t('statistics.filter.oneYear')}
+        </button>
+        <button className="btn btn-sm btn-soft" onClick={() => handlePredefinedDateRange(730)}>
+          {t('statistics.filter.twoYears')}
+        </button>
+        <button className="btn btn-sm btn-soft" onClick={() => handlePredefinedDateRange(1825)}>
+          {t('statistics.filter.fiveYears')}
+        </button>
+        <button className="btn btn-sm btn-soft" onClick={handleAllTime}>
+          {t('statistics.filter.allTime')}
+        </button>
       </div>
 
       <div className="grid grid-cols-3 gap-2 items-center">
-        <label className="label text-lg">Time Unit:</label>
+        <label className="label text-lg">{t('statistics.filter.timeUnit')}</label>
         <select
           className="select select-lg capitalize col-span-2"
           value={filterContext.timeUnit}
@@ -112,7 +130,7 @@ function StatisticFilterDrawer({ ref }: { ref: React.RefObject<DrawerRef> }) {
         <div className="grid grid-cols-3 gap-2 max-h-40 overflow-y-auto">
           {isCategoryLoading && <Skeleton className="w-full h-12" />}
           {!isCategoryLoading && categories?.length === 0 && (
-            <p className="text-center col-span-3">No categories found</p>
+            <p className="text-center col-span-3">{t('expenses.list.notFound')}</p>
           )}
           {!isCategoryLoading &&
             categories?.map((category) => (
