@@ -41,7 +41,9 @@ const TipTapEditor = ({
 }: TipTapEditorProps) => {
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        link: false, // Disable the default link extension from StarterKit
+      }),
       Placeholder.configure({
         placeholder,
       }),

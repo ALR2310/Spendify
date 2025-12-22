@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 
 import { ThemeEnum } from '@/common/enums/appconfig.enum';
 import { useNoteListQuery } from '@/hooks/apis/note.hook';
-import { useNoteContext } from '@/hooks/app/useNote';
+import { useNoteDetailContext, useNoteUpsertContext } from '@/hooks/app/useNote';
 import { useThemeContext } from '@/hooks/app/useTheme';
 
 function NoteItem({ data, onClick }: { data: any; onClick: () => void }) {
@@ -24,8 +24,10 @@ function NoteItem({ data, onClick }: { data: any; onClick: () => void }) {
 
 export default function NotePage() {
   const { resolvedTheme } = useThemeContext();
-  const { openDetail, openCreate } = useNoteContext();
   const [searchQuery, setSearchQuery] = useState('');
+
+  const { openForm } = useNoteUpsertContext();
+  const { openDetail } = useNoteDetailContext();
 
   const { data: notes = [], isLoading } = useNoteListQuery();
 
@@ -60,7 +62,7 @@ export default function NotePage() {
           <div className="flex flex-col items-center justify-center h-full text-base-content/60">
             <p className="text-lg">{searchQuery ? 'Không tìm thấy ghi chú nào' : 'Chưa có ghi chú nào'}</p>
             {!searchQuery && (
-              <button className="btn btn-soft btn-accent mt-4" onClick={openCreate}>
+              <button className="btn btn-soft btn-accent mt-4" onClick={() => openForm()}>
                 Tạo ghi chú đầu tiên
               </button>
             )}
@@ -71,7 +73,7 @@ export default function NotePage() {
       </div>
 
       <div className="fab bottom-6">
-        <button className="btn btn-soft btn-lg btn-circle btn-accent" onClick={openCreate}>
+        <button className="btn btn-soft btn-lg btn-circle btn-accent" onClick={() => openForm()}>
           <Plus className="animate-pulse"></Plus>
         </button>
       </div>

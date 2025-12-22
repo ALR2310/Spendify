@@ -1,11 +1,14 @@
 import { Outlet } from 'react-router';
 
-import { NoteProvider } from '../context/NoteContext';
+import { NoteDetailProvider } from '../context/NoteDetailContext';
+import { NoteUpsertProvider } from '../context/NoteUpsertContext';
 
 export default function NoteLayout() {
   return (
-    <NoteProvider>
-      <Outlet />
-    </NoteProvider>
+    <NoteUpsertProvider>
+      <NoteDetailProvider>
+        <Outlet />
+      </NoteDetailProvider>
+    </NoteUpsertProvider>
   );
 }
