@@ -20,7 +20,7 @@
     "stat": {
       "totalRevenue": "Tổng thu nhập",
       "totalExpenses": "Tổng chi tiêu",
-      "difference": "Chênh lệch",
+      "balance": "Số dư",
       "expenseDistribution": "Phân bổ chi tiêu",
       "food": "Ăn uống",
       "transport": "Di chuyển",

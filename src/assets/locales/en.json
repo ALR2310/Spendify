@@ -20,7 +20,7 @@
     "stat": {
       "totalRevenue": "Total revenue",
       "totalExpenses": "Total expenses",
-      "difference": "Difference",
+      "balance": "Balance",
       "expenseDistribution": "Expense Distribution",
       "food": "Food",
       "transport": "Transport",

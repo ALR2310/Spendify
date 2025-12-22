@@ -74,6 +74,34 @@ export const storageService = new (class StorageService {
         };
       });
 
+    if (data.income) {
+      categories.push({
+        id: categories.length + 1,
+        name: 'Income',
+        icon: undefined,
+        color: undefined,
+        createdAt: dateNow,
+        updatedAt: dateNow,
+      });
+
+      expenses.push(
+        ...data.income
+          .filter((i) => i.status !== 0)
+          .map((i) => {
+            const date = dayjs(i.atupdate).toISOString();
+            return {
+              categoryId: categories.length,
+              amount: i.price,
+              note: '',
+              date: date,
+              createdAt: date,
+              updatedAt: date,
+              type: ExpenseTypeEnum.Income,
+            };
+          }),
+      );
+    }
+
     const notes: any[] = data.noted
       .filter((n) => n.status !== 0)
       .map((n) => {

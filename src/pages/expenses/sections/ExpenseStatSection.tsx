@@ -35,7 +35,7 @@ export default function ExpenseStatSection() {
         </div>
 
         <div className="text-center">
-          <p className="text-base-content/60 text-xs">{t('expenses.stat.difference')}</p>
+          <p className="text-base-content/60 text-xs">{t('expenses.stat.balance')}</p>
           <p className={`text-lg font-semibold ${isNegative ? 'text-error' : 'text-success'}`}>
             {formatCurrencyWithCompact(difference)}
           </p>
