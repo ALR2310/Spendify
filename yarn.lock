@@ -244,6 +244,13 @@
   dependencies:
     tslib "^2.1.0"
 
+"@capacitor/file-transfer@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@capacitor/file-transfer/-/file-transfer-2.0.1.tgz#544c3140d6102dfe6ac51ba0ae66af9e6691df94"
+  integrity sha512-vuNjTpevUW7bEQoBAyFzcRww7xEj7QD+nssHpcMoUf4DQAUSMkXLUtFUPprN9WCk6xVl2fOBTkcxF1cuR6dwrA==
+  dependencies:
+    "@capacitor/synapse" "^1.0.4"
+
 "@capacitor/filesystem@^7.1.6":
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/@capacitor/filesystem/-/filesystem-7.1.6.tgz#0c95533f9e4d34642cb2e04e52a4e99fabab265e"
@@ -266,10 +273,15 @@
   resolved "https://registry.yarnpkg.com/@capacitor/status-bar/-/status-bar-7.0.4.tgz#ba74289edf0fea7e1e6844f171faf9473da9177f"
   integrity sha512-2BszlCqIlBZxHLjRyQbumKyuuisutkeJH+5eSKAEJKaDVJcfmAzr2v3MXWsRLrAHJFteLzRXkOlce5msSy28tQ==
 
-"@capacitor/synapse@^1.0.3":
+"@capacitor/synapse@^1.0.3", "@capacitor/synapse@^1.0.4":
   version "1.0.4"
   resolved "https://registry.npmjs.org/@capacitor/synapse/-/synapse-1.0.4.tgz"
   integrity sha512-/C1FUo8/OkKuAT4nCIu/34ny9siNHr9qtFezu4kxm6GY1wNFxrCFWjfYx5C1tUhVGz3fxBABegupkpjXvjCHrw==
+
+"@capawesome-team/capacitor-file-opener@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@capawesome-team/capacitor-file-opener/-/capacitor-file-opener-8.0.0.tgz#cda872082c36da2dca66c2ff85c98e94a7619e47"
+  integrity sha512-CaMFMkkmr98r4Jvf8E/7b8uXn/NAG48+IX11XzdJhMV/kicxDZanm8PJ306kgCMcRphww+VOm+dnzi/oGxCdhQ==
 
 "@capawesome/capacitor-file-picker@^7.2.0":
   version "7.2.0"
@@ -1521,6 +1533,11 @@
   dependencies:
     csstype "^3.2.2"
 
+"@types/semver@^7.7.1":
+  version "7.7.1"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.7.1.tgz#3ce3af1a5524ef327d2da9e4fd8b6d95c8d70528"
+  integrity sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==
+
 "@types/slice-ansi@^4.0.0":
   version "4.0.0"
   resolved "https://registry.npmjs.org/@types/slice-ansi/-/slice-ansi-4.0.0.tgz"
@@ -1938,6 +1955,11 @@ caniuse-lite@^1.0.30001754:
   version "1.0.30001757"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001757.tgz"
   integrity sha512-r0nnL/I28Zi/yjk1el6ilj27tKcdjLsNqAOZr0yVjWPrSQyHgKI2INaEWw21bAQSv2LXRt1XuCS/GomNpWOxsQ==
+
+capacitor-device@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/capacitor-device/-/capacitor-device-0.0.1.tgz#3de95c63941baa7080c651aaf20352b9dbe57e28"
+  integrity sha512-vRQVh3UvanvBRZ0JY6z333/UW8gePNEAK8SVvSfue3Yu9jFeCkEqBuRvRKvP7u2G+PnA6HmWGgqKe2thRNhWWQ==
 
 capacitor-secure-storage-plugin@^0.12.0:
   version "0.12.0"

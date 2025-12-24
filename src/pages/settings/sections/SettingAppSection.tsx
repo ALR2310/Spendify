@@ -2,8 +2,11 @@ import { Info, RefreshCw, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 import { appConfig } from '@/configs/app.config';
+import { confirm } from '@/global/confirm';
+import { useUpdaterContext } from '@/hooks/app/useUpdater';
 
 import SettingItem from '../components/SettingItem';
 import SettingSection from '../components/SettingSection';
@@ -13,13 +16,27 @@ export default function SettingAppSection() {
   const [autoUpdate, setAutoUpdate] = useState<boolean>(appConfig.autoUpdate);
   const navigate = useNavigate();
 
+  const { checkForUpdates, downloadAndInstall } = useUpdaterContext();
+
   useEffect(() => {
     appConfig.autoUpdate = autoUpdate;
   }, [autoUpdate]);
 
-  const handleCheckUpdate = () => {
-    // TODO: Implement check update functionality
-    console.log('Check for updates');
+  const handleCheckUpdate = async () => {
+    const check = await checkForUpdates();
+    if (!check.hasUpdate) {
+      toast.info('No updates available');
+      return;
+    }
+
+    const ok = await confirm(
+      'An update is available. Do you want to download and install it now?',
+      'Update Available',
+    );
+
+    if (!ok) return;
+
+    downloadAndInstall();
   };
 
   return (
@@ -36,7 +53,10 @@ export default function SettingAppSection() {
             type="checkbox"
             className="toggle toggle-accent"
             checked={autoUpdate}
-            onChange={(e) => setAutoUpdate(e.target.checked)}
+            onChange={(e) => {
+              setAutoUpdate(e.target.checked);
+              appConfig.autoUpdate = e.target.checked;
+            }}
           />
         }
       />
