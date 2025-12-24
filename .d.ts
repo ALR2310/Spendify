@@ -29,4 +29,6 @@ interface ImportMetaEnv {
   readonly VITE_GOOGLE_CLIENT_ID: string;
   readonly VITE_GOOGLE_CLIENT_SECRET: string;
   readonly VITE_GOOGLE_REDIRECT_URI: string;
+  readonly VITE_GIT_REPO: string;
+  readonly VITE_GIT_PAT: string;
 }

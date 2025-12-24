@@ -1,8 +1,11 @@
+import Color from '@tiptap/extension-color';
+import Image from '@tiptap/extension-image';
 import { Table } from '@tiptap/extension-table';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import TableRow from '@tiptap/extension-table-row';
 import TextAlign from '@tiptap/extension-text-align';
+import { TextStyle } from '@tiptap/extension-text-style';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import {
@@ -10,6 +13,7 @@ import {
   AlignLeft,
   AlignRight,
   Bold,
+  ImageIcon,
   Italic,
   LinkIcon,
   List,
@@ -47,6 +51,13 @@ export default function TipTapEditor({ className, classNames, content, onChange 
       }),
       TextAlign.configure({
         types: ['heading', 'paragraph'],
+      }),
+      Color,
+      TextStyle,
+      Image.configure({
+        HTMLAttributes: {
+          class: 'max-w-full h-auto',
+        },
       }),
       Table.configure({ resizable: true }),
       TableRow,
@@ -180,6 +191,29 @@ function ToolbarMenu({ editor, className }: { editor: ReturnType<typeof useEdito
         title="Link"
       >
         <LinkIcon size={14} />
+      </button>
+
+      {/* Color */}
+      <input
+        type="color"
+        onChange={(e) => editor?.chain().focus().setColor(e.target.value).run()}
+        value={editor?.getAttributes('textStyle').color || '#000000'}
+        className="w-8 h-8 rounded cursor-pointer"
+        title="Text Color"
+      />
+
+      {/* Image */}
+      <button
+        onClick={() => {
+          const url = window.prompt('Nhập URL hình ảnh:');
+          if (url) {
+            editor?.chain().focus().setImage({ src: url }).run();
+          }
+        }}
+        className="btn btn-square btn-sm btn-ghost"
+        title="Insert Image"
+      >
+        <ImageIcon size={14} />
       </button>
 
       <div className="divider divider-horizontal m-0"></div>

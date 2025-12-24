@@ -1,6 +1,7 @@
 import { Info, RefreshCw, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 
 import { appConfig } from '@/configs/app.config';
 
@@ -10,6 +11,7 @@ import SettingSection from '../components/SettingSection';
 export default function SettingAppSection() {
   const { t } = useTranslation();
   const [autoUpdate, setAutoUpdate] = useState<boolean>(appConfig.autoUpdate);
+  const navigate = useNavigate();
 
   useEffect(() => {
     appConfig.autoUpdate = autoUpdate;
@@ -58,6 +60,7 @@ export default function SettingAppSection() {
         title={t('settings.appInfo.version')}
         description={appConfig.version}
         showBorder
+        onClick={() => navigate('/test')}
       />
     </SettingSection>
   );
