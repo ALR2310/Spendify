@@ -1,3 +1,4 @@
+import { Mutex } from 'async-mutex';
 import dayjs from 'dayjs';
 import { Transaction } from 'kysely';
 import pako from 'pako';
@@ -19,6 +20,7 @@ import { FileMetadata, GoogleDriveService } from './googledrive.service';
 
 export const storageService = new (class StorageService {
   private googleDriveService: GoogleDriveService | null = null;
+  private syncMutex = new Mutex();
 
   async delete(): Promise<void> {
     try {
@@ -232,19 +234,21 @@ export const storageService = new (class StorageService {
   }
 
   async sync(): Promise<StorageSyncResponse> {
-    const status = await this.status();
-    const { local, cloud } = status;
+    return this.syncMutex.runExclusive(async () => {
+      const status = await this.status();
+      const { local, cloud } = status;
 
-    const cloudDate = new Date(cloud.dateSync || 0);
-    const localDate = new Date(local.dateSync || 0);
+      const cloudDate = new Date(cloud.dateSync || 0);
+      const localDate = new Date(local.dateSync || 0);
 
-    if (localDate >= cloudDate) {
-      await this.upload();
-      return { type: 'upload', fileId: appConfig.data.fileId };
-    } else {
-      await this.download();
-      return { type: 'download', fileId: cloud.fileId || '' };
-    }
+      if (localDate >= cloudDate) {
+        await this.upload();
+        return { type: 'upload', fileId: appConfig.data.fileId };
+      } else {
+        await this.download();
+        return { type: 'download', fileId: cloud.fileId || '' };
+      }
+    });
   }
 
   private validateData(data: any): data is StorageExportResponse {
