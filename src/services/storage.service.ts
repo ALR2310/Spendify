@@ -162,7 +162,7 @@ export const storageService = new (class StorageService {
     return { expenses, categories, recurring, notes, version };
   }
 
-  async status(): Promise<StorageStatusResponse> {
+  async info(): Promise<StorageStatusResponse> {
     const cloudFile = await this.findCloudFile();
 
     const localData = await this.export();
@@ -235,8 +235,7 @@ export const storageService = new (class StorageService {
 
   async sync(): Promise<StorageSyncResponse> {
     return this.syncMutex.runExclusive(async () => {
-      const status = await this.status();
-      const { local, cloud } = status;
+      const { local, cloud } = await this.info();
 
       const cloudDate = new Date(cloud.dateSync || 0);
       const localDate = new Date(local.dateSync || 0);

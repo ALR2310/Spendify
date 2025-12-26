@@ -21,10 +21,10 @@ export function useStorageExportMutation() {
   });
 }
 
-export function useStorageStatusQuery(enabled = true) {
+export function useStorageInfoQuery(enabled = true) {
   return useQuery({
-    queryKey: ['storage', 'status'],
-    queryFn: () => storageService.status(),
+    queryKey: ['storage', 'info'],
+    queryFn: () => storageService.info(),
     enabled,
   });
 }
