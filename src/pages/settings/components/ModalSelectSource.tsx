@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { iconColorClasses } from '@/common/constants/colorClasses';
 import Modal, { ModalRef } from '@/components/Modal';
 import { useStorageInfoQuery } from '@/hooks/apis/storage.hook';
-import { useAuthContext } from '@/hooks/app/useAuth';
+import { useAppContext } from '@/hooks/app/useApp';
 import { formatBytes } from '@/utils/general.utils';
 
 interface DataSource {
@@ -28,7 +28,7 @@ export default function ModalSelectSource({ modalRef, onSelect }: ModalSelectSou
 
   const [selectedSource, setSelectedSource] = useState<DataSource['type']>();
 
-  const { isLoggedIn } = useAuthContext();
+  const { isLoggedIn } = useAppContext();
   const { data: storages } = useStorageInfoQuery(isLoggedIn);
 
   const data: DataSource[] = storages

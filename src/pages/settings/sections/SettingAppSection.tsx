@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 import { appConfig } from '@/configs/app.config';
 import { confirm } from '@/global/confirm';
-import { useUpdaterContext } from '@/hooks/app/useUpdater';
+import { useAppContext } from '@/hooks/app/useApp';
 
 import SettingItem from '../components/SettingItem';
 import SettingSection from '../components/SettingSection';
@@ -16,7 +16,7 @@ export default function SettingAppSection() {
   const [autoUpdate, setAutoUpdate] = useState<boolean>(appConfig.autoUpdate);
   const navigate = useNavigate();
 
-  const { checkForUpdates, downloadAndInstall } = useUpdaterContext();
+  const { checkForUpdates, downloadAndInstall } = useAppContext();
 
   useEffect(() => {
     appConfig.autoUpdate = autoUpdate;

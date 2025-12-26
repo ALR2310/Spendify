@@ -2,8 +2,6 @@ import dayjs from 'dayjs';
 
 import { ExpenseListResponse } from '@/common/types/expense.type';
 
-import { formatCurrency } from './general.utils';
-
 export function groupExpenseByDate(expenses: ExpenseListResponse['data']) {
   const groups: Record<string, ExpenseListResponse['data']> = {};
 

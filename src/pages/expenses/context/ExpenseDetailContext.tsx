@@ -18,6 +18,7 @@ import Skeleton from '@/components/Skeleton';
 import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import { confirm } from '@/global/confirm';
 import { useExpenseByIdQuery, useExpenseDeleteMutation } from '@/hooks/apis/expense.hook';
+import { useAppContext } from '@/hooks/app/useApp';
 import { useExpenseUpsertContext } from '@/hooks/app/useExpense';
 import { formatCurrency } from '@/utils/general.utils';
 
@@ -70,6 +71,7 @@ const ExpenseDetailDrawer = ({
   const { openModal } = useExpenseUpsertContext();
   const { data: expense, isLoading } = useExpenseByIdQuery(expenseId!);
   const { mutateAsync: deleteExpense } = useExpenseDeleteMutation();
+  const { syncData } = useAppContext();
 
   useEffect(() => {
     if (isOpen) drawerRef.current?.openDrawer();
@@ -95,6 +97,7 @@ const ExpenseDetailDrawer = ({
       await deleteExpense(expenseId!);
       queryClient.invalidateQueries(['expenses', 'getList']);
       handleClose();
+      syncData();
     } catch (error) {
       console.error('Error deleting expense:', error);
       toast.error('Failed to delete expense. Please try again.');

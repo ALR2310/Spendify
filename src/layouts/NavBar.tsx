@@ -2,12 +2,12 @@ import { ChartBarStacked, NotebookPen, Settings, SquarePlus, Wallet } from 'luci
 import { NavLink } from 'react-router';
 
 import { ROUTES } from '@/common/constants/routes.const';
+import { useAppContext } from '@/hooks/app/useApp';
 import { useExpenseUpsertContext } from '@/hooks/app/useExpense';
-import { useUpdaterContext } from '@/hooks/app/useUpdater';
 
 export default function DockNav() {
   const { openModal } = useExpenseUpsertContext();
-  const { progress, isDownloading } = useUpdaterContext();
+  const { progress, isDownloading } = useAppContext();
 
   return (
     <div className="relative">

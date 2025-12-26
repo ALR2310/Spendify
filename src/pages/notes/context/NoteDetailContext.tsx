@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import Drawer, { DrawerRef } from '@/components/Drawer';
 import { confirm } from '@/global/confirm';
 import { useNoteByIdQuery, useNoteDeleteMutation } from '@/hooks/apis/note.hook';
+import { useAppContext } from '@/hooks/app/useApp';
 import { useNoteUpsertContext } from '@/hooks/app/useNote';
 
 interface NoteDetailContextType {
@@ -44,6 +45,7 @@ const NoteDetailDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
   const { openForm } = useNoteUpsertContext();
   const { data: note, isLoading } = useNoteByIdQuery(noteId || 0);
   const { mutateAsync: deleteNote } = useNoteDeleteMutation();
+  const { syncData } = useAppContext();
 
   const handleEdit = () => {
     if (!noteId) return;
@@ -68,6 +70,8 @@ const NoteDetailDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
       queryClient.invalidateQueries({ queryKey: ['notes', 'getList'] });
       toast.success(t('notes.delete.success'));
       drawerRef.current?.close();
+
+      syncData();
     } catch (error) {
       console.error('Error deleting note:', error);
       toast.error(t('notes.delete.error'));

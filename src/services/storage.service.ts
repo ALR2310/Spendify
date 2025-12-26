@@ -237,15 +237,25 @@ export const storageService = new (class StorageService {
     return this.syncMutex.runExclusive(async () => {
       const { local, cloud } = await this.info();
 
-      const cloudDate = new Date(cloud.dateSync || 0);
       const localDate = new Date(local.dateSync || 0);
+      const cloudDate = new Date(cloud.dateSync || 0);
 
-      if (localDate >= cloudDate) {
+      if (localDate > cloudDate) {
         await this.upload();
         return { type: 'upload', fileId: appConfig.data.fileId };
-      } else {
+      } else if (cloudDate > localDate) {
         await this.download();
         return { type: 'download', fileId: cloud.fileId || '' };
+      } else {
+        const localSize = local.fileLength || 0;
+        const cloudSize = cloud.fileLength || 0;
+
+        if (localSize !== cloudSize) {
+          await this.upload();
+          return { type: 'upload', fileId: appConfig.data.fileId };
+        }
+
+        return { type: 'none', fileId: cloud.fileId || appConfig.data.fileId };
       }
     });
   }

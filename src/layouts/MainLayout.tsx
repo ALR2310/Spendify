@@ -4,8 +4,8 @@ import { useEffect, useMemo } from 'react';
 import { useLocation, useOutlet } from 'react-router';
 
 import { appConfig } from '@/configs/app.config';
+import { useAppContext } from '@/hooks/app/useApp';
 import { getPageDirection } from '@/hooks/app/usePageTransition';
-import { useUpdaterContext } from '@/hooks/app/useUpdater';
 
 import Header from './Header';
 import DockNav from './NavBar';
@@ -13,7 +13,7 @@ import DockNav from './NavBar';
 export default function MainLayout() {
   const location = useLocation();
   const outlet = useOutlet();
-  const { downloadAndInstall } = useUpdaterContext();
+  const { downloadAndInstall } = useAppContext();
 
   const direction = useMemo(() => getPageDirection(location.pathname), [location.pathname]);
 

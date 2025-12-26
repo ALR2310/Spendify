@@ -22,6 +22,7 @@ import {
   useExpenseCreateMutation,
   useExpenseUpdateMutation,
 } from '@/hooks/apis/expense.hook';
+import { useAppContext } from '@/hooks/app/useApp';
 import { useEmojiPickerContext } from '@/hooks/app/useEmojiPicker';
 
 interface ExpenseUpsertContextType {
@@ -79,6 +80,7 @@ const ExpenseModal = ({
   const { data: expense, isLoading: isLoadingExpense } = useExpenseByIdQuery(expenseId!);
   const { mutateAsync: createExpense } = useExpenseCreateMutation();
   const { mutateAsync: updateExpense } = useExpenseUpdateMutation();
+  const { syncData } = useAppContext();
 
   // Reset form when modal opens/closes
   useEffect(() => {
@@ -138,6 +140,8 @@ const ExpenseModal = ({
       toast.success(
         `${t('expenses.form.expense')} ${expenseId ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
       );
+
+      syncData();
     } catch (err) {
       toast.error(t('expenses.form.errorSaving'));
     }
@@ -257,6 +261,7 @@ const CategoryModal = ({
   const { data: category, isLoading: isLoadingCategory } = useCategoryByIdQuery(categoryId!);
   const { mutateAsync: createCategory } = useCategoryCreateMutation();
   const { mutateAsync: updateCategory } = useCategoryUpdateMutation();
+  const { syncData } = useAppContext();
 
   useEffect(() => {
     if (category && !isLoadingCategory) {
@@ -301,6 +306,8 @@ const CategoryModal = ({
       toast.success(
         `${t('expenses.filter.category')} ${categoryId ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
       );
+
+      syncData();
     } catch (err) {
       toast.error(t('expenses.form.errorSavingCategory'));
     }

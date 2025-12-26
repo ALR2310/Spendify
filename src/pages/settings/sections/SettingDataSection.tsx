@@ -20,7 +20,7 @@ import {
   useStorageSyncMutation,
   useStorageUploadMutation,
 } from '@/hooks/apis/storage.hook';
-import { useAuthContext } from '@/hooks/app/useAuth';
+import { useAppContext } from '@/hooks/app/useApp';
 
 import ModalSelectSource from '../components/ModalSelectSource';
 import SettingItem from '../components/SettingItem';
@@ -32,7 +32,7 @@ export default function SettingDataSection() {
   const queryClient = useQueryClient();
   const modalRef = useRef<ModalRef>(null!);
 
-  const { isLoggedIn } = useAuthContext();
+  const { isLoggedIn } = useAppContext();
 
   const { mutateAsync: deleteData } = useStorageDeleteMutation();
   const { mutateAsync: exportData } = useStorageExportMutation();

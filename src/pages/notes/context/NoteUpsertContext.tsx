@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import Drawer, { DrawerRef } from '@/components/Drawer';
 import TipTapEditor from '@/components/TipTapEditor';
 import { useNoteByIdQuery, useNoteCreateMutation, useNoteUpdateMutation } from '@/hooks/apis/note.hook';
+import { useAppContext } from '@/hooks/app/useApp';
 
 interface NoteUpsertContextType {
   openForm(id?: number): void;
@@ -46,6 +47,7 @@ const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
   const { data: note, isLoading: isLoadingNote } = useNoteByIdQuery(noteId || 0);
   const { mutateAsync: createNote } = useNoteCreateMutation();
   const { mutateAsync: updateNote } = useNoteUpdateMutation();
+  const { syncData } = useAppContext();
 
   // Reset form when creating new note
   useEffect(() => {
@@ -101,6 +103,8 @@ const NoteUpsertDrawer = ({ drawerRef, noteId }: { drawerRef: React.RefObject<Dr
       }
 
       drawerRef.current?.close();
+
+      syncData();
     } catch (error) {
       console.error('Error saving note:', error);
       toast.error(noteId === null ? t('notes.form.createError') : t('notes.form.updateError'));

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { appConfig } from '@/configs/app.config';
-import { useAuthContext } from '@/hooks/app/useAuth';
+import { useAppContext } from '@/hooks/app/useApp';
 
 import SettingItem from '../components/SettingItem';
 import SettingSection from '../components/SettingSection';
@@ -11,7 +11,7 @@ import SettingSection from '../components/SettingSection';
 export default function SettingAccountSection() {
   const { t } = useTranslation();
 
-  const { isLoggedIn, userInfo, login, logout } = useAuthContext();
+  const { isLoggedIn, userInfo, login, logout } = useAppContext();
 
   const handleLogin = async () => {
     try {
