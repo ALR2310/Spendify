@@ -2,6 +2,7 @@ import 'dotenv/config';
 
 import { execSync } from 'child_process';
 import { existsSync, readdirSync, unlinkSync, writeFileSync } from 'fs';
+import capitalize from 'lodash/capitalize';
 import path from 'path';
 import { build } from 'vite';
 
@@ -23,9 +24,11 @@ function decodeKeystoreFromEnv() {
 function resolveOutputName(apk: string) {
   const version = pkg.version;
 
-  if (apk.includes('universal')) return `Spendify-${version}.apk`;
-  if (apk.includes('arm64-v8a')) return `Spendify-arm64-v8a-${version}.apk`;
-  if (apk.includes('armeabi-v7a')) return `Spendify-armeabi-v7a-${version}.apk`;
+  const appName = capitalize(pkg.name);
+
+  if (apk.includes('universal')) return `${appName}-${version}.apk`;
+  if (apk.includes('arm64-v8a')) return `${appName}-arm64-v8a-${version}.apk`;
+  if (apk.includes('armeabi-v7a')) return `${appName}-armeabi-v7a-${version}.apk`;
 
   // fallback
   return apk.replace('-unsigned.apk', '-signed.apk');
