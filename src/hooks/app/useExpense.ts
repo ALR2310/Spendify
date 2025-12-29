@@ -1,14 +1,8 @@
 import { useContext } from 'react';
 
-import { ExpenseUpsertContext } from '@/context/ExpenseUpsertContext';
+import { ExpenseFormContext } from '@/context/ExpenseFormContext';
 import { ExpenseDetailContext } from '@/pages/expenses/context/ExpenseDetailContext';
 import { ExpenseFilterContext } from '@/pages/expenses/context/ExpenseFilterContext';
-
-export function useExpenseUpsertContext() {
-  const ctx = useContext(ExpenseUpsertContext);
-  if (!ctx) throw new Error('useExpenseUpsertContext must be used within an ExpenseUpsertProvider');
-  return ctx;
-}
 
 export function useExpenseDetailContext() {
   const ctx = useContext(ExpenseDetailContext);
@@ -19,5 +13,11 @@ export function useExpenseDetailContext() {
 export function useExpenseFilterContext() {
   const ctx = useContext(ExpenseFilterContext);
   if (!ctx) throw new Error('useExpenseFilterContext must be used within an ExpenseFilterProvider');
+  return ctx;
+}
+
+export function useExpenseFormContext() {
+  const ctx = useContext(ExpenseFormContext);
+  if (!ctx) throw new Error('useExpenseFormContext must be used within an ExpenseFormProvider');
   return ctx;
 }

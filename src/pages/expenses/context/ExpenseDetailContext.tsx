@@ -19,7 +19,7 @@ import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import { confirm } from '@/global/confirm';
 import { useExpenseByIdQuery, useExpenseDeleteMutation } from '@/hooks/apis/expense.hook';
 import { useAppContext } from '@/hooks/app/useApp';
-import { useExpenseUpsertContext } from '@/hooks/app/useExpense';
+import { useExpenseFormContext } from '@/hooks/app/useExpense';
 import { formatCurrency } from '@/utils/general.utils';
 
 interface ExpenseDetailContextValue {
@@ -68,7 +68,7 @@ const ExpenseDetailDrawer = ({
   const queryClient = useQueryClient();
   const drawerRef = useRef<DrawerRef>(null);
 
-  const { openModal } = useExpenseUpsertContext();
+  const { openForm } = useExpenseFormContext();
   const { data: expense, isLoading } = useExpenseByIdQuery(expenseId!);
   const { mutateAsync: deleteExpense } = useExpenseDeleteMutation();
   const { syncData } = useAppContext();
@@ -106,7 +106,7 @@ const ExpenseDetailDrawer = ({
 
   const handleEdit = () => {
     handleClose();
-    openModal(expenseId!);
+    openForm(expenseId!);
   };
 
   return (

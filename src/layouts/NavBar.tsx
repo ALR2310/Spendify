@@ -3,10 +3,10 @@ import { NavLink } from 'react-router';
 
 import { ROUTES } from '@/common/constants/routes.const';
 import { useAppContext } from '@/hooks/app/useApp';
-import { useExpenseUpsertContext } from '@/hooks/app/useExpense';
+import { useExpenseFormContext } from '@/hooks/app/useExpense';
 
 export default function DockNav() {
-  const { openModal } = useExpenseUpsertContext();
+  const { openForm } = useExpenseFormContext();
   const { progress, isDownloading } = useAppContext();
 
   return (
@@ -26,7 +26,7 @@ export default function DockNav() {
             border border-accent/20 bg-accent/10 hover:bg-accent/20 transition-all duration-300 
             transform hover:scale-110 shadow-md hover:cursor-pointer hover:shadow-lg animate-pulse 
             hover:animate-none group active:scale-95`}
-            onClick={() => openModal()}
+            onClick={() => openForm()}
           >
             <SquarePlus size={25} className="group-hover:rotate-90 transition-transform duration-300" />
           </button>

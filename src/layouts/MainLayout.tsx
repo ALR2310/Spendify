@@ -1,9 +1,10 @@
 import { Capacitor } from '@capacitor/core';
 import { AnimatePresence, motion } from 'motion/react';
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useLocation, useOutlet } from 'react-router';
 
 import { appConfig } from '@/configs/app.config';
+import { confirm } from '@/global/confirm';
 import { useAppContext } from '@/hooks/app/useApp';
 import { getPageDirection } from '@/hooks/app/usePageTransition';
 
@@ -13,7 +14,7 @@ import DockNav from './NavBar';
 export default function MainLayout() {
   const location = useLocation();
   const outlet = useOutlet();
-  const { downloadAndInstall } = useAppContext();
+  const { checkForUpdates, downloadAndInstall } = useAppContext();
 
   const direction = useMemo(() => getPageDirection(location.pathname), [location.pathname]);
 
@@ -23,12 +24,26 @@ export default function MainLayout() {
     exit: (dir: number) => ({ opacity: 0, x: `${dir * -100}%` }),
   };
 
+  const handleCheckUpdate = useCallback(async () => {
+    const check = await checkForUpdates();
+    if (!check.hasUpdate) return;
+
+    const ok = await confirm(
+      'An update is available. Do you want to download and install it now?',
+      'Update Available',
+    );
+
+    if (!ok) return;
+
+    downloadAndInstall();
+  }, [checkForUpdates, downloadAndInstall]);
+
   useEffect(() => {
     const isNative = Capacitor.isNativePlatform();
     if (appConfig.autoUpdate && isNative) {
-      downloadAndInstall();
+      handleCheckUpdate();
     }
-  }, [downloadAndInstall]);
+  }, [handleCheckUpdate]);
 
   return (
     <div id="main-layout" className="h-screen flex flex-col pt-[env(safe-area-inset-top)] bg-neutral">

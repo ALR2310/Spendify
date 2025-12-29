@@ -4,8 +4,9 @@ import { ToastContainer } from 'react-toastify';
 
 import { ROUTES } from './common/constants/routes.const';
 import { AppProvider as ContextAppProvider } from './context/AppContext';
+import { CategoryFormProvider } from './context/CategoryFormContext';
 import { EmojiPickerProvider } from './context/EmojiPickerContext';
-import { ExpenseUpsertProvider } from './context/ExpenseUpsertContext';
+import { ExpenseFormProvider } from './context/ExpenseFormContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ConfirmContainer } from './global/confirm/confirmContainer';
 import DatePickerContainer from './global/datepicker/DatePickerContainer';
@@ -37,21 +38,23 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
     <QueryClientProvider client={queryClient}>
       <ContextAppProvider>
         <EmojiPickerProvider>
-          <ExpenseUpsertProvider>
-            {children}
-            <DatePickerContainer />
-            <MonthPickerContainer />
-            <ConfirmContainer />
-            <ToastContainer
-              className="toast-container"
-              autoClose={2000}
-              theme={resolvedTheme}
-              pauseOnHover={false}
-              position="top-center"
-              hideProgressBar={true}
-              closeOnClick={true}
-            />
-          </ExpenseUpsertProvider>
+          <CategoryFormProvider>
+            <ExpenseFormProvider>
+              {children}
+              <DatePickerContainer />
+              <MonthPickerContainer />
+              <ConfirmContainer />
+              <ToastContainer
+                className="toast-container"
+                autoClose={2000}
+                theme={resolvedTheme}
+                pauseOnHover={false}
+                position="top-center"
+                hideProgressBar={true}
+                closeOnClick={true}
+              />
+            </ExpenseFormProvider>
+          </CategoryFormProvider>
         </EmojiPickerProvider>
       </ContextAppProvider>
     </QueryClientProvider>

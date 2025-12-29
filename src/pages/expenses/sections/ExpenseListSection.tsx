@@ -5,14 +5,14 @@ import { ThemeEnum } from '@/common/enums/appconfig.enum';
 import { Expense } from '@/common/types/expense.type';
 import { ExpenseTypeEnum } from '@/database/types/tables/expenses';
 import { useExpenseListInfinite } from '@/hooks/apis/expense.hook';
-import { useExpenseDetailContext, useExpenseFilterContext, useExpenseUpsertContext } from '@/hooks/app/useExpense';
+import { useExpenseDetailContext, useExpenseFilterContext, useExpenseFormContext } from '@/hooks/app/useExpense';
 import { useThemeContext } from '@/hooks/app/useTheme';
 import { groupExpenseByDate, isValidMonthRange } from '@/utils/expense.utils';
 import { formatCurrency } from '@/utils/general.utils';
 
 const NotFoundCard = ({ hasDateFilter, isValidMonth }: { hasDateFilter: boolean; isValidMonth: boolean }) => {
   const { t } = useTranslation();
-  const { openModal } = useExpenseUpsertContext();
+  const { openForm } = useExpenseFormContext();
 
   let notFoundMessage = t('expenses.list.notFound');
   if (isValidMonth) {
@@ -27,7 +27,7 @@ const NotFoundCard = ({ hasDateFilter, isValidMonth }: { hasDateFilter: boolean;
       {!hasDateFilter && (
         <p>
           {t('expenses.list.notFoundClick')}{' '}
-          <a className="link link-success" onClick={() => openModal()}>
+          <a className="link link-success" onClick={() => openForm()}>
             {t('expenses.list.notFoundHere')}
           </a>{' '}
           {t('expenses.list.notFoundAdd')}
