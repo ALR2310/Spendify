@@ -4,6 +4,7 @@
         "appconfig",
         "armeabi",
         "AUTOINCREMENT",
+        "emojipicker",
         "googleauth",
         "googledrive",
         "gradlew",

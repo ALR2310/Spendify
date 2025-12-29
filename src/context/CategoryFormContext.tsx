@@ -7,6 +7,7 @@ import { logger } from '@/common/logger';
 import Drawer, { DrawerRef } from '@/components/Drawer';
 import Skeleton from '@/components/Skeleton';
 import { NewCategory } from '@/database/types/tables/categories';
+import { useEmojiPicker } from '@/global/emojipicker';
 import {
   useCategoryByIdQuery,
   useCategoryCreateMutation,
@@ -14,7 +15,6 @@ import {
   useCategoryUpdateMutation,
 } from '@/hooks/apis/category.hook';
 import { useAppContext } from '@/hooks/app/useApp';
-import { useEmojiPickerContext } from '@/hooks/app/useEmojiPicker';
 
 interface CategoryFormContextType {
   openForm: (categoryId?: number) => void;
@@ -65,10 +65,9 @@ const CategoryFormDrawer = ({
   const queryClient = useQueryClient();
 
   const [name, setName] = useState<string>('');
-  const [icon, setIcon] = useState<string>('');
   const [color, setColor] = useState<string>('');
 
-  const { emoji, setEmoji, open: openPicker } = useEmojiPickerContext();
+  const { emoji: emojiItem, setEmoji: setEmojiItem, open: openPicker } = useEmojiPicker();
 
   const { data: categories, isLoading: isCategoryLoading } = useCategoryListQuery();
   const { data: category } = useCategoryByIdQuery(categoryId!);
@@ -80,20 +79,16 @@ const CategoryFormDrawer = ({
     if (!category) {
       // Reset form for new category
       setName('');
-      setEmoji(undefined);
+      setEmojiItem(undefined);
       setColor('#000000');
     }
 
     if (categoryId && category) {
       setName(category.name);
-      setEmoji(category.icon);
+      setEmojiItem(undefined);
       setColor(category.color || '#000000');
     }
-  }, [category, categoryId, setEmoji]);
-
-  useEffect(() => {
-    if (emoji) setIcon(emoji);
-  }, [emoji]);
+  }, [category, categoryId, setEmojiItem]);
 
   const handleSubmit = async () => {
     if (!name.trim()) {
@@ -101,7 +96,7 @@ const CategoryFormDrawer = ({
     }
 
     const now = new Date().toISOString();
-    const data: NewCategory = { name, icon, color, updatedAt: now };
+    const data: NewCategory = { name, icon: emojiItem?.emoji, color, updatedAt: now };
 
     try {
       if (categoryId) {
@@ -117,7 +112,7 @@ const CategoryFormDrawer = ({
 
       setCategoryId(undefined);
       setName('');
-      setIcon('');
+      setEmojiItem(undefined);
       setColor('#000000');
 
       onClose();
@@ -169,7 +164,7 @@ const CategoryFormDrawer = ({
               placeholder={t('expenses.form.emoji')}
               className="input input-lg"
               readOnly
-              value={icon}
+              value={emojiItem?.emoji || ''}
               onClick={openPicker}
             />
           </label>

@@ -5,11 +5,11 @@ import { ToastContainer } from 'react-toastify';
 import { ROUTES } from './common/constants/routes.const';
 import { AppProvider as ContextAppProvider } from './context/AppContext';
 import { CategoryFormProvider } from './context/CategoryFormContext';
-import { EmojiPickerProvider } from './context/EmojiPickerContext';
 import { ExpenseFormProvider } from './context/ExpenseFormContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ConfirmContainer } from './global/confirm/confirmContainer';
 import DatePickerContainer from './global/datepicker/DatePickerContainer';
+import EmojiPickerContainer from './global/emojipicker/EmojiPickerContainer';
 import MonthPickerContainer from './global/monthpicker/MonthPickerContainer';
 import { useThemeContext } from './hooks/app/useTheme';
 import MainLayout from './layouts/MainLayout';
@@ -37,25 +37,24 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ContextAppProvider>
-        <EmojiPickerProvider>
-          <CategoryFormProvider>
-            <ExpenseFormProvider>
-              {children}
-              <DatePickerContainer />
-              <MonthPickerContainer />
-              <ConfirmContainer />
-              <ToastContainer
-                className="toast-container"
-                autoClose={2000}
-                theme={resolvedTheme}
-                pauseOnHover={false}
-                position="top-center"
-                hideProgressBar={true}
-                closeOnClick={true}
-              />
-            </ExpenseFormProvider>
-          </CategoryFormProvider>
-        </EmojiPickerProvider>
+        <CategoryFormProvider>
+          <ExpenseFormProvider>
+            {children}
+            <DatePickerContainer />
+            <MonthPickerContainer />
+            <EmojiPickerContainer />
+            <ConfirmContainer />
+            <ToastContainer
+              className="toast-container"
+              autoClose={2000}
+              theme={resolvedTheme}
+              pauseOnHover={false}
+              position="top-center"
+              hideProgressBar={true}
+              closeOnClick={true}
+            />
+          </ExpenseFormProvider>
+        </CategoryFormProvider>
       </ContextAppProvider>
     </QueryClientProvider>
   );
