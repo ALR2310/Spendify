@@ -65,6 +65,7 @@ const CategoryFormDrawer = ({
   const queryClient = useQueryClient();
 
   const [name, setName] = useState<string>('');
+  const [icon, setIcon] = useState<string>('');
   const [color, setColor] = useState<string>('');
 
   const { emoji: emojiItem, setEmoji: setEmojiItem, open: openPicker } = useEmojiPicker();
@@ -79,13 +80,13 @@ const CategoryFormDrawer = ({
     if (!category) {
       // Reset form for new category
       setName('');
-      setEmojiItem(undefined);
+      setIcon('');
       setColor('#000000');
     }
 
     if (categoryId && category) {
       setName(category.name);
-      setEmojiItem(undefined);
+      setIcon(category.icon || '');
       setColor(category.color || '#000000');
     }
   }, [category, categoryId, setEmojiItem]);
@@ -110,8 +111,10 @@ const CategoryFormDrawer = ({
         `${t('expenses.filter.category')} ${categoryId ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
       );
 
+      // Reset form
       setCategoryId(undefined);
       setName('');
+      setIcon('');
       setEmojiItem(undefined);
       setColor('#000000');
 
@@ -122,6 +125,12 @@ const CategoryFormDrawer = ({
       toast.error(t('expenses.form.errorSavingCategory'));
     }
   };
+
+  useEffect(() => {
+    if (emojiItem) {
+      setIcon(emojiItem.emoji);
+    }
+  }, [emojiItem]);
 
   return (
     <Drawer
@@ -164,7 +173,7 @@ const CategoryFormDrawer = ({
               placeholder={t('expenses.form.emoji')}
               className="input input-lg"
               readOnly
-              value={emojiItem?.emoji || ''}
+              value={icon}
               onClick={openPicker}
             />
           </label>
