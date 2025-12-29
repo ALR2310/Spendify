@@ -35,3 +35,9 @@ export function useRecurringDeleteMutation() {
     mutationFn: (id: number) => recurringService.delete(id),
   });
 }
+
+export function useRecurringExecuteSchedules() {
+  return useMutation({
+    mutationFn: () => recurringService.executeSchedules(),
+  });
+}

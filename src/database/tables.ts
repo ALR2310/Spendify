@@ -40,13 +40,24 @@ export async function initializeTables() {
     .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
     .ifNotExists()
     .execute();
-  await db.schema.createIndex('idx_categories_createdAt').on('categories').column('createdAt').ifNotExists().execute();
-  await db.schema.createIndex('idx_categories_updatedAt').on('categories').column('updatedAt').ifNotExists().execute();
+  await db.schema
+    .createIndex('idx_categories_createdAt')
+    .on('categories')
+    .column('createdAt')
+    .ifNotExists()
+    .execute();
+  await db.schema
+    .createIndex('idx_categories_updatedAt')
+    .on('categories')
+    .column('updatedAt')
+    .ifNotExists()
+    .execute();
 
   await db.schema
     .createTable('expenses')
     .addColumn('id', 'integer', (col) => col.primaryKey().autoIncrement())
     .addColumn('categoryId', 'integer', (col) => col.references('categories.id').notNull())
+    .addColumn('recurringId', 'integer', (col) => col.references('recurring.id'))
     .addColumn('date', 'text', (col) => col.notNull())
     .addColumn('amount', 'real', (col) => col.notNull())
     .addColumn('type', 'text', (col) => col.notNull().check(sql`type IN (${sql.raw(expenseTypes)})`))
@@ -56,8 +67,19 @@ export async function initializeTables() {
     .ifNotExists()
     .execute();
   await db.schema.createIndex('idx_expenses_date').on('expenses').column('date').ifNotExists().execute();
-  await db.schema.createIndex('idx_expenses_categoryId').on('expenses').column('categoryId').ifNotExists().execute();
+  await db.schema
+    .createIndex('idx_expenses_categoryId')
+    .on('expenses')
+    .column('categoryId')
+    .ifNotExists()
+    .execute();
   await db.schema.createIndex('idx_expenses_type').on('expenses').column('type').ifNotExists().execute();
+  await db.schema
+    .createIndex('idx_expenses_recurringId')
+    .on('expenses')
+    .column('recurringId')
+    .ifNotExists()
+    .execute();
 
   await db.schema
     .createTable('recurring')
@@ -69,15 +91,32 @@ export async function initializeTables() {
     .addColumn('period', 'text', (col) => col.notNull().check(sql`period IN (${sql.raw(periodTypes)})`))
     .addColumn('startDate', 'text', (col) => col.notNull())
     .addColumn('endDate', 'text')
+    .addColumn('lastExecutedAt', 'text')
     .addColumn('createdAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
     .addColumn('updatedAt', 'text', (col) => col.notNull().defaultTo(sql`CURRENT_TIMESTAMP`))
     .ifNotExists()
     .execute();
-  await db.schema.createIndex('idx_recurring_categoryId').on('recurring').column('categoryId').ifNotExists().execute();
+  await db.schema
+    .createIndex('idx_recurring_categoryId')
+    .on('recurring')
+    .column('categoryId')
+    .ifNotExists()
+    .execute();
   await db.schema.createIndex('idx_recurring_type').on('recurring').column('type').ifNotExists().execute();
   await db.schema.createIndex('idx_recurring_period').on('recurring').column('period').ifNotExists().execute();
-  await db.schema.createIndex('idx_recurring_startDate').on('recurring').column('startDate').ifNotExists().execute();
+  await db.schema
+    .createIndex('idx_recurring_startDate')
+    .on('recurring')
+    .column('startDate')
+    .ifNotExists()
+    .execute();
   await db.schema.createIndex('idx_recurring_endDate').on('recurring').column('endDate').ifNotExists().execute();
+  await db.schema
+    .createIndex('idx_recurring_lastExecutedAt')
+    .on('recurring')
+    .column('lastExecutedAt')
+    .ifNotExists()
+    .execute();
 
   await db.schema
     .createTable('notes')

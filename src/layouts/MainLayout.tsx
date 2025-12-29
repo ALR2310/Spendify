@@ -5,6 +5,7 @@ import { useLocation, useOutlet } from 'react-router';
 
 import { appConfig } from '@/configs/app.config';
 import { confirm } from '@/global/confirm';
+import { useRecurringExecuteSchedules } from '@/hooks/apis/recurring.hook';
 import { useAppContext } from '@/hooks/app/useApp';
 import { getPageDirection } from '@/hooks/app/usePageTransition';
 
@@ -15,6 +16,7 @@ export default function MainLayout() {
   const location = useLocation();
   const outlet = useOutlet();
   const { checkForUpdates, downloadAndInstall } = useAppContext();
+  const { mutate: executeSchedules } = useRecurringExecuteSchedules();
 
   const direction = useMemo(() => getPageDirection(location.pathname), [location.pathname]);
 
@@ -43,7 +45,10 @@ export default function MainLayout() {
     if (appConfig.autoUpdate && isNative) {
       handleCheckUpdate();
     }
-  }, [handleCheckUpdate]);
+
+    executeSchedules();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div id="main-layout" className="h-screen flex flex-col pt-[env(safe-area-inset-top)] bg-neutral">

@@ -1,6 +1,7 @@
 import './configs/i18n.config';
 
 import { App } from '@capacitor/app';
+import dayjs from 'dayjs';
 import { sql } from 'kysely';
 import { createRoot } from 'react-dom/client';
 import { toast } from 'react-toastify';
@@ -13,13 +14,17 @@ import { googleAuthService } from './services/googleauth.service';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
+const isDev = import.meta.env.MODE === 'development';
 
-(window as any).appConfig = appConfig;
-(window as any).toast = toast;
-(window as any).db = db;
-(window as any).query = async (querySQL: string) => {
-  return await sql.raw(querySQL).execute(db);
-};
+if (isDev) {
+  (window as any).appConfig = appConfig;
+  (window as any).toast = toast;
+  (window as any).db = db;
+  (window as any).dayjs = dayjs;
+  (window as any).query = async (querySQL: string) => {
+    return await sql.raw(querySQL).execute(db);
+  };
+}
 
 // Init Google Auth
 await googleAuthService.init();

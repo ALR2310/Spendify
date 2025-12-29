@@ -9,10 +9,11 @@ export enum RecurringPeriodEnum {
   Yearly = 'yearly',
 }
 
-export type RecurringTable = Omit<ExpensesTable, 'date'> & {
+export type RecurringTable = Omit<ExpensesTable, 'date' | 'recurringId'> & {
   period: RecurringPeriodEnum;
   startDate: string;
   endDate?: string;
+  lastExecutedAt?: string;
 };
 export type SelectRecurring = Selectable<RecurringTable>;
 export type NewRecurring = Insertable<RecurringTable>;
