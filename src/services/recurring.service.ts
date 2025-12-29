@@ -9,7 +9,13 @@ import { expenseService } from './expense.service';
 export const recurringService = new (class RecurringService {
   async getList() {
     try {
-      const recurring = await db.selectFrom('recurring').selectAll().orderBy('updatedAt', 'desc').execute();
+      const recurring = await db
+        .selectFrom('recurring')
+        .innerJoin('categories', 'recurring.categoryId', 'categories.id')
+        .selectAll('recurring')
+        .select(['categories.name as categoryName', 'categories.icon as categoryIcon'])
+        .orderBy('updatedAt', 'desc')
+        .execute();
       return recurring;
     } catch (error) {
       logger.error('Error fetching recurrings:', error);
@@ -19,7 +25,13 @@ export const recurringService = new (class RecurringService {
 
   async getById(id: number) {
     try {
-      const recurring = await db.selectFrom('recurring').selectAll().where('id', '=', id).executeTakeFirst();
+      const recurring = await db
+        .selectFrom('recurring')
+        .innerJoin('categories', 'recurring.categoryId', 'categories.id')
+        .where('recurring.id', '=', id)
+        .selectAll('recurring')
+        .select(['categories.name as categoryName', 'categories.icon as categoryIcon'])
+        .executeTakeFirst();
       return recurring;
     } catch (error) {
       logger.error('Error fetching recurring by ID:', error);
@@ -77,12 +89,12 @@ export const recurringService = new (class RecurringService {
       }
 
       const today = dayjs().format('YYYY-MM-DD');
-      const todayDate = dayjs(today);
+      const todayDate = dayjs(today).startOf('day');
       let totalCreated = 0;
 
       for (const schedule of schedules) {
-        const startDate = dayjs(schedule.startDate);
-        const endDate = schedule.endDate ? dayjs(schedule.endDate) : null;
+        const startDate = dayjs(schedule.startDate).startOf('day');
+        const endDate = schedule.endDate ? dayjs(schedule.endDate).startOf('day') : null;
 
         if (startDate.isAfter(todayDate) || (endDate && endDate.isBefore(todayDate))) {
           continue;
@@ -90,7 +102,7 @@ export const recurringService = new (class RecurringService {
 
         let fromDate = startDate;
         if (schedule.lastExecutedAt) {
-          const lastExecuted = dayjs(schedule.lastExecutedAt);
+          const lastExecuted = dayjs(schedule.lastExecutedAt).startOf('day');
           fromDate = this.getNextDateAfter(lastExecuted, schedule.period);
         }
 

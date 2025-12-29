@@ -15,7 +15,9 @@
       "notFoundClick": "Nhấp",
       "notFoundHere": "vào đây",
       "notFoundAdd": "để thêm chi tiêu mới",
-      "loadingMore": "Đang tải thêm…"
+      "loadingMore": "Đang tải thêm…",
+      "recurring": "Chi tiêu định kỳ",
+      "recurringNotFound": "Không tìm thấy chi tiêu định kỳ nào"
     },
     "stat": {
       "totalRevenue": "Tổng thu nhập",

@@ -42,7 +42,7 @@ export default function ExpenseStatSection() {
         </div>
       </div>
 
-      {expenseOverview?.categoryDistribution.length && (
+      {(expenseOverview?.categoryDistribution?.length ?? 0) > 0 && (
         <div className="flex flex-col gap-4">
           <p className="font-semibold text-lg">{t('expenses.stat.expenseDistribution')}</p>
 

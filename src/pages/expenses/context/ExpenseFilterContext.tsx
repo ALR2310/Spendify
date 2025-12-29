@@ -132,6 +132,7 @@ const ExpenseFilterProvider = ({ children }: { children: React.ReactNode }) => {
 
   const ctx = useMemo(
     () => ({
+      // Filter states
       type,
       setType,
       categoryId,

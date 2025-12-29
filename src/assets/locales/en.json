@@ -15,7 +15,9 @@
       "notFoundClick": "Click",
       "notFoundHere": "here",
       "notFoundAdd": "to add a new expense",
-      "loadingMore": "Loading more…"
+      "loadingMore": "Loading more…",
+      "recurring": "Recurring Expenses",
+      "recurringNotFound": "No recurring expenses found"
     },
     "stat": {
       "totalRevenue": "Total revenue",

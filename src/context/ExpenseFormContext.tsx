@@ -10,6 +10,7 @@ import Combobox from '@/components/Combobox';
 import { CurrencyInput } from '@/components/CurrencyInput';
 import Drawer, { DrawerRef } from '@/components/Drawer';
 import { ExpenseTypeEnum, NewExpense } from '@/database/types/tables/expenses';
+import { NewRecurring, RecurringPeriodEnum } from '@/database/types/tables/recurring';
 import { useDatePicker } from '@/global/datepicker';
 import { useCategoryListQuery } from '@/hooks/apis/category.hook';
 import {
@@ -17,45 +18,57 @@ import {
   useExpenseCreateMutation,
   useExpenseUpdateMutation,
 } from '@/hooks/apis/expense.hook';
+import {
+  useRecurringByIdQuery,
+  useRecurringCreateMutation,
+  useRecurringUpdateMutation,
+} from '@/hooks/apis/recurring.hook';
 import { useAppContext } from '@/hooks/app/useApp';
 import { useCategoryFormContext } from '@/hooks/app/useCategory';
 
 interface ExpenseFormContextType {
-  openForm: (expenseId?: number) => void;
+  openForm: (id?: number, type?: 'expenses' | 'recurring') => void;
   closeForm: () => void;
 }
 
 const ExpenseFormContext = createContext<ExpenseFormContextType>(null!);
 
 const ExpenseFormProvider = ({ children }: { children: ReactNode }) => {
-  const [expenseId, setExpenseId] = useState<number>();
+  const [id, setId] = useState<number>();
+  const [type, setType] = useState<'expenses' | 'recurring'>('expenses');
   const drawerRef = useRef<DrawerRef>(null!);
 
-  const openForm = (expenseId?: number) => {
-    setExpenseId(expenseId);
+  const openForm = (id?: number, type?: 'expenses' | 'recurring') => {
+    setId(id);
+    setType(type ?? 'expenses');
     drawerRef.current?.openDrawer();
   };
 
   const closeForm = () => {
-    setExpenseId(undefined);
+    setId(undefined);
+    setType('expenses');
     drawerRef.current?.close();
   };
 
   return (
     <ExpenseFormContext.Provider value={{ openForm, closeForm }}>
       {children}
-      <ExpenseFormDrawer drawerRef={drawerRef} expenseId={expenseId} onClose={closeForm} />
+      <ExpenseFormDrawer drawerRef={drawerRef} id={id} formType={type} setFormType={setType} onClose={closeForm} />
     </ExpenseFormContext.Provider>
   );
 };
 
 const ExpenseFormDrawer = ({
   drawerRef,
-  expenseId,
+  id,
+  formType,
+  setFormType,
   onClose,
 }: {
   drawerRef: React.RefObject<DrawerRef>;
-  expenseId?: number;
+  id?: number;
+  formType: 'expenses' | 'recurring';
+  setFormType: (type: 'expenses' | 'recurring') => void;
   onClose: () => void;
 }) => {
   const { t } = useTranslation();
@@ -64,16 +77,23 @@ const ExpenseFormDrawer = ({
   const [amount, setAmount] = useState<number>(0);
   const [categoryId, setCategoryId] = useState<number | undefined>(undefined);
   const [type, setType] = useState<ExpenseTypeEnum>(ExpenseTypeEnum.Expense);
+  const [period, setPeriod] = useState<RecurringPeriodEnum>(RecurringPeriodEnum.Monthly);
   const [note, setNote] = useState<string>('');
 
   const { openForm: openCategoryForm } = useCategoryFormContext();
 
-  const { date, setDate, open: openDatePicker } = useDatePicker();
+  const { date, setDate, open: openDatePicker } = useDatePicker(new Date());
+  const { date: startDate, setDate: setStartDate, open: openStartDatePicker } = useDatePicker(new Date());
+  const { date: endDate, setDate: setEndDate, open: openEndDatePicker } = useDatePicker();
 
   const { data: categories } = useCategoryListQuery();
-  const { data: expense } = useExpenseByIdQuery(expenseId!);
+  const { data: expense } = useExpenseByIdQuery(id!);
+  const { data: recurring } = useRecurringByIdQuery(id!);
+
   const { mutateAsync: createExpense } = useExpenseCreateMutation();
   const { mutateAsync: updateExpense } = useExpenseUpdateMutation();
+  const { mutateAsync: createRecurring } = useRecurringCreateMutation();
+  const { mutateAsync: updateRecurring } = useRecurringUpdateMutation();
   const { syncData } = useAppContext();
 
   const categoryOptions = useMemo(
@@ -85,58 +105,139 @@ const ExpenseFormDrawer = ({
     [categories],
   );
 
-  useEffect(() => {
-    if (!expenseId) {
-      // Reset form for new expense
-      setAmount(0);
-      setCategoryId(undefined);
-      setDate(new Date());
-      setType(ExpenseTypeEnum.Expense);
-      setNote('');
-    }
+  // Track if form was initialized to avoid resetting on formType toggle
+  const isInitialized = useRef(false);
+  // Track last populated id to avoid re-populating same data
+  const lastPopulatedId = useRef<number | undefined>(undefined);
+  const lastPopulatedType = useRef<'expenses' | 'recurring' | undefined>(undefined);
 
-    if (expenseId && expense) {
-      // Populate form for editing existing expense
-      setAmount(expense.amount);
-      setCategoryId(expense.categoryId);
-      setDate(new Date(expense.date));
-      setType(expense.type);
-      setNote(expense.note || '');
+  // Reset initialization flag when id changes or form closes
+  useEffect(() => {
+    isInitialized.current = false;
+    lastPopulatedId.current = undefined;
+    lastPopulatedType.current = undefined;
+  }, [id]);
+
+  useEffect(() => {
+    if (!id) {
+      // Only reset form for new expense if not initialized yet
+      if (!isInitialized.current) {
+        setAmount(0);
+        setCategoryId(undefined);
+        setDate(new Date());
+        setStartDate(new Date());
+        setType(ExpenseTypeEnum.Expense);
+        setNote('');
+        setPeriod(RecurringPeriodEnum.Monthly);
+        isInitialized.current = true;
+      } else {
+        // When toggling formType, only reset incompatible fields
+        // Keep common fields: amount, categoryId, type, note
+        if (formType === 'expenses') {
+          // Switching to expenses: reset recurring-specific fields
+          // Only set if date is not already set
+          setDate((prevDate) => prevDate || new Date());
+        } else {
+          // Switching to recurring: reset expense-specific field
+          // Only set if startDate is not already set
+          setStartDate((prevStartDate) => prevStartDate || new Date());
+        }
+      }
+    } else {
+      // Editing existing item - populate from data
+      // Only populate if id or type changed to avoid infinite loop
+      const shouldPopulate = lastPopulatedId.current !== id || lastPopulatedType.current !== formType;
+
+      if (formType === 'expenses' && expense && shouldPopulate) {
+        setAmount(expense.amount);
+        setCategoryId(expense.categoryId);
+        setDate(new Date(expense.date));
+        setType(expense.type);
+        setNote(expense.note || '');
+        isInitialized.current = true;
+        lastPopulatedId.current = id;
+        lastPopulatedType.current = formType;
+      } else if (formType === 'recurring' && recurring && shouldPopulate) {
+        setAmount(recurring.amount);
+        setCategoryId(recurring.categoryId);
+        setStartDate(new Date(recurring.startDate));
+        setEndDate(recurring.endDate ? new Date(recurring.endDate) : undefined);
+        setPeriod(recurring.period);
+        setType(recurring.type);
+        setNote(recurring.note || '');
+        isInitialized.current = true;
+        lastPopulatedId.current = id;
+        lastPopulatedType.current = formType;
+      }
     }
-  }, [expense, expenseId, setDate]);
+  }, [expense, formType, id, recurring, setDate, setEndDate, setStartDate]);
 
   const handleSubmit = async () => {
-    if (!categoryId) {
-      toast.error('Please select a category.');
-      return;
-    }
+    if (!categoryId) return void toast.error('Please select a category.');
+    if (amount <= 0) return void toast.error('Amount must be greater than 0.');
 
-    if (!date) {
-      toast.error('Please select a date.');
-      return;
+    if (formType === 'expenses') {
+      if (!date) return void toast.error('Please select a date.');
+    } else {
+      if (!startDate) return void toast.error('Please select a start date.');
     }
 
     const now = new Date().toISOString();
 
-    const data: NewExpense = { categoryId, amount, date: date.toISOString(), type, note, updatedAt: now };
-
     try {
-      if (expenseId) {
-        await updateExpense({ id: expenseId, data });
-      } else {
-        await createExpense({ ...data, createdAt: now });
-      }
+      if (formType === 'expenses') {
+        const expenseData: NewExpense = {
+          categoryId,
+          amount,
+          date: date!.toISOString(),
+          type,
+          note,
+          updatedAt: now,
+        };
 
-      queryClient.invalidateQueries({ queryKey: ['expenses', 'getList'] });
-      toast.success(
-        `${t('expenses.form.expense')} ${expenseId ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
-      );
+        if (id) {
+          await updateExpense({ id: id, data: expenseData });
+        } else {
+          await createExpense({ ...expenseData, createdAt: now });
+        }
+
+        queryClient.invalidateQueries({ queryKey: ['expenses', 'getList'] });
+        toast.success(
+          `${t('expenses.form.expense')} ${id ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
+        );
+      } else {
+        const recurringData: NewRecurring = {
+          categoryId,
+          amount,
+          startDate: startDate!.toISOString(),
+          endDate: endDate?.toISOString(),
+          period,
+          type,
+          note,
+          updatedAt: now,
+        };
+
+        if (id) {
+          await updateRecurring({ id: id, data: recurringData });
+        } else {
+          await createRecurring({ ...recurringData, createdAt: now });
+        }
+
+        queryClient.invalidateQueries({ queryKey: ['recurring', 'getList'] });
+        toast.success(
+          `Recurring ${id ? t('expenses.form.updated') : t('expenses.form.created')} ${t('expenses.form.successfully')}.`,
+        );
+      }
 
       setCategoryId(undefined);
       setAmount(0);
       setDate(new Date());
+      setStartDate(new Date());
+      setEndDate(undefined);
+      setPeriod(RecurringPeriodEnum.Monthly);
       setType(ExpenseTypeEnum.Expense);
       setNote('');
+      isInitialized.current = false;
 
       onClose();
       syncData();
@@ -155,7 +256,7 @@ const ExpenseFormDrawer = ({
     >
       {/* Header */}
       <div className="relative flex items-center justify-center border-base-300">
-        <h3 className="font-semibold text-lg">{`${expenseId ? 'Edit' : 'Create'} Expense`}</h3>
+        <h3 className="font-semibold text-lg">{`${id ? 'Edit' : 'Create'} Expense`}</h3>
         <button className="btn btn-sm btn-circle btn-ghost absolute right-2" onClick={onClose}>
           ✕
         </button>
@@ -199,33 +300,92 @@ const ExpenseFormDrawer = ({
           </button>
         </div>
 
-        <label className="floating-label">
-          <span>{t('expenses.form.date')}</span>
-          <input
-            type="text"
-            placeholder="dd/mm/yyyy"
-            className="input input-lg w-full"
-            readOnly
-            value={date ? dayjs(date).format('DD/MM/YYYY') : ''}
-            onClick={() => openDatePicker()}
-          />
-          <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
-        </label>
+        {formType === 'expenses' ? (
+          <label className="floating-label">
+            <span>{t('expenses.form.date')}</span>
+            <input
+              type="text"
+              placeholder="dd/mm/yyyy"
+              className="input input-lg w-full"
+              readOnly
+              value={date ? dayjs(date).format('DD/MM/YYYY') : ''}
+              onClick={() => openDatePicker()}
+            />
+            <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
+          </label>
+        ) : (
+          <>
+            <div className="flex items-center gap-4">
+              <label className="floating-label">
+                <span>{'Start Date'}</span>
+                <input
+                  type="text"
+                  placeholder="dd/mm/yyyy"
+                  className="input input-lg w-full"
+                  readOnly
+                  value={startDate ? dayjs(startDate).format('DD/MM/YYYY') : ''}
+                  onClick={() => openStartDatePicker()}
+                />
+                <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
+              </label>
 
-        <label className="floating-label">
-          <span>{t('expenses.filter.type')}</span>
-          <select
-            className="select select-lg capitalize w-full"
-            value={type}
-            onChange={(e) => setType(e.target.value as ExpenseTypeEnum)}
-          >
-            {Object.entries(ExpenseTypeEnum).map(([key, value]) => (
-              <option key={key} value={value}>
-                {t(`expenses.filter.${value.toLowerCase()}`)}
-              </option>
-            ))}
-          </select>
-        </label>
+              <label className="floating-label">
+                <span>{'End Date'}</span>
+                <input
+                  type="text"
+                  placeholder="dd/mm/yyyy"
+                  className="input input-lg w-full"
+                  readOnly
+                  value={endDate ? dayjs(endDate).format('DD/MM/YYYY') : ''}
+                  onClick={() => openEndDatePicker()}
+                />
+                <CalendarDaysIcon size={20} className="absolute right-2 top-1/2 transform -translate-y-1/2 pe-1" />
+              </label>
+            </div>
+
+            <label className="floating-label">
+              <span>Period</span>
+              <select
+                className="select select-lg capitalize w-full"
+                value={period}
+                onChange={(e) => setPeriod(e.target.value as RecurringPeriodEnum)}
+              >
+                {Object.entries(RecurringPeriodEnum).map(([key, value]) => (
+                  <option key={key} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </>
+        )}
+
+        <div className="flex items-center justify-between gap-4">
+          <label className="floating-label flex-1">
+            <span>{t('expenses.filter.type')}</span>
+            <select
+              className="select select-lg capitalize w-full"
+              value={type}
+              onChange={(e) => setType(e.target.value as ExpenseTypeEnum)}
+            >
+              {Object.entries(ExpenseTypeEnum).map(([key, value]) => (
+                <option key={key} value={value}>
+                  {t(`expenses.filter.${value.toLowerCase()}`)}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="flex items-center gap-4">
+            <span>Recurring:</span>
+            <input
+              type="checkbox"
+              className="toggle toggle-lg checked:toggle-success"
+              checked={formType === 'recurring'}
+              onChange={(e) => setFormType(e.target.checked ? 'recurring' : 'expenses')}
+            />
+          </label>
+        </div>
 
         <label className="floating-label">
           <span>{t('expenses.form.note')}</span>
