@@ -42,7 +42,8 @@ jobs:
           cache: 'yarn'
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
+
       - name: Check version bump
         id: check
         shell: bash
