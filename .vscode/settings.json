@@ -5,6 +5,8 @@
         "armeabi",
         "AUTOINCREMENT",
         "emojipicker",
+        "gemini",
+        "genai",
         "googleauth",
         "googledrive",
         "gradlew",

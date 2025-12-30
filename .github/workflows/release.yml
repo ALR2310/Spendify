@@ -1,0 +1,104 @@
+name: Build And Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+  checks: read
+
+env:
+  VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+  VITE_GOOGLE_CLIENT_SECRET: ${{ secrets.VITE_GOOGLE_CLIENT_SECRET }}
+  VITE_GOOGLE_REDIRECT_URI: ${{ secrets.VITE_GOOGLE_REDIRECT_URI }}
+
+  VITE_GIT_PAT: ${{ secrets.GITHUB_TOKEN }}
+  VITE_GIT_REPO: ${{ github.repository }}
+  GITHUB_SHA: ${{ github.sha }}
+
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+  ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+  ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+  ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Check version bump
+        id: check
+        shell: bash
+        run: |
+          CURRENT_VERSION=$(jq -r .version package.json)
+          echo "Current: $CURRENT_VERSION"
+
+          API="https://api.github.com/repos/${{ github.repository }}/releases/latest"
+          LATEST_TAG=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "$API" | jq -r .tag_name)
+
+          if [ "$LATEST_TAG" = "null" ] || [ -z "$LATEST_TAG" ]; then
+            LATEST_TAG="v0.0.0"
+          fi
+
+          LATEST_VERSION=${LATEST_TAG#v}
+          echo "Latest: $LATEST_VERSION"
+
+          if npx semver -r ">${LATEST_VERSION}" "$CURRENT_VERSION"; then
+            echo "Version bump detected"
+            echo "should_release=true" >> $GITHUB_OUTPUT
+          else
+            echo "Skip release: $CURRENT_VERSION <= $LATEST_VERSION"
+            echo "should_release=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        if: steps.check.outputs.should_release == 'true'
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Cache Gradle dependencies
+        if: steps.check.outputs.should_release == 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Grant execute permission for gradlew
+        if: steps.check.outputs.should_release == 'true'
+        run: cd android && chmod +x ./gradlew
+
+      - name: Set up Android SDK
+        if: steps.check.outputs.should_release == 'true'
+        uses: android-actions/setup-android@v3
+
+      - name: Add apksigner to PATH
+        if: steps.check.outputs.should_release == 'true'
+        run: echo "${ANDROID_HOME}/build-tools/34.0.0" >> $GITHUB_PATH
+
+      - name: Create GitHub Release & Upload APKs
+        if: steps.check.outputs.should_release == 'true'
+        run: npx tsx scripts/release.ts
