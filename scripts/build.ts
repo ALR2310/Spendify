@@ -8,8 +8,6 @@ import { build } from 'vite';
 
 import pkg from '../package.json' with { type: 'json' };
 
-console.table(process.env);
-
 const APK_DIR = path.resolve('android', 'app', 'build', 'outputs', 'apk', 'release');
 const KEYSTORE_PATH = path.resolve('spendify-key.jks');
 

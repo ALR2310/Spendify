@@ -77,6 +77,10 @@ jobs:
           java-version: '21'
           cache: 'gradle'
 
+      - name: Set up Android SDK
+        if: steps.check.outputs.should_release == 'true'
+        uses: android-actions/setup-android@v3
+
       - name: Cache Android SDK
         if: steps.check.outputs.should_release == 'true'
         uses: actions/cache@v4
@@ -87,17 +91,9 @@ jobs:
             ${{ env.ANDROID_HOME }}/build-tools
           key: ${{ runner.os }}-android-sdk-${{ hashFiles('android/app/build.gradle') }}
 
-      - name: Set up Android SDK
-        if: steps.check.outputs.should_release == 'true'
-        uses: android-actions/setup-android@v3
-
       - name: Grant execute permission for gradlew
         if: steps.check.outputs.should_release == 'true'
         run: cd android && chmod +x ./gradlew
-
-      - name: Set up Android SDK
-        if: steps.check.outputs.should_release == 'true'
-        uses: android-actions/setup-android@v3
 
       - name: Add apksigner to PATH
         if: steps.check.outputs.should_release == 'true'

@@ -235,7 +235,7 @@ async function createRelease(version: string, changelog: string, attachments: At
     execSync('yarn build:android', { stdio: 'inherit', env: process.env });
 
     // Generate changelog
-    const changelog = !isDev ? await generateChangelog(version) : '';
+    // const changelog = !isDev ? await generateChangelog(latestVersion) : '';
 
     // Prepare attachments
     const attachments = await getFiles();
