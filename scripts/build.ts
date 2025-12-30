@@ -51,7 +51,7 @@ function resolveOutputName(apk: string) {
     });
 
     console.log('🤖 Building Android APKs...');
-    execSync('cd android && gradlew assembleRelease', {
+    execSync('cd android && ./gradlew assembleRelease', {
       stdio: 'inherit',
     });
 
