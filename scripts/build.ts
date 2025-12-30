@@ -1,6 +1,5 @@
 import 'dotenv/config';
 
-import chalk from 'chalk';
 import { execSync } from 'child_process';
 import { existsSync, readdirSync, unlinkSync, writeFileSync } from 'fs';
 import capitalize from 'lodash/capitalize';
@@ -9,7 +8,7 @@ import { build } from 'vite';
 
 import pkg from '../package.json' with { type: 'json' };
 
-console.log(chalk.green('ENV:', process.env));
+console.table(process.env);
 
 const APK_DIR = path.resolve('android', 'app', 'build', 'outputs', 'apk', 'release');
 const KEYSTORE_PATH = path.resolve('spendify-key.jks');
@@ -48,6 +47,11 @@ function resolveOutputName(apk: string) {
         minify: true,
         cssMinify: true,
       },
+    });
+
+    console.log('🔄 Syncing Capacitor...');
+    execSync('npx cap sync android', {
+      stdio: 'inherit',
     });
 
     console.log('🤖 Building Android APKs...');
