@@ -16,7 +16,7 @@ env:
   VITE_GOOGLE_CLIENT_SECRET: ${{ secrets.VITE_GOOGLE_CLIENT_SECRET }}
   VITE_GOOGLE_REDIRECT_URI: ${{ secrets.VITE_GOOGLE_REDIRECT_URI }}
 
-  VITE_GIT_PAT: ${{ secrets.GITHUB_TOKEN }}
+  VITE_GIT_PAT: ${{ secrets.VITE_GIT_PAT }}
   VITE_GIT_REPO: ${{ github.repository }}
   GITHUB_SHA: ${{ github.sha }}
 

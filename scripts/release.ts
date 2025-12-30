@@ -235,13 +235,13 @@ async function createRelease(version: string, changelog: string, attachments: At
     execSync('yarn build:android', { stdio: 'inherit', env: process.env });
 
     // Generate changelog
-    // const changelog = !isDev ? await generateChangelog(latestVersion) : '';
+    const changelog = !isDev ? await generateChangelog(latestVersion) : '';
 
     // Prepare attachments
     const attachments = await getFiles();
 
     // Create release
-    await createRelease(version, 'changelog', attachments);
+    await createRelease(version, changelog, attachments);
   }
 })().catch((error) => {
   console.error('Release script failed:', error);
