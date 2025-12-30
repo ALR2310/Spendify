@@ -2,8 +2,6 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": true,
     "strictNullChecks": true,
     "skipLibCheck": true,
     "noUnusedParameters": true,
@@ -11,22 +9,37 @@
     "noImplicitAny": false,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": false,
     "experimentalDecorators": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "module": "ESNext",
     "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
     "paths": {
-      "~": ["./src"],
-      "~/*": ["./src/*"]
-    },
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
-  "include": ["src", ".d.ts", "scripts"],
-  "exclude": ["node_modules"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src",
+    "vite.config.ts",
+    ".d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

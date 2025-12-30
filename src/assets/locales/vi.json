@@ -1,0 +1,215 @@
+{
+  "expenses": {
+    "filter": {
+      "all": "Tất cả",
+      "category": "Danh mục",
+      "type": "Loại",
+      "expense": "Chi tiêu",
+      "income": "Thu nhập"
+    },
+    "list": {
+      "title": "Danh sách chi tiêu",
+      "notFound": "Không tìm thấy chi tiêu nào",
+      "notFoundDateFilter": "Không có chi tiêu trong khoản thời gian này",
+      "notFoundMonthFilter": "Chưa có chi tiêu trong tháng này",
+      "notFoundClick": "Nhấp",
+      "notFoundHere": "vào đây",
+      "notFoundAdd": "để thêm chi tiêu mới",
+      "loadingMore": "Đang tải thêm…",
+      "recurring": "Chi tiêu định kỳ",
+      "recurringNotFound": "Không tìm thấy chi tiêu định kỳ nào"
+    },
+    "stat": {
+      "totalRevenue": "Tổng thu nhập",
+      "totalExpenses": "Tổng chi tiêu",
+      "balance": "Số dư",
+      "expenseDistribution": "Phân bổ chi tiêu",
+      "food": "Ăn uống",
+      "transport": "Di chuyển",
+      "shopping": "Mua sắm"
+    },
+    "form": {
+      "filters": "Bộ lọc",
+      "dayFrom": "Từ ngày",
+      "dayTo": "Đến ngày",
+      "type": "Loại:",
+      "sortBy": "Sắp xếp theo:",
+      "date": "Ngày",
+      "amount": "Số tiền",
+      "name": "Tên",
+      "desc": "Giảm dần",
+      "asc": "Tăng dần",
+      "category": "Danh mục:",
+      "reset": "Đặt lại",
+      "thisMonth": "Tháng này",
+      "edit": "Chỉnh sửa",
+      "new": "Mới",
+      "expense": "Chi tiêu",
+      "note": "Ghi chú",
+      "categoryName": "Tên danh mục",
+      "emoji": "Biểu tượng",
+      "color": "Màu sắc",
+      "updated": "đã cập nhật",
+      "created": "đã tạo",
+      "successfully": "thành công",
+      "errorSaving": "Đã xảy ra lỗi khi lưu chi tiêu.",
+      "errorSavingCategory": "Đã xảy ra lỗi khi lưu danh mục.",
+      "nameRequired": "Tên là bắt buộc.",
+      "custom": "Tuỳ chỉnh",
+      "close": "Đóng"
+    },
+    "detail": {
+      "title": "Chi tiết giao dịch",
+      "close": "Đóng",
+      "delete": "Xóa",
+      "edit": "Sửa",
+      "amount": "Số tiền",
+      "transactionDate": "Ngày giao dịch",
+      "transactionType": "Loại giao dịch",
+      "income": "Thu nhập",
+      "expense": "Chi tiêu",
+      "note": "Ghi chú"
+    }
+  },
+  "settings": {
+    "appearance": {
+      "title": "Giao diện",
+      "theme": "Chủ đề",
+      "light": "Sáng",
+      "dark": "Tối",
+      "system": "Hệ thống",
+      "language": "Ngôn ngữ",
+      "languages": {
+        "en": "Tiếng Anh",
+        "vi": "Tiếng Việt"
+      }
+    },
+    "app": {
+      "title": "Ứng dụng",
+      "appAutoUpdate": "Tự động cập nhật ứng dụng",
+      "appAutoUpdateDesc": "Tự động cập nhật ứng dụng",
+      "checkUpdate": "Kiểm tra cập nhật",
+      "checkUpdateDesc": "Kiểm tra bản cập nhật có sẵn"
+    },
+    "dataSync": {
+      "title": "Dữ liệu & Đồng bộ",
+      "dataSyncTitle": "Đồng bộ dữ liệu",
+      "dataSyncDesc": "Sao lưu dữ liệu lên Google Drive",
+      "import": "Nhập dữ liệu",
+      "importDesc": "Nhập dữ liệu từ file",
+      "export": "Xuất dữ liệu",
+      "exportDesc": "Xuất dữ liệu ra file",
+      "conflictModal": {
+        "title": "Phát hiện dữ liệu trên drive",
+        "message": "Vui lòng chọn nguồn dữ liệu bạn muốn sử dụng để đồng bộ: dữ liệu hiện tại ở local hay dữ liệu trên cloud.",
+        "googleDrive": "Google Drive",
+        "localStorage": "Local Storage",
+        "fileSize": "Kích thước:",
+        "lastSync": "Đồng bộ lần cuối:",
+        "neverSynced": "Chưa đồng bộ"
+      }
+    },
+    "account": {
+      "title": "Tài khoản",
+      "loggedIn": "Đã đăng nhập",
+      "googleAccount": "Tài khoản Google",
+      "logOut": "Đăng xuất",
+      "logOutDesc": "Đăng xuất khỏi tài khoản của bạn",
+      "signIn": "Đăng nhập với Google",
+      "signInDesc": "Đăng nhập để đồng bộ dữ liệu lên Google Drive"
+    },
+    "appInfo": {
+      "version": "Phiên bản ứng dụng"
+    }
+  },
+  "statistics": {
+    "filter": {
+      "period": "Kỳ",
+      "startDate": "Ngày bắt đầu",
+      "endDate": "Ngày kết thúc",
+      "oneDay": "1 ngày",
+      "oneWeek": "1 tuần",
+      "oneMonth": "1 tháng",
+      "sixMonths": "6 tháng",
+      "oneYear": "1 năm",
+      "twoYears": "2 năm",
+      "fiveYears": "5 năm",
+      "allTime": "Tất cả thời gian",
+      "timeUnit": "Đơn vị thời gian"
+    },
+    "form": {
+      "close": "Đóng",
+      "reset": "Đặt lại"
+    },
+    "chart": {
+      "categoryDistribution": "Phân bổ danh mục",
+      "incomeVsExpense": "Thu nhập vs Chi tiêu",
+      "balanceTrend": "Xu hướng số dư",
+      "income": "Thu nhập",
+      "expense": "Chi tiêu",
+      "balance": "Số dư"
+    },
+    "summary": {
+      "title": "Thống kê tóm tắt",
+      "avgTransaction": "Giao dịch trung bình",
+      "totalTransaction": "Tổng giao dịch",
+      "maxExpense": "Chi tiêu tối đa",
+      "minExpense": "Chi tiêu tối thiểu",
+      "totalIncome": "Tổng thu nhập",
+      "totalExpense": "Tổng chi tiêu",
+      "balance": "Số dư"
+    }
+  },
+  "pickers": {
+    "dayPicker": {
+      "title": "Chọn ngày"
+    },
+    "emojiPicker": {
+      "title": "Chọn emoji",
+      "all": "Tất cả",
+      "searchPlaceholder": "Tìm emoji…"
+    },
+    "monthPicker": {
+      "title": "Chọn tháng"
+    }
+  },
+  "notes": {
+    "list": {
+      "title": "Ghi chú",
+      "searchPlaceholder": "Tìm kiếm ghi chú...",
+      "notFound": "Không tìm thấy ghi chú nào",
+      "empty": "Chưa có ghi chú nào",
+      "createFirst": "Tạo ghi chú đầu tiên"
+    },
+    "item": {
+      "untitled": "Không tiêu đề"
+    },
+    "detail": {
+      "untitled": "Không tiêu đề",
+      "updated": "Cập nhật:",
+      "close": "Đóng",
+      "edit": "Sửa",
+      "delete": "Xóa"
+    },
+    "form": {
+      "createTitle": "Tạo ghi chú mới",
+      "editTitle": "Chỉnh sửa ghi chú",
+      "titleLabel": "Tiêu đề:",
+      "contentLabel": "Nội dung:",
+      "titlePlaceholder": "Nhập tiêu đề...",
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "validationError": "Vui lòng nhập tiêu đề hoặc nội dung",
+      "createSuccess": "Đã tạo ghi chú thành công!",
+      "updateSuccess": "Đã cập nhật ghi chú thành công!",
+      "createError": "Tạo ghi chú thất bại",
+      "updateError": "Cập nhật ghi chú thất bại"
+    },
+    "delete": {
+      "confirm": "Bạn có chắc chắn muốn xóa ghi chú này? Hành động này không thể hoàn tác.",
+      "title": "Xác nhận xóa",
+      "success": "Đã xóa ghi chú thành công!",
+      "error": "Xóa ghi chú thất bại. Vui lòng thử lại."
+    }
+  }
+}

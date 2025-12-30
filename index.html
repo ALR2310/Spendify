@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="dark">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="utf-8" />
-  <base href="/" />
   <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin-allow-popups" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="msapplication-tap-highlight" content="no" />
+
+  <meta name="color-scheme" content="light dark" />
   <meta name="viewport"
     content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="color-scheme" content="light dark" />
-  <link rel="icon" href="/src/assets/imgs/logos/app.png" type="image/x-icon" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <!-- add to homescreen for ios -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Ionic App" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="icon" type="image/x-icon" href="/src/assets/images/favicon.ico" />
   <link rel="stylesheet" href="/src/assets/css/index.css">
-  <link rel="stylesheet" href="/src/assets/libs/fontAwesome-6.6.0-pro/css/all.css">
-  <title>SpendWise</title>
+  <script type="module">
+    import { defineCustomElements } from '/node_modules/jeep-sqlite/loader';
+    defineCustomElements(window);
+  </script>
 </head>
 
 <body>
   <jeep-sqlite autoSave="true"></jeep-sqlite>
-  <div id="root" class="bg-base-200"></div>
-  <script type="module" src="./src/main.tsx"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>

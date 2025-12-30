@@ -1,0 +1,8098 @@
+[
+  {
+    "id": 116,
+    "code": "U+1F48C",
+    "emoji": "💌",
+    "name": "love letter",
+    "nameUrl": "love-letter",
+    "category": "emotions"
+  },
+  {
+    "id": 117,
+    "code": "U+1F498",
+    "emoji": "💘",
+    "name": "heart with arrow",
+    "nameUrl": "heart-with-arrow",
+    "category": "emotions"
+  },
+  {
+    "id": 118,
+    "code": "U+1F49D",
+    "emoji": "💝",
+    "name": "heart with ribbon",
+    "nameUrl": "heart-with-ribbon",
+    "category": "emotions"
+  },
+  {
+    "id": 119,
+    "code": "U+1F496",
+    "emoji": "💖",
+    "name": "sparkling heart",
+    "nameUrl": "sparkling-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 120,
+    "code": "U+1F497",
+    "emoji": "💗",
+    "name": "growing heart",
+    "nameUrl": "growing-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 121,
+    "code": "U+1F493",
+    "emoji": "💓",
+    "name": "beating heart",
+    "nameUrl": "beating-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 122,
+    "code": "U+1F49E",
+    "emoji": "💞",
+    "name": "revolving hearts",
+    "nameUrl": "revolving-hearts",
+    "category": "emotions"
+  },
+  {
+    "id": 123,
+    "code": "U+1F495",
+    "emoji": "💕",
+    "name": "two hearts",
+    "nameUrl": "two-hearts",
+    "category": "emotions"
+  },
+  {
+    "id": 124,
+    "code": "U+1F49F",
+    "emoji": "💟",
+    "name": "heart decoration",
+    "nameUrl": "heart-decoration",
+    "category": "emotions"
+  },
+  {
+    "id": 125,
+    "code": "U+2763",
+    "emoji": "❣️",
+    "name": "heart exclamation",
+    "nameUrl": "heart-exclamation",
+    "category": "emotions"
+  },
+  {
+    "id": 126,
+    "code": "U+1F494",
+    "emoji": "💔",
+    "name": "broken heart",
+    "nameUrl": "broken-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 127,
+    "code": "U+2764",
+    "emoji": "❤️️",
+    "name": "red heart",
+    "nameUrl": "red-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 128,
+    "code": "U+1F9E1",
+    "emoji": "🧡",
+    "name": "orange heart",
+    "nameUrl": "orange-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 129,
+    "code": "U+1F49B",
+    "emoji": "💛",
+    "name": "yellow heart",
+    "nameUrl": "yellow-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 130,
+    "code": "U+1F49A",
+    "emoji": "💚",
+    "name": "green heart",
+    "nameUrl": "green-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 131,
+    "code": "U+1F499",
+    "emoji": "💙",
+    "name": "blue heart",
+    "nameUrl": "blue-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 132,
+    "code": "U+1F49C",
+    "emoji": "💜",
+    "name": "purple heart",
+    "nameUrl": "purple-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 134,
+    "code": "U+1F5A4",
+    "emoji": "🖤",
+    "name": "black heart",
+    "nameUrl": "black-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 136,
+    "code": "U+1F4AF",
+    "emoji": "💯",
+    "name": "hundred points",
+    "nameUrl": "hundred-points",
+    "category": "other"
+  },
+  {
+    "id": 137,
+    "code": "U+1F4A2",
+    "emoji": "💢",
+    "name": "anger symbol",
+    "nameUrl": "anger-symbol",
+    "category": "symbols"
+  },
+  {
+    "id": 138,
+    "code": "U+1F4A5",
+    "emoji": "💥",
+    "name": "collision",
+    "nameUrl": "collision",
+    "category": "other"
+  },
+  {
+    "id": 139,
+    "code": "U+1F4AB",
+    "emoji": "💫",
+    "name": "dizzy",
+    "nameUrl": "dizzy",
+    "category": "other"
+  },
+  {
+    "id": 140,
+    "code": "U+1F4A6",
+    "emoji": "💦",
+    "name": "sweat droplets",
+    "nameUrl": "sweat-droplets",
+    "category": "food"
+  },
+  {
+    "id": 141,
+    "code": "U+1F4A8",
+    "emoji": "💨",
+    "name": "dashing away",
+    "nameUrl": "dashing-away",
+    "category": "other"
+  },
+  {
+    "id": 142,
+    "code": "U+1F573",
+    "emoji": "🕳",
+    "name": "hole",
+    "nameUrl": "hole",
+    "category": "other"
+  },
+  {
+    "id": 143,
+    "code": "U+1F4A3",
+    "emoji": "💣",
+    "name": "bomb",
+    "nameUrl": "bomb",
+    "category": "other"
+  },
+  {
+    "id": 144,
+    "code": "U+1F4AC",
+    "emoji": "💬",
+    "name": "speech balloon",
+    "nameUrl": "speech-balloon",
+    "category": "activities"
+  },
+  {
+    "id": 145,
+    "code": "U+1F441 U+FE0F U+200D U+1F5E8 U+FE0F",
+    "emoji": "👁️‍🗨️",
+    "name": "eye in speech bubble",
+    "nameUrl": "eye-in-speech-bubble",
+    "category": "other"
+  },
+  {
+    "id": 146,
+    "code": "U+1F5E8",
+    "emoji": "🗨",
+    "name": "left speech bubble",
+    "nameUrl": "left-speech-bubble",
+    "category": "other"
+  },
+  {
+    "id": 147,
+    "code": "U+1F5EF",
+    "emoji": "🗯",
+    "name": "right anger bubble",
+    "nameUrl": "right-anger-bubble",
+    "category": "other"
+  },
+  {
+    "id": 148,
+    "code": "U+1F4AD",
+    "emoji": "💭",
+    "name": "thought balloon",
+    "nameUrl": "thought-balloon",
+    "category": "activities"
+  },
+  {
+    "id": 149,
+    "code": "U+1F4A4",
+    "emoji": "💤",
+    "name": "zzz",
+    "nameUrl": "zzz",
+    "category": "other"
+  },
+  {
+    "id": 198,
+    "code": "U+1F476",
+    "emoji": "👶",
+    "name": "baby",
+    "nameUrl": "baby",
+    "category": "people"
+  },
+  {
+    "id": 199,
+    "code": "U+1F9D2",
+    "emoji": "🧒",
+    "name": "child",
+    "nameUrl": "child",
+    "category": "people"
+  },
+  {
+    "id": 200,
+    "code": "U+1F466",
+    "emoji": "👦",
+    "name": "boy",
+    "nameUrl": "boy",
+    "category": "people"
+  },
+  {
+    "id": 201,
+    "code": "U+1F467",
+    "emoji": "👧",
+    "name": "girl",
+    "nameUrl": "girl",
+    "category": "people"
+  },
+  {
+    "id": 202,
+    "code": "U+1F9D1",
+    "emoji": "🧑",
+    "name": "person",
+    "nameUrl": "person",
+    "category": "people"
+  },
+  {
+    "id": 203,
+    "code": "U+1F471",
+    "emoji": "👱",
+    "name": "person: blond hair",
+    "nameUrl": "person-blond-hair",
+    "category": "people"
+  },
+  {
+    "id": 204,
+    "code": "U+1F468",
+    "emoji": "👨",
+    "name": "man",
+    "nameUrl": "man",
+    "category": "people"
+  },
+  {
+    "id": 205,
+    "code": "U+1F9D4",
+    "emoji": "🧔",
+    "name": "man: beard",
+    "nameUrl": "man-beard",
+    "category": "people"
+  },
+  {
+    "id": 206,
+    "code": "U+1F471 U+200D U+2642 U+FE0F",
+    "emoji": "👱‍♂️",
+    "name": "man: blond hair",
+    "nameUrl": "man-blond-hair",
+    "category": "people"
+  },
+  {
+    "id": 207,
+    "code": "U+1F468 U+200D U+1F9B0",
+    "emoji": "👨‍🦰",
+    "name": "man: red hair",
+    "nameUrl": "man-red-hair",
+    "category": "people"
+  },
+  {
+    "id": 208,
+    "code": "U+1F468 U+200D U+1F9B1",
+    "emoji": "👨‍🦱",
+    "name": "man: curly hair",
+    "nameUrl": "man-curly-hair",
+    "category": "people"
+  },
+  {
+    "id": 209,
+    "code": "U+1F468 U+200D U+1F9B3",
+    "emoji": "👨‍🦳",
+    "name": "man: white hair",
+    "nameUrl": "man-white-hair",
+    "category": "people"
+  },
+  {
+    "id": 210,
+    "code": "U+1F468 U+200D U+1F9B2",
+    "emoji": "👨‍🦲",
+    "name": "man: bald",
+    "nameUrl": "man-bald",
+    "category": "people"
+  },
+  {
+    "id": 211,
+    "code": "U+1F469",
+    "emoji": "👩",
+    "name": "woman",
+    "nameUrl": "woman",
+    "category": "people"
+  },
+  {
+    "id": 212,
+    "code": "U+1F471 U+200D U+2640 U+FE0F",
+    "emoji": "👱‍♀️",
+    "name": "woman: blond hair",
+    "nameUrl": "woman-blond-hair",
+    "category": "people"
+  },
+  {
+    "id": 213,
+    "code": "U+1F469 U+200D U+1F9B0",
+    "emoji": "👩‍🦰",
+    "name": "woman: red hair",
+    "nameUrl": "woman-red-hair",
+    "category": "people"
+  },
+  {
+    "id": 214,
+    "code": "U+1F469 U+200D U+1F9B1",
+    "emoji": "👩‍🦱",
+    "name": "woman: curly hair",
+    "nameUrl": "woman-curly-hair",
+    "category": "people"
+  },
+  {
+    "id": 215,
+    "code": "U+1F469 U+200D U+1F9B3",
+    "emoji": "👩‍🦳",
+    "name": "woman: white hair",
+    "nameUrl": "woman-white-hair",
+    "category": "people"
+  },
+  {
+    "id": 216,
+    "code": "U+1F469 U+200D U+1F9B2",
+    "emoji": "👩‍🦲",
+    "name": "woman: bald",
+    "nameUrl": "woman-bald",
+    "category": "people"
+  },
+  {
+    "id": 217,
+    "code": "U+1F9D3",
+    "emoji": "🧓",
+    "name": "older person",
+    "nameUrl": "older-person",
+    "category": "people"
+  },
+  {
+    "id": 218,
+    "code": "U+1F474",
+    "emoji": "👴",
+    "name": "old man",
+    "nameUrl": "old-man",
+    "category": "people"
+  },
+  {
+    "id": 219,
+    "code": "U+1F475",
+    "emoji": "👵",
+    "name": "old woman",
+    "nameUrl": "old-woman",
+    "category": "people"
+  },
+  {
+    "id": 220,
+    "code": "U+1F64D",
+    "emoji": "🙍",
+    "name": "person frowning",
+    "nameUrl": "person-frowning",
+    "category": "people"
+  },
+  {
+    "id": 221,
+    "code": "U+1F64D U+200D U+2642 U+FE0F",
+    "emoji": "🙍‍♂️",
+    "name": "man frowning",
+    "nameUrl": "man-frowning",
+    "category": "people"
+  },
+  {
+    "id": 222,
+    "code": "U+1F64D U+200D U+2640 U+FE0F",
+    "emoji": "🙍‍♀️",
+    "name": "woman frowning",
+    "nameUrl": "woman-frowning",
+    "category": "people"
+  },
+  {
+    "id": 223,
+    "code": "U+1F64E",
+    "emoji": "🙎",
+    "name": "person pouting",
+    "nameUrl": "person-pouting",
+    "category": "people"
+  },
+  {
+    "id": 224,
+    "code": "U+1F64E U+200D U+2642 U+FE0F",
+    "emoji": "🙎‍♂️",
+    "name": "man pouting",
+    "nameUrl": "man-pouting",
+    "category": "people"
+  },
+  {
+    "id": 225,
+    "code": "U+1F64E U+200D U+2640 U+FE0F",
+    "emoji": "🙎‍♀️",
+    "name": "woman pouting",
+    "nameUrl": "woman-pouting",
+    "category": "people"
+  },
+  {
+    "id": 226,
+    "code": "U+1F645",
+    "emoji": "🙅",
+    "name": "person gesturing NO",
+    "nameUrl": "person-gesturing-no",
+    "category": "people"
+  },
+  {
+    "id": 227,
+    "code": "U+1F645 U+200D U+2642 U+FE0F",
+    "emoji": "🙅‍♂️",
+    "name": "man gesturing NO",
+    "nameUrl": "man-gesturing-no",
+    "category": "people"
+  },
+  {
+    "id": 228,
+    "code": "U+1F645 U+200D U+2640 U+FE0F",
+    "emoji": "🙅‍♀️",
+    "name": "woman gesturing NO",
+    "nameUrl": "woman-gesturing-no",
+    "category": "people"
+  },
+  {
+    "id": 229,
+    "code": "U+1F646",
+    "emoji": "🙆",
+    "name": "person gesturing OK",
+    "nameUrl": "person-gesturing-ok",
+    "category": "people"
+  },
+  {
+    "id": 230,
+    "code": "U+1F646 U+200D U+2642 U+FE0F",
+    "emoji": "🙆‍♂️",
+    "name": "man gesturing OK",
+    "nameUrl": "man-gesturing-ok",
+    "category": "people"
+  },
+  {
+    "id": 231,
+    "code": "U+1F646 U+200D U+2640 U+FE0F",
+    "emoji": "🙆‍♀️",
+    "name": "woman gesturing OK",
+    "nameUrl": "woman-gesturing-ok",
+    "category": "people"
+  },
+  {
+    "id": 232,
+    "code": "U+1F481",
+    "emoji": "💁",
+    "name": "person tipping hand",
+    "nameUrl": "person-tipping-hand",
+    "category": "people"
+  },
+  {
+    "id": 233,
+    "code": "U+1F481 U+200D U+2642 U+FE0F",
+    "emoji": "💁‍♂️",
+    "name": "man tipping hand",
+    "nameUrl": "man-tipping-hand",
+    "category": "people"
+  },
+  {
+    "id": 234,
+    "code": "U+1F481 U+200D U+2640 U+FE0F",
+    "emoji": "💁‍♀️",
+    "name": "woman tipping hand",
+    "nameUrl": "woman-tipping-hand",
+    "category": "people"
+  },
+  {
+    "id": 235,
+    "code": "U+1F64B",
+    "emoji": "🙋",
+    "name": "person raising hand",
+    "nameUrl": "person-raising-hand",
+    "category": "people"
+  },
+  {
+    "id": 236,
+    "code": "U+1F64B U+200D U+2642 U+FE0F",
+    "emoji": "🙋‍♂️",
+    "name": "man raising hand",
+    "nameUrl": "man-raising-hand",
+    "category": "people"
+  },
+  {
+    "id": 237,
+    "code": "U+1F64B U+200D U+2640 U+FE0F",
+    "emoji": "🙋‍♀️",
+    "name": "woman raising hand",
+    "nameUrl": "woman-raising-hand",
+    "category": "people"
+  },
+  {
+    "id": 241,
+    "code": "U+1F647",
+    "emoji": "🙇",
+    "name": "person bowing",
+    "nameUrl": "person-bowing",
+    "category": "people"
+  },
+  {
+    "id": 242,
+    "code": "U+1F647 U+200D U+2642 U+FE0F",
+    "emoji": "🙇‍♂️",
+    "name": "man bowing",
+    "nameUrl": "man-bowing",
+    "category": "people"
+  },
+  {
+    "id": 243,
+    "code": "U+1F647 U+200D U+2640 U+FE0F",
+    "emoji": "🙇‍♀️",
+    "name": "woman bowing",
+    "nameUrl": "woman-bowing",
+    "category": "people"
+  },
+  {
+    "id": 244,
+    "code": "U+1F926",
+    "emoji": "🤦",
+    "name": "person facepalming",
+    "nameUrl": "person-facepalming",
+    "category": "people"
+  },
+  {
+    "id": 245,
+    "code": "U+1F926 U+200D U+2642 U+FE0F",
+    "emoji": "🤦‍♂️",
+    "name": "man facepalming",
+    "nameUrl": "man-facepalming",
+    "category": "people"
+  },
+  {
+    "id": 246,
+    "code": "U+1F926 U+200D U+2640 U+FE0F",
+    "emoji": "🤦‍♀️",
+    "name": "woman facepalming",
+    "nameUrl": "woman-facepalming",
+    "category": "people"
+  },
+  {
+    "id": 247,
+    "code": "U+1F937",
+    "emoji": "🤷",
+    "name": "person shrugging",
+    "nameUrl": "person-shrugging",
+    "category": "people"
+  },
+  {
+    "id": 248,
+    "code": "U+1F937 U+200D U+2642 U+FE0F",
+    "emoji": "🤷‍♂️",
+    "name": "man shrugging",
+    "nameUrl": "man-shrugging",
+    "category": "people"
+  },
+  {
+    "id": 249,
+    "code": "U+1F937 U+200D U+2640 U+FE0F",
+    "emoji": "🤷‍♀️",
+    "name": "woman shrugging",
+    "nameUrl": "woman-shrugging",
+    "category": "people"
+  },
+  {
+    "id": 250,
+    "code": "U+1F468 U+200D U+2695 U+FE0F",
+    "emoji": "👨‍⚕️",
+    "name": "man health worker",
+    "nameUrl": "man-health-worker",
+    "category": "people"
+  },
+  {
+    "id": 251,
+    "code": "U+1F469 U+200D U+2695 U+FE0F",
+    "emoji": "👩‍⚕️",
+    "name": "woman health worker",
+    "nameUrl": "woman-health-worker",
+    "category": "people"
+  },
+  {
+    "id": 252,
+    "code": "U+1F468 U+200D U+1F393",
+    "emoji": "👨‍🎓",
+    "name": "man student",
+    "nameUrl": "man-student",
+    "category": "people"
+  },
+  {
+    "id": 253,
+    "code": "U+1F469 U+200D U+1F393",
+    "emoji": "👩‍🎓",
+    "name": "woman student",
+    "nameUrl": "woman-student",
+    "category": "people"
+  },
+  {
+    "id": 254,
+    "code": "U+1F468 U+200D U+1F3EB",
+    "emoji": "👨‍🏫",
+    "name": "man teacher",
+    "nameUrl": "man-teacher",
+    "category": "people"
+  },
+  {
+    "id": 255,
+    "code": "U+1F469 U+200D U+1F3EB",
+    "emoji": "👩‍🏫",
+    "name": "woman teacher",
+    "nameUrl": "woman-teacher",
+    "category": "people"
+  },
+  {
+    "id": 256,
+    "code": "U+1F468 U+200D U+2696 U+FE0F",
+    "emoji": "👨‍⚖️",
+    "name": "man judge",
+    "nameUrl": "man-judge",
+    "category": "people"
+  },
+  {
+    "id": 257,
+    "code": "U+1F469 U+200D U+2696 U+FE0F",
+    "emoji": "👩‍⚖️",
+    "name": "woman judge",
+    "nameUrl": "woman-judge",
+    "category": "people"
+  },
+  {
+    "id": 258,
+    "code": "U+1F468 U+200D U+1F33E",
+    "emoji": "👨‍🌾",
+    "name": "man farmer",
+    "nameUrl": "man-farmer",
+    "category": "people"
+  },
+  {
+    "id": 259,
+    "code": "U+1F469 U+200D U+1F33E",
+    "emoji": "👩‍🌾",
+    "name": "woman farmer",
+    "nameUrl": "woman-farmer",
+    "category": "people"
+  },
+  {
+    "id": 260,
+    "code": "U+1F468 U+200D U+1F373",
+    "emoji": "👨‍🍳",
+    "name": "man cook",
+    "nameUrl": "man-cook",
+    "category": "people"
+  },
+  {
+    "id": 261,
+    "code": "U+1F469 U+200D U+1F373",
+    "emoji": "👩‍🍳",
+    "name": "woman cook",
+    "nameUrl": "woman-cook",
+    "category": "people"
+  },
+  {
+    "id": 262,
+    "code": "U+1F468 U+200D U+1F527",
+    "emoji": "👨‍🔧",
+    "name": "man mechanic",
+    "nameUrl": "man-mechanic",
+    "category": "people"
+  },
+  {
+    "id": 263,
+    "code": "U+1F469 U+200D U+1F527",
+    "emoji": "👩‍🔧",
+    "name": "woman mechanic",
+    "nameUrl": "woman-mechanic",
+    "category": "people"
+  },
+  {
+    "id": 264,
+    "code": "U+1F468 U+200D U+1F3ED",
+    "emoji": "👨‍🏭",
+    "name": "man factory worker",
+    "nameUrl": "man-factory-worker",
+    "category": "people"
+  },
+  {
+    "id": 265,
+    "code": "U+1F469 U+200D U+1F3ED",
+    "emoji": "👩‍🏭",
+    "name": "woman factory worker",
+    "nameUrl": "woman-factory-worker",
+    "category": "people"
+  },
+  {
+    "id": 266,
+    "code": "U+1F468 U+200D U+1F4BC",
+    "emoji": "👨‍💼",
+    "name": "man office worker",
+    "nameUrl": "man-office-worker",
+    "category": "people"
+  },
+  {
+    "id": 267,
+    "code": "U+1F469 U+200D U+1F4BC",
+    "emoji": "👩‍💼",
+    "name": "woman office worker",
+    "nameUrl": "woman-office-worker",
+    "category": "people"
+  },
+  {
+    "id": 268,
+    "code": "U+1F468 U+200D U+1F52C",
+    "emoji": "👨‍🔬",
+    "name": "man scientist",
+    "nameUrl": "man-scientist",
+    "category": "people"
+  },
+  {
+    "id": 269,
+    "code": "U+1F469 U+200D U+1F52C",
+    "emoji": "👩‍🔬",
+    "name": "woman scientist",
+    "nameUrl": "woman-scientist",
+    "category": "people"
+  },
+  {
+    "id": 270,
+    "code": "U+1F468 U+200D U+1F4BB",
+    "emoji": "👨‍💻",
+    "name": "man technologist",
+    "nameUrl": "man-technologist",
+    "category": "people"
+  },
+  {
+    "id": 271,
+    "code": "U+1F469 U+200D U+1F4BB",
+    "emoji": "👩‍💻",
+    "name": "woman technologist",
+    "nameUrl": "woman-technologist",
+    "category": "people"
+  },
+  {
+    "id": 272,
+    "code": "U+1F468 U+200D U+1F3A4",
+    "emoji": "👨‍🎤",
+    "name": "man singer",
+    "nameUrl": "man-singer",
+    "category": "people"
+  },
+  {
+    "id": 273,
+    "code": "U+1F469 U+200D U+1F3A4",
+    "emoji": "👩‍🎤",
+    "name": "woman singer",
+    "nameUrl": "woman-singer",
+    "category": "people"
+  },
+  {
+    "id": 274,
+    "code": "U+1F468 U+200D U+1F3A8",
+    "emoji": "👨‍🎨",
+    "name": "man artist",
+    "nameUrl": "man-artist",
+    "category": "people"
+  },
+  {
+    "id": 275,
+    "code": "U+1F469 U+200D U+1F3A8",
+    "emoji": "👩‍🎨",
+    "name": "woman artist",
+    "nameUrl": "woman-artist",
+    "category": "people"
+  },
+  {
+    "id": 276,
+    "code": "U+1F468 U+200D U+2708 U+FE0F",
+    "emoji": "👨‍✈️",
+    "name": "man pilot",
+    "nameUrl": "man-pilot",
+    "category": "people"
+  },
+  {
+    "id": 277,
+    "code": "U+1F469 U+200D U+2708 U+FE0F",
+    "emoji": "👩‍✈️",
+    "name": "woman pilot",
+    "nameUrl": "woman-pilot",
+    "category": "people"
+  },
+  {
+    "id": 278,
+    "code": "U+1F468 U+200D U+1F680",
+    "emoji": "👨‍🚀",
+    "name": "man astronaut",
+    "nameUrl": "man-astronaut",
+    "category": "people"
+  },
+  {
+    "id": 279,
+    "code": "U+1F469 U+200D U+1F680",
+    "emoji": "👩‍🚀",
+    "name": "woman astronaut",
+    "nameUrl": "woman-astronaut",
+    "category": "people"
+  },
+  {
+    "id": 280,
+    "code": "U+1F468 U+200D U+1F692",
+    "emoji": "👨‍🚒",
+    "name": "man firefighter",
+    "nameUrl": "man-firefighter",
+    "category": "people"
+  },
+  {
+    "id": 281,
+    "code": "U+1F469 U+200D U+1F692",
+    "emoji": "👩‍🚒",
+    "name": "woman firefighter",
+    "nameUrl": "woman-firefighter",
+    "category": "people"
+  },
+  {
+    "id": 282,
+    "code": "U+1F46E",
+    "emoji": "👮",
+    "name": "police officer",
+    "nameUrl": "police-officer",
+    "category": "people"
+  },
+  {
+    "id": 283,
+    "code": "U+1F46E U+200D U+2642 U+FE0F",
+    "emoji": "👮‍♂️",
+    "name": "man police officer",
+    "nameUrl": "man-police-officer",
+    "category": "people"
+  },
+  {
+    "id": 284,
+    "code": "U+1F46E U+200D U+2640 U+FE0F",
+    "emoji": "👮‍♀️",
+    "name": "woman police officer",
+    "nameUrl": "woman-police-officer",
+    "category": "people"
+  },
+  {
+    "id": 285,
+    "code": "U+1F575",
+    "emoji": "🕵",
+    "name": "detective",
+    "nameUrl": "detective",
+    "category": "people"
+  },
+  {
+    "id": 286,
+    "code": "U+1F575 U+FE0F U+200D U+2642 U+FE0F",
+    "emoji": "🕵️‍♂️",
+    "name": "man detective",
+    "nameUrl": "man-detective",
+    "category": "people"
+  },
+  {
+    "id": 287,
+    "code": "U+1F575 U+FE0F U+200D U+2640 U+FE0F",
+    "emoji": "🕵️‍♀️",
+    "name": "woman detective",
+    "nameUrl": "woman-detective",
+    "category": "people"
+  },
+  {
+    "id": 288,
+    "code": "U+1F482",
+    "emoji": "💂",
+    "name": "guard",
+    "nameUrl": "guard",
+    "category": "people"
+  },
+  {
+    "id": 289,
+    "code": "U+1F482 U+200D U+2642 U+FE0F",
+    "emoji": "💂‍♂️",
+    "name": "man guard",
+    "nameUrl": "man-guard",
+    "category": "people"
+  },
+  {
+    "id": 290,
+    "code": "U+1F482 U+200D U+2640 U+FE0F",
+    "emoji": "💂‍♀️",
+    "name": "woman guard",
+    "nameUrl": "woman-guard",
+    "category": "people"
+  },
+  {
+    "id": 291,
+    "code": "U+1F477",
+    "emoji": "👷",
+    "name": "construction worker",
+    "nameUrl": "construction-worker",
+    "category": "people"
+  },
+  {
+    "id": 292,
+    "code": "U+1F477 U+200D U+2642 U+FE0F",
+    "emoji": "👷‍♂️",
+    "name": "man construction worker",
+    "nameUrl": "man-construction-worker",
+    "category": "people"
+  },
+  {
+    "id": 293,
+    "code": "U+1F477 U+200D U+2640 U+FE0F",
+    "emoji": "👷‍♀️",
+    "name": "woman construction worker",
+    "nameUrl": "woman-construction-worker",
+    "category": "people"
+  },
+  {
+    "id": 294,
+    "code": "U+1F934",
+    "emoji": "🤴",
+    "name": "prince",
+    "nameUrl": "prince",
+    "category": "other"
+  },
+  {
+    "id": 295,
+    "code": "U+1F478",
+    "emoji": "👸",
+    "name": "princess",
+    "nameUrl": "princess",
+    "category": "other"
+  },
+  {
+    "id": 296,
+    "code": "U+1F473",
+    "emoji": "👳",
+    "name": "person wearing turban",
+    "nameUrl": "person-wearing-turban",
+    "category": "people"
+  },
+  {
+    "id": 297,
+    "code": "U+1F473 U+200D U+2642 U+FE0F",
+    "emoji": "👳‍♂️",
+    "name": "man wearing turban",
+    "nameUrl": "man-wearing-turban",
+    "category": "people"
+  },
+  {
+    "id": 298,
+    "code": "U+1F473 U+200D U+2640 U+FE0F",
+    "emoji": "👳‍♀️",
+    "name": "woman wearing turban",
+    "nameUrl": "woman-wearing-turban",
+    "category": "people"
+  },
+  {
+    "id": 299,
+    "code": "U+1F472",
+    "emoji": "👲",
+    "name": "man with Chinese cap",
+    "nameUrl": "man-with-chinese-cap",
+    "category": "people"
+  },
+  {
+    "id": 300,
+    "code": "U+1F9D5",
+    "emoji": "🧕",
+    "name": "woman with headscarf",
+    "nameUrl": "woman-with-headscarf",
+    "category": "people"
+  },
+  {
+    "id": 301,
+    "code": "U+1F935",
+    "emoji": "🤵",
+    "name": "man in tuxedo",
+    "nameUrl": "man-in-tuxedo",
+    "category": "people"
+  },
+  {
+    "id": 302,
+    "code": "U+1F470",
+    "emoji": "👰",
+    "name": "bride with veil",
+    "nameUrl": "bride-with-veil",
+    "category": "people"
+  },
+  {
+    "id": 303,
+    "code": "U+1F930",
+    "emoji": "🤰",
+    "name": "pregnant woman",
+    "nameUrl": "pregnant-woman",
+    "category": "people"
+  },
+  {
+    "id": 304,
+    "code": "U+1F931",
+    "emoji": "🤱",
+    "name": "breast-feeding",
+    "nameUrl": "breast-feeding",
+    "category": "other"
+  },
+  {
+    "id": 305,
+    "code": "U+1F47C",
+    "emoji": "👼",
+    "name": "baby angel",
+    "nameUrl": "baby-angel",
+    "category": "people"
+  },
+  {
+    "id": 306,
+    "code": "U+1F385",
+    "emoji": "🎅",
+    "name": "Santa Claus",
+    "nameUrl": "santa-claus",
+    "category": "animals"
+  },
+  {
+    "id": 307,
+    "code": "U+1F936",
+    "emoji": "🤶",
+    "name": "Mrs. Claus",
+    "nameUrl": "mrs-claus",
+    "category": "other"
+  },
+  {
+    "id": 308,
+    "code": "U+1F9B8",
+    "emoji": "🦸",
+    "name": "superhero",
+    "nameUrl": "superhero",
+    "category": "people"
+  },
+  {
+    "id": 309,
+    "code": "U+1F9B8 U+200D U+2642 U+FE0F",
+    "emoji": "🦸‍♂️",
+    "name": "man superhero",
+    "nameUrl": "man-superhero",
+    "category": "people"
+  },
+  {
+    "id": 310,
+    "code": "U+1F9B8 U+200D U+2640 U+FE0F",
+    "emoji": "🦸‍♀️",
+    "name": "woman superhero",
+    "nameUrl": "woman-superhero",
+    "category": "people"
+  },
+  {
+    "id": 311,
+    "code": "U+1F9B9",
+    "emoji": "🦹",
+    "name": "supervillain",
+    "nameUrl": "supervillain",
+    "category": "other"
+  },
+  {
+    "id": 312,
+    "code": "U+1F9B9 U+200D U+2642 U+FE0F",
+    "emoji": "🦹‍♂️",
+    "name": "man supervillain",
+    "nameUrl": "man-supervillain",
+    "category": "people"
+  },
+  {
+    "id": 313,
+    "code": "U+1F9B9 U+200D U+2640 U+FE0F",
+    "emoji": "🦹‍♀️",
+    "name": "woman supervillain",
+    "nameUrl": "woman-supervillain",
+    "category": "people"
+  },
+  {
+    "id": 314,
+    "code": "U+1F9D9",
+    "emoji": "🧙",
+    "name": "mage",
+    "nameUrl": "mage",
+    "category": "other"
+  },
+  {
+    "id": 315,
+    "code": "U+1F9D9 U+200D U+2642 U+FE0F",
+    "emoji": "🧙‍♂️",
+    "name": "man mage",
+    "nameUrl": "man-mage",
+    "category": "people"
+  },
+  {
+    "id": 316,
+    "code": "U+1F9D9 U+200D U+2640 U+FE0F",
+    "emoji": "🧙‍♀️",
+    "name": "woman mage",
+    "nameUrl": "woman-mage",
+    "category": "people"
+  },
+  {
+    "id": 317,
+    "code": "U+1F9DA",
+    "emoji": "🧚",
+    "name": "fairy",
+    "nameUrl": "fairy",
+    "category": "other"
+  },
+  {
+    "id": 318,
+    "code": "U+1F9DA U+200D U+2642 U+FE0F",
+    "emoji": "🧚‍♂️",
+    "name": "man fairy",
+    "nameUrl": "man-fairy",
+    "category": "people"
+  },
+  {
+    "id": 319,
+    "code": "U+1F9DA U+200D U+2640 U+FE0F",
+    "emoji": "🧚‍♀️",
+    "name": "woman fairy",
+    "nameUrl": "woman-fairy",
+    "category": "people"
+  },
+  {
+    "id": 320,
+    "code": "U+1F9DB",
+    "emoji": "🧛",
+    "name": "vampire",
+    "nameUrl": "vampire",
+    "category": "other"
+  },
+  {
+    "id": 321,
+    "code": "U+1F9DB U+200D U+2642 U+FE0F",
+    "emoji": "🧛‍♂️",
+    "name": "man vampire",
+    "nameUrl": "man-vampire",
+    "category": "people"
+  },
+  {
+    "id": 322,
+    "code": "U+1F9DB U+200D U+2640 U+FE0F",
+    "emoji": "🧛‍♀️",
+    "name": "woman vampire",
+    "nameUrl": "woman-vampire",
+    "category": "people"
+  },
+  {
+    "id": 323,
+    "code": "U+1F9DC",
+    "emoji": "🧜",
+    "name": "merperson",
+    "nameUrl": "merperson",
+    "category": "people"
+  },
+  {
+    "id": 324,
+    "code": "U+1F9DC U+200D U+2642 U+FE0F",
+    "emoji": "🧜‍♂️",
+    "name": "merman",
+    "nameUrl": "merman",
+    "category": "people"
+  },
+  {
+    "id": 325,
+    "code": "U+1F9DC U+200D U+2640 U+FE0F",
+    "emoji": "🧜‍♀️",
+    "name": "mermaid",
+    "nameUrl": "mermaid",
+    "category": "other"
+  },
+  {
+    "id": 326,
+    "code": "U+1F9DD",
+    "emoji": "🧝",
+    "name": "elf",
+    "nameUrl": "elf",
+    "category": "other"
+  },
+  {
+    "id": 327,
+    "code": "U+1F9DD U+200D U+2642 U+FE0F",
+    "emoji": "🧝‍♂️",
+    "name": "man elf",
+    "nameUrl": "man-elf",
+    "category": "people"
+  },
+  {
+    "id": 328,
+    "code": "U+1F9DD U+200D U+2640 U+FE0F",
+    "emoji": "🧝‍♀️",
+    "name": "woman elf",
+    "nameUrl": "woman-elf",
+    "category": "people"
+  },
+  {
+    "id": 329,
+    "code": "U+1F9DE",
+    "emoji": "🧞",
+    "name": "genie",
+    "nameUrl": "genie",
+    "category": "other"
+  },
+  {
+    "id": 330,
+    "code": "U+1F9DE U+200D U+2642 U+FE0F",
+    "emoji": "🧞‍♂️",
+    "name": "man genie",
+    "nameUrl": "man-genie",
+    "category": "people"
+  },
+  {
+    "id": 331,
+    "code": "U+1F9DE U+200D U+2640 U+FE0F",
+    "emoji": "🧞‍♀️",
+    "name": "woman genie",
+    "nameUrl": "woman-genie",
+    "category": "people"
+  },
+  {
+    "id": 332,
+    "code": "U+1F9DF",
+    "emoji": "🧟",
+    "name": "zombie",
+    "nameUrl": "zombie",
+    "category": "other"
+  },
+  {
+    "id": 333,
+    "code": "U+1F9DF U+200D U+2642 U+FE0F",
+    "emoji": "🧟‍♂️",
+    "name": "man zombie",
+    "nameUrl": "man-zombie",
+    "category": "people"
+  },
+  {
+    "id": 334,
+    "code": "U+1F9DF U+200D U+2640 U+FE0F",
+    "emoji": "🧟‍♀️",
+    "name": "woman zombie",
+    "nameUrl": "woman-zombie",
+    "category": "people"
+  },
+  {
+    "id": 335,
+    "code": "U+1F486",
+    "emoji": "💆",
+    "name": "person getting massage",
+    "nameUrl": "person-getting-massage",
+    "category": "people"
+  },
+  {
+    "id": 336,
+    "code": "U+1F486 U+200D U+2642 U+FE0F",
+    "emoji": "💆‍♂️",
+    "name": "man getting massage",
+    "nameUrl": "man-getting-massage",
+    "category": "people"
+  },
+  {
+    "id": 337,
+    "code": "U+1F486 U+200D U+2640 U+FE0F",
+    "emoji": "💆‍♀️",
+    "name": "woman getting massage",
+    "nameUrl": "woman-getting-massage",
+    "category": "people"
+  },
+  {
+    "id": 338,
+    "code": "U+1F487",
+    "emoji": "💇",
+    "name": "person getting haircut",
+    "nameUrl": "person-getting-haircut",
+    "category": "people"
+  },
+  {
+    "id": 339,
+    "code": "U+1F487 U+200D U+2642 U+FE0F",
+    "emoji": "💇‍♂️",
+    "name": "man getting haircut",
+    "nameUrl": "man-getting-haircut",
+    "category": "people"
+  },
+  {
+    "id": 340,
+    "code": "U+1F487 U+200D U+2640 U+FE0F",
+    "emoji": "💇‍♀️",
+    "name": "woman getting haircut",
+    "nameUrl": "woman-getting-haircut",
+    "category": "people"
+  },
+  {
+    "id": 341,
+    "code": "U+1F6B6",
+    "emoji": "🚶",
+    "name": "person walking",
+    "nameUrl": "person-walking",
+    "category": "people"
+  },
+  {
+    "id": 342,
+    "code": "U+1F6B6 U+200D U+2642 U+FE0F",
+    "emoji": "🚶‍♂️",
+    "name": "man walking",
+    "nameUrl": "man-walking",
+    "category": "people"
+  },
+  {
+    "id": 343,
+    "code": "U+1F6B6 U+200D U+2640 U+FE0F",
+    "emoji": "🚶‍♀️",
+    "name": "woman walking",
+    "nameUrl": "woman-walking",
+    "category": "people"
+  },
+  {
+    "id": 356,
+    "code": "U+1F3C3",
+    "emoji": "🏃",
+    "name": "person running",
+    "nameUrl": "person-running",
+    "category": "people"
+  },
+  {
+    "id": 357,
+    "code": "U+1F3C3 U+200D U+2642 U+FE0F",
+    "emoji": "🏃‍♂️",
+    "name": "man running",
+    "nameUrl": "man-running",
+    "category": "people"
+  },
+  {
+    "id": 358,
+    "code": "U+1F3C3 U+200D U+2640 U+FE0F",
+    "emoji": "🏃‍♀️",
+    "name": "woman running",
+    "nameUrl": "woman-running",
+    "category": "people"
+  },
+  {
+    "id": 359,
+    "code": "U+1F483",
+    "emoji": "💃",
+    "name": "woman dancing",
+    "nameUrl": "woman-dancing",
+    "category": "people"
+  },
+  {
+    "id": 360,
+    "code": "U+1F57A",
+    "emoji": "🕺",
+    "name": "man dancing",
+    "nameUrl": "man-dancing",
+    "category": "people"
+  },
+  {
+    "id": 361,
+    "code": "U+1F574",
+    "emoji": "🕴",
+    "name": "man in suit levitating",
+    "nameUrl": "man-in-suit-levitating",
+    "category": "people"
+  },
+  {
+    "id": 362,
+    "code": "U+1F46F",
+    "emoji": "👯",
+    "name": "people with bunny ears",
+    "nameUrl": "people-with-bunny-ears",
+    "category": "people"
+  },
+  {
+    "id": 363,
+    "code": "U+1F46F U+200D U+2642 U+FE0F",
+    "emoji": "👯‍♂️",
+    "name": "men with bunny ears",
+    "nameUrl": "men-with-bunny-ears",
+    "category": "people"
+  },
+  {
+    "id": 364,
+    "code": "U+1F46F U+200D U+2640 U+FE0F",
+    "emoji": "👯‍♀️",
+    "name": "women with bunny ears",
+    "nameUrl": "women-with-bunny-ears",
+    "category": "people"
+  },
+  {
+    "id": 365,
+    "code": "U+1F9D6",
+    "emoji": "🧖",
+    "name": "person in steamy room",
+    "nameUrl": "person-in-steamy-room",
+    "category": "people"
+  },
+  {
+    "id": 366,
+    "code": "U+1F9D6 U+200D U+2642 U+FE0F",
+    "emoji": "🧖‍♂️",
+    "name": "man in steamy room",
+    "nameUrl": "man-in-steamy-room",
+    "category": "people"
+  },
+  {
+    "id": 367,
+    "code": "U+1F9D6 U+200D U+2640 U+FE0F",
+    "emoji": "🧖‍♀️",
+    "name": "woman in steamy room",
+    "nameUrl": "woman-in-steamy-room",
+    "category": "people"
+  },
+  {
+    "id": 368,
+    "code": "U+1F9D7",
+    "emoji": "🧗",
+    "name": "person climbing",
+    "nameUrl": "person-climbing",
+    "category": "people"
+  },
+  {
+    "id": 369,
+    "code": "U+1F9D7 U+200D U+2642 U+FE0F",
+    "emoji": "🧗‍♂️",
+    "name": "man climbing",
+    "nameUrl": "man-climbing",
+    "category": "people"
+  },
+  {
+    "id": 370,
+    "code": "U+1F9D7 U+200D U+2640 U+FE0F",
+    "emoji": "🧗‍♀️",
+    "name": "woman climbing",
+    "nameUrl": "woman-climbing",
+    "category": "people"
+  },
+  {
+    "id": 371,
+    "code": "U+1F93A",
+    "emoji": "🤺",
+    "name": "person fencing",
+    "nameUrl": "person-fencing",
+    "category": "people"
+  },
+  {
+    "id": 372,
+    "code": "U+1F3C7",
+    "emoji": "🏇",
+    "name": "horse racing",
+    "nameUrl": "horse-racing",
+    "category": "activities"
+  },
+  {
+    "id": 373,
+    "code": "U+26F7",
+    "emoji": "⛷",
+    "name": "skier",
+    "nameUrl": "skier",
+    "category": "activities"
+  },
+  {
+    "id": 374,
+    "code": "U+1F3C2",
+    "emoji": "🏂",
+    "name": "snowboarder",
+    "nameUrl": "snowboarder",
+    "category": "activities"
+  },
+  {
+    "id": 375,
+    "code": "U+1F3CC",
+    "emoji": "🏌",
+    "name": "person golfing",
+    "nameUrl": "person-golfing",
+    "category": "people"
+  },
+  {
+    "id": 376,
+    "code": "U+1F3CC U+FE0F U+200D U+2642 U+FE0F",
+    "emoji": "🏌️‍♂️",
+    "name": "man golfing",
+    "nameUrl": "man-golfing",
+    "category": "people"
+  },
+  {
+    "id": 377,
+    "code": "U+1F3CC U+FE0F U+200D U+2640 U+FE0F",
+    "emoji": "🏌️‍♀️",
+    "name": "woman golfing",
+    "nameUrl": "woman-golfing",
+    "category": "people"
+  },
+  {
+    "id": 378,
+    "code": "U+1F3C4",
+    "emoji": "🏄",
+    "name": "person surfing",
+    "nameUrl": "person-surfing",
+    "category": "people"
+  },
+  {
+    "id": 379,
+    "code": "U+1F3C4 U+200D U+2642 U+FE0F",
+    "emoji": "🏄‍♂️",
+    "name": "man surfing",
+    "nameUrl": "man-surfing",
+    "category": "people"
+  },
+  {
+    "id": 380,
+    "code": "U+1F3C4 U+200D U+2640 U+FE0F",
+    "emoji": "🏄‍♀️",
+    "name": "woman surfing",
+    "nameUrl": "woman-surfing",
+    "category": "people"
+  },
+  {
+    "id": 381,
+    "code": "U+1F6A3",
+    "emoji": "🚣",
+    "name": "person rowing boat",
+    "nameUrl": "person-rowing-boat",
+    "category": "people"
+  },
+  {
+    "id": 382,
+    "code": "U+1F6A3 U+200D U+2642 U+FE0F",
+    "emoji": "🚣‍♂️",
+    "name": "man rowing boat",
+    "nameUrl": "man-rowing-boat",
+    "category": "people"
+  },
+  {
+    "id": 383,
+    "code": "U+1F6A3 U+200D U+2640 U+FE0F",
+    "emoji": "🚣‍♀️",
+    "name": "woman rowing boat",
+    "nameUrl": "woman-rowing-boat",
+    "category": "people"
+  },
+  {
+    "id": 384,
+    "code": "U+1F3CA",
+    "emoji": "🏊",
+    "name": "person swimming",
+    "nameUrl": "person-swimming",
+    "category": "people"
+  },
+  {
+    "id": 385,
+    "code": "U+1F3CA U+200D U+2642 U+FE0F",
+    "emoji": "🏊‍♂️",
+    "name": "man swimming",
+    "nameUrl": "man-swimming",
+    "category": "people"
+  },
+  {
+    "id": 386,
+    "code": "U+1F3CA U+200D U+2640 U+FE0F",
+    "emoji": "🏊‍♀️",
+    "name": "woman swimming",
+    "nameUrl": "woman-swimming",
+    "category": "people"
+  },
+  {
+    "id": 387,
+    "code": "U+26F9",
+    "emoji": "⛹",
+    "name": "person bouncing ball",
+    "nameUrl": "person-bouncing-ball",
+    "category": "people"
+  },
+  {
+    "id": 388,
+    "code": "U+26F9 U+FE0F U+200D U+2642 U+FE0F",
+    "emoji": "⛹️‍♂️",
+    "name": "man bouncing ball",
+    "nameUrl": "man-bouncing-ball",
+    "category": "people"
+  },
+  {
+    "id": 389,
+    "code": "U+26F9 U+FE0F U+200D U+2640 U+FE0F",
+    "emoji": "⛹️‍♀️",
+    "name": "woman bouncing ball",
+    "nameUrl": "woman-bouncing-ball",
+    "category": "people"
+  },
+  {
+    "id": 390,
+    "code": "U+1F3CB",
+    "emoji": "🏋",
+    "name": "person lifting weights",
+    "nameUrl": "person-lifting-weights",
+    "category": "people"
+  },
+  {
+    "id": 391,
+    "code": "U+1F3CB U+FE0F U+200D U+2642 U+FE0F",
+    "emoji": "🏋️‍♂️",
+    "name": "man lifting weights",
+    "nameUrl": "man-lifting-weights",
+    "category": "people"
+  },
+  {
+    "id": 392,
+    "code": "U+1F3CB U+FE0F U+200D U+2640 U+FE0F",
+    "emoji": "🏋️‍♀️",
+    "name": "woman lifting weights",
+    "nameUrl": "woman-lifting-weights",
+    "category": "people"
+  },
+  {
+    "id": 393,
+    "code": "U+1F6B4",
+    "emoji": "🚴",
+    "name": "person biking",
+    "nameUrl": "person-biking",
+    "category": "people"
+  },
+  {
+    "id": 394,
+    "code": "U+1F6B4 U+200D U+2642 U+FE0F",
+    "emoji": "🚴‍♂️",
+    "name": "man biking",
+    "nameUrl": "man-biking",
+    "category": "people"
+  },
+  {
+    "id": 395,
+    "code": "U+1F6B4 U+200D U+2640 U+FE0F",
+    "emoji": "🚴‍♀️",
+    "name": "woman biking",
+    "nameUrl": "woman-biking",
+    "category": "people"
+  },
+  {
+    "id": 396,
+    "code": "U+1F6B5",
+    "emoji": "🚵",
+    "name": "person mountain biking",
+    "nameUrl": "person-mountain-biking",
+    "category": "people"
+  },
+  {
+    "id": 397,
+    "code": "U+1F6B5 U+200D U+2642 U+FE0F",
+    "emoji": "🚵‍♂️",
+    "name": "man mountain biking",
+    "nameUrl": "man-mountain-biking",
+    "category": "people"
+  },
+  {
+    "id": 398,
+    "code": "U+1F6B5 U+200D U+2640 U+FE0F",
+    "emoji": "🚵‍♀️",
+    "name": "woman mountain biking",
+    "nameUrl": "woman-mountain-biking",
+    "category": "people"
+  },
+  {
+    "id": 399,
+    "code": "U+1F938",
+    "emoji": "🤸",
+    "name": "person cartwheeling",
+    "nameUrl": "person-cartwheeling",
+    "category": "people"
+  },
+  {
+    "id": 400,
+    "code": "U+1F938 U+200D U+2642 U+FE0F",
+    "emoji": "🤸‍♂️",
+    "name": "man cartwheeling",
+    "nameUrl": "man-cartwheeling",
+    "category": "people"
+  },
+  {
+    "id": 401,
+    "code": "U+1F938 U+200D U+2640 U+FE0F",
+    "emoji": "🤸‍♀️",
+    "name": "woman cartwheeling",
+    "nameUrl": "woman-cartwheeling",
+    "category": "people"
+  },
+  {
+    "id": 402,
+    "code": "U+1F93C",
+    "emoji": "🤼",
+    "name": "people wrestling",
+    "nameUrl": "people-wrestling",
+    "category": "activities"
+  },
+  {
+    "id": 403,
+    "code": "U+1F93C U+200D U+2642 U+FE0F",
+    "emoji": "🤼‍♂️",
+    "name": "men wrestling",
+    "nameUrl": "men-wrestling",
+    "category": "activities"
+  },
+  {
+    "id": 404,
+    "code": "U+1F93C U+200D U+2640 U+FE0F",
+    "emoji": "🤼‍♀️",
+    "name": "women wrestling",
+    "nameUrl": "women-wrestling",
+    "category": "activities"
+  },
+  {
+    "id": 405,
+    "code": "U+1F93D",
+    "emoji": "🤽",
+    "name": "person playing water polo",
+    "nameUrl": "person-playing-water-polo",
+    "category": "people"
+  },
+  {
+    "id": 406,
+    "code": "U+1F93D U+200D U+2642 U+FE0F",
+    "emoji": "🤽‍♂️",
+    "name": "man playing water polo",
+    "nameUrl": "man-playing-water-polo",
+    "category": "people"
+  },
+  {
+    "id": 407,
+    "code": "U+1F93D U+200D U+2640 U+FE0F",
+    "emoji": "🤽‍♀️",
+    "name": "woman playing water polo",
+    "nameUrl": "woman-playing-water-polo",
+    "category": "people"
+  },
+  {
+    "id": 408,
+    "code": "U+1F93E",
+    "emoji": "🤾",
+    "name": "person playing handball",
+    "nameUrl": "person-playing-handball",
+    "category": "people"
+  },
+  {
+    "id": 409,
+    "code": "U+1F93E U+200D U+2642 U+FE0F",
+    "emoji": "🤾‍♂️",
+    "name": "man playing handball",
+    "nameUrl": "man-playing-handball",
+    "category": "people"
+  },
+  {
+    "id": 410,
+    "code": "U+1F93E U+200D U+2640 U+FE0F",
+    "emoji": "🤾‍♀️",
+    "name": "woman playing handball",
+    "nameUrl": "woman-playing-handball",
+    "category": "people"
+  },
+  {
+    "id": 411,
+    "code": "U+1F939",
+    "emoji": "🤹",
+    "name": "person juggling",
+    "nameUrl": "person-juggling",
+    "category": "people"
+  },
+  {
+    "id": 412,
+    "code": "U+1F939 U+200D U+2642 U+FE0F",
+    "emoji": "🤹‍♂️",
+    "name": "man juggling",
+    "nameUrl": "man-juggling",
+    "category": "people"
+  },
+  {
+    "id": 413,
+    "code": "U+1F939 U+200D U+2640 U+FE0F",
+    "emoji": "🤹‍♀️",
+    "name": "woman juggling",
+    "nameUrl": "woman-juggling",
+    "category": "people"
+  },
+  {
+    "id": 414,
+    "code": "U+1F9D8",
+    "emoji": "🧘",
+    "name": "person in lotus position",
+    "nameUrl": "person-in-lotus-position",
+    "category": "people"
+  },
+  {
+    "id": 415,
+    "code": "U+1F9D8 U+200D U+2642 U+FE0F",
+    "emoji": "🧘‍♂️",
+    "name": "man in lotus position",
+    "nameUrl": "man-in-lotus-position",
+    "category": "people"
+  },
+  {
+    "id": 416,
+    "code": "U+1F9D8 U+200D U+2640 U+FE0F",
+    "emoji": "🧘‍♀️",
+    "name": "woman in lotus position",
+    "nameUrl": "woman-in-lotus-position",
+    "category": "people"
+  },
+  {
+    "id": 417,
+    "code": "U+1F6C0",
+    "emoji": "🛀",
+    "name": "person taking bath",
+    "nameUrl": "person-taking-bath",
+    "category": "people"
+  },
+  {
+    "id": 418,
+    "code": "U+1F6CC",
+    "emoji": "🛌",
+    "name": "person in bed",
+    "nameUrl": "person-in-bed",
+    "category": "people"
+  },
+  {
+    "id": 420,
+    "code": "U+1F46D",
+    "emoji": "👭",
+    "name": "women holding hands",
+    "nameUrl": "women-holding-hands",
+    "category": "people"
+  },
+  {
+    "id": 421,
+    "code": "U+1F46B",
+    "emoji": "👫",
+    "name": "woman and man holding hands",
+    "nameUrl": "woman-and-man-holding-hands",
+    "category": "people"
+  },
+  {
+    "id": 422,
+    "code": "U+1F46C",
+    "emoji": "👬",
+    "name": "men holding hands",
+    "nameUrl": "men-holding-hands",
+    "category": "people"
+  },
+  {
+    "id": 423,
+    "code": "U+1F48F",
+    "emoji": "💏",
+    "name": "kiss",
+    "nameUrl": "kiss",
+    "category": "emotions"
+  },
+  {
+    "id": 424,
+    "code": "U+1F469 U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468",
+    "emoji": "👩‍❤️‍💋‍👨",
+    "name": "kiss: woman, man",
+    "nameUrl": "kiss-woman-man",
+    "category": "emotions"
+  },
+  {
+    "id": 425,
+    "code": "U+1F468 U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F468",
+    "emoji": "👨‍❤️‍💋‍👨",
+    "name": "kiss: man, man",
+    "nameUrl": "kiss-man-man",
+    "category": "emotions"
+  },
+  {
+    "id": 426,
+    "code": "U+1F469 U+200D U+2764 U+FE0F U+200D U+1F48B U+200D U+1F469",
+    "emoji": "👩‍❤️‍💋‍👩",
+    "name": "kiss: woman, woman",
+    "nameUrl": "kiss-woman-woman",
+    "category": "emotions"
+  },
+  {
+    "id": 427,
+    "code": "U+1F491",
+    "emoji": "💑",
+    "name": "couple with heart",
+    "nameUrl": "couple-with-heart",
+    "category": "emotions"
+  },
+  {
+    "id": 428,
+    "code": "U+1F469 U+200D U+2764 U+FE0F U+200D U+1F468",
+    "emoji": "👩‍❤️‍👨",
+    "name": "couple with heart: woman, man",
+    "nameUrl": "couple-with-heart-woman-man",
+    "category": "emotions"
+  },
+  {
+    "id": 429,
+    "code": "U+1F468 U+200D U+2764 U+FE0F U+200D U+1F468",
+    "emoji": "👨‍❤️‍👨",
+    "name": "couple with heart: man, man",
+    "nameUrl": "couple-with-heart-man-man",
+    "category": "emotions"
+  },
+  {
+    "id": 430,
+    "code": "U+1F469 U+200D U+2764 U+FE0F U+200D U+1F469",
+    "emoji": "👩‍❤️‍👩",
+    "name": "couple with heart: woman, woman",
+    "nameUrl": "couple-with-heart-woman-woman",
+    "category": "emotions"
+  },
+  {
+    "id": 431,
+    "code": "U+1F46A",
+    "emoji": "👪",
+    "name": "family",
+    "nameUrl": "family",
+    "category": "emotions"
+  },
+  {
+    "id": 432,
+    "code": "U+1F468 U+200D U+1F469 U+200D U+1F466",
+    "emoji": "👨‍👩‍👦",
+    "name": "family: man, woman, boy",
+    "nameUrl": "family-man-woman-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 433,
+    "code": "U+1F468 U+200D U+1F469 U+200D U+1F467",
+    "emoji": "👨‍👩‍👧",
+    "name": "family: man, woman, girl",
+    "nameUrl": "family-man-woman-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 434,
+    "code": "U+1F468 U+200D U+1F469 U+200D U+1F467 U+200D U+1F466",
+    "emoji": "👨‍👩‍👧‍👦",
+    "name": "family: man, woman, girl, boy",
+    "nameUrl": "family-man-woman-girl-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 435,
+    "code": "U+1F468 U+200D U+1F469 U+200D U+1F466 U+200D U+1F466",
+    "emoji": "👨‍👩‍👦‍👦",
+    "name": "family: man, woman, boy, boy",
+    "nameUrl": "family-man-woman-boy-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 436,
+    "code": "U+1F468 U+200D U+1F469 U+200D U+1F467 U+200D U+1F467",
+    "emoji": "👨‍👩‍👧‍👧",
+    "name": "family: man, woman, girl, girl",
+    "nameUrl": "family-man-woman-girl-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 437,
+    "code": "U+1F468 U+200D U+1F468 U+200D U+1F466",
+    "emoji": "👨‍👨‍👦",
+    "name": "family: man, man, boy",
+    "nameUrl": "family-man-man-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 438,
+    "code": "U+1F468 U+200D U+1F468 U+200D U+1F467",
+    "emoji": "👨‍👨‍👧",
+    "name": "family: man, man, girl",
+    "nameUrl": "family-man-man-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 439,
+    "code": "U+1F468 U+200D U+1F468 U+200D U+1F467 U+200D U+1F466",
+    "emoji": "👨‍👨‍👧‍👦",
+    "name": "family: man, man, girl, boy",
+    "nameUrl": "family-man-man-girl-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 440,
+    "code": "U+1F468 U+200D U+1F468 U+200D U+1F466 U+200D U+1F466",
+    "emoji": "👨‍👨‍👦‍👦",
+    "name": "family: man, man, boy, boy",
+    "nameUrl": "family-man-man-boy-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 441,
+    "code": "U+1F468 U+200D U+1F468 U+200D U+1F467 U+200D U+1F467",
+    "emoji": "👨‍👨‍👧‍👧",
+    "name": "family: man, man, girl, girl",
+    "nameUrl": "family-man-man-girl-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 442,
+    "code": "U+1F469 U+200D U+1F469 U+200D U+1F466",
+    "emoji": "👩‍👩‍👦",
+    "name": "family: woman, woman, boy",
+    "nameUrl": "family-woman-woman-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 443,
+    "code": "U+1F469 U+200D U+1F469 U+200D U+1F467",
+    "emoji": "👩‍👩‍👧",
+    "name": "family: woman, woman, girl",
+    "nameUrl": "family-woman-woman-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 444,
+    "code": "U+1F469 U+200D U+1F469 U+200D U+1F467 U+200D U+1F466",
+    "emoji": "👩‍👩‍👧‍👦",
+    "name": "family: woman, woman, girl, boy",
+    "nameUrl": "family-woman-woman-girl-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 445,
+    "code": "U+1F469 U+200D U+1F469 U+200D U+1F466 U+200D U+1F466",
+    "emoji": "👩‍👩‍👦‍👦",
+    "name": "family: woman, woman, boy, boy",
+    "nameUrl": "family-woman-woman-boy-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 446,
+    "code": "U+1F469 U+200D U+1F469 U+200D U+1F467 U+200D U+1F467",
+    "emoji": "👩‍👩‍👧‍👧",
+    "name": "family: woman, woman, girl, girl",
+    "nameUrl": "family-woman-woman-girl-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 447,
+    "code": "U+1F468 U+200D U+1F466",
+    "emoji": "👨‍👦",
+    "name": "family: man, boy",
+    "nameUrl": "family-man-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 448,
+    "code": "U+1F468 U+200D U+1F466 U+200D U+1F466",
+    "emoji": "👨‍👦‍👦",
+    "name": "family: man, boy, boy",
+    "nameUrl": "family-man-boy-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 449,
+    "code": "U+1F468 U+200D U+1F467",
+    "emoji": "👨‍👧",
+    "name": "family: man, girl",
+    "nameUrl": "family-man-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 450,
+    "code": "U+1F468 U+200D U+1F467 U+200D U+1F466",
+    "emoji": "👨‍👧‍👦",
+    "name": "family: man, girl, boy",
+    "nameUrl": "family-man-girl-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 451,
+    "code": "U+1F468 U+200D U+1F467 U+200D U+1F467",
+    "emoji": "👨‍👧‍👧",
+    "name": "family: man, girl, girl",
+    "nameUrl": "family-man-girl-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 452,
+    "code": "U+1F469 U+200D U+1F466",
+    "emoji": "👩‍👦",
+    "name": "family: woman, boy",
+    "nameUrl": "family-woman-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 453,
+    "code": "U+1F469 U+200D U+1F466 U+200D U+1F466",
+    "emoji": "👩‍👦‍👦",
+    "name": "family: woman, boy, boy",
+    "nameUrl": "family-woman-boy-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 454,
+    "code": "U+1F469 U+200D U+1F467",
+    "emoji": "👩‍👧",
+    "name": "family: woman, girl",
+    "nameUrl": "family-woman-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 455,
+    "code": "U+1F469 U+200D U+1F467 U+200D U+1F466",
+    "emoji": "👩‍👧‍👦",
+    "name": "family: woman, girl, boy",
+    "nameUrl": "family-woman-girl-boy",
+    "category": "emotions"
+  },
+  {
+    "id": 456,
+    "code": "U+1F469 U+200D U+1F467 U+200D U+1F467",
+    "emoji": "👩‍👧‍👧",
+    "name": "family: woman, girl, girl",
+    "nameUrl": "family-woman-girl-girl",
+    "category": "emotions"
+  },
+  {
+    "id": 457,
+    "code": "U+1F5E3",
+    "emoji": "🗣",
+    "name": "speaking head",
+    "nameUrl": "speaking-head",
+    "category": "other"
+  },
+  {
+    "id": 458,
+    "code": "U+1F464",
+    "emoji": "👤",
+    "name": "bust in silhouette",
+    "nameUrl": "bust-in-silhouette",
+    "category": "travel"
+  },
+  {
+    "id": 459,
+    "code": "U+1F465",
+    "emoji": "👥",
+    "name": "busts in silhouette",
+    "nameUrl": "busts-in-silhouette",
+    "category": "travel"
+  },
+  {
+    "id": 460,
+    "code": "U+1F463",
+    "emoji": "👣",
+    "name": "footprints",
+    "nameUrl": "footprints",
+    "category": "people"
+  },
+  {
+    "id": 461,
+    "code": "U+1F9B0",
+    "emoji": "🦰",
+    "name": "red hair",
+    "nameUrl": "red-hair",
+    "category": "other"
+  },
+  {
+    "id": 462,
+    "code": "U+1F9B1",
+    "emoji": "🦱",
+    "name": "curly hair",
+    "nameUrl": "curly-hair",
+    "category": "other"
+  },
+  {
+    "id": 463,
+    "code": "U+1F9B3",
+    "emoji": "🦳",
+    "name": "white hair",
+    "nameUrl": "white-hair",
+    "category": "other"
+  },
+  {
+    "id": 464,
+    "code": "U+1F9B2",
+    "emoji": "🦲",
+    "name": "bald",
+    "nameUrl": "bald",
+    "category": "other"
+  },
+  {
+    "id": 465,
+    "code": "U+1F435",
+    "emoji": "🐵",
+    "name": "monkey face",
+    "nameUrl": "monkey-face",
+    "category": "people"
+  },
+  {
+    "id": 466,
+    "code": "U+1F412",
+    "emoji": "🐒",
+    "name": "monkey",
+    "nameUrl": "monkey",
+    "category": "animals"
+  },
+  {
+    "id": 467,
+    "code": "U+1F98D",
+    "emoji": "🦍",
+    "name": "gorilla",
+    "nameUrl": "gorilla",
+    "category": "other"
+  },
+  {
+    "id": 469,
+    "code": "U+1F436",
+    "emoji": "🐶",
+    "name": "dog face",
+    "nameUrl": "dog-face",
+    "category": "people"
+  },
+  {
+    "id": 470,
+    "code": "U+1F415",
+    "emoji": "🐕",
+    "name": "dog",
+    "nameUrl": "dog",
+    "category": "animals"
+  },
+  {
+    "id": 473,
+    "code": "U+1F429",
+    "emoji": "🐩",
+    "name": "poodle",
+    "nameUrl": "poodle",
+    "category": "other"
+  },
+  {
+    "id": 474,
+    "code": "U+1F43A",
+    "emoji": "🐺",
+    "name": "wolf",
+    "nameUrl": "wolf",
+    "category": "other"
+  },
+  {
+    "id": 475,
+    "code": "U+1F98A",
+    "emoji": "🦊",
+    "name": "fox",
+    "nameUrl": "fox",
+    "category": "animals"
+  },
+  {
+    "id": 476,
+    "code": "U+1F99D",
+    "emoji": "🦝",
+    "name": "raccoon",
+    "nameUrl": "raccoon",
+    "category": "other"
+  },
+  {
+    "id": 477,
+    "code": "U+1F431",
+    "emoji": "🐱",
+    "name": "cat face",
+    "nameUrl": "cat-face",
+    "category": "people"
+  },
+  {
+    "id": 478,
+    "code": "U+1F408",
+    "emoji": "🐈",
+    "name": "cat",
+    "nameUrl": "cat",
+    "category": "animals"
+  },
+  {
+    "id": 479,
+    "code": "U+1F981",
+    "emoji": "🦁",
+    "name": "lion",
+    "nameUrl": "lion",
+    "category": "animals"
+  },
+  {
+    "id": 480,
+    "code": "U+1F42F",
+    "emoji": "🐯",
+    "name": "tiger face",
+    "nameUrl": "tiger-face",
+    "category": "people"
+  },
+  {
+    "id": 481,
+    "code": "U+1F405",
+    "emoji": "🐅",
+    "name": "tiger",
+    "nameUrl": "tiger",
+    "category": "animals"
+  },
+  {
+    "id": 482,
+    "code": "U+1F406",
+    "emoji": "🐆",
+    "name": "leopard",
+    "nameUrl": "leopard",
+    "category": "other"
+  },
+  {
+    "id": 483,
+    "code": "U+1F434",
+    "emoji": "🐴",
+    "name": "horse face",
+    "nameUrl": "horse-face",
+    "category": "people"
+  },
+  {
+    "id": 484,
+    "code": "U+1F40E",
+    "emoji": "🐎",
+    "name": "horse",
+    "nameUrl": "horse",
+    "category": "other"
+  },
+  {
+    "id": 485,
+    "code": "U+1F984",
+    "emoji": "🦄",
+    "name": "unicorn",
+    "nameUrl": "unicorn",
+    "category": "food"
+  },
+  {
+    "id": 486,
+    "code": "U+1F993",
+    "emoji": "🦓",
+    "name": "zebra",
+    "nameUrl": "zebra",
+    "category": "other"
+  },
+  {
+    "id": 487,
+    "code": "U+1F98C",
+    "emoji": "🦌",
+    "name": "deer",
+    "nameUrl": "deer",
+    "category": "other"
+  },
+  {
+    "id": 488,
+    "code": "U+1F42E",
+    "emoji": "🐮",
+    "name": "cow face",
+    "nameUrl": "cow-face",
+    "category": "people"
+  },
+  {
+    "id": 489,
+    "code": "U+1F402",
+    "emoji": "🐂",
+    "name": "ox",
+    "nameUrl": "ox",
+    "category": "other"
+  },
+  {
+    "id": 490,
+    "code": "U+1F403",
+    "emoji": "🐃",
+    "name": "water buffalo",
+    "nameUrl": "water-buffalo",
+    "category": "other"
+  },
+  {
+    "id": 491,
+    "code": "U+1F404",
+    "emoji": "🐄",
+    "name": "cow",
+    "nameUrl": "cow",
+    "category": "animals"
+  },
+  {
+    "id": 492,
+    "code": "U+1F437",
+    "emoji": "🐷",
+    "name": "pig face",
+    "nameUrl": "pig-face",
+    "category": "people"
+  },
+  {
+    "id": 493,
+    "code": "U+1F416",
+    "emoji": "🐖",
+    "name": "pig",
+    "nameUrl": "pig",
+    "category": "animals"
+  },
+  {
+    "id": 494,
+    "code": "U+1F417",
+    "emoji": "🐗",
+    "name": "boar",
+    "nameUrl": "boar",
+    "category": "other"
+  },
+  {
+    "id": 495,
+    "code": "U+1F43D",
+    "emoji": "🐽",
+    "name": "pig nose",
+    "nameUrl": "pig-nose",
+    "category": "people"
+  },
+  {
+    "id": 496,
+    "code": "U+1F40F",
+    "emoji": "🐏",
+    "name": "ram",
+    "nameUrl": "ram",
+    "category": "other"
+  },
+  {
+    "id": 497,
+    "code": "U+1F411",
+    "emoji": "🐑",
+    "name": "ewe",
+    "nameUrl": "ewe",
+    "category": "other"
+  },
+  {
+    "id": 498,
+    "code": "U+1F410",
+    "emoji": "🐐",
+    "name": "goat",
+    "nameUrl": "goat",
+    "category": "other"
+  },
+  {
+    "id": 499,
+    "code": "U+1F42A",
+    "emoji": "🐪",
+    "name": "camel",
+    "nameUrl": "camel",
+    "category": "other"
+  },
+  {
+    "id": 500,
+    "code": "U+1F42B",
+    "emoji": "🐫",
+    "name": "two-hump camel",
+    "nameUrl": "two-hump-camel",
+    "category": "other"
+  },
+  {
+    "id": 501,
+    "code": "U+1F999",
+    "emoji": "🦙",
+    "name": "llama",
+    "nameUrl": "llama",
+    "category": "other"
+  },
+  {
+    "id": 502,
+    "code": "U+1F992",
+    "emoji": "🦒",
+    "name": "giraffe",
+    "nameUrl": "giraffe",
+    "category": "other"
+  },
+  {
+    "id": 503,
+    "code": "U+1F418",
+    "emoji": "🐘",
+    "name": "elephant",
+    "nameUrl": "elephant",
+    "category": "animals"
+  },
+  {
+    "id": 504,
+    "code": "U+1F98F",
+    "emoji": "🦏",
+    "name": "rhinoceros",
+    "nameUrl": "rhinoceros",
+    "category": "other"
+  },
+  {
+    "id": 505,
+    "code": "U+1F99B",
+    "emoji": "🦛",
+    "name": "hippopotamus",
+    "nameUrl": "hippopotamus",
+    "category": "other"
+  },
+  {
+    "id": 506,
+    "code": "U+1F42D",
+    "emoji": "🐭",
+    "name": "mouse face",
+    "nameUrl": "mouse-face",
+    "category": "people"
+  },
+  {
+    "id": 507,
+    "code": "U+1F401",
+    "emoji": "🐁",
+    "name": "mouse",
+    "nameUrl": "mouse",
+    "category": "animals"
+  },
+  {
+    "id": 508,
+    "code": "U+1F400",
+    "emoji": "🐀",
+    "name": "rat",
+    "nameUrl": "rat",
+    "category": "animals"
+  },
+  {
+    "id": 509,
+    "code": "U+1F439",
+    "emoji": "🐹",
+    "name": "hamster",
+    "nameUrl": "hamster",
+    "category": "animals"
+  },
+  {
+    "id": 510,
+    "code": "U+1F430",
+    "emoji": "🐰",
+    "name": "rabbit face",
+    "nameUrl": "rabbit-face",
+    "category": "people"
+  },
+  {
+    "id": 511,
+    "code": "U+1F407",
+    "emoji": "🐇",
+    "name": "rabbit",
+    "nameUrl": "rabbit",
+    "category": "animals"
+  },
+  {
+    "id": 512,
+    "code": "U+1F43F",
+    "emoji": "🐿",
+    "name": "chipmunk",
+    "nameUrl": "chipmunk",
+    "category": "other"
+  },
+  {
+    "id": 513,
+    "code": "U+1F994",
+    "emoji": "🦔",
+    "name": "hedgehog",
+    "nameUrl": "hedgehog",
+    "category": "other"
+  },
+  {
+    "id": 514,
+    "code": "U+1F987",
+    "emoji": "🦇",
+    "name": "bat",
+    "nameUrl": "bat",
+    "category": "animals"
+  },
+  {
+    "id": 515,
+    "code": "U+1F43B",
+    "emoji": "🐻",
+    "name": "bear",
+    "nameUrl": "bear",
+    "category": "people"
+  },
+  {
+    "id": 516,
+    "code": "U+1F428",
+    "emoji": "🐨",
+    "name": "koala",
+    "nameUrl": "koala",
+    "category": "animals"
+  },
+  {
+    "id": 517,
+    "code": "U+1F43C",
+    "emoji": "🐼",
+    "name": "panda",
+    "nameUrl": "panda",
+    "category": "animals"
+  },
+  {
+    "id": 521,
+    "code": "U+1F998",
+    "emoji": "🦘",
+    "name": "kangaroo",
+    "nameUrl": "kangaroo",
+    "category": "other"
+  },
+  {
+    "id": 522,
+    "code": "U+1F9A1",
+    "emoji": "🦡",
+    "name": "badger",
+    "nameUrl": "badger",
+    "category": "other"
+  },
+  {
+    "id": 523,
+    "code": "U+1F43E",
+    "emoji": "🐾",
+    "name": "paw prints",
+    "nameUrl": "paw-prints",
+    "category": "animals"
+  },
+  {
+    "id": 524,
+    "code": "U+1F983",
+    "emoji": "🦃",
+    "name": "turkey",
+    "nameUrl": "turkey",
+    "category": "objects"
+  },
+  {
+    "id": 525,
+    "code": "U+1F414",
+    "emoji": "🐔",
+    "name": "chicken",
+    "nameUrl": "chicken",
+    "category": "animals"
+  },
+  {
+    "id": 526,
+    "code": "U+1F413",
+    "emoji": "🐓",
+    "name": "rooster",
+    "nameUrl": "rooster",
+    "category": "other"
+  },
+  {
+    "id": 527,
+    "code": "U+1F423",
+    "emoji": "🐣",
+    "name": "hatching chick",
+    "nameUrl": "hatching-chick",
+    "category": "other"
+  },
+  {
+    "id": 528,
+    "code": "U+1F424",
+    "emoji": "🐤",
+    "name": "baby chick",
+    "nameUrl": "baby-chick",
+    "category": "people"
+  },
+  {
+    "id": 529,
+    "code": "U+1F425",
+    "emoji": "🐥",
+    "name": "front-facing baby chick",
+    "nameUrl": "front-facing-baby-chick",
+    "category": "people"
+  },
+  {
+    "id": 530,
+    "code": "U+1F426",
+    "emoji": "🐦",
+    "name": "bird",
+    "nameUrl": "bird",
+    "category": "animals"
+  },
+  {
+    "id": 531,
+    "code": "U+1F427",
+    "emoji": "🐧",
+    "name": "penguin",
+    "nameUrl": "penguin",
+    "category": "animals"
+  },
+  {
+    "id": 532,
+    "code": "U+1F54A",
+    "emoji": "🕊",
+    "name": "dove",
+    "nameUrl": "dove",
+    "category": "other"
+  },
+  {
+    "id": 533,
+    "code": "U+1F985",
+    "emoji": "🦅",
+    "name": "eagle",
+    "nameUrl": "eagle",
+    "category": "animals"
+  },
+  {
+    "id": 534,
+    "code": "U+1F986",
+    "emoji": "🦆",
+    "name": "duck",
+    "nameUrl": "duck",
+    "category": "animals"
+  },
+  {
+    "id": 535,
+    "code": "U+1F9A2",
+    "emoji": "🦢",
+    "name": "swan",
+    "nameUrl": "swan",
+    "category": "animals"
+  },
+  {
+    "id": 536,
+    "code": "U+1F989",
+    "emoji": "🦉",
+    "name": "owl",
+    "nameUrl": "owl",
+    "category": "animals"
+  },
+  {
+    "id": 538,
+    "code": "U+1F99A",
+    "emoji": "🦚",
+    "name": "peacock",
+    "nameUrl": "peacock",
+    "category": "animals"
+  },
+  {
+    "id": 539,
+    "code": "U+1F99C",
+    "emoji": "🦜",
+    "name": "parrot",
+    "nameUrl": "parrot",
+    "category": "animals"
+  },
+  {
+    "id": 540,
+    "code": "U+1F438",
+    "emoji": "🐸",
+    "name": "frog",
+    "nameUrl": "frog",
+    "category": "animals"
+  },
+  {
+    "id": 541,
+    "code": "U+1F40A",
+    "emoji": "🐊",
+    "name": "crocodile",
+    "nameUrl": "crocodile",
+    "category": "animals"
+  },
+  {
+    "id": 542,
+    "code": "U+1F422",
+    "emoji": "🐢",
+    "name": "turtle",
+    "nameUrl": "turtle",
+    "category": "animals"
+  },
+  {
+    "id": 543,
+    "code": "U+1F98E",
+    "emoji": "🦎",
+    "name": "lizard",
+    "nameUrl": "lizard",
+    "category": "animals"
+  },
+  {
+    "id": 544,
+    "code": "U+1F40D",
+    "emoji": "🐍",
+    "name": "snake",
+    "nameUrl": "snake",
+    "category": "animals"
+  },
+  {
+    "id": 545,
+    "code": "U+1F432",
+    "emoji": "🐲",
+    "name": "dragon face",
+    "nameUrl": "dragon-face",
+    "category": "people"
+  },
+  {
+    "id": 546,
+    "code": "U+1F409",
+    "emoji": "🐉",
+    "name": "dragon",
+    "nameUrl": "dragon",
+    "category": "other"
+  },
+  {
+    "id": 547,
+    "code": "U+1F995",
+    "emoji": "🦕",
+    "name": "sauropod",
+    "nameUrl": "sauropod",
+    "category": "other"
+  },
+  {
+    "id": 548,
+    "code": "U+1F996",
+    "emoji": "🦖",
+    "name": "T-Rex",
+    "nameUrl": "t-rex",
+    "category": "other"
+  },
+  {
+    "id": 549,
+    "code": "U+1F433",
+    "emoji": "🐳",
+    "name": "spouting whale",
+    "nameUrl": "spouting-whale",
+    "category": "animals"
+  },
+  {
+    "id": 550,
+    "code": "U+1F40B",
+    "emoji": "🐋",
+    "name": "whale",
+    "nameUrl": "whale",
+    "category": "animals"
+  },
+  {
+    "id": 551,
+    "code": "U+1F42C",
+    "emoji": "🐬",
+    "name": "dolphin",
+    "nameUrl": "dolphin",
+    "category": "animals"
+  },
+  {
+    "id": 552,
+    "code": "U+1F41F",
+    "emoji": "🐟",
+    "name": "fish",
+    "nameUrl": "fish",
+    "category": "animals"
+  },
+  {
+    "id": 553,
+    "code": "U+1F420",
+    "emoji": "🐠",
+    "name": "tropical fish",
+    "nameUrl": "tropical-fish",
+    "category": "animals"
+  },
+  {
+    "id": 554,
+    "code": "U+1F421",
+    "emoji": "🐡",
+    "name": "blowfish",
+    "nameUrl": "blowfish",
+    "category": "animals"
+  },
+  {
+    "id": 555,
+    "code": "U+1F988",
+    "emoji": "🦈",
+    "name": "shark",
+    "nameUrl": "shark",
+    "category": "animals"
+  },
+  {
+    "id": 556,
+    "code": "U+1F419",
+    "emoji": "🐙",
+    "name": "octopus",
+    "nameUrl": "octopus",
+    "category": "other"
+  },
+  {
+    "id": 557,
+    "code": "U+1F41A",
+    "emoji": "🐚",
+    "name": "spiral shell",
+    "nameUrl": "spiral-shell",
+    "category": "other"
+  },
+  {
+    "id": 558,
+    "code": "U+1F40C",
+    "emoji": "🐌",
+    "name": "snail",
+    "nameUrl": "snail",
+    "category": "animals"
+  },
+  {
+    "id": 559,
+    "code": "U+1F98B",
+    "emoji": "🦋",
+    "name": "butterfly",
+    "nameUrl": "butterfly",
+    "category": "food"
+  },
+  {
+    "id": 560,
+    "code": "U+1F41B",
+    "emoji": "🐛",
+    "name": "bug",
+    "nameUrl": "bug",
+    "category": "animals"
+  },
+  {
+    "id": 561,
+    "code": "U+1F41C",
+    "emoji": "🐜",
+    "name": "ant",
+    "nameUrl": "ant",
+    "category": "animals"
+  },
+  {
+    "id": 562,
+    "code": "U+1F41D",
+    "emoji": "🐝",
+    "name": "honeybee",
+    "nameUrl": "honeybee",
+    "category": "animals"
+  },
+  {
+    "id": 563,
+    "code": "U+1F41E",
+    "emoji": "🐞",
+    "name": "lady beetle",
+    "nameUrl": "lady-beetle",
+    "category": "animals"
+  },
+  {
+    "id": 564,
+    "code": "U+1F997",
+    "emoji": "🦗",
+    "name": "cricket",
+    "nameUrl": "cricket",
+    "category": "other"
+  },
+  {
+    "id": 565,
+    "code": "U+1F577",
+    "emoji": "🕷",
+    "name": "spider",
+    "nameUrl": "spider",
+    "category": "animals"
+  },
+  {
+    "id": 566,
+    "code": "U+1F578",
+    "emoji": "🕸",
+    "name": "spider web",
+    "nameUrl": "spider-web",
+    "category": "animals"
+  },
+  {
+    "id": 567,
+    "code": "U+1F982",
+    "emoji": "🦂",
+    "name": "scorpion",
+    "nameUrl": "scorpion",
+    "category": "animals"
+  },
+  {
+    "id": 568,
+    "code": "U+1F99F",
+    "emoji": "🦟",
+    "name": "mosquito",
+    "nameUrl": "mosquito",
+    "category": "other"
+  },
+  {
+    "id": 569,
+    "code": "U+1F9A0",
+    "emoji": "🦠",
+    "name": "microbe",
+    "nameUrl": "microbe",
+    "category": "other"
+  },
+  {
+    "id": 570,
+    "code": "U+1F490",
+    "emoji": "💐",
+    "name": "bouquet",
+    "nameUrl": "bouquet",
+    "category": "other"
+  },
+  {
+    "id": 571,
+    "code": "U+1F338",
+    "emoji": "🌸",
+    "name": "cherry blossom",
+    "nameUrl": "cherry-blossom",
+    "category": "nature"
+  },
+  {
+    "id": 572,
+    "code": "U+1F4AE",
+    "emoji": "💮",
+    "name": "white flower",
+    "nameUrl": "white-flower",
+    "category": "nature"
+  },
+  {
+    "id": 573,
+    "code": "U+1F3F5",
+    "emoji": "🏵",
+    "name": "rosette",
+    "nameUrl": "rosette",
+    "category": "nature"
+  },
+  {
+    "id": 574,
+    "code": "U+1F339",
+    "emoji": "🌹",
+    "name": "rose",
+    "nameUrl": "rose",
+    "category": "nature"
+  },
+  {
+    "id": 575,
+    "code": "U+1F940",
+    "emoji": "🥀",
+    "name": "wilted flower",
+    "nameUrl": "wilted-flower",
+    "category": "nature"
+  },
+  {
+    "id": 576,
+    "code": "U+1F33A",
+    "emoji": "🌺",
+    "name": "hibiscus",
+    "nameUrl": "hibiscus",
+    "category": "nature"
+  },
+  {
+    "id": 577,
+    "code": "U+1F33B",
+    "emoji": "🌻",
+    "name": "sunflower",
+    "nameUrl": "sunflower",
+    "category": "nature"
+  },
+  {
+    "id": 578,
+    "code": "U+1F33C",
+    "emoji": "🌼",
+    "name": "blossom",
+    "nameUrl": "blossom",
+    "category": "nature"
+  },
+  {
+    "id": 579,
+    "code": "U+1F337",
+    "emoji": "🌷",
+    "name": "tulip",
+    "nameUrl": "tulip",
+    "category": "nature"
+  },
+  {
+    "id": 580,
+    "code": "U+1F331",
+    "emoji": "🌱",
+    "name": "seedling",
+    "nameUrl": "seedling",
+    "category": "other"
+  },
+  {
+    "id": 581,
+    "code": "U+1F332",
+    "emoji": "🌲",
+    "name": "evergreen tree",
+    "nameUrl": "evergreen-tree",
+    "category": "nature"
+  },
+  {
+    "id": 582,
+    "code": "U+1F333",
+    "emoji": "🌳",
+    "name": "deciduous tree",
+    "nameUrl": "deciduous-tree",
+    "category": "nature"
+  },
+  {
+    "id": 583,
+    "code": "U+1F334",
+    "emoji": "🌴",
+    "name": "palm tree",
+    "nameUrl": "palm-tree",
+    "category": "nature"
+  },
+  {
+    "id": 584,
+    "code": "U+1F335",
+    "emoji": "🌵",
+    "name": "cactus",
+    "nameUrl": "cactus",
+    "category": "nature"
+  },
+  {
+    "id": 585,
+    "code": "U+1F33E",
+    "emoji": "🌾",
+    "name": "sheaf of rice",
+    "nameUrl": "sheaf-of-rice",
+    "category": "food"
+  },
+  {
+    "id": 586,
+    "code": "U+1F33F",
+    "emoji": "🌿",
+    "name": "herb",
+    "nameUrl": "herb",
+    "category": "nature"
+  },
+  {
+    "id": 587,
+    "code": "U+2618",
+    "emoji": "☘",
+    "name": "shamrock",
+    "nameUrl": "shamrock",
+    "category": "nature"
+  },
+  {
+    "id": 588,
+    "code": "U+1F340",
+    "emoji": "🍀",
+    "name": "four leaf clover",
+    "nameUrl": "four-leaf-clover",
+    "category": "emotions"
+  },
+  {
+    "id": 589,
+    "code": "U+1F341",
+    "emoji": "🍁",
+    "name": "maple leaf",
+    "nameUrl": "maple-leaf",
+    "category": "nature"
+  },
+  {
+    "id": 590,
+    "code": "U+1F342",
+    "emoji": "🍂",
+    "name": "fallen leaf",
+    "nameUrl": "fallen-leaf",
+    "category": "nature"
+  },
+  {
+    "id": 591,
+    "code": "U+1F343",
+    "emoji": "🍃",
+    "name": "leaf fluttering in wind",
+    "nameUrl": "leaf-fluttering-in-wind",
+    "category": "nature"
+  },
+  {
+    "id": 592,
+    "code": "U+1F347",
+    "emoji": "🍇",
+    "name": "grapes",
+    "nameUrl": "grapes",
+    "category": "food"
+  },
+  {
+    "id": 593,
+    "code": "U+1F348",
+    "emoji": "🍈",
+    "name": "melon",
+    "nameUrl": "melon",
+    "category": "food"
+  },
+  {
+    "id": 594,
+    "code": "U+1F349",
+    "emoji": "🍉",
+    "name": "watermelon",
+    "nameUrl": "watermelon",
+    "category": "food"
+  },
+  {
+    "id": 595,
+    "code": "U+1F34A",
+    "emoji": "🍊",
+    "name": "tangerine",
+    "nameUrl": "tangerine",
+    "category": "food"
+  },
+  {
+    "id": 596,
+    "code": "U+1F34B",
+    "emoji": "🍋",
+    "name": "lemon",
+    "nameUrl": "lemon",
+    "category": "food"
+  },
+  {
+    "id": 597,
+    "code": "U+1F34C",
+    "emoji": "🍌",
+    "name": "banana",
+    "nameUrl": "banana",
+    "category": "food"
+  },
+  {
+    "id": 598,
+    "code": "U+1F34D",
+    "emoji": "🍍",
+    "name": "pineapple",
+    "nameUrl": "pineapple",
+    "category": "food"
+  },
+  {
+    "id": 599,
+    "code": "U+1F96D",
+    "emoji": "🥭",
+    "name": "mango",
+    "nameUrl": "mango",
+    "category": "people"
+  },
+  {
+    "id": 600,
+    "code": "U+1F34E",
+    "emoji": "🍎",
+    "name": "red apple",
+    "nameUrl": "red-apple",
+    "category": "food"
+  },
+  {
+    "id": 601,
+    "code": "U+1F34F",
+    "emoji": "🍏",
+    "name": "green apple",
+    "nameUrl": "green-apple",
+    "category": "food"
+  },
+  {
+    "id": 602,
+    "code": "U+1F350",
+    "emoji": "🍐",
+    "name": "pear",
+    "nameUrl": "pear",
+    "category": "people"
+  },
+  {
+    "id": 603,
+    "code": "U+1F351",
+    "emoji": "🍑",
+    "name": "peach",
+    "nameUrl": "peach",
+    "category": "food"
+  },
+  {
+    "id": 604,
+    "code": "U+1F352",
+    "emoji": "🍒",
+    "name": "cherries",
+    "nameUrl": "cherries",
+    "category": "food"
+  },
+  {
+    "id": 605,
+    "code": "U+1F353",
+    "emoji": "🍓",
+    "name": "strawberry",
+    "nameUrl": "strawberry",
+    "category": "food"
+  },
+  {
+    "id": 606,
+    "code": "U+1F95D",
+    "emoji": "🥝",
+    "name": "kiwi fruit",
+    "nameUrl": "kiwi-fruit",
+    "category": "food"
+  },
+  {
+    "id": 607,
+    "code": "U+1F345",
+    "emoji": "🍅",
+    "name": "tomato",
+    "nameUrl": "tomato",
+    "category": "food"
+  },
+  {
+    "id": 608,
+    "code": "U+1F965",
+    "emoji": "🥥",
+    "name": "coconut",
+    "nameUrl": "coconut",
+    "category": "other"
+  },
+  {
+    "id": 609,
+    "code": "U+1F951",
+    "emoji": "🥑",
+    "name": "avocado",
+    "nameUrl": "avocado",
+    "category": "food"
+  },
+  {
+    "id": 610,
+    "code": "U+1F346",
+    "emoji": "🍆",
+    "name": "eggplant",
+    "nameUrl": "eggplant",
+    "category": "food"
+  },
+  {
+    "id": 611,
+    "code": "U+1F954",
+    "emoji": "🥔",
+    "name": "potato",
+    "nameUrl": "potato",
+    "category": "food"
+  },
+  {
+    "id": 612,
+    "code": "U+1F955",
+    "emoji": "🥕",
+    "name": "carrot",
+    "nameUrl": "carrot",
+    "category": "food"
+  },
+  {
+    "id": 613,
+    "code": "U+1F33D",
+    "emoji": "🌽",
+    "name": "ear of corn",
+    "nameUrl": "ear-of-corn",
+    "category": "people"
+  },
+  {
+    "id": 614,
+    "code": "U+1F336",
+    "emoji": "🌶",
+    "name": "hot pepper",
+    "nameUrl": "hot-pepper",
+    "category": "food"
+  },
+  {
+    "id": 615,
+    "code": "U+1F952",
+    "emoji": "🥒",
+    "name": "cucumber",
+    "nameUrl": "cucumber",
+    "category": "food"
+  },
+  {
+    "id": 616,
+    "code": "U+1F96C",
+    "emoji": "🥬",
+    "name": "leafy green",
+    "nameUrl": "leafy-green",
+    "category": "nature"
+  },
+  {
+    "id": 617,
+    "code": "U+1F966",
+    "emoji": "🥦",
+    "name": "broccoli",
+    "nameUrl": "broccoli",
+    "category": "food"
+  },
+  {
+    "id": 620,
+    "code": "U+1F344",
+    "emoji": "🍄",
+    "name": "mushroom",
+    "nameUrl": "mushroom",
+    "category": "food"
+  },
+  {
+    "id": 621,
+    "code": "U+1F95C",
+    "emoji": "🥜",
+    "name": "peanuts",
+    "nameUrl": "peanuts",
+    "category": "food"
+  },
+  {
+    "id": 622,
+    "code": "U+1F330",
+    "emoji": "🌰",
+    "name": "chestnut",
+    "nameUrl": "chestnut",
+    "category": "food"
+  },
+  {
+    "id": 623,
+    "code": "U+1F35E",
+    "emoji": "🍞",
+    "name": "bread",
+    "nameUrl": "bread",
+    "category": "food"
+  },
+  {
+    "id": 624,
+    "code": "U+1F950",
+    "emoji": "🥐",
+    "name": "croissant",
+    "nameUrl": "croissant",
+    "category": "food"
+  },
+  {
+    "id": 625,
+    "code": "U+1F956",
+    "emoji": "🥖",
+    "name": "baguette bread",
+    "nameUrl": "baguette-bread",
+    "category": "food"
+  },
+  {
+    "id": 626,
+    "code": "U+1F968",
+    "emoji": "🥨",
+    "name": "pretzel",
+    "nameUrl": "pretzel",
+    "category": "other"
+  },
+  {
+    "id": 627,
+    "code": "U+1F96F",
+    "emoji": "🥯",
+    "name": "bagel",
+    "nameUrl": "bagel",
+    "category": "other"
+  },
+  {
+    "id": 628,
+    "code": "U+1F95E",
+    "emoji": "🥞",
+    "name": "pancakes",
+    "nameUrl": "pancakes",
+    "category": "food"
+  },
+  {
+    "id": 630,
+    "code": "U+1F9C0",
+    "emoji": "🧀",
+    "name": "cheese wedge",
+    "nameUrl": "cheese-wedge",
+    "category": "food"
+  },
+  {
+    "id": 631,
+    "code": "U+1F356",
+    "emoji": "🍖",
+    "name": "meat on bone",
+    "nameUrl": "meat-on-bone",
+    "category": "food"
+  },
+  {
+    "id": 632,
+    "code": "U+1F357",
+    "emoji": "🍗",
+    "name": "poultry leg",
+    "nameUrl": "poultry-leg",
+    "category": "people"
+  },
+  {
+    "id": 633,
+    "code": "U+1F969",
+    "emoji": "🥩",
+    "name": "cut of meat",
+    "nameUrl": "cut-of-meat",
+    "category": "food"
+  },
+  {
+    "id": 634,
+    "code": "U+1F953",
+    "emoji": "🥓",
+    "name": "bacon",
+    "nameUrl": "bacon",
+    "category": "food"
+  },
+  {
+    "id": 635,
+    "code": "U+1F354",
+    "emoji": "🍔",
+    "name": "hamburger",
+    "nameUrl": "hamburger",
+    "category": "food"
+  },
+  {
+    "id": 636,
+    "code": "U+1F35F",
+    "emoji": "🍟",
+    "name": "french fries",
+    "nameUrl": "french-fries",
+    "category": "food"
+  },
+  {
+    "id": 637,
+    "code": "U+1F355",
+    "emoji": "🍕",
+    "name": "pizza",
+    "nameUrl": "pizza",
+    "category": "food"
+  },
+  {
+    "id": 638,
+    "code": "U+1F32D",
+    "emoji": "🌭",
+    "name": "hot dog",
+    "nameUrl": "hot-dog",
+    "category": "food"
+  },
+  {
+    "id": 639,
+    "code": "U+1F96A",
+    "emoji": "🥪",
+    "name": "sandwich",
+    "nameUrl": "sandwich",
+    "category": "other"
+  },
+  {
+    "id": 640,
+    "code": "U+1F32E",
+    "emoji": "🌮",
+    "name": "taco",
+    "nameUrl": "taco",
+    "category": "food"
+  },
+  {
+    "id": 641,
+    "code": "U+1F32F",
+    "emoji": "🌯",
+    "name": "burrito",
+    "nameUrl": "burrito",
+    "category": "food"
+  },
+  {
+    "id": 642,
+    "code": "U+1F959",
+    "emoji": "🥙",
+    "name": "stuffed flatbread",
+    "nameUrl": "stuffed-flatbread",
+    "category": "food"
+  },
+  {
+    "id": 644,
+    "code": "U+1F95A",
+    "emoji": "🥚",
+    "name": "egg",
+    "nameUrl": "egg",
+    "category": "food"
+  },
+  {
+    "id": 645,
+    "code": "U+1F373",
+    "emoji": "🍳",
+    "name": "cooking",
+    "nameUrl": "cooking",
+    "category": "people"
+  },
+  {
+    "id": 646,
+    "code": "U+1F958",
+    "emoji": "🥘",
+    "name": "shallow pan of food",
+    "nameUrl": "shallow-pan-of-food",
+    "category": "food"
+  },
+  {
+    "id": 647,
+    "code": "U+1F372",
+    "emoji": "🍲",
+    "name": "pot of food",
+    "nameUrl": "pot-of-food",
+    "category": "food"
+  },
+  {
+    "id": 648,
+    "code": "U+1F963",
+    "emoji": "🥣",
+    "name": "bowl with spoon",
+    "nameUrl": "bowl-with-spoon",
+    "category": "food"
+  },
+  {
+    "id": 649,
+    "code": "U+1F957",
+    "emoji": "🥗",
+    "name": "green salad",
+    "nameUrl": "green-salad",
+    "category": "food"
+  },
+  {
+    "id": 650,
+    "code": "U+1F37F",
+    "emoji": "🍿",
+    "name": "popcorn",
+    "nameUrl": "popcorn",
+    "category": "food"
+  },
+  {
+    "id": 652,
+    "code": "U+1F9C2",
+    "emoji": "🧂",
+    "name": "salt",
+    "nameUrl": "salt",
+    "category": "food"
+  },
+  {
+    "id": 653,
+    "code": "U+1F96B",
+    "emoji": "🥫",
+    "name": "canned food",
+    "nameUrl": "canned-food",
+    "category": "food"
+  },
+  {
+    "id": 654,
+    "code": "U+1F371",
+    "emoji": "🍱",
+    "name": "bento box",
+    "nameUrl": "bento-box",
+    "category": "food"
+  },
+  {
+    "id": 655,
+    "code": "U+1F358",
+    "emoji": "🍘",
+    "name": "rice cracker",
+    "nameUrl": "rice-cracker",
+    "category": "food"
+  },
+  {
+    "id": 656,
+    "code": "U+1F359",
+    "emoji": "🍙",
+    "name": "rice ball",
+    "nameUrl": "rice-ball",
+    "category": "food"
+  },
+  {
+    "id": 657,
+    "code": "U+1F35A",
+    "emoji": "🍚",
+    "name": "cooked rice",
+    "nameUrl": "cooked-rice",
+    "category": "people"
+  },
+  {
+    "id": 658,
+    "code": "U+1F35B",
+    "emoji": "🍛",
+    "name": "curry rice",
+    "nameUrl": "curry-rice",
+    "category": "food"
+  },
+  {
+    "id": 659,
+    "code": "U+1F35C",
+    "emoji": "🍜",
+    "name": "steaming bowl",
+    "nameUrl": "steaming-bowl",
+    "category": "food"
+  },
+  {
+    "id": 660,
+    "code": "U+1F35D",
+    "emoji": "🍝",
+    "name": "spaghetti",
+    "nameUrl": "spaghetti",
+    "category": "food"
+  },
+  {
+    "id": 661,
+    "code": "U+1F360",
+    "emoji": "🍠",
+    "name": "roasted sweet potato",
+    "nameUrl": "roasted-sweet-potato",
+    "category": "food"
+  },
+  {
+    "id": 662,
+    "code": "U+1F362",
+    "emoji": "🍢",
+    "name": "oden",
+    "nameUrl": "oden",
+    "category": "food"
+  },
+  {
+    "id": 663,
+    "code": "U+1F363",
+    "emoji": "🍣",
+    "name": "sushi",
+    "nameUrl": "sushi",
+    "category": "food"
+  },
+  {
+    "id": 664,
+    "code": "U+1F364",
+    "emoji": "🍤",
+    "name": "fried shrimp",
+    "nameUrl": "fried-shrimp",
+    "category": "food"
+  },
+  {
+    "id": 665,
+    "code": "U+1F365",
+    "emoji": "🍥",
+    "name": "fish cake with swirl",
+    "nameUrl": "fish-cake-with-swirl",
+    "category": "animals"
+  },
+  {
+    "id": 666,
+    "code": "U+1F96E",
+    "emoji": "🥮",
+    "name": "moon cake",
+    "nameUrl": "moon-cake",
+    "category": "weather"
+  },
+  {
+    "id": 667,
+    "code": "U+1F361",
+    "emoji": "🍡",
+    "name": "dango",
+    "nameUrl": "dango",
+    "category": "food"
+  },
+  {
+    "id": 668,
+    "code": "U+1F95F",
+    "emoji": "🥟",
+    "name": "dumpling",
+    "nameUrl": "dumpling",
+    "category": "food"
+  },
+  {
+    "id": 669,
+    "code": "U+1F960",
+    "emoji": "🥠",
+    "name": "fortune cookie",
+    "nameUrl": "fortune-cookie",
+    "category": "people"
+  },
+  {
+    "id": 670,
+    "code": "U+1F961",
+    "emoji": "🥡",
+    "name": "takeout box",
+    "nameUrl": "takeout-box",
+    "category": "shopping"
+  },
+  {
+    "id": 671,
+    "code": "U+1F980",
+    "emoji": "🦀",
+    "name": "crab",
+    "nameUrl": "crab",
+    "category": "animals"
+  },
+  {
+    "id": 672,
+    "code": "U+1F99E",
+    "emoji": "🦞",
+    "name": "lobster",
+    "nameUrl": "lobster",
+    "category": "animals"
+  },
+  {
+    "id": 673,
+    "code": "U+1F990",
+    "emoji": "🦐",
+    "name": "shrimp",
+    "nameUrl": "shrimp",
+    "category": "animals"
+  },
+  {
+    "id": 674,
+    "code": "U+1F991",
+    "emoji": "🦑",
+    "name": "squid",
+    "nameUrl": "squid",
+    "category": "other"
+  },
+  {
+    "id": 676,
+    "code": "U+1F366",
+    "emoji": "🍦",
+    "name": "soft ice cream",
+    "nameUrl": "soft-ice-cream",
+    "category": "other"
+  },
+  {
+    "id": 677,
+    "code": "U+1F367",
+    "emoji": "🍧",
+    "name": "shaved ice",
+    "nameUrl": "shaved-ice",
+    "category": "other"
+  },
+  {
+    "id": 678,
+    "code": "U+1F368",
+    "emoji": "🍨",
+    "name": "ice cream",
+    "nameUrl": "ice-cream",
+    "category": "other"
+  },
+  {
+    "id": 679,
+    "code": "U+1F369",
+    "emoji": "🍩",
+    "name": "doughnut",
+    "nameUrl": "doughnut",
+    "category": "other"
+  },
+  {
+    "id": 680,
+    "code": "U+1F36A",
+    "emoji": "🍪",
+    "name": "cookie",
+    "nameUrl": "cookie",
+    "category": "people"
+  },
+  {
+    "id": 681,
+    "code": "U+1F382",
+    "emoji": "🎂",
+    "name": "birthday cake",
+    "nameUrl": "birthday-cake",
+    "category": "other"
+  },
+  {
+    "id": 682,
+    "code": "U+1F370",
+    "emoji": "🍰",
+    "name": "shortcake",
+    "nameUrl": "shortcake",
+    "category": "other"
+  },
+  {
+    "id": 683,
+    "code": "U+1F9C1",
+    "emoji": "🧁",
+    "name": "cupcake",
+    "nameUrl": "cupcake",
+    "category": "other"
+  },
+  {
+    "id": 684,
+    "code": "U+1F967",
+    "emoji": "🥧",
+    "name": "pie",
+    "nameUrl": "pie",
+    "category": "other"
+  },
+  {
+    "id": 685,
+    "code": "U+1F36B",
+    "emoji": "🍫",
+    "name": "chocolate bar",
+    "nameUrl": "chocolate-bar",
+    "category": "other"
+  },
+  {
+    "id": 686,
+    "code": "U+1F36C",
+    "emoji": "🍬",
+    "name": "candy",
+    "nameUrl": "candy",
+    "category": "other"
+  },
+  {
+    "id": 687,
+    "code": "U+1F36D",
+    "emoji": "🍭",
+    "name": "lollipop",
+    "nameUrl": "lollipop",
+    "category": "other"
+  },
+  {
+    "id": 688,
+    "code": "U+1F36E",
+    "emoji": "🍮",
+    "name": "custard",
+    "nameUrl": "custard",
+    "category": "weather"
+  },
+  {
+    "id": 689,
+    "code": "U+1F36F",
+    "emoji": "🍯",
+    "name": "honey pot",
+    "nameUrl": "honey-pot",
+    "category": "other"
+  },
+  {
+    "id": 690,
+    "code": "U+1F37C",
+    "emoji": "🍼",
+    "name": "baby bottle",
+    "nameUrl": "baby-bottle",
+    "category": "people"
+  },
+  {
+    "id": 691,
+    "code": "U+1F95B",
+    "emoji": "🥛",
+    "name": "glass of milk",
+    "nameUrl": "glass-of-milk",
+    "category": "other"
+  },
+  {
+    "id": 692,
+    "code": "U+2615",
+    "emoji": "☕",
+    "name": "hot beverage",
+    "nameUrl": "hot-beverage",
+    "category": "other"
+  },
+  {
+    "id": 693,
+    "code": "U+1F375",
+    "emoji": "🍵",
+    "name": "teacup without handle",
+    "nameUrl": "teacup-without-handle",
+    "category": "people"
+  },
+  {
+    "id": 694,
+    "code": "U+1F376",
+    "emoji": "🍶",
+    "name": "sake",
+    "nameUrl": "sake",
+    "category": "food"
+  },
+  {
+    "id": 695,
+    "code": "U+1F37E",
+    "emoji": "🍾",
+    "name": "bottle with popping cork",
+    "nameUrl": "bottle-with-popping-cork",
+    "category": "food"
+  },
+  {
+    "id": 696,
+    "code": "U+1F377",
+    "emoji": "🍷",
+    "name": "wine glass",
+    "nameUrl": "wine-glass",
+    "category": "food"
+  },
+  {
+    "id": 697,
+    "code": "U+1F378",
+    "emoji": "🍸",
+    "name": "cocktail glass",
+    "nameUrl": "cocktail-glass",
+    "category": "food"
+  },
+  {
+    "id": 698,
+    "code": "U+1F379",
+    "emoji": "🍹",
+    "name": "tropical drink",
+    "nameUrl": "tropical-drink",
+    "category": "food"
+  },
+  {
+    "id": 699,
+    "code": "U+1F37A",
+    "emoji": "🍺",
+    "name": "beer mug",
+    "nameUrl": "beer-mug",
+    "category": "food"
+  },
+  {
+    "id": 700,
+    "code": "U+1F37B",
+    "emoji": "🍻",
+    "name": "clinking beer mugs",
+    "nameUrl": "clinking-beer-mugs",
+    "category": "food"
+  },
+  {
+    "id": 701,
+    "code": "U+1F942",
+    "emoji": "🥂",
+    "name": "clinking glasses",
+    "nameUrl": "clinking-glasses",
+    "category": "other"
+  },
+  {
+    "id": 702,
+    "code": "U+1F943",
+    "emoji": "🥃",
+    "name": "tumbler glass",
+    "nameUrl": "tumbler-glass",
+    "category": "other"
+  },
+  {
+    "id": 703,
+    "code": "U+1F964",
+    "emoji": "🥤",
+    "name": "cup with straw",
+    "nameUrl": "cup-with-straw",
+    "category": "other"
+  },
+  {
+    "id": 707,
+    "code": "U+1F962",
+    "emoji": "🥢",
+    "name": "chopsticks",
+    "nameUrl": "chopsticks",
+    "category": "other"
+  },
+  {
+    "id": 708,
+    "code": "U+1F37D",
+    "emoji": "🍽",
+    "name": "fork and knife with plate",
+    "nameUrl": "fork-and-knife-with-plate",
+    "category": "food"
+  },
+  {
+    "id": 709,
+    "code": "U+1F374",
+    "emoji": "🍴",
+    "name": "fork and knife",
+    "nameUrl": "fork-and-knife",
+    "category": "food"
+  },
+  {
+    "id": 710,
+    "code": "U+1F944",
+    "emoji": "🥄",
+    "name": "spoon",
+    "nameUrl": "spoon",
+    "category": "food"
+  },
+  {
+    "id": 711,
+    "code": "U+1F52A",
+    "emoji": "🔪",
+    "name": "kitchen knife",
+    "nameUrl": "kitchen-knife",
+    "category": "food"
+  },
+  {
+    "id": 712,
+    "code": "U+1F3FA",
+    "emoji": "🏺",
+    "name": "amphora",
+    "nameUrl": "amphora",
+    "category": "other"
+  },
+  {
+    "id": 713,
+    "code": "U+1F30D",
+    "emoji": "🌍",
+    "name": "globe showing Europe-Africa",
+    "nameUrl": "globe-showing-europe-africa",
+    "category": "other"
+  },
+  {
+    "id": 714,
+    "code": "U+1F30E",
+    "emoji": "🌎",
+    "name": "globe showing Americas",
+    "nameUrl": "globe-showing-americas",
+    "category": "other"
+  },
+  {
+    "id": 715,
+    "code": "U+1F30F",
+    "emoji": "🌏",
+    "name": "globe showing Asia-Australia",
+    "nameUrl": "globe-showing-asia-australia",
+    "category": "other"
+  },
+  {
+    "id": 716,
+    "code": "U+1F310",
+    "emoji": "🌐",
+    "name": "globe with meridians",
+    "nameUrl": "globe-with-meridians",
+    "category": "other"
+  },
+  {
+    "id": 717,
+    "code": "U+1F5FA",
+    "emoji": "🗺",
+    "name": "world map",
+    "nameUrl": "world-map",
+    "category": "other"
+  },
+  {
+    "id": 718,
+    "code": "U+1F5FE",
+    "emoji": "🗾",
+    "name": "map of Japan",
+    "nameUrl": "map-of-japan",
+    "category": "other"
+  },
+  {
+    "id": 719,
+    "code": "U+1F9ED",
+    "emoji": "🧭",
+    "name": "compass",
+    "nameUrl": "compass",
+    "category": "objects"
+  },
+  {
+    "id": 720,
+    "code": "U+1F3D4",
+    "emoji": "🏔",
+    "name": "snow-capped mountain",
+    "nameUrl": "snow-capped-mountain",
+    "category": "weather"
+  },
+  {
+    "id": 721,
+    "code": "U+26F0",
+    "emoji": "⛰",
+    "name": "mountain",
+    "nameUrl": "mountain",
+    "category": "other"
+  },
+  {
+    "id": 722,
+    "code": "U+1F30B",
+    "emoji": "🌋",
+    "name": "volcano",
+    "nameUrl": "volcano",
+    "category": "other"
+  },
+  {
+    "id": 723,
+    "code": "U+1F5FB",
+    "emoji": "🗻",
+    "name": "mount fuji",
+    "nameUrl": "mount-fuji",
+    "category": "other"
+  },
+  {
+    "id": 724,
+    "code": "U+1F3D5",
+    "emoji": "🏕",
+    "name": "camping",
+    "nameUrl": "camping",
+    "category": "other"
+  },
+  {
+    "id": 725,
+    "code": "U+1F3D6",
+    "emoji": "🏖",
+    "name": "beach with umbrella",
+    "nameUrl": "beach-with-umbrella",
+    "category": "weather"
+  },
+  {
+    "id": 726,
+    "code": "U+1F3DC",
+    "emoji": "🏜",
+    "name": "desert",
+    "nameUrl": "desert",
+    "category": "other"
+  },
+  {
+    "id": 727,
+    "code": "U+1F3DD",
+    "emoji": "🏝",
+    "name": "desert island",
+    "nameUrl": "desert-island",
+    "category": "other"
+  },
+  {
+    "id": 728,
+    "code": "U+1F3DE",
+    "emoji": "🏞",
+    "name": "national park",
+    "nameUrl": "national-park",
+    "category": "other"
+  },
+  {
+    "id": 729,
+    "code": "U+1F3DF",
+    "emoji": "🏟",
+    "name": "stadium",
+    "nameUrl": "stadium",
+    "category": "places"
+  },
+  {
+    "id": 730,
+    "code": "U+1F3DB",
+    "emoji": "🏛",
+    "name": "classical building",
+    "nameUrl": "classical-building",
+    "category": "places"
+  },
+  {
+    "id": 731,
+    "code": "U+1F3D7",
+    "emoji": "🏗",
+    "name": "building construction",
+    "nameUrl": "building-construction",
+    "category": "places"
+  },
+  {
+    "id": 732,
+    "code": "U+1F9F1",
+    "emoji": "🧱",
+    "name": "brick",
+    "nameUrl": "brick",
+    "category": "other"
+  },
+  {
+    "id": 733,
+    "code": "U+1F3D8",
+    "emoji": "🏘",
+    "name": "houses",
+    "nameUrl": "houses",
+    "category": "places"
+  },
+  {
+    "id": 734,
+    "code": "U+1F3DA",
+    "emoji": "🏚",
+    "name": "derelict house",
+    "nameUrl": "derelict-house",
+    "category": "places"
+  },
+  {
+    "id": 735,
+    "code": "U+1F3E0",
+    "emoji": "🏠",
+    "name": "house",
+    "nameUrl": "house",
+    "category": "places"
+  },
+  {
+    "id": 736,
+    "code": "U+1F3E1",
+    "emoji": "🏡",
+    "name": "house with garden",
+    "nameUrl": "house-with-garden",
+    "category": "places"
+  },
+  {
+    "id": 737,
+    "code": "U+1F3E2",
+    "emoji": "🏢",
+    "name": "office building",
+    "nameUrl": "office-building",
+    "category": "places"
+  },
+  {
+    "id": 738,
+    "code": "U+1F3E3",
+    "emoji": "🏣",
+    "name": "Japanese post office",
+    "nameUrl": "japanese-post-office",
+    "category": "places"
+  },
+  {
+    "id": 739,
+    "code": "U+1F3E4",
+    "emoji": "🏤",
+    "name": "post office",
+    "nameUrl": "post-office",
+    "category": "places"
+  },
+  {
+    "id": 740,
+    "code": "U+1F3E5",
+    "emoji": "🏥",
+    "name": "hospital",
+    "nameUrl": "hospital",
+    "category": "places"
+  },
+  {
+    "id": 741,
+    "code": "U+1F3E6",
+    "emoji": "🏦",
+    "name": "bank",
+    "nameUrl": "bank",
+    "category": "places"
+  },
+  {
+    "id": 742,
+    "code": "U+1F3E8",
+    "emoji": "🏨",
+    "name": "hotel",
+    "nameUrl": "hotel",
+    "category": "places"
+  },
+  {
+    "id": 743,
+    "code": "U+1F3E9",
+    "emoji": "🏩",
+    "name": "love hotel",
+    "nameUrl": "love-hotel",
+    "category": "emotions"
+  },
+  {
+    "id": 744,
+    "code": "U+1F3EA",
+    "emoji": "🏪",
+    "name": "convenience store",
+    "nameUrl": "convenience-store",
+    "category": "places"
+  },
+  {
+    "id": 745,
+    "code": "U+1F3EB",
+    "emoji": "🏫",
+    "name": "school",
+    "nameUrl": "school",
+    "category": "places"
+  },
+  {
+    "id": 746,
+    "code": "U+1F3EC",
+    "emoji": "🏬",
+    "name": "department store",
+    "nameUrl": "department-store",
+    "category": "entertainment"
+  },
+  {
+    "id": 747,
+    "code": "U+1F3ED",
+    "emoji": "🏭",
+    "name": "factory",
+    "nameUrl": "factory",
+    "category": "other"
+  },
+  {
+    "id": 748,
+    "code": "U+1F3EF",
+    "emoji": "🏯",
+    "name": "Japanese castle",
+    "nameUrl": "japanese-castle",
+    "category": "places"
+  },
+  {
+    "id": 749,
+    "code": "U+1F3F0",
+    "emoji": "🏰",
+    "name": "castle",
+    "nameUrl": "castle",
+    "category": "places"
+  },
+  {
+    "id": 750,
+    "code": "U+1F492",
+    "emoji": "💒",
+    "name": "wedding",
+    "nameUrl": "wedding",
+    "category": "other"
+  },
+  {
+    "id": 751,
+    "code": "U+1F5FC",
+    "emoji": "🗼",
+    "name": "Tokyo tower",
+    "nameUrl": "tokyo-tower",
+    "category": "other"
+  },
+  {
+    "id": 752,
+    "code": "U+1F5FD",
+    "emoji": "🗽",
+    "name": "Statue of Liberty",
+    "nameUrl": "statue-of-liberty",
+    "category": "other"
+  },
+  {
+    "id": 753,
+    "code": "U+26EA",
+    "emoji": "⛪",
+    "name": "church",
+    "nameUrl": "church",
+    "category": "places"
+  },
+  {
+    "id": 754,
+    "code": "U+1F54C",
+    "emoji": "🕌",
+    "name": "mosque",
+    "nameUrl": "mosque",
+    "category": "places"
+  },
+  {
+    "id": 756,
+    "code": "U+1F54D",
+    "emoji": "🕍",
+    "name": "synagogue",
+    "nameUrl": "synagogue",
+    "category": "places"
+  },
+  {
+    "id": 757,
+    "code": "U+26E9",
+    "emoji": "⛩",
+    "name": "shinto shrine",
+    "nameUrl": "shinto-shrine",
+    "category": "places"
+  },
+  {
+    "id": 758,
+    "code": "U+1F54B",
+    "emoji": "🕋",
+    "name": "kaaba",
+    "nameUrl": "kaaba",
+    "category": "places"
+  },
+  {
+    "id": 759,
+    "code": "U+26F2",
+    "emoji": "⛲",
+    "name": "fountain",
+    "nameUrl": "fountain",
+    "category": "objects"
+  },
+  {
+    "id": 760,
+    "code": "U+26FA",
+    "emoji": "⛺",
+    "name": "tent",
+    "nameUrl": "tent",
+    "category": "places"
+  },
+  {
+    "id": 761,
+    "code": "U+1F301",
+    "emoji": "🌁",
+    "name": "foggy",
+    "nameUrl": "foggy",
+    "category": "weather"
+  },
+  {
+    "id": 762,
+    "code": "U+1F303",
+    "emoji": "🌃",
+    "name": "night with stars",
+    "nameUrl": "night-with-stars",
+    "category": "weather"
+  },
+  {
+    "id": 763,
+    "code": "U+1F3D9",
+    "emoji": "🏙",
+    "name": "cityscape",
+    "nameUrl": "cityscape",
+    "category": "other"
+  },
+  {
+    "id": 764,
+    "code": "U+1F304",
+    "emoji": "🌄",
+    "name": "sunrise over mountains",
+    "nameUrl": "sunrise-over-mountains",
+    "category": "weather"
+  },
+  {
+    "id": 765,
+    "code": "U+1F305",
+    "emoji": "🌅",
+    "name": "sunrise",
+    "nameUrl": "sunrise",
+    "category": "weather"
+  },
+  {
+    "id": 766,
+    "code": "U+1F306",
+    "emoji": "🌆",
+    "name": "cityscape at dusk",
+    "nameUrl": "cityscape-at-dusk",
+    "category": "other"
+  },
+  {
+    "id": 767,
+    "code": "U+1F307",
+    "emoji": "🌇",
+    "name": "sunset",
+    "nameUrl": "sunset",
+    "category": "weather"
+  },
+  {
+    "id": 768,
+    "code": "U+1F309",
+    "emoji": "🌉",
+    "name": "bridge at night",
+    "nameUrl": "bridge-at-night",
+    "category": "other"
+  },
+  {
+    "id": 769,
+    "code": "U+2668",
+    "emoji": "♨️",
+    "name": "hot springs",
+    "nameUrl": "hot-springs",
+    "category": "other"
+  },
+  {
+    "id": 770,
+    "code": "U+1F3A0",
+    "emoji": "🎠",
+    "name": "carousel horse",
+    "nameUrl": "carousel-horse",
+    "category": "travel"
+  },
+  {
+    "id": 771,
+    "code": "U+1F3A1",
+    "emoji": "🎡",
+    "name": "ferris wheel",
+    "nameUrl": "ferris-wheel",
+    "category": "other"
+  },
+  {
+    "id": 772,
+    "code": "U+1F3A2",
+    "emoji": "🎢",
+    "name": "roller coaster",
+    "nameUrl": "roller-coaster",
+    "category": "objects"
+  },
+  {
+    "id": 773,
+    "code": "U+1F488",
+    "emoji": "💈",
+    "name": "barber pole",
+    "nameUrl": "barber-pole",
+    "category": "other"
+  },
+  {
+    "id": 774,
+    "code": "U+1F3AA",
+    "emoji": "🎪",
+    "name": "circus tent",
+    "nameUrl": "circus-tent",
+    "category": "places"
+  },
+  {
+    "id": 775,
+    "code": "U+1F682",
+    "emoji": "🚂",
+    "name": "locomotive",
+    "nameUrl": "locomotive",
+    "category": "other"
+  },
+  {
+    "id": 776,
+    "code": "U+1F683",
+    "emoji": "🚃",
+    "name": "railway car",
+    "nameUrl": "railway-car",
+    "category": "travel"
+  },
+  {
+    "id": 777,
+    "code": "U+1F684",
+    "emoji": "🚄",
+    "name": "high-speed train",
+    "nameUrl": "high-speed-train",
+    "category": "travel"
+  },
+  {
+    "id": 778,
+    "code": "U+1F685",
+    "emoji": "🚅",
+    "name": "bullet train",
+    "nameUrl": "bullet-train",
+    "category": "travel"
+  },
+  {
+    "id": 779,
+    "code": "U+1F686",
+    "emoji": "🚆",
+    "name": "train",
+    "nameUrl": "train",
+    "category": "travel"
+  },
+  {
+    "id": 780,
+    "code": "U+1F687",
+    "emoji": "🚇",
+    "name": "metro",
+    "nameUrl": "metro",
+    "category": "other"
+  },
+  {
+    "id": 781,
+    "code": "U+1F688",
+    "emoji": "🚈",
+    "name": "light rail",
+    "nameUrl": "light-rail",
+    "category": "travel"
+  },
+  {
+    "id": 782,
+    "code": "U+1F689",
+    "emoji": "🚉",
+    "name": "station",
+    "nameUrl": "station",
+    "category": "travel"
+  },
+  {
+    "id": 783,
+    "code": "U+1F68A",
+    "emoji": "🚊",
+    "name": "tram",
+    "nameUrl": "tram",
+    "category": "travel"
+  },
+  {
+    "id": 784,
+    "code": "U+1F69D",
+    "emoji": "🚝",
+    "name": "monorail",
+    "nameUrl": "monorail",
+    "category": "travel"
+  },
+  {
+    "id": 785,
+    "code": "U+1F69E",
+    "emoji": "🚞",
+    "name": "mountain railway",
+    "nameUrl": "mountain-railway",
+    "category": "travel"
+  },
+  {
+    "id": 786,
+    "code": "U+1F68B",
+    "emoji": "🚋",
+    "name": "tram car",
+    "nameUrl": "tram-car",
+    "category": "travel"
+  },
+  {
+    "id": 787,
+    "code": "U+1F68C",
+    "emoji": "🚌",
+    "name": "bus",
+    "nameUrl": "bus",
+    "category": "travel"
+  },
+  {
+    "id": 788,
+    "code": "U+1F68D",
+    "emoji": "🚍",
+    "name": "oncoming bus",
+    "nameUrl": "oncoming-bus",
+    "category": "travel"
+  },
+  {
+    "id": 789,
+    "code": "U+1F68E",
+    "emoji": "🚎",
+    "name": "trolleybus",
+    "nameUrl": "trolleybus",
+    "category": "travel"
+  },
+  {
+    "id": 790,
+    "code": "U+1F690",
+    "emoji": "🚐",
+    "name": "minibus",
+    "nameUrl": "minibus",
+    "category": "travel"
+  },
+  {
+    "id": 791,
+    "code": "U+1F691",
+    "emoji": "🚑",
+    "name": "ambulance",
+    "nameUrl": "ambulance",
+    "category": "travel"
+  },
+  {
+    "id": 792,
+    "code": "U+1F692",
+    "emoji": "🚒",
+    "name": "fire engine",
+    "nameUrl": "fire-engine",
+    "category": "travel"
+  },
+  {
+    "id": 793,
+    "code": "U+1F693",
+    "emoji": "🚓",
+    "name": "police car",
+    "nameUrl": "police-car",
+    "category": "people"
+  },
+  {
+    "id": 794,
+    "code": "U+1F694",
+    "emoji": "🚔",
+    "name": "oncoming police car",
+    "nameUrl": "oncoming-police-car",
+    "category": "people"
+  },
+  {
+    "id": 795,
+    "code": "U+1F695",
+    "emoji": "🚕",
+    "name": "taxi",
+    "nameUrl": "taxi",
+    "category": "travel"
+  },
+  {
+    "id": 796,
+    "code": "U+1F696",
+    "emoji": "🚖",
+    "name": "oncoming taxi",
+    "nameUrl": "oncoming-taxi",
+    "category": "travel"
+  },
+  {
+    "id": 797,
+    "code": "U+1F697",
+    "emoji": "🚗",
+    "name": "automobile",
+    "nameUrl": "automobile",
+    "category": "travel"
+  },
+  {
+    "id": 798,
+    "code": "U+1F698",
+    "emoji": "🚘",
+    "name": "oncoming automobile",
+    "nameUrl": "oncoming-automobile",
+    "category": "travel"
+  },
+  {
+    "id": 799,
+    "code": "U+1F699",
+    "emoji": "🚙",
+    "name": "sport utility vehicle",
+    "nameUrl": "sport-utility-vehicle",
+    "category": "travel"
+  },
+  {
+    "id": 800,
+    "code": "U+1F69A",
+    "emoji": "🚚",
+    "name": "delivery truck",
+    "nameUrl": "delivery-truck",
+    "category": "travel"
+  },
+  {
+    "id": 801,
+    "code": "U+1F69B",
+    "emoji": "🚛",
+    "name": "articulated lorry",
+    "nameUrl": "articulated-lorry",
+    "category": "entertainment"
+  },
+  {
+    "id": 802,
+    "code": "U+1F69C",
+    "emoji": "🚜",
+    "name": "tractor",
+    "nameUrl": "tractor",
+    "category": "other"
+  },
+  {
+    "id": 803,
+    "code": "U+1F3CE",
+    "emoji": "🏎",
+    "name": "racing car",
+    "nameUrl": "racing-car",
+    "category": "travel"
+  },
+  {
+    "id": 804,
+    "code": "U+1F3CD",
+    "emoji": "🏍",
+    "name": "motorcycle",
+    "nameUrl": "motorcycle",
+    "category": "travel"
+  },
+  {
+    "id": 805,
+    "code": "U+1F6F5",
+    "emoji": "🛵",
+    "name": "motor scooter",
+    "nameUrl": "motor-scooter",
+    "category": "travel"
+  },
+  {
+    "id": 809,
+    "code": "U+1F6B2",
+    "emoji": "🚲",
+    "name": "bicycle",
+    "nameUrl": "bicycle",
+    "category": "travel"
+  },
+  {
+    "id": 810,
+    "code": "U+1F6F4",
+    "emoji": "🛴",
+    "name": "kick scooter",
+    "nameUrl": "kick-scooter",
+    "category": "other"
+  },
+  {
+    "id": 811,
+    "code": "U+1F6F9",
+    "emoji": "🛹",
+    "name": "skateboard",
+    "nameUrl": "skateboard",
+    "category": "other"
+  },
+  {
+    "id": 812,
+    "code": "U+1F68F",
+    "emoji": "🚏",
+    "name": "bus stop",
+    "nameUrl": "bus-stop",
+    "category": "travel"
+  },
+  {
+    "id": 813,
+    "code": "U+1F6E3",
+    "emoji": "🛣",
+    "name": "motorway",
+    "nameUrl": "motorway",
+    "category": "travel"
+  },
+  {
+    "id": 814,
+    "code": "U+1F6E4",
+    "emoji": "🛤",
+    "name": "railway track",
+    "nameUrl": "railway-track",
+    "category": "travel"
+  },
+  {
+    "id": 815,
+    "code": "U+1F6E2",
+    "emoji": "🛢",
+    "name": "oil drum",
+    "nameUrl": "oil-drum",
+    "category": "other"
+  },
+  {
+    "id": 816,
+    "code": "U+26FD",
+    "emoji": "⛽",
+    "name": "fuel pump",
+    "nameUrl": "fuel-pump",
+    "category": "other"
+  },
+  {
+    "id": 817,
+    "code": "U+1F6A8",
+    "emoji": "🚨",
+    "name": "police car light",
+    "nameUrl": "police-car-light",
+    "category": "people"
+  },
+  {
+    "id": 818,
+    "code": "U+1F6A5",
+    "emoji": "🚥",
+    "name": "horizontal traffic light",
+    "nameUrl": "horizontal-traffic-light",
+    "category": "other"
+  },
+  {
+    "id": 819,
+    "code": "U+1F6A6",
+    "emoji": "🚦",
+    "name": "vertical traffic light",
+    "nameUrl": "vertical-traffic-light",
+    "category": "other"
+  },
+  {
+    "id": 820,
+    "code": "U+1F6D1",
+    "emoji": "🛑",
+    "name": "stop sign",
+    "nameUrl": "stop-sign",
+    "category": "symbols"
+  },
+  {
+    "id": 821,
+    "code": "U+1F6A7",
+    "emoji": "🚧",
+    "name": "construction",
+    "nameUrl": "construction",
+    "category": "places"
+  },
+  {
+    "id": 822,
+    "code": "U+2693",
+    "emoji": "⚓",
+    "name": "anchor",
+    "nameUrl": "anchor",
+    "category": "objects"
+  },
+  {
+    "id": 823,
+    "code": "U+26F5",
+    "emoji": "⛵",
+    "name": "sailboat",
+    "nameUrl": "sailboat",
+    "category": "travel"
+  },
+  {
+    "id": 824,
+    "code": "U+1F6F6",
+    "emoji": "🛶",
+    "name": "canoe",
+    "nameUrl": "canoe",
+    "category": "travel"
+  },
+  {
+    "id": 825,
+    "code": "U+1F6A4",
+    "emoji": "🚤",
+    "name": "speedboat",
+    "nameUrl": "speedboat",
+    "category": "travel"
+  },
+  {
+    "id": 826,
+    "code": "U+1F6F3",
+    "emoji": "🛳",
+    "name": "passenger ship",
+    "nameUrl": "passenger-ship",
+    "category": "travel"
+  },
+  {
+    "id": 827,
+    "code": "U+26F4",
+    "emoji": "⛴",
+    "name": "ferry",
+    "nameUrl": "ferry",
+    "category": "other"
+  },
+  {
+    "id": 828,
+    "code": "U+1F6E5",
+    "emoji": "🛥",
+    "name": "motor boat",
+    "nameUrl": "motor-boat",
+    "category": "travel"
+  },
+  {
+    "id": 829,
+    "code": "U+1F6A2",
+    "emoji": "🚢",
+    "name": "ship",
+    "nameUrl": "ship",
+    "category": "travel"
+  },
+  {
+    "id": 830,
+    "code": "U+2708",
+    "emoji": "✈️",
+    "name": "airplane",
+    "nameUrl": "airplane",
+    "category": "travel"
+  },
+  {
+    "id": 831,
+    "code": "U+1F6E9",
+    "emoji": "🛩",
+    "name": "small airplane",
+    "nameUrl": "small-airplane",
+    "category": "travel"
+  },
+  {
+    "id": 832,
+    "code": "U+1F6EB",
+    "emoji": "🛫",
+    "name": "airplane departure",
+    "nameUrl": "airplane-departure",
+    "category": "travel"
+  },
+  {
+    "id": 833,
+    "code": "U+1F6EC",
+    "emoji": "🛬",
+    "name": "airplane arrival",
+    "nameUrl": "airplane-arrival",
+    "category": "travel"
+  },
+  {
+    "id": 835,
+    "code": "U+1F4BA",
+    "emoji": "💺",
+    "name": "seat",
+    "nameUrl": "seat",
+    "category": "food"
+  },
+  {
+    "id": 836,
+    "code": "U+1F681",
+    "emoji": "🚁",
+    "name": "helicopter",
+    "nameUrl": "helicopter",
+    "category": "travel"
+  },
+  {
+    "id": 837,
+    "code": "U+1F69F",
+    "emoji": "🚟",
+    "name": "suspension railway",
+    "nameUrl": "suspension-railway",
+    "category": "travel"
+  },
+  {
+    "id": 838,
+    "code": "U+1F6A0",
+    "emoji": "🚠",
+    "name": "mountain cableway",
+    "nameUrl": "mountain-cableway",
+    "category": "other"
+  },
+  {
+    "id": 839,
+    "code": "U+1F6A1",
+    "emoji": "🚡",
+    "name": "aerial tramway",
+    "nameUrl": "aerial-tramway",
+    "category": "travel"
+  },
+  {
+    "id": 840,
+    "code": "U+1F6F0",
+    "emoji": "🛰",
+    "name": "satellite",
+    "nameUrl": "satellite",
+    "category": "other"
+  },
+  {
+    "id": 841,
+    "code": "U+1F680",
+    "emoji": "🚀",
+    "name": "rocket",
+    "nameUrl": "rocket",
+    "category": "travel"
+  },
+  {
+    "id": 842,
+    "code": "U+1F6F8",
+    "emoji": "🛸",
+    "name": "flying saucer",
+    "nameUrl": "flying-saucer",
+    "category": "other"
+  },
+  {
+    "id": 843,
+    "code": "U+1F6CE",
+    "emoji": "🛎",
+    "name": "bellhop bell",
+    "nameUrl": "bellhop-bell",
+    "category": "other"
+  },
+  {
+    "id": 844,
+    "code": "U+1F9F3",
+    "emoji": "🧳",
+    "name": "luggage",
+    "nameUrl": "luggage",
+    "category": "other"
+  },
+  {
+    "id": 845,
+    "code": "U+231B",
+    "emoji": "⌛",
+    "name": "hourglass done",
+    "nameUrl": "hourglass-done",
+    "category": "objects"
+  },
+  {
+    "id": 846,
+    "code": "U+23F3",
+    "emoji": "⏳",
+    "name": "hourglass not done",
+    "nameUrl": "hourglass-not-done",
+    "category": "objects"
+  },
+  {
+    "id": 847,
+    "code": "U+231A",
+    "emoji": "⌚",
+    "name": "watch",
+    "nameUrl": "watch",
+    "category": "objects"
+  },
+  {
+    "id": 848,
+    "code": "U+23F0",
+    "emoji": "⏰",
+    "name": "alarm clock",
+    "nameUrl": "alarm-clock",
+    "category": "people"
+  },
+  {
+    "id": 849,
+    "code": "U+23F1",
+    "emoji": "⏱",
+    "name": "stopwatch",
+    "nameUrl": "stopwatch",
+    "category": "objects"
+  },
+  {
+    "id": 850,
+    "code": "U+23F2",
+    "emoji": "⏲",
+    "name": "timer clock",
+    "nameUrl": "timer-clock",
+    "category": "objects"
+  },
+  {
+    "id": 851,
+    "code": "U+1F570",
+    "emoji": "🕰",
+    "name": "mantelpiece clock",
+    "nameUrl": "mantelpiece-clock",
+    "category": "people"
+  },
+  {
+    "id": 852,
+    "code": "U+1F55B",
+    "emoji": "🕛",
+    "name": "twelve o’clock",
+    "nameUrl": "twelve-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 853,
+    "code": "U+1F567",
+    "emoji": "🕧",
+    "name": "twelve-thirty",
+    "nameUrl": "twelve-thirty",
+    "category": "other"
+  },
+  {
+    "id": 854,
+    "code": "U+1F550",
+    "emoji": "🕐",
+    "name": "one o’clock",
+    "nameUrl": "one-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 855,
+    "code": "U+1F55C",
+    "emoji": "🕜",
+    "name": "one-thirty",
+    "nameUrl": "one-thirty",
+    "category": "other"
+  },
+  {
+    "id": 856,
+    "code": "U+1F551",
+    "emoji": "🕑",
+    "name": "two o’clock",
+    "nameUrl": "two-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 857,
+    "code": "U+1F55D",
+    "emoji": "🕝",
+    "name": "two-thirty",
+    "nameUrl": "two-thirty",
+    "category": "other"
+  },
+  {
+    "id": 858,
+    "code": "U+1F552",
+    "emoji": "🕒",
+    "name": "three o’clock",
+    "nameUrl": "three-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 859,
+    "code": "U+1F55E",
+    "emoji": "🕞",
+    "name": "three-thirty",
+    "nameUrl": "three-thirty",
+    "category": "other"
+  },
+  {
+    "id": 860,
+    "code": "U+1F553",
+    "emoji": "🕓",
+    "name": "four o’clock",
+    "nameUrl": "four-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 861,
+    "code": "U+1F55F",
+    "emoji": "🕟",
+    "name": "four-thirty",
+    "nameUrl": "four-thirty",
+    "category": "other"
+  },
+  {
+    "id": 862,
+    "code": "U+1F554",
+    "emoji": "🕔",
+    "name": "five o’clock",
+    "nameUrl": "five-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 863,
+    "code": "U+1F560",
+    "emoji": "🕠",
+    "name": "five-thirty",
+    "nameUrl": "five-thirty",
+    "category": "other"
+  },
+  {
+    "id": 864,
+    "code": "U+1F555",
+    "emoji": "🕕",
+    "name": "six o’clock",
+    "nameUrl": "six-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 865,
+    "code": "U+1F561",
+    "emoji": "🕡",
+    "name": "six-thirty",
+    "nameUrl": "six-thirty",
+    "category": "other"
+  },
+  {
+    "id": 866,
+    "code": "U+1F556",
+    "emoji": "🕖",
+    "name": "seven o’clock",
+    "nameUrl": "seven-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 867,
+    "code": "U+1F562",
+    "emoji": "🕢",
+    "name": "seven-thirty",
+    "nameUrl": "seven-thirty",
+    "category": "other"
+  },
+  {
+    "id": 868,
+    "code": "U+1F557",
+    "emoji": "🕗",
+    "name": "eight o’clock",
+    "nameUrl": "eight-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 869,
+    "code": "U+1F563",
+    "emoji": "🕣",
+    "name": "eight-thirty",
+    "nameUrl": "eight-thirty",
+    "category": "other"
+  },
+  {
+    "id": 870,
+    "code": "U+1F558",
+    "emoji": "🕘",
+    "name": "nine o’clock",
+    "nameUrl": "nine-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 871,
+    "code": "U+1F564",
+    "emoji": "🕤",
+    "name": "nine-thirty",
+    "nameUrl": "nine-thirty",
+    "category": "other"
+  },
+  {
+    "id": 872,
+    "code": "U+1F559",
+    "emoji": "🕙",
+    "name": "ten o’clock",
+    "nameUrl": "ten-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 873,
+    "code": "U+1F565",
+    "emoji": "🕥",
+    "name": "ten-thirty",
+    "nameUrl": "ten-thirty",
+    "category": "other"
+  },
+  {
+    "id": 874,
+    "code": "U+1F55A",
+    "emoji": "🕚",
+    "name": "eleven o’clock",
+    "nameUrl": "eleven-oclock",
+    "category": "objects"
+  },
+  {
+    "id": 875,
+    "code": "U+1F566",
+    "emoji": "🕦",
+    "name": "eleven-thirty",
+    "nameUrl": "eleven-thirty",
+    "category": "other"
+  },
+  {
+    "id": 876,
+    "code": "U+1F311",
+    "emoji": "🌑",
+    "name": "new moon",
+    "nameUrl": "new-moon",
+    "category": "weather"
+  },
+  {
+    "id": 877,
+    "code": "U+1F312",
+    "emoji": "🌒",
+    "name": "waxing crescent moon",
+    "nameUrl": "waxing-crescent-moon",
+    "category": "weather"
+  },
+  {
+    "id": 878,
+    "code": "U+1F313",
+    "emoji": "🌓",
+    "name": "first quarter moon",
+    "nameUrl": "first-quarter-moon",
+    "category": "weather"
+  },
+  {
+    "id": 879,
+    "code": "U+1F314",
+    "emoji": "🌔",
+    "name": "waxing gibbous moon",
+    "nameUrl": "waxing-gibbous-moon",
+    "category": "weather"
+  },
+  {
+    "id": 880,
+    "code": "U+1F315",
+    "emoji": "🌕",
+    "name": "full moon",
+    "nameUrl": "full-moon",
+    "category": "weather"
+  },
+  {
+    "id": 881,
+    "code": "U+1F316",
+    "emoji": "🌖",
+    "name": "waning gibbous moon",
+    "nameUrl": "waning-gibbous-moon",
+    "category": "weather"
+  },
+  {
+    "id": 882,
+    "code": "U+1F317",
+    "emoji": "🌗",
+    "name": "last quarter moon",
+    "nameUrl": "last-quarter-moon",
+    "category": "weather"
+  },
+  {
+    "id": 883,
+    "code": "U+1F318",
+    "emoji": "🌘",
+    "name": "waning crescent moon",
+    "nameUrl": "waning-crescent-moon",
+    "category": "weather"
+  },
+  {
+    "id": 884,
+    "code": "U+1F319",
+    "emoji": "🌙",
+    "name": "crescent moon",
+    "nameUrl": "crescent-moon",
+    "category": "weather"
+  },
+  {
+    "id": 885,
+    "code": "U+1F31A",
+    "emoji": "🌚",
+    "name": "new moon face",
+    "nameUrl": "new-moon-face",
+    "category": "people"
+  },
+  {
+    "id": 886,
+    "code": "U+1F31B",
+    "emoji": "🌛",
+    "name": "first quarter moon face",
+    "nameUrl": "first-quarter-moon-face",
+    "category": "people"
+  },
+  {
+    "id": 887,
+    "code": "U+1F31C",
+    "emoji": "🌜",
+    "name": "last quarter moon face",
+    "nameUrl": "last-quarter-moon-face",
+    "category": "people"
+  },
+  {
+    "id": 888,
+    "code": "U+1F321",
+    "emoji": "🌡",
+    "name": "thermometer",
+    "nameUrl": "thermometer",
+    "category": "health"
+  },
+  {
+    "id": 889,
+    "code": "U+2600",
+    "emoji": "☀️",
+    "name": "sun",
+    "nameUrl": "sun",
+    "category": "weather"
+  },
+  {
+    "id": 890,
+    "code": "U+1F31D",
+    "emoji": "🌝",
+    "name": "full moon face",
+    "nameUrl": "full-moon-face",
+    "category": "people"
+  },
+  {
+    "id": 891,
+    "code": "U+1F31E",
+    "emoji": "🌞",
+    "name": "sun with face",
+    "nameUrl": "sun-with-face",
+    "category": "people"
+  },
+  {
+    "id": 893,
+    "code": "U+2B50",
+    "emoji": "⭐",
+    "name": "star",
+    "nameUrl": "star",
+    "category": "weather"
+  },
+  {
+    "id": 894,
+    "code": "U+1F31F",
+    "emoji": "🌟",
+    "name": "glowing star",
+    "nameUrl": "glowing-star",
+    "category": "weather"
+  },
+  {
+    "id": 895,
+    "code": "U+1F320",
+    "emoji": "🌠",
+    "name": "shooting star",
+    "nameUrl": "shooting-star",
+    "category": "weather"
+  },
+  {
+    "id": 896,
+    "code": "U+1F30C",
+    "emoji": "🌌",
+    "name": "milky way",
+    "nameUrl": "milky-way",
+    "category": "other"
+  },
+  {
+    "id": 897,
+    "code": "U+2601",
+    "emoji": "☁️",
+    "name": "cloud",
+    "nameUrl": "cloud",
+    "category": "weather"
+  },
+  {
+    "id": 898,
+    "code": "U+26C5",
+    "emoji": "⛅",
+    "name": "sun behind cloud",
+    "nameUrl": "sun-behind-cloud",
+    "category": "weather"
+  },
+  {
+    "id": 899,
+    "code": "U+26C8",
+    "emoji": "⛈",
+    "name": "cloud with lightning and rain",
+    "nameUrl": "cloud-with-lightning-and-rain",
+    "category": "weather"
+  },
+  {
+    "id": 900,
+    "code": "U+1F324",
+    "emoji": "🌤",
+    "name": "sun behind small cloud",
+    "nameUrl": "sun-behind-small-cloud",
+    "category": "weather"
+  },
+  {
+    "id": 901,
+    "code": "U+1F325",
+    "emoji": "🌥",
+    "name": "sun behind large cloud",
+    "nameUrl": "sun-behind-large-cloud",
+    "category": "weather"
+  },
+  {
+    "id": 902,
+    "code": "U+1F326",
+    "emoji": "🌦",
+    "name": "sun behind rain cloud",
+    "nameUrl": "sun-behind-rain-cloud",
+    "category": "weather"
+  },
+  {
+    "id": 903,
+    "code": "U+1F327",
+    "emoji": "🌧",
+    "name": "cloud with rain",
+    "nameUrl": "cloud-with-rain",
+    "category": "weather"
+  },
+  {
+    "id": 904,
+    "code": "U+1F328",
+    "emoji": "🌨",
+    "name": "cloud with snow",
+    "nameUrl": "cloud-with-snow",
+    "category": "weather"
+  },
+  {
+    "id": 905,
+    "code": "U+1F329",
+    "emoji": "🌩",
+    "name": "cloud with lightning",
+    "nameUrl": "cloud-with-lightning",
+    "category": "weather"
+  },
+  {
+    "id": 906,
+    "code": "U+1F32A",
+    "emoji": "🌪",
+    "name": "tornado",
+    "nameUrl": "tornado",
+    "category": "weather"
+  },
+  {
+    "id": 907,
+    "code": "U+1F32B",
+    "emoji": "🌫",
+    "name": "fog",
+    "nameUrl": "fog",
+    "category": "weather"
+  },
+  {
+    "id": 908,
+    "code": "U+1F32C",
+    "emoji": "🌬",
+    "name": "wind face",
+    "nameUrl": "wind-face",
+    "category": "people"
+  },
+  {
+    "id": 909,
+    "code": "U+1F300",
+    "emoji": "🌀",
+    "name": "cyclone",
+    "nameUrl": "cyclone",
+    "category": "weather"
+  },
+  {
+    "id": 910,
+    "code": "U+1F308",
+    "emoji": "🌈",
+    "name": "rainbow",
+    "nameUrl": "rainbow",
+    "category": "weather"
+  },
+  {
+    "id": 911,
+    "code": "U+1F302",
+    "emoji": "🌂",
+    "name": "closed umbrella",
+    "nameUrl": "closed-umbrella",
+    "category": "weather"
+  },
+  {
+    "id": 912,
+    "code": "U+2602",
+    "emoji": "☂️",
+    "name": "umbrella",
+    "nameUrl": "umbrella",
+    "category": "weather"
+  },
+  {
+    "id": 913,
+    "code": "U+2614",
+    "emoji": "☔",
+    "name": "umbrella with rain drops",
+    "nameUrl": "umbrella-with-rain-drops",
+    "category": "weather"
+  },
+  {
+    "id": 914,
+    "code": "U+26F1",
+    "emoji": "⛱",
+    "name": "umbrella on ground",
+    "nameUrl": "umbrella-on-ground",
+    "category": "weather"
+  },
+  {
+    "id": 915,
+    "code": "U+26A1",
+    "emoji": "⚡",
+    "name": "high voltage",
+    "nameUrl": "high-voltage",
+    "category": "other"
+  },
+  {
+    "id": 916,
+    "code": "U+2744",
+    "emoji": "❄️",
+    "name": "snowflake",
+    "nameUrl": "snowflake",
+    "category": "weather"
+  },
+  {
+    "id": 917,
+    "code": "U+2603",
+    "emoji": "☃️",
+    "name": "snowman",
+    "nameUrl": "snowman",
+    "category": "people"
+  },
+  {
+    "id": 918,
+    "code": "U+26C4",
+    "emoji": "⛄",
+    "name": "snowman without snow",
+    "nameUrl": "snowman-without-snow",
+    "category": "people"
+  },
+  {
+    "id": 919,
+    "code": "U+2604",
+    "emoji": "☄",
+    "name": "comet",
+    "nameUrl": "comet",
+    "category": "other"
+  },
+  {
+    "id": 920,
+    "code": "U+1F525",
+    "emoji": "🔥",
+    "name": "fire",
+    "nameUrl": "fire",
+    "category": "other"
+  },
+  {
+    "id": 921,
+    "code": "U+1F4A7",
+    "emoji": "💧",
+    "name": "droplet",
+    "nameUrl": "droplet",
+    "category": "weather"
+  },
+  {
+    "id": 922,
+    "code": "U+1F30A",
+    "emoji": "🌊",
+    "name": "water wave",
+    "nameUrl": "water-wave",
+    "category": "other"
+  },
+  {
+    "id": 923,
+    "code": "U+1F383",
+    "emoji": "🎃",
+    "name": "jack-o-lantern",
+    "nameUrl": "jack-o-lantern",
+    "category": "animals"
+  },
+  {
+    "id": 924,
+    "code": "U+1F384",
+    "emoji": "🎄",
+    "name": "Christmas tree",
+    "nameUrl": "christmas-tree",
+    "category": "nature"
+  },
+  {
+    "id": 925,
+    "code": "U+1F386",
+    "emoji": "🎆",
+    "name": "fireworks",
+    "nameUrl": "fireworks",
+    "category": "entertainment"
+  },
+  {
+    "id": 926,
+    "code": "U+1F387",
+    "emoji": "🎇",
+    "name": "sparkler",
+    "nameUrl": "sparkler",
+    "category": "other"
+  },
+  {
+    "id": 927,
+    "code": "U+1F9E8",
+    "emoji": "🧨",
+    "name": "firecracker",
+    "nameUrl": "firecracker",
+    "category": "other"
+  },
+  {
+    "id": 928,
+    "code": "U+2728",
+    "emoji": "✨",
+    "name": "sparkles",
+    "nameUrl": "sparkles",
+    "category": "other"
+  },
+  {
+    "id": 929,
+    "code": "U+1F388",
+    "emoji": "🎈",
+    "name": "balloon",
+    "nameUrl": "balloon",
+    "category": "activities"
+  },
+  {
+    "id": 930,
+    "code": "U+1F389",
+    "emoji": "🎉",
+    "name": "party popper",
+    "nameUrl": "party-popper",
+    "category": "entertainment"
+  },
+  {
+    "id": 931,
+    "code": "U+1F38A",
+    "emoji": "🎊",
+    "name": "confetti ball",
+    "nameUrl": "confetti-ball",
+    "category": "activities"
+  },
+  {
+    "id": 932,
+    "code": "U+1F38B",
+    "emoji": "🎋",
+    "name": "tanabata tree",
+    "nameUrl": "tanabata-tree",
+    "category": "animals"
+  },
+  {
+    "id": 933,
+    "code": "U+1F38D",
+    "emoji": "🎍",
+    "name": "pine decoration",
+    "nameUrl": "pine-decoration",
+    "category": "animals"
+  },
+  {
+    "id": 934,
+    "code": "U+1F38E",
+    "emoji": "🎎",
+    "name": "Japanese dolls",
+    "nameUrl": "japanese-dolls",
+    "category": "places"
+  },
+  {
+    "id": 935,
+    "code": "U+1F38F",
+    "emoji": "🎏",
+    "name": "carp streamer",
+    "nameUrl": "carp-streamer",
+    "category": "travel"
+  },
+  {
+    "id": 936,
+    "code": "U+1F390",
+    "emoji": "🎐",
+    "name": "wind chime",
+    "nameUrl": "wind-chime",
+    "category": "weather"
+  },
+  {
+    "id": 937,
+    "code": "U+1F391",
+    "emoji": "🎑",
+    "name": "moon viewing ceremony",
+    "nameUrl": "moon-viewing-ceremony",
+    "category": "weather"
+  },
+  {
+    "id": 938,
+    "code": "U+1F9E7",
+    "emoji": "🧧",
+    "name": "red envelope",
+    "nameUrl": "red-envelope",
+    "category": "finance"
+  },
+  {
+    "id": 939,
+    "code": "U+1F380",
+    "emoji": "🎀",
+    "name": "ribbon",
+    "nameUrl": "ribbon",
+    "category": "shopping"
+  },
+  {
+    "id": 940,
+    "code": "U+1F381",
+    "emoji": "🎁",
+    "name": "wrapped gift",
+    "nameUrl": "wrapped-gift",
+    "category": "shopping"
+  },
+  {
+    "id": 941,
+    "code": "U+1F397",
+    "emoji": "🎗",
+    "name": "reminder ribbon",
+    "nameUrl": "reminder-ribbon",
+    "category": "shopping"
+  },
+  {
+    "id": 942,
+    "code": "U+1F39F",
+    "emoji": "🎟",
+    "name": "admission tickets",
+    "nameUrl": "admission-tickets",
+    "category": "other"
+  },
+  {
+    "id": 943,
+    "code": "U+1F3AB",
+    "emoji": "🎫",
+    "name": "ticket",
+    "nameUrl": "ticket",
+    "category": "other"
+  },
+  {
+    "id": 944,
+    "code": "U+1F396",
+    "emoji": "🎖",
+    "name": "military medal",
+    "nameUrl": "military-medal",
+    "category": "other"
+  },
+  {
+    "id": 945,
+    "code": "U+1F3C6",
+    "emoji": "🏆",
+    "name": "trophy",
+    "nameUrl": "trophy",
+    "category": "other"
+  },
+  {
+    "id": 946,
+    "code": "U+1F3C5",
+    "emoji": "🏅",
+    "name": "sports medal",
+    "nameUrl": "sports-medal",
+    "category": "activities"
+  },
+  {
+    "id": 947,
+    "code": "U+1F947",
+    "emoji": "🥇",
+    "name": "1st place medal",
+    "nameUrl": "1st-place-medal",
+    "category": "other"
+  },
+  {
+    "id": 948,
+    "code": "U+1F948",
+    "emoji": "🥈",
+    "name": "2nd place medal",
+    "nameUrl": "2nd-place-medal",
+    "category": "other"
+  },
+  {
+    "id": 949,
+    "code": "U+1F949",
+    "emoji": "🥉",
+    "name": "3rd place medal",
+    "nameUrl": "3rd-place-medal",
+    "category": "other"
+  },
+  {
+    "id": 950,
+    "code": "U+26BD",
+    "emoji": "⚽",
+    "name": "soccer ball",
+    "nameUrl": "soccer-ball",
+    "category": "activities"
+  },
+  {
+    "id": 951,
+    "code": "U+26BE",
+    "emoji": "⚾",
+    "name": "baseball",
+    "nameUrl": "baseball",
+    "category": "activities"
+  },
+  {
+    "id": 952,
+    "code": "U+1F94E",
+    "emoji": "🥎",
+    "name": "softball",
+    "nameUrl": "softball",
+    "category": "activities"
+  },
+  {
+    "id": 953,
+    "code": "U+1F3C0",
+    "emoji": "🏀",
+    "name": "basketball",
+    "nameUrl": "basketball",
+    "category": "activities"
+  },
+  {
+    "id": 954,
+    "code": "U+1F3D0",
+    "emoji": "🏐",
+    "name": "volleyball",
+    "nameUrl": "volleyball",
+    "category": "activities"
+  },
+  {
+    "id": 955,
+    "code": "U+1F3C8",
+    "emoji": "🏈",
+    "name": "american football",
+    "nameUrl": "american-football",
+    "category": "people"
+  },
+  {
+    "id": 956,
+    "code": "U+1F3C9",
+    "emoji": "🏉",
+    "name": "rugby football",
+    "nameUrl": "rugby-football",
+    "category": "people"
+  },
+  {
+    "id": 957,
+    "code": "U+1F3BE",
+    "emoji": "🎾",
+    "name": "tennis",
+    "nameUrl": "tennis",
+    "category": "other"
+  },
+  {
+    "id": 958,
+    "code": "U+1F94F",
+    "emoji": "🥏",
+    "name": "flying disc",
+    "nameUrl": "flying-disc",
+    "category": "other"
+  },
+  {
+    "id": 959,
+    "code": "U+1F3B3",
+    "emoji": "🎳",
+    "name": "bowling",
+    "nameUrl": "bowling",
+    "category": "animals"
+  },
+  {
+    "id": 960,
+    "code": "U+1F3CF",
+    "emoji": "🏏",
+    "name": "cricket game",
+    "nameUrl": "cricket-game",
+    "category": "activities"
+  },
+  {
+    "id": 961,
+    "code": "U+1F3D1",
+    "emoji": "🏑",
+    "name": "field hockey",
+    "nameUrl": "field-hockey",
+    "category": "objects"
+  },
+  {
+    "id": 962,
+    "code": "U+1F3D2",
+    "emoji": "🏒",
+    "name": "ice hockey",
+    "nameUrl": "ice-hockey",
+    "category": "objects"
+  },
+  {
+    "id": 963,
+    "code": "U+1F94D",
+    "emoji": "🥍",
+    "name": "lacrosse",
+    "nameUrl": "lacrosse",
+    "category": "other"
+  },
+  {
+    "id": 964,
+    "code": "U+1F3D3",
+    "emoji": "🏓",
+    "name": "ping pong",
+    "nameUrl": "ping-pong",
+    "category": "other"
+  },
+  {
+    "id": 965,
+    "code": "U+1F3F8",
+    "emoji": "🏸",
+    "name": "badminton",
+    "nameUrl": "badminton",
+    "category": "other"
+  },
+  {
+    "id": 966,
+    "code": "U+1F94A",
+    "emoji": "🥊",
+    "name": "boxing glove",
+    "nameUrl": "boxing-glove",
+    "category": "emotions"
+  },
+  {
+    "id": 967,
+    "code": "U+1F94B",
+    "emoji": "🥋",
+    "name": "martial arts uniform",
+    "nameUrl": "martial-arts-uniform",
+    "category": "entertainment"
+  },
+  {
+    "id": 968,
+    "code": "U+1F945",
+    "emoji": "🥅",
+    "name": "goal net",
+    "nameUrl": "goal-net",
+    "category": "other"
+  },
+  {
+    "id": 969,
+    "code": "U+26F3",
+    "emoji": "⛳",
+    "name": "flag in hole",
+    "nameUrl": "flag-in-hole",
+    "category": "other"
+  },
+  {
+    "id": 970,
+    "code": "U+26F8",
+    "emoji": "⛸",
+    "name": "ice skate",
+    "nameUrl": "ice-skate",
+    "category": "other"
+  },
+  {
+    "id": 971,
+    "code": "U+1F3A3",
+    "emoji": "🎣",
+    "name": "fishing pole",
+    "nameUrl": "fishing-pole",
+    "category": "animals"
+  },
+  {
+    "id": 973,
+    "code": "U+1F3BD",
+    "emoji": "🎽",
+    "name": "running shirt",
+    "nameUrl": "running-shirt",
+    "category": "activities"
+  },
+  {
+    "id": 974,
+    "code": "U+1F3BF",
+    "emoji": "🎿",
+    "name": "skis",
+    "nameUrl": "skis",
+    "category": "other"
+  },
+  {
+    "id": 975,
+    "code": "U+1F6F7",
+    "emoji": "🛷",
+    "name": "sled",
+    "nameUrl": "sled",
+    "category": "other"
+  },
+  {
+    "id": 976,
+    "code": "U+1F94C",
+    "emoji": "🥌",
+    "name": "curling stone",
+    "nameUrl": "curling-stone",
+    "category": "other"
+  },
+  {
+    "id": 977,
+    "code": "U+1F3AF",
+    "emoji": "🎯",
+    "name": "direct hit",
+    "nameUrl": "direct-hit",
+    "category": "other"
+  },
+  {
+    "id": 980,
+    "code": "U+1F3B1",
+    "emoji": "🎱",
+    "name": "pool 8 ball",
+    "nameUrl": "pool-8-ball",
+    "category": "activities"
+  },
+  {
+    "id": 981,
+    "code": "U+1F52E",
+    "emoji": "🔮",
+    "name": "crystal ball",
+    "nameUrl": "crystal-ball",
+    "category": "activities"
+  },
+  {
+    "id": 982,
+    "code": "U+1F9FF",
+    "emoji": "🧿",
+    "name": "nazar amulet",
+    "nameUrl": "nazar-amulet",
+    "category": "other"
+  },
+  {
+    "id": 983,
+    "code": "U+1F3AE",
+    "emoji": "🎮",
+    "name": "video game",
+    "nameUrl": "video-game",
+    "category": "activities"
+  },
+  {
+    "id": 984,
+    "code": "U+1F579",
+    "emoji": "🕹",
+    "name": "joystick",
+    "nameUrl": "joystick",
+    "category": "other"
+  },
+  {
+    "id": 985,
+    "code": "U+1F3B0",
+    "emoji": "🎰",
+    "name": "slot machine",
+    "nameUrl": "slot-machine",
+    "category": "other"
+  },
+  {
+    "id": 986,
+    "code": "U+1F3B2",
+    "emoji": "🎲",
+    "name": "game die",
+    "nameUrl": "game-die",
+    "category": "activities"
+  },
+  {
+    "id": 987,
+    "code": "U+1F9E9",
+    "emoji": "🧩",
+    "name": "puzzle piece",
+    "nameUrl": "puzzle-piece",
+    "category": "entertainment"
+  },
+  {
+    "id": 988,
+    "code": "U+1F9F8",
+    "emoji": "🧸",
+    "name": "teddy bear",
+    "nameUrl": "teddy-bear",
+    "category": "people"
+  },
+  {
+    "id": 989,
+    "code": "U+2660",
+    "emoji": "♠",
+    "name": "spade suit",
+    "nameUrl": "spade-suit",
+    "category": "other"
+  },
+  {
+    "id": 990,
+    "code": "U+2665",
+    "emoji": "♥",
+    "name": "heart suit",
+    "nameUrl": "heart-suit",
+    "category": "emotions"
+  },
+  {
+    "id": 991,
+    "code": "U+2666",
+    "emoji": "♦️",
+    "name": "diamond suit",
+    "nameUrl": "diamond-suit",
+    "category": "other"
+  },
+  {
+    "id": 992,
+    "code": "U+2663",
+    "emoji": "♣️",
+    "name": "club suit",
+    "nameUrl": "club-suit",
+    "category": "other"
+  },
+  {
+    "id": 993,
+    "code": "U+265F",
+    "emoji": "♟",
+    "name": "chess pawn",
+    "nameUrl": "chess-pawn",
+    "category": "other"
+  },
+  {
+    "id": 994,
+    "code": "U+1F0CF",
+    "emoji": "🃏",
+    "name": "joker",
+    "nameUrl": "joker",
+    "category": "other"
+  },
+  {
+    "id": 995,
+    "code": "U+1F004",
+    "emoji": "🀄",
+    "name": "mahjong red dragon",
+    "nameUrl": "mahjong-red-dragon",
+    "category": "other"
+  },
+  {
+    "id": 996,
+    "code": "U+1F3B4",
+    "emoji": "🎴",
+    "name": "flower playing cards",
+    "nameUrl": "flower-playing-cards",
+    "category": "travel"
+  },
+  {
+    "id": 997,
+    "code": "U+1F3AD",
+    "emoji": "🎭",
+    "name": "performing arts",
+    "nameUrl": "performing-arts",
+    "category": "entertainment"
+  },
+  {
+    "id": 998,
+    "code": "U+1F5BC",
+    "emoji": "🖼",
+    "name": "framed picture",
+    "nameUrl": "framed-picture",
+    "category": "other"
+  },
+  {
+    "id": 999,
+    "code": "U+1F3A8",
+    "emoji": "🎨",
+    "name": "artist palette",
+    "nameUrl": "artist-palette",
+    "category": "people"
+  },
+  {
+    "id": 1000,
+    "code": "U+1F9F5",
+    "emoji": "🧵",
+    "name": "thread",
+    "nameUrl": "thread",
+    "category": "other"
+  },
+  {
+    "id": 1001,
+    "code": "U+1F9F6",
+    "emoji": "🧶",
+    "name": "yarn",
+    "nameUrl": "yarn",
+    "category": "other"
+  },
+  {
+    "id": 1002,
+    "code": "U+1F453",
+    "emoji": "👓",
+    "name": "glasses",
+    "nameUrl": "glasses",
+    "category": "other"
+  },
+  {
+    "id": 1003,
+    "code": "U+1F576",
+    "emoji": "🕶",
+    "name": "sunglasses",
+    "nameUrl": "sunglasses",
+    "category": "weather"
+  },
+  {
+    "id": 1004,
+    "code": "U+1F97D",
+    "emoji": "🥽",
+    "name": "goggles",
+    "nameUrl": "goggles",
+    "category": "other"
+  },
+  {
+    "id": 1005,
+    "code": "U+1F97C",
+    "emoji": "🥼",
+    "name": "lab coat",
+    "nameUrl": "lab-coat",
+    "category": "other"
+  },
+  {
+    "id": 1007,
+    "code": "U+1F454",
+    "emoji": "👔",
+    "name": "necktie",
+    "nameUrl": "necktie",
+    "category": "other"
+  },
+  {
+    "id": 1008,
+    "code": "U+1F455",
+    "emoji": "👕",
+    "name": "t-shirt",
+    "nameUrl": "t-shirt",
+    "category": "other"
+  },
+  {
+    "id": 1009,
+    "code": "U+1F456",
+    "emoji": "👖",
+    "name": "jeans",
+    "nameUrl": "jeans",
+    "category": "other"
+  },
+  {
+    "id": 1010,
+    "code": "U+1F9E3",
+    "emoji": "🧣",
+    "name": "scarf",
+    "nameUrl": "scarf",
+    "category": "travel"
+  },
+  {
+    "id": 1011,
+    "code": "U+1F9E4",
+    "emoji": "🧤",
+    "name": "gloves",
+    "nameUrl": "gloves",
+    "category": "emotions"
+  },
+  {
+    "id": 1012,
+    "code": "U+1F9E5",
+    "emoji": "🧥",
+    "name": "coat",
+    "nameUrl": "coat",
+    "category": "other"
+  },
+  {
+    "id": 1013,
+    "code": "U+1F9E6",
+    "emoji": "🧦",
+    "name": "socks",
+    "nameUrl": "socks",
+    "category": "other"
+  },
+  {
+    "id": 1014,
+    "code": "U+1F457",
+    "emoji": "👗",
+    "name": "dress",
+    "nameUrl": "dress",
+    "category": "other"
+  },
+  {
+    "id": 1015,
+    "code": "U+1F458",
+    "emoji": "👘",
+    "name": "kimono",
+    "nameUrl": "kimono",
+    "category": "other"
+  },
+  {
+    "id": 1020,
+    "code": "U+1F459",
+    "emoji": "👙",
+    "name": "bikini",
+    "nameUrl": "bikini",
+    "category": "other"
+  },
+  {
+    "id": 1021,
+    "code": "U+1F45A",
+    "emoji": "👚",
+    "name": "woman’s clothes",
+    "nameUrl": "womans-clothes",
+    "category": "people"
+  },
+  {
+    "id": 1022,
+    "code": "U+1F45B",
+    "emoji": "👛",
+    "name": "purse",
+    "nameUrl": "purse",
+    "category": "other"
+  },
+  {
+    "id": 1023,
+    "code": "U+1F45C",
+    "emoji": "👜",
+    "name": "handbag",
+    "nameUrl": "handbag",
+    "category": "people"
+  },
+  {
+    "id": 1024,
+    "code": "U+1F45D",
+    "emoji": "👝",
+    "name": "clutch bag",
+    "nameUrl": "clutch-bag",
+    "category": "other"
+  },
+  {
+    "id": 1025,
+    "code": "U+1F6CD",
+    "emoji": "🛍",
+    "name": "shopping bags",
+    "nameUrl": "shopping-bags",
+    "category": "shopping"
+  },
+  {
+    "id": 1026,
+    "code": "U+1F392",
+    "emoji": "🎒",
+    "name": "backpack",
+    "nameUrl": "backpack",
+    "category": "other"
+  },
+  {
+    "id": 1027,
+    "code": "U+1F45E",
+    "emoji": "👞",
+    "name": "man’s shoe",
+    "nameUrl": "mans-shoe",
+    "category": "people"
+  },
+  {
+    "id": 1028,
+    "code": "U+1F45F",
+    "emoji": "👟",
+    "name": "running shoe",
+    "nameUrl": "running-shoe",
+    "category": "activities"
+  },
+  {
+    "id": 1029,
+    "code": "U+1F97E",
+    "emoji": "🥾",
+    "name": "hiking boot",
+    "nameUrl": "hiking-boot",
+    "category": "other"
+  },
+  {
+    "id": 1030,
+    "code": "U+1F97F",
+    "emoji": "🥿",
+    "name": "flat shoe",
+    "nameUrl": "flat-shoe",
+    "category": "other"
+  },
+  {
+    "id": 1031,
+    "code": "U+1F460",
+    "emoji": "👠",
+    "name": "high-heeled shoe",
+    "nameUrl": "high-heeled-shoe",
+    "category": "other"
+  },
+  {
+    "id": 1032,
+    "code": "U+1F461",
+    "emoji": "👡",
+    "name": "woman’s sandal",
+    "nameUrl": "womans-sandal",
+    "category": "people"
+  },
+  {
+    "id": 1034,
+    "code": "U+1F462",
+    "emoji": "👢",
+    "name": "woman’s boot",
+    "nameUrl": "womans-boot",
+    "category": "people"
+  },
+  {
+    "id": 1035,
+    "code": "U+1F451",
+    "emoji": "👑",
+    "name": "crown",
+    "nameUrl": "crown",
+    "category": "other"
+  },
+  {
+    "id": 1036,
+    "code": "U+1F452",
+    "emoji": "👒",
+    "name": "woman’s hat",
+    "nameUrl": "womans-hat",
+    "category": "people"
+  },
+  {
+    "id": 1037,
+    "code": "U+1F3A9",
+    "emoji": "🎩",
+    "name": "top hat",
+    "nameUrl": "top-hat",
+    "category": "other"
+  },
+  {
+    "id": 1038,
+    "code": "U+1F393",
+    "emoji": "🎓",
+    "name": "graduation cap",
+    "nameUrl": "graduation-cap",
+    "category": "other"
+  },
+  {
+    "id": 1039,
+    "code": "U+1F9E2",
+    "emoji": "🧢",
+    "name": "billed cap",
+    "nameUrl": "billed-cap",
+    "category": "other"
+  },
+  {
+    "id": 1040,
+    "code": "U+26D1",
+    "emoji": "⛑",
+    "name": "rescue worker’s helmet",
+    "nameUrl": "rescue-workers-helmet",
+    "category": "people"
+  },
+  {
+    "id": 1041,
+    "code": "U+1F4FF",
+    "emoji": "📿",
+    "name": "prayer beads",
+    "nameUrl": "prayer-beads",
+    "category": "other"
+  },
+  {
+    "id": 1042,
+    "code": "U+1F484",
+    "emoji": "💄",
+    "name": "lipstick",
+    "nameUrl": "lipstick",
+    "category": "people"
+  },
+  {
+    "id": 1043,
+    "code": "U+1F48D",
+    "emoji": "💍",
+    "name": "ring",
+    "nameUrl": "ring",
+    "category": "other"
+  },
+  {
+    "id": 1044,
+    "code": "U+1F48E",
+    "emoji": "💎",
+    "name": "gem stone",
+    "nameUrl": "gem-stone",
+    "category": "other"
+  },
+  {
+    "id": 1045,
+    "code": "U+1F507",
+    "emoji": "🔇",
+    "name": "muted speaker",
+    "nameUrl": "muted-speaker",
+    "category": "other"
+  },
+  {
+    "id": 1046,
+    "code": "U+1F508",
+    "emoji": "🔈",
+    "name": "speaker low volume",
+    "nameUrl": "speaker-low-volume",
+    "category": "other"
+  },
+  {
+    "id": 1047,
+    "code": "U+1F509",
+    "emoji": "🔉",
+    "name": "speaker medium volume",
+    "nameUrl": "speaker-medium-volume",
+    "category": "other"
+  },
+  {
+    "id": 1048,
+    "code": "U+1F50A",
+    "emoji": "🔊",
+    "name": "speaker high volume",
+    "nameUrl": "speaker-high-volume",
+    "category": "other"
+  },
+  {
+    "id": 1049,
+    "code": "U+1F4E2",
+    "emoji": "📢",
+    "name": "loudspeaker",
+    "nameUrl": "loudspeaker",
+    "category": "objects"
+  },
+  {
+    "id": 1050,
+    "code": "U+1F4E3",
+    "emoji": "📣",
+    "name": "megaphone",
+    "nameUrl": "megaphone",
+    "category": "finance"
+  },
+  {
+    "id": 1051,
+    "code": "U+1F4EF",
+    "emoji": "📯",
+    "name": "postal horn",
+    "nameUrl": "postal-horn",
+    "category": "other"
+  },
+  {
+    "id": 1052,
+    "code": "U+1F514",
+    "emoji": "🔔",
+    "name": "bell",
+    "nameUrl": "bell",
+    "category": "other"
+  },
+  {
+    "id": 1053,
+    "code": "U+1F515",
+    "emoji": "🔕",
+    "name": "bell with slash",
+    "nameUrl": "bell-with-slash",
+    "category": "other"
+  },
+  {
+    "id": 1054,
+    "code": "U+1F3BC",
+    "emoji": "🎼",
+    "name": "musical score",
+    "nameUrl": "musical-score",
+    "category": "entertainment"
+  },
+  {
+    "id": 1055,
+    "code": "U+1F3B5",
+    "emoji": "🎵",
+    "name": "musical note",
+    "nameUrl": "musical-note",
+    "category": "entertainment"
+  },
+  {
+    "id": 1056,
+    "code": "U+1F3B6",
+    "emoji": "🎶",
+    "name": "musical notes",
+    "nameUrl": "musical-notes",
+    "category": "entertainment"
+  },
+  {
+    "id": 1057,
+    "code": "U+1F399",
+    "emoji": "🎙",
+    "name": "studio microphone",
+    "nameUrl": "studio-microphone",
+    "category": "finance"
+  },
+  {
+    "id": 1058,
+    "code": "U+1F39A",
+    "emoji": "🎚",
+    "name": "level slider",
+    "nameUrl": "level-slider",
+    "category": "objects"
+  },
+  {
+    "id": 1059,
+    "code": "U+1F39B",
+    "emoji": "🎛",
+    "name": "control knobs",
+    "nameUrl": "control-knobs",
+    "category": "other"
+  },
+  {
+    "id": 1060,
+    "code": "U+1F3A4",
+    "emoji": "🎤",
+    "name": "microphone",
+    "nameUrl": "microphone",
+    "category": "finance"
+  },
+  {
+    "id": 1061,
+    "code": "U+1F3A7",
+    "emoji": "🎧",
+    "name": "headphone",
+    "nameUrl": "headphone",
+    "category": "finance"
+  },
+  {
+    "id": 1062,
+    "code": "U+1F4FB",
+    "emoji": "📻",
+    "name": "radio",
+    "nameUrl": "radio",
+    "category": "objects"
+  },
+  {
+    "id": 1063,
+    "code": "U+1F3B7",
+    "emoji": "🎷",
+    "name": "saxophone",
+    "nameUrl": "saxophone",
+    "category": "finance"
+  },
+  {
+    "id": 1064,
+    "code": "U+1F3B8",
+    "emoji": "🎸",
+    "name": "guitar",
+    "nameUrl": "guitar",
+    "category": "other"
+  },
+  {
+    "id": 1065,
+    "code": "U+1F3B9",
+    "emoji": "🎹",
+    "name": "musical keyboard",
+    "nameUrl": "musical-keyboard",
+    "category": "entertainment"
+  },
+  {
+    "id": 1066,
+    "code": "U+1F3BA",
+    "emoji": "🎺",
+    "name": "trumpet",
+    "nameUrl": "trumpet",
+    "category": "animals"
+  },
+  {
+    "id": 1067,
+    "code": "U+1F3BB",
+    "emoji": "🎻",
+    "name": "violin",
+    "nameUrl": "violin",
+    "category": "other"
+  },
+  {
+    "id": 1069,
+    "code": "U+1F941",
+    "emoji": "🥁",
+    "name": "drum",
+    "nameUrl": "drum",
+    "category": "other"
+  },
+  {
+    "id": 1070,
+    "code": "U+1F4F1",
+    "emoji": "📱",
+    "name": "mobile phone",
+    "nameUrl": "mobile-phone",
+    "category": "finance"
+  },
+  {
+    "id": 1071,
+    "code": "U+1F4F2",
+    "emoji": "📲",
+    "name": "mobile phone with arrow",
+    "nameUrl": "mobile-phone-with-arrow",
+    "category": "finance"
+  },
+  {
+    "id": 1072,
+    "code": "U+260E",
+    "emoji": "☎️",
+    "name": "telephone",
+    "nameUrl": "telephone",
+    "category": "finance"
+  },
+  {
+    "id": 1073,
+    "code": "U+1F4DE",
+    "emoji": "📞",
+    "name": "telephone receiver",
+    "nameUrl": "telephone-receiver",
+    "category": "finance"
+  },
+  {
+    "id": 1074,
+    "code": "U+1F4DF",
+    "emoji": "📟",
+    "name": "pager",
+    "nameUrl": "pager",
+    "category": "other"
+  },
+  {
+    "id": 1075,
+    "code": "U+1F4E0",
+    "emoji": "📠",
+    "name": "fax machine",
+    "nameUrl": "fax-machine",
+    "category": "other"
+  },
+  {
+    "id": 1076,
+    "code": "U+1F50B",
+    "emoji": "🔋",
+    "name": "battery",
+    "nameUrl": "battery",
+    "category": "animals"
+  },
+  {
+    "id": 1077,
+    "code": "U+1F50C",
+    "emoji": "🔌",
+    "name": "electric plug",
+    "nameUrl": "electric-plug",
+    "category": "other"
+  },
+  {
+    "id": 1078,
+    "code": "U+1F4BB",
+    "emoji": "💻",
+    "name": "laptop computer",
+    "nameUrl": "laptop-computer",
+    "category": "finance"
+  },
+  {
+    "id": 1079,
+    "code": "U+1F5A5",
+    "emoji": "🖥",
+    "name": "desktop computer",
+    "nameUrl": "desktop-computer",
+    "category": "finance"
+  },
+  {
+    "id": 1080,
+    "code": "U+1F5A8",
+    "emoji": "🖨",
+    "name": "printer",
+    "nameUrl": "printer",
+    "category": "objects"
+  },
+  {
+    "id": 1081,
+    "code": "U+2328",
+    "emoji": "⌨",
+    "name": "keyboard",
+    "nameUrl": "keyboard",
+    "category": "objects"
+  },
+  {
+    "id": 1082,
+    "code": "U+1F5B1",
+    "emoji": "🖱",
+    "name": "computer mouse",
+    "nameUrl": "computer-mouse",
+    "category": "animals"
+  },
+  {
+    "id": 1083,
+    "code": "U+1F5B2",
+    "emoji": "🖲",
+    "name": "trackball",
+    "nameUrl": "trackball",
+    "category": "activities"
+  },
+  {
+    "id": 1084,
+    "code": "U+1F4BD",
+    "emoji": "💽",
+    "name": "computer disk",
+    "nameUrl": "computer-disk",
+    "category": "finance"
+  },
+  {
+    "id": 1085,
+    "code": "U+1F4BE",
+    "emoji": "💾",
+    "name": "floppy disk",
+    "nameUrl": "floppy-disk",
+    "category": "other"
+  },
+  {
+    "id": 1086,
+    "code": "U+1F4BF",
+    "emoji": "💿",
+    "name": "optical disk",
+    "nameUrl": "optical-disk",
+    "category": "other"
+  },
+  {
+    "id": 1087,
+    "code": "U+1F4C0",
+    "emoji": "📀",
+    "name": "dvd",
+    "nameUrl": "dvd",
+    "category": "other"
+  },
+  {
+    "id": 1088,
+    "code": "U+1F9EE",
+    "emoji": "🧮",
+    "name": "abacus",
+    "nameUrl": "abacus",
+    "category": "other"
+  },
+  {
+    "id": 1089,
+    "code": "U+1F3A5",
+    "emoji": "🎥",
+    "name": "movie camera",
+    "nameUrl": "movie-camera",
+    "category": "entertainment"
+  },
+  {
+    "id": 1090,
+    "code": "U+1F39E",
+    "emoji": "🎞",
+    "name": "film frames",
+    "nameUrl": "film-frames",
+    "category": "objects"
+  },
+  {
+    "id": 1091,
+    "code": "U+1F4FD",
+    "emoji": "📽",
+    "name": "film projector",
+    "nameUrl": "film-projector",
+    "category": "objects"
+  },
+  {
+    "id": 1092,
+    "code": "U+1F3AC",
+    "emoji": "🎬",
+    "name": "clapper board",
+    "nameUrl": "clapper-board",
+    "category": "other"
+  },
+  {
+    "id": 1093,
+    "code": "U+1F4FA",
+    "emoji": "📺",
+    "name": "television",
+    "nameUrl": "television",
+    "category": "objects"
+  },
+  {
+    "id": 1094,
+    "code": "U+1F4F7",
+    "emoji": "📷",
+    "name": "camera",
+    "nameUrl": "camera",
+    "category": "objects"
+  },
+  {
+    "id": 1095,
+    "code": "U+1F4F8",
+    "emoji": "📸",
+    "name": "camera with flash",
+    "nameUrl": "camera-with-flash",
+    "category": "objects"
+  },
+  {
+    "id": 1096,
+    "code": "U+1F4F9",
+    "emoji": "📹",
+    "name": "video camera",
+    "nameUrl": "video-camera",
+    "category": "objects"
+  },
+  {
+    "id": 1097,
+    "code": "U+1F4FC",
+    "emoji": "📼",
+    "name": "videocassette",
+    "nameUrl": "videocassette",
+    "category": "other"
+  },
+  {
+    "id": 1098,
+    "code": "U+1F50D",
+    "emoji": "🔍",
+    "name": "magnifying glass tilted left",
+    "nameUrl": "magnifying-glass-tilted-left",
+    "category": "other"
+  },
+  {
+    "id": 1099,
+    "code": "U+1F50E",
+    "emoji": "🔎",
+    "name": "magnifying glass tilted right",
+    "nameUrl": "magnifying-glass-tilted-right",
+    "category": "other"
+  },
+  {
+    "id": 1100,
+    "code": "U+1F56F",
+    "emoji": "🕯",
+    "name": "candle",
+    "nameUrl": "candle",
+    "category": "objects"
+  },
+  {
+    "id": 1101,
+    "code": "U+1F4A1",
+    "emoji": "💡",
+    "name": "light bulb",
+    "nameUrl": "light-bulb",
+    "category": "other"
+  },
+  {
+    "id": 1102,
+    "code": "U+1F526",
+    "emoji": "🔦",
+    "name": "flashlight",
+    "nameUrl": "flashlight",
+    "category": "objects"
+  },
+  {
+    "id": 1103,
+    "code": "U+1F3EE",
+    "emoji": "🏮",
+    "name": "red paper lantern",
+    "nameUrl": "red-paper-lantern",
+    "category": "animals"
+  },
+  {
+    "id": 1105,
+    "code": "U+1F4D4",
+    "emoji": "📔",
+    "name": "notebook with decorative cover",
+    "nameUrl": "notebook-with-decorative-cover",
+    "category": "animals"
+  },
+  {
+    "id": 1106,
+    "code": "U+1F4D5",
+    "emoji": "📕",
+    "name": "closed book",
+    "nameUrl": "closed-book",
+    "category": "other"
+  },
+  {
+    "id": 1107,
+    "code": "U+1F4D6",
+    "emoji": "📖",
+    "name": "open book",
+    "nameUrl": "open-book",
+    "category": "other"
+  },
+  {
+    "id": 1108,
+    "code": "U+1F4D7",
+    "emoji": "📗",
+    "name": "green book",
+    "nameUrl": "green-book",
+    "category": "other"
+  },
+  {
+    "id": 1109,
+    "code": "U+1F4D8",
+    "emoji": "📘",
+    "name": "blue book",
+    "nameUrl": "blue-book",
+    "category": "other"
+  },
+  {
+    "id": 1110,
+    "code": "U+1F4D9",
+    "emoji": "📙",
+    "name": "orange book",
+    "nameUrl": "orange-book",
+    "category": "other"
+  },
+  {
+    "id": 1111,
+    "code": "U+1F4DA",
+    "emoji": "📚",
+    "name": "books",
+    "nameUrl": "books",
+    "category": "other"
+  },
+  {
+    "id": 1112,
+    "code": "U+1F4D3",
+    "emoji": "📓",
+    "name": "notebook",
+    "nameUrl": "notebook",
+    "category": "other"
+  },
+  {
+    "id": 1113,
+    "code": "U+1F4D2",
+    "emoji": "📒",
+    "name": "ledger",
+    "nameUrl": "ledger",
+    "category": "finance"
+  },
+  {
+    "id": 1114,
+    "code": "U+1F4C3",
+    "emoji": "📃",
+    "name": "page with curl",
+    "nameUrl": "page-with-curl",
+    "category": "other"
+  },
+  {
+    "id": 1115,
+    "code": "U+1F4DC",
+    "emoji": "📜",
+    "name": "scroll",
+    "nameUrl": "scroll",
+    "category": "other"
+  },
+  {
+    "id": 1116,
+    "code": "U+1F4C4",
+    "emoji": "📄",
+    "name": "page facing up",
+    "nameUrl": "page-facing-up",
+    "category": "other"
+  },
+  {
+    "id": 1117,
+    "code": "U+1F4F0",
+    "emoji": "📰",
+    "name": "newspaper",
+    "nameUrl": "newspaper",
+    "category": "other"
+  },
+  {
+    "id": 1118,
+    "code": "U+1F5DE",
+    "emoji": "🗞",
+    "name": "rolled-up newspaper",
+    "nameUrl": "rolled-up-newspaper",
+    "category": "other"
+  },
+  {
+    "id": 1119,
+    "code": "U+1F4D1",
+    "emoji": "📑",
+    "name": "bookmark tabs",
+    "nameUrl": "bookmark-tabs",
+    "category": "symbols"
+  },
+  {
+    "id": 1120,
+    "code": "U+1F516",
+    "emoji": "🔖",
+    "name": "bookmark",
+    "nameUrl": "bookmark",
+    "category": "symbols"
+  },
+  {
+    "id": 1121,
+    "code": "U+1F3F7",
+    "emoji": "🏷",
+    "name": "label",
+    "nameUrl": "label",
+    "category": "other"
+  },
+  {
+    "id": 1122,
+    "code": "U+1F4B0",
+    "emoji": "💰",
+    "name": "money bag",
+    "nameUrl": "money-bag",
+    "category": "shopping"
+  },
+  {
+    "id": 1123,
+    "code": "U+1F4B4",
+    "emoji": "💴",
+    "name": "yen banknote",
+    "nameUrl": "yen-banknote",
+    "category": "places"
+  },
+  {
+    "id": 1124,
+    "code": "U+1F4B5",
+    "emoji": "💵",
+    "name": "dollar banknote",
+    "nameUrl": "dollar-banknote",
+    "category": "places"
+  },
+  {
+    "id": 1125,
+    "code": "U+1F4B6",
+    "emoji": "💶",
+    "name": "euro banknote",
+    "nameUrl": "euro-banknote",
+    "category": "places"
+  },
+  {
+    "id": 1126,
+    "code": "U+1F4B7",
+    "emoji": "💷",
+    "name": "pound banknote",
+    "nameUrl": "pound-banknote",
+    "category": "places"
+  },
+  {
+    "id": 1127,
+    "code": "U+1F4B8",
+    "emoji": "💸",
+    "name": "money with wings",
+    "nameUrl": "money-with-wings",
+    "category": "animals"
+  },
+  {
+    "id": 1128,
+    "code": "U+1F4B3",
+    "emoji": "💳",
+    "name": "credit card",
+    "nameUrl": "credit-card",
+    "category": "travel"
+  },
+  {
+    "id": 1129,
+    "code": "U+1F9FE",
+    "emoji": "🧾",
+    "name": "receipt",
+    "nameUrl": "receipt",
+    "category": "finance"
+  },
+  {
+    "id": 1130,
+    "code": "U+1F4B9",
+    "emoji": "💹",
+    "name": "chart increasing with yen",
+    "nameUrl": "chart-increasing-with-yen",
+    "category": "finance"
+  },
+  {
+    "id": 1131,
+    "code": "U+1F4B1",
+    "emoji": "💱",
+    "name": "currency exchange",
+    "nameUrl": "currency-exchange",
+    "category": "other"
+  },
+  {
+    "id": 1132,
+    "code": "U+1F4B2",
+    "emoji": "💲",
+    "name": "heavy dollar sign",
+    "nameUrl": "heavy-dollar-sign",
+    "category": "shopping"
+  },
+  {
+    "id": 1133,
+    "code": "U+2709",
+    "emoji": "✉️",
+    "name": "envelope",
+    "nameUrl": "envelope",
+    "category": "finance"
+  },
+  {
+    "id": 1134,
+    "code": "U+1F4E7",
+    "emoji": "📧",
+    "name": "e-mail",
+    "nameUrl": "e-mail",
+    "category": "other"
+  },
+  {
+    "id": 1135,
+    "code": "U+1F4E8",
+    "emoji": "📨",
+    "name": "incoming envelope",
+    "nameUrl": "incoming-envelope",
+    "category": "finance"
+  },
+  {
+    "id": 1136,
+    "code": "U+1F4E9",
+    "emoji": "📩",
+    "name": "envelope with arrow",
+    "nameUrl": "envelope-with-arrow",
+    "category": "finance"
+  },
+  {
+    "id": 1137,
+    "code": "U+1F4E4",
+    "emoji": "📤",
+    "name": "outbox tray",
+    "nameUrl": "outbox-tray",
+    "category": "shopping"
+  },
+  {
+    "id": 1138,
+    "code": "U+1F4E5",
+    "emoji": "📥",
+    "name": "inbox tray",
+    "nameUrl": "inbox-tray",
+    "category": "shopping"
+  },
+  {
+    "id": 1139,
+    "code": "U+1F4E6",
+    "emoji": "📦",
+    "name": "package",
+    "nameUrl": "package",
+    "category": "shopping"
+  },
+  {
+    "id": 1140,
+    "code": "U+1F4EB",
+    "emoji": "📫",
+    "name": "closed mailbox with raised flag",
+    "nameUrl": "closed-mailbox-with-raised-flag",
+    "category": "shopping"
+  },
+  {
+    "id": 1141,
+    "code": "U+1F4EA",
+    "emoji": "📪",
+    "name": "closed mailbox with lowered flag",
+    "nameUrl": "closed-mailbox-with-lowered-flag",
+    "category": "shopping"
+  },
+  {
+    "id": 1142,
+    "code": "U+1F4EC",
+    "emoji": "📬",
+    "name": "open mailbox with raised flag",
+    "nameUrl": "open-mailbox-with-raised-flag",
+    "category": "shopping"
+  },
+  {
+    "id": 1143,
+    "code": "U+1F4ED",
+    "emoji": "📭",
+    "name": "open mailbox with lowered flag",
+    "nameUrl": "open-mailbox-with-lowered-flag",
+    "category": "shopping"
+  },
+  {
+    "id": 1144,
+    "code": "U+1F4EE",
+    "emoji": "📮",
+    "name": "postbox",
+    "nameUrl": "postbox",
+    "category": "shopping"
+  },
+  {
+    "id": 1145,
+    "code": "U+1F5F3",
+    "emoji": "🗳",
+    "name": "ballot box with ballot",
+    "nameUrl": "ballot-box-with-ballot",
+    "category": "activities"
+  },
+  {
+    "id": 1146,
+    "code": "U+270F",
+    "emoji": "✏️",
+    "name": "pencil",
+    "nameUrl": "pencil",
+    "category": "other"
+  },
+  {
+    "id": 1147,
+    "code": "U+2712",
+    "emoji": "✒️",
+    "name": "black nib",
+    "nameUrl": "black-nib",
+    "category": "other"
+  },
+  {
+    "id": 1148,
+    "code": "U+1F58B",
+    "emoji": "🖋",
+    "name": "fountain pen",
+    "nameUrl": "fountain-pen",
+    "category": "objects"
+  },
+  {
+    "id": 1149,
+    "code": "U+1F58A",
+    "emoji": "🖊",
+    "name": "pen",
+    "nameUrl": "pen",
+    "category": "other"
+  },
+  {
+    "id": 1150,
+    "code": "U+1F58C",
+    "emoji": "🖌",
+    "name": "paintbrush",
+    "nameUrl": "paintbrush",
+    "category": "objects"
+  },
+  {
+    "id": 1151,
+    "code": "U+1F58D",
+    "emoji": "🖍",
+    "name": "crayon",
+    "nameUrl": "crayon",
+    "category": "other"
+  },
+  {
+    "id": 1152,
+    "code": "U+1F4DD",
+    "emoji": "📝",
+    "name": "memo",
+    "nameUrl": "memo",
+    "category": "finance"
+  },
+  {
+    "id": 1153,
+    "code": "U+1F4BC",
+    "emoji": "💼",
+    "name": "briefcase",
+    "nameUrl": "briefcase",
+    "category": "finance"
+  },
+  {
+    "id": 1154,
+    "code": "U+1F4C1",
+    "emoji": "📁",
+    "name": "file folder",
+    "nameUrl": "file-folder",
+    "category": "people"
+  },
+  {
+    "id": 1155,
+    "code": "U+1F4C2",
+    "emoji": "📂",
+    "name": "open file folder",
+    "nameUrl": "open-file-folder",
+    "category": "people"
+  },
+  {
+    "id": 1156,
+    "code": "U+1F5C2",
+    "emoji": "🗂",
+    "name": "card index dividers",
+    "nameUrl": "card-index-dividers",
+    "category": "travel"
+  },
+  {
+    "id": 1157,
+    "code": "U+1F4C5",
+    "emoji": "📅",
+    "name": "calendar",
+    "nameUrl": "calendar",
+    "category": "other"
+  },
+  {
+    "id": 1158,
+    "code": "U+1F4C6",
+    "emoji": "📆",
+    "name": "tear-off calendar",
+    "nameUrl": "tear-off-calendar",
+    "category": "people"
+  },
+  {
+    "id": 1159,
+    "code": "U+1F5D2",
+    "emoji": "🗒",
+    "name": "spiral notepad",
+    "nameUrl": "spiral-notepad",
+    "category": "other"
+  },
+  {
+    "id": 1160,
+    "code": "U+1F5D3",
+    "emoji": "🗓",
+    "name": "spiral calendar",
+    "nameUrl": "spiral-calendar",
+    "category": "other"
+  },
+  {
+    "id": 1161,
+    "code": "U+1F4C7",
+    "emoji": "📇",
+    "name": "card index",
+    "nameUrl": "card-index",
+    "category": "travel"
+  },
+  {
+    "id": 1162,
+    "code": "U+1F4C8",
+    "emoji": "📈",
+    "name": "chart increasing",
+    "nameUrl": "chart-increasing",
+    "category": "finance"
+  },
+  {
+    "id": 1163,
+    "code": "U+1F4C9",
+    "emoji": "📉",
+    "name": "chart decreasing",
+    "nameUrl": "chart-decreasing",
+    "category": "finance"
+  },
+  {
+    "id": 1164,
+    "code": "U+1F4CA",
+    "emoji": "📊",
+    "name": "bar chart",
+    "nameUrl": "bar-chart",
+    "category": "finance"
+  },
+  {
+    "id": 1165,
+    "code": "U+1F4CB",
+    "emoji": "📋",
+    "name": "clipboard",
+    "nameUrl": "clipboard",
+    "category": "other"
+  },
+  {
+    "id": 1166,
+    "code": "U+1F4CC",
+    "emoji": "📌",
+    "name": "pushpin",
+    "nameUrl": "pushpin",
+    "category": "other"
+  },
+  {
+    "id": 1167,
+    "code": "U+1F4CD",
+    "emoji": "📍",
+    "name": "round pushpin",
+    "nameUrl": "round-pushpin",
+    "category": "other"
+  },
+  {
+    "id": 1168,
+    "code": "U+1F4CE",
+    "emoji": "📎",
+    "name": "paperclip",
+    "nameUrl": "paperclip",
+    "category": "other"
+  },
+  {
+    "id": 1169,
+    "code": "U+1F587",
+    "emoji": "🖇",
+    "name": "linked paperclips",
+    "nameUrl": "linked-paperclips",
+    "category": "people"
+  },
+  {
+    "id": 1170,
+    "code": "U+1F4CF",
+    "emoji": "📏",
+    "name": "straight ruler",
+    "nameUrl": "straight-ruler",
+    "category": "objects"
+  },
+  {
+    "id": 1171,
+    "code": "U+1F4D0",
+    "emoji": "📐",
+    "name": "triangular ruler",
+    "nameUrl": "triangular-ruler",
+    "category": "objects"
+  },
+  {
+    "id": 1172,
+    "code": "U+2702",
+    "emoji": "✂️",
+    "name": "scissors",
+    "nameUrl": "scissors",
+    "category": "other"
+  },
+  {
+    "id": 1173,
+    "code": "U+1F5C3",
+    "emoji": "🗃",
+    "name": "card file box",
+    "nameUrl": "card-file-box",
+    "category": "travel"
+  },
+  {
+    "id": 1174,
+    "code": "U+1F5C4",
+    "emoji": "🗄",
+    "name": "file cabinet",
+    "nameUrl": "file-cabinet",
+    "category": "other"
+  },
+  {
+    "id": 1175,
+    "code": "U+1F5D1",
+    "emoji": "🗑",
+    "name": "wastebasket",
+    "nameUrl": "wastebasket",
+    "category": "other"
+  },
+  {
+    "id": 1176,
+    "code": "U+1F512",
+    "emoji": "🔒",
+    "name": "locked",
+    "nameUrl": "locked",
+    "category": "objects"
+  },
+  {
+    "id": 1177,
+    "code": "U+1F513",
+    "emoji": "🔓",
+    "name": "unlocked",
+    "nameUrl": "unlocked",
+    "category": "objects"
+  },
+  {
+    "id": 1178,
+    "code": "U+1F50F",
+    "emoji": "🔏",
+    "name": "locked with pen",
+    "nameUrl": "locked-with-pen",
+    "category": "objects"
+  },
+  {
+    "id": 1179,
+    "code": "U+1F510",
+    "emoji": "🔐",
+    "name": "locked with key",
+    "nameUrl": "locked-with-key",
+    "category": "objects"
+  },
+  {
+    "id": 1180,
+    "code": "U+1F511",
+    "emoji": "🔑",
+    "name": "key",
+    "nameUrl": "key",
+    "category": "objects"
+  },
+  {
+    "id": 1181,
+    "code": "U+1F5DD",
+    "emoji": "🗝",
+    "name": "old key",
+    "nameUrl": "old-key",
+    "category": "people"
+  },
+  {
+    "id": 1182,
+    "code": "U+1F528",
+    "emoji": "🔨",
+    "name": "hammer",
+    "nameUrl": "hammer",
+    "category": "objects"
+  },
+  {
+    "id": 1184,
+    "code": "U+26CF",
+    "emoji": "⛏",
+    "name": "pick",
+    "nameUrl": "pick",
+    "category": "other"
+  },
+  {
+    "id": 1185,
+    "code": "U+2692",
+    "emoji": "⚒",
+    "name": "hammer and pick",
+    "nameUrl": "hammer-and-pick",
+    "category": "objects"
+  },
+  {
+    "id": 1186,
+    "code": "U+1F6E0",
+    "emoji": "🛠",
+    "name": "hammer and wrench",
+    "nameUrl": "hammer-and-wrench",
+    "category": "objects"
+  },
+  {
+    "id": 1187,
+    "code": "U+1F5E1",
+    "emoji": "🗡",
+    "name": "dagger",
+    "nameUrl": "dagger",
+    "category": "other"
+  },
+  {
+    "id": 1188,
+    "code": "U+2694",
+    "emoji": "⚔",
+    "name": "crossed swords",
+    "nameUrl": "crossed-swords",
+    "category": "objects"
+  },
+  {
+    "id": 1189,
+    "code": "U+1F52B",
+    "emoji": "🔫",
+    "name": "pistol",
+    "nameUrl": "pistol",
+    "category": "other"
+  },
+  {
+    "id": 1190,
+    "code": "U+1F3F9",
+    "emoji": "🏹",
+    "name": "bow and arrow",
+    "nameUrl": "bow-and-arrow",
+    "category": "other"
+  },
+  {
+    "id": 1191,
+    "code": "U+1F6E1",
+    "emoji": "🛡",
+    "name": "shield",
+    "nameUrl": "shield",
+    "category": "objects"
+  },
+  {
+    "id": 1192,
+    "code": "U+1F527",
+    "emoji": "🔧",
+    "name": "wrench",
+    "nameUrl": "wrench",
+    "category": "objects"
+  },
+  {
+    "id": 1193,
+    "code": "U+1F529",
+    "emoji": "🔩",
+    "name": "nut and bolt",
+    "nameUrl": "nut-and-bolt",
+    "category": "other"
+  },
+  {
+    "id": 1194,
+    "code": "U+2699",
+    "emoji": "⚙",
+    "name": "gear",
+    "nameUrl": "gear",
+    "category": "people"
+  },
+  {
+    "id": 1195,
+    "code": "U+1F5DC",
+    "emoji": "🗜",
+    "name": "clamp",
+    "nameUrl": "clamp",
+    "category": "objects"
+  },
+  {
+    "id": 1196,
+    "code": "U+2696",
+    "emoji": "⚖",
+    "name": "balance scale",
+    "nameUrl": "balance-scale",
+    "category": "other"
+  },
+  {
+    "id": 1198,
+    "code": "U+1F517",
+    "emoji": "🔗",
+    "name": "link",
+    "nameUrl": "link",
+    "category": "other"
+  },
+  {
+    "id": 1199,
+    "code": "U+26D3",
+    "emoji": "⛓",
+    "name": "chains",
+    "nameUrl": "chains",
+    "category": "other"
+  },
+  {
+    "id": 1200,
+    "code": "U+1F9F0",
+    "emoji": "🧰",
+    "name": "toolbox",
+    "nameUrl": "toolbox",
+    "category": "shopping"
+  },
+  {
+    "id": 1201,
+    "code": "U+1F9F2",
+    "emoji": "🧲",
+    "name": "magnet",
+    "nameUrl": "magnet",
+    "category": "other"
+  },
+  {
+    "id": 1202,
+    "code": "U+2697",
+    "emoji": "⚗",
+    "name": "alembic",
+    "nameUrl": "alembic",
+    "category": "other"
+  },
+  {
+    "id": 1203,
+    "code": "U+1F9EA",
+    "emoji": "🧪",
+    "name": "test tube",
+    "nameUrl": "test-tube",
+    "category": "other"
+  },
+  {
+    "id": 1204,
+    "code": "U+1F9EB",
+    "emoji": "🧫",
+    "name": "petri dish",
+    "nameUrl": "petri-dish",
+    "category": "animals"
+  },
+  {
+    "id": 1205,
+    "code": "U+1F9EC",
+    "emoji": "🧬",
+    "name": "dna",
+    "nameUrl": "dna",
+    "category": "other"
+  },
+  {
+    "id": 1206,
+    "code": "U+1F52C",
+    "emoji": "🔬",
+    "name": "microscope",
+    "nameUrl": "microscope",
+    "category": "objects"
+  },
+  {
+    "id": 1207,
+    "code": "U+1F52D",
+    "emoji": "🔭",
+    "name": "telescope",
+    "nameUrl": "telescope",
+    "category": "objects"
+  },
+  {
+    "id": 1208,
+    "code": "U+1F4E1",
+    "emoji": "📡",
+    "name": "satellite antenna",
+    "nameUrl": "satellite-antenna",
+    "category": "animals"
+  },
+  {
+    "id": 1209,
+    "code": "U+1F489",
+    "emoji": "💉",
+    "name": "syringe",
+    "nameUrl": "syringe",
+    "category": "health"
+  },
+  {
+    "id": 1211,
+    "code": "U+1F48A",
+    "emoji": "💊",
+    "name": "pill",
+    "nameUrl": "pill",
+    "category": "health"
+  },
+  {
+    "id": 1214,
+    "code": "U+1F6AA",
+    "emoji": "🚪",
+    "name": "door",
+    "nameUrl": "door",
+    "category": "objects"
+  },
+  {
+    "id": 1215,
+    "code": "U+1F6CF",
+    "emoji": "🛏",
+    "name": "bed",
+    "nameUrl": "bed",
+    "category": "places"
+  },
+  {
+    "id": 1216,
+    "code": "U+1F6CB",
+    "emoji": "🛋",
+    "name": "couch and lamp",
+    "nameUrl": "couch-and-lamp",
+    "category": "objects"
+  },
+  {
+    "id": 1218,
+    "code": "U+1F6BD",
+    "emoji": "🚽",
+    "name": "toilet",
+    "nameUrl": "toilet",
+    "category": "other"
+  },
+  {
+    "id": 1219,
+    "code": "U+1F6BF",
+    "emoji": "🚿",
+    "name": "shower",
+    "nameUrl": "shower",
+    "category": "other"
+  },
+  {
+    "id": 1220,
+    "code": "U+1F6C1",
+    "emoji": "🛁",
+    "name": "bathtub",
+    "nameUrl": "bathtub",
+    "category": "animals"
+  },
+  {
+    "id": 1222,
+    "code": "U+1F9F4",
+    "emoji": "🧴",
+    "name": "lotion bottle",
+    "nameUrl": "lotion-bottle",
+    "category": "food"
+  },
+  {
+    "id": 1223,
+    "code": "U+1F9F7",
+    "emoji": "🧷",
+    "name": "safety pin",
+    "nameUrl": "safety-pin",
+    "category": "other"
+  },
+  {
+    "id": 1224,
+    "code": "U+1F9F9",
+    "emoji": "🧹",
+    "name": "broom",
+    "nameUrl": "broom",
+    "category": "other"
+  },
+  {
+    "id": 1225,
+    "code": "U+1F9FA",
+    "emoji": "🧺",
+    "name": "basket",
+    "nameUrl": "basket",
+    "category": "other"
+  },
+  {
+    "id": 1226,
+    "code": "U+1F9FB",
+    "emoji": "🧻",
+    "name": "roll of paper",
+    "nameUrl": "roll-of-paper",
+    "category": "other"
+  },
+  {
+    "id": 1227,
+    "code": "U+1F9FC",
+    "emoji": "🧼",
+    "name": "soap",
+    "nameUrl": "soap",
+    "category": "other"
+  },
+  {
+    "id": 1228,
+    "code": "U+1F9FD",
+    "emoji": "🧽",
+    "name": "sponge",
+    "nameUrl": "sponge",
+    "category": "other"
+  },
+  {
+    "id": 1229,
+    "code": "U+1F9EF",
+    "emoji": "🧯",
+    "name": "fire extinguisher",
+    "nameUrl": "fire-extinguisher",
+    "category": "other"
+  },
+  {
+    "id": 1230,
+    "code": "U+1F6D2",
+    "emoji": "🛒",
+    "name": "shopping cart",
+    "nameUrl": "shopping-cart",
+    "category": "travel"
+  },
+  {
+    "id": 1231,
+    "code": "U+1F6AC",
+    "emoji": "🚬",
+    "name": "cigarette",
+    "nameUrl": "cigarette",
+    "category": "other"
+  },
+  {
+    "id": 1232,
+    "code": "U+26B0",
+    "emoji": "⚰",
+    "name": "coffin",
+    "nameUrl": "coffin",
+    "category": "other"
+  },
+  {
+    "id": 1233,
+    "code": "U+26B1",
+    "emoji": "⚱",
+    "name": "funeral urn",
+    "nameUrl": "funeral-urn",
+    "category": "other"
+  }
+]

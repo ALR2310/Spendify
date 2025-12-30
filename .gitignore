@@ -1,20 +1,3 @@
-# Capacitor 
-android/**/build/ 
-android/captures/ 
-android/.idea/ 
-android/.gradle/ 
-android/local.properties 
-android/*.iml 
-android/app/release/ 
-ios/App/App/public/
-ios/App/Pods/
-ios/*.xcworkspace/
-ios/*.xcodeproj/
-ios/DerivedData/
-ios/.idea/
-ios/build/
-ios/App/fastlane/report.xml
-
 # Logs
 logs
 *.log
@@ -98,6 +81,7 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
+.output
 
 # Gatsby files
 .cache/
@@ -151,10 +135,10 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
-# Vite logs files
+# Vite files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.vite/
 
-resources/android/**/*
-
-.gittt
+# Keystore files
+*.jks

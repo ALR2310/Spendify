@@ -1,0 +1,215 @@
+{
+  "expenses": {
+    "filter": {
+      "all": "All",
+      "category": "Category",
+      "type": "Type",
+      "expense": "Expense",
+      "income": "Income"
+    },
+    "list": {
+      "title": "Expense List",
+      "notFound": "No expenses found",
+      "notFoundDateFilter": "No expenses in this time period",
+      "notFoundMonthFilter": "No expenses in this month yet",
+      "notFoundClick": "Click",
+      "notFoundHere": "here",
+      "notFoundAdd": "to add a new expense",
+      "loadingMore": "Loading more…",
+      "recurring": "Recurring Expenses",
+      "recurringNotFound": "No recurring expenses found"
+    },
+    "stat": {
+      "totalRevenue": "Total revenue",
+      "totalExpenses": "Total expenses",
+      "balance": "Balance",
+      "expenseDistribution": "Expense Distribution",
+      "food": "Food",
+      "transport": "Transport",
+      "shopping": "Shopping"
+    },
+    "form": {
+      "filters": "Filters",
+      "dayFrom": "Day from",
+      "dayTo": "Day to",
+      "type": "Type:",
+      "sortBy": "Sort by:",
+      "date": "Date",
+      "amount": "Amount",
+      "name": "Name",
+      "desc": "Desc",
+      "asc": "Asc",
+      "category": "Category:",
+      "reset": "Reset",
+      "thisMonth": "This Month",
+      "edit": "Edit",
+      "new": "New",
+      "expense": "Expense",
+      "note": "Note",
+      "categoryName": "Category Name",
+      "emoji": "Emoji",
+      "color": "Color",
+      "updated": "updated",
+      "created": "created",
+      "successfully": "successfully",
+      "errorSaving": "An error occurred while saving the expense.",
+      "errorSavingCategory": "An error occurred while saving the category.",
+      "nameRequired": "Name is required.",
+      "custom": "Custom",
+      "close": "Close"
+    },
+    "detail": {
+      "title": "Transaction Details",
+      "close": "Close",
+      "delete": "Delete",
+      "edit": "Edit",
+      "amount": "Amount",
+      "transactionDate": "Transaction Date",
+      "transactionType": "Transaction Type",
+      "income": "Income",
+      "expense": "Expense",
+      "note": "Note"
+    }
+  },
+  "settings": {
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System",
+      "language": "Language",
+      "languages": {
+        "en": "English",
+        "vi": "Vietnamese"
+      }
+    },
+    "app": {
+      "title": "App",
+      "appAutoUpdate": "Auto Update App",
+      "appAutoUpdateDesc": "Automatically update the application",
+      "checkUpdate": "Check for Updates",
+      "checkUpdateDesc": "Check for available updates"
+    },
+    "dataSync": {
+      "title": "Data & Sync",
+      "dataSyncTitle": "Data Sync",
+      "dataSyncDesc": "Backup data to Google Drive",
+      "import": "Import Data",
+      "importDesc": "Import data from file",
+      "export": "Export Data",
+      "exportDesc": "Export data to file",
+      "conflictModal": {
+        "title": "Data detected on drive",
+        "message": "Please select the data source you want to use for sync: current local data or cloud data.",
+        "googleDrive": "Google Drive",
+        "localStorage": "Local Storage",
+        "fileSize": "Size:",
+        "lastSync": "Last sync:",
+        "neverSynced": "Never synced"
+      }
+    },
+    "account": {
+      "title": "Account",
+      "loggedIn": "Logged in",
+      "googleAccount": "Google Account",
+      "logOut": "Log out",
+      "logOutDesc": "Sign out from your account",
+      "signIn": "Sign in with Google",
+      "signInDesc": "Sign in to sync data to Google Drive"
+    },
+    "appInfo": {
+      "version": "App Version"
+    }
+  },
+  "statistics": {
+    "filter": {
+      "period": "Period",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "oneDay": "1 day",
+      "oneWeek": "1 week",
+      "oneMonth": "1 month",
+      "sixMonths": "6 months",
+      "oneYear": "1 year",
+      "twoYears": "2 years",
+      "fiveYears": "5 years",
+      "allTime": "All Time",
+      "timeUnit": "Time Unit"
+    },
+    "form": {
+      "close": "Close",
+      "reset": "Reset"
+    },
+    "chart": {
+      "categoryDistribution": "Category Distribution",
+      "incomeVsExpense": "Income vs Expense",
+      "balanceTrend": "Balance Trend",
+      "income": "Income",
+      "expense": "Expense",
+      "balance": "Balance"
+    },
+    "summary": {
+      "title": "Summary Statistics",
+      "avgTransaction": "Avg Transaction",
+      "totalTransaction": "Total Transaction",
+      "maxExpense": "Max Expense",
+      "minExpense": "Min Expense",
+      "totalIncome": "Total Income",
+      "totalExpense": "Total Expense",
+      "balance": "Balance"
+    }
+  },
+  "pickers": {
+    "dayPicker": {
+      "title": "Select Day"
+    },
+    "emojiPicker": {
+      "title": "Select Emoji",
+      "all": "All",
+      "searchPlaceholder": "Search emoji…"
+    },
+    "monthPicker": {
+      "title": "Select Month"
+    }
+  },
+  "notes": {
+    "list": {
+      "title": "Notes",
+      "searchPlaceholder": "Search notes...",
+      "notFound": "No notes found",
+      "empty": "No notes yet",
+      "createFirst": "Create your first note"
+    },
+    "item": {
+      "untitled": "Untitled"
+    },
+    "detail": {
+      "untitled": "Untitled",
+      "updated": "Updated:",
+      "close": "Close",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "form": {
+      "createTitle": "Create New Note",
+      "editTitle": "Edit Note",
+      "titleLabel": "Title:",
+      "contentLabel": "Content:",
+      "titlePlaceholder": "Enter title...",
+      "cancel": "Cancel",
+      "save": "Save",
+      "validationError": "Please enter a title or content",
+      "createSuccess": "Note created successfully!",
+      "updateSuccess": "Note updated successfully!",
+      "createError": "Failed to create note",
+      "updateError": "Failed to update note"
+    },
+    "delete": {
+      "confirm": "Are you sure you want to delete this note? This action cannot be undone.",
+      "title": "Confirm Delete",
+      "success": "Note deleted successfully!",
+      "error": "Failed to delete note. Please try again."
+    }
+  }
+}

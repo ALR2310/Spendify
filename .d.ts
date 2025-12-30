@@ -8,16 +8,27 @@ declare module '*.jpg' {
   export default content;
 }
 
-declare const __APP_VERSION__: string;
+declare module '*.webp' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.ico' {
+  const content: string;
+  export default content;
+}
 
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
 interface ImportMetaEnv {
+  readonly MODE: 'development' | 'production';
+  readonly VITE_PORT: number;
+  readonly VITE_APP_VERSION: string;
   readonly VITE_GOOGLE_CLIENT_ID: string;
   readonly VITE_GOOGLE_CLIENT_SECRET: string;
   readonly VITE_GOOGLE_REDIRECT_URI: string;
-  readonly VITE_GIT_API_URL: string;
-  readonly VITE_GIT_ACCESS_TOKEN: string;
+  readonly VITE_GIT_REPO: string;
+  readonly VITE_GIT_PAT: string;
 }

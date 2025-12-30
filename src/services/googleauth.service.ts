@@ -1,0 +1,391 @@
+import { Capacitor, CapacitorHttp } from '@capacitor/core';
+import { SocialLogin } from '@capgo/capacitor-social-login';
+import { SecureStoragePlugin } from 'capacitor-secure-storage-plugin';
+
+import { logger } from '../common/logger';
+
+interface GoogleTokens {
+  email?: string;
+  idToken: string;
+  accessToken: string;
+  refreshToken?: string;
+  expiresAt: string;
+}
+
+export interface GoogleUserInfo {
+  email: string;
+  name?: string;
+  picture?: string;
+  given_name?: string;
+  family_name?: string;
+}
+
+export const googleAuthService = new (class GoogleAuthService {
+  private readonly GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
+  private readonly GOOGLE_TOKEN_INFO_URL = 'https://www.googleapis.com/oauth2/v1/tokeninfo';
+  private readonly GOOGLE_TOKEN_REVOKE_URL = 'https://oauth2.googleapis.com/revoke';
+
+  async init() {
+    await SocialLogin.initialize({
+      google: {
+        mode: 'offline',
+        webClientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      },
+    });
+
+    logger.log('GoogleAuthService initialized');
+  }
+
+  async login() {
+    try {
+      const authCode: string = await SocialLogin.login({
+        provider: 'google',
+        options: {
+          forceRefreshToken: true,
+          scopes: [
+            'https://www.googleapis.com/auth/drive.appfolder',
+            'https://www.googleapis.com/auth/drive.file',
+          ],
+        },
+      })
+        .then((result: any) => result.result.serverAuthCode)
+        .catch((error: any) => {
+          logger.error('Google login failed', error.message || error);
+          throw error;
+        });
+
+      const tokens = await this.exchangeAuthCodeForTokens(authCode);
+
+      const tokenValid = await this.validateAccessToken(tokens.accessToken);
+      if (!tokenValid) {
+        throw new Error('Obtained access token is invalid');
+      }
+
+      await this.storeTokens(tokens);
+
+      return {
+        message: 'Google login successful',
+        data: tokens,
+      };
+    } catch (error: any) {
+      logger.error('Google login failed', error.message || error);
+      throw error;
+    }
+  }
+
+  async refresh() {
+    try {
+      const tokens = await this.getStoredTokens();
+      if (!tokens?.refreshToken) {
+        throw new Error('No refresh token available');
+      }
+
+      const params = new URLSearchParams({
+        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+        client_secret: import.meta.env.VITE_GOOGLE_CLIENT_SECRET,
+        grant_type: 'refresh_token',
+        refresh_token: tokens.refreshToken,
+      });
+
+      const response = await CapacitorHttp.post({
+        url: this.GOOGLE_TOKEN_URL,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        data: params.toString(),
+      });
+
+      if (response.status !== 200) {
+        throw new Error(`Failed to refresh tokens: ${response.status} ${response.data?.error_description || ''}`);
+      }
+
+      const { access_token, expires_in, id_token } = response.data;
+
+      if (!access_token || !expires_in) {
+        throw new Error('Invalid response from token refresh');
+      }
+
+      const expiresAt = (Date.now() + Number(expires_in) * 1000).toString();
+
+      const newTokens: GoogleTokens = {
+        idToken: id_token || tokens.idToken,
+        accessToken: access_token,
+        refreshToken: tokens.refreshToken,
+        expiresAt,
+      };
+
+      await this.storeTokens(newTokens);
+
+      return {
+        message: 'Token refresh successful',
+        data: newTokens,
+      };
+    } catch (error: any) {
+      logger.error('Token refresh failed', error.message || error);
+      throw error;
+    }
+  }
+
+  async logout() {
+    try {
+      const tokens = await this.getStoredTokens();
+
+      // Revoke token from Google if available
+      if (tokens?.accessToken) {
+        try {
+          await CapacitorHttp.post({
+            url: this.GOOGLE_TOKEN_REVOKE_URL,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            data: `token=${tokens.accessToken}`,
+          });
+        } catch (revokeError) {
+          logger.warn('Failed to revoke token from Google:', revokeError);
+        }
+      }
+
+      await this.clearStoredTokens();
+      logger.log('Logout successful');
+    } catch (error: any) {
+      logger.error('Logout failed', error.message || error);
+      await this.clearStoredTokens().catch((clearError) => {
+        logger.error('Failed to clear stored tokens during logout:', clearError);
+      });
+      throw error;
+    }
+  }
+
+  async isLoggedIn(): Promise<boolean> {
+    try {
+      const tokens = await this.getStoredTokens();
+      if (!tokens || !tokens.accessToken || !tokens.expiresAt) {
+        return false;
+      }
+
+      const isNative = Capacitor.isNativePlatform();
+      if (isNative && !tokens.refreshToken) {
+        return false;
+      }
+
+      // Check if token is still valid
+      const now = Date.now();
+      const expiresAt = Number(tokens.expiresAt);
+
+      if (now < expiresAt) {
+        return true; // Token is still valid
+      }
+
+      // Token is expired, try to refresh if refresh token is available
+      if (!tokens.refreshToken) {
+        return false;
+      }
+
+      try {
+        const refreshResult = await this.refresh();
+        return !!(refreshResult && refreshResult.data);
+      } catch (refreshError) {
+        logger.error('Failed to refresh token', refreshError);
+        return false;
+      }
+    } catch (error: any) {
+      logger.error('Error checking login status', error.message || error);
+      return false;
+    }
+  }
+
+  async getAccessToken(): Promise<string | null> {
+    try {
+      const tokens = await this.getStoredTokens();
+      if (!tokens?.accessToken) {
+        return null;
+      }
+
+      // Check if token is still valid
+      const now = Date.now();
+      const expiresAt = Number(tokens.expiresAt);
+
+      if (now < expiresAt) {
+        return tokens.accessToken;
+      }
+
+      // Token expired, try to refresh
+      if (tokens.refreshToken) {
+        try {
+          const refreshResult = await this.refresh();
+          return refreshResult?.data?.accessToken || null;
+        } catch (refreshError) {
+          logger.error('Failed to refresh token when getting access token', refreshError);
+          return null;
+        }
+      }
+
+      return null;
+    } catch (error: any) {
+      logger.error('Error getting access token', error.message || error);
+      return null;
+    }
+  }
+
+  async validateAccessToken(accessToken: string): Promise<boolean> {
+    try {
+      if (!accessToken) return false;
+
+      const response = await CapacitorHttp.get({
+        url: `${this.GOOGLE_TOKEN_INFO_URL}?access_token=${accessToken}`,
+      });
+
+      if (response.status !== 200) return false;
+
+      const tokenInfo = response.data;
+
+      if (!tokenInfo.expires_in) return false;
+
+      const expiresIn = Number(tokenInfo.expires_in);
+      if (expiresIn <= 0) return false;
+
+      return true;
+    } catch (error: any) {
+      logger.error('Error validating access token', error.message || error);
+      return false;
+    }
+  }
+
+  async getUserInfo(): Promise<GoogleUserInfo | null> {
+    try {
+      const tokens = await this.getStoredTokens();
+      if (!tokens?.idToken) {
+        return null;
+      }
+
+      const userInfo = this.decodeIdToken(tokens.idToken);
+      return userInfo;
+    } catch (error: any) {
+      logger.error('Error getting user info', error.message || error);
+      return null;
+    }
+  }
+
+  private decodeIdToken(idToken: string): GoogleUserInfo | null {
+    try {
+      const parts = idToken.split('.');
+      if (parts.length !== 3) {
+        throw new Error('Invalid token format');
+      }
+
+      const decoded = JSON.parse(atob(parts[1]));
+
+      if (!decoded.email) {
+        throw new Error('No email in token');
+      }
+
+      return {
+        email: decoded.email,
+        name: decoded.name,
+        picture: decoded.picture,
+        given_name: decoded.given_name,
+        family_name: decoded.family_name,
+      };
+    } catch (error: any) {
+      logger.error('Error decoding ID token', error.message || error);
+      return null;
+    }
+  }
+
+  private async exchangeAuthCodeForTokens(authCode: string): Promise<GoogleTokens> {
+    const params = new URLSearchParams({
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      client_secret: import.meta.env.VITE_GOOGLE_CLIENT_SECRET,
+      redirect_uri: import.meta.env.VITE_GOOGLE_REDIRECT_URI,
+      grant_type: 'authorization_code',
+      code: authCode,
+    });
+
+    const response = await CapacitorHttp.post({
+      url: this.GOOGLE_TOKEN_URL,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      data: params.toString(),
+    });
+
+    if (response.status !== 200) {
+      throw new Error(
+        `Failed to exchange auth code for tokens: ${response.status} ${response.data?.error_description || ''}`,
+      );
+    }
+
+    const { access_token, expires_in, refresh_token, id_token } = response.data;
+
+    const isNative = Capacitor.isNativePlatform();
+    const isMissingToken = !access_token || !expires_in || (isNative && !refresh_token);
+
+    if (isMissingToken) {
+      throw new Error('Missing required tokens in the response');
+    }
+
+    const expiresAt = (Date.now() + Number(expires_in) * 1000).toString();
+
+    const userInfo = this.decodeIdToken(id_token || '');
+
+    return {
+      email: userInfo?.email,
+      idToken: id_token || '',
+      accessToken: access_token,
+      refreshToken: refresh_token || undefined,
+      expiresAt,
+    };
+  }
+
+  private async storeTokens(tokens: GoogleTokens) {
+    await Promise.all([
+      SecureStoragePlugin.set({ key: 'id_token', value: tokens.idToken }).catch((error) => {
+        logger.error('Error storing id_token', error);
+      }),
+      SecureStoragePlugin.set({ key: 'access_token', value: tokens.accessToken }).catch((error) => {
+        logger.error('Error storing access_token', error);
+      }),
+      SecureStoragePlugin.set({ key: 'refresh_token', value: tokens.refreshToken || '' }).catch((error) => {
+        logger.error('Error storing refresh_token', error);
+      }),
+      SecureStoragePlugin.set({ key: 'expires_at', value: tokens.expiresAt }).catch((error) => {
+        logger.error('Error storing expires_at', error);
+      }),
+      SecureStoragePlugin.set({ key: 'email', value: tokens.email || '' }).catch((error) => {
+        logger.error('Error storing email', error);
+      }),
+    ]);
+  }
+
+  private async getStoredTokens(): Promise<GoogleTokens | null> {
+    try {
+      const [idTokenRes, accessTokenRes, refreshTokenRes, expiresAtRes, emailRes] = await Promise.all([
+        SecureStoragePlugin.get({ key: 'id_token' }).catch(() => ({ value: '' })),
+        SecureStoragePlugin.get({ key: 'access_token' }).catch(() => ({ value: '' })),
+        SecureStoragePlugin.get({ key: 'refresh_token' }).catch(() => ({ value: '' })),
+        SecureStoragePlugin.get({ key: 'expires_at' }).catch(() => ({ value: '' })),
+        SecureStoragePlugin.get({ key: 'email' }).catch(() => ({ value: '' })),
+      ]);
+
+      // Only require accessToken and expiresAt, refreshToken is optional
+      if (!accessTokenRes.value || !expiresAtRes.value) {
+        return null;
+      }
+
+      return {
+        email: emailRes.value || undefined,
+        idToken: idTokenRes.value || '',
+        accessToken: accessTokenRes.value,
+        refreshToken: refreshTokenRes.value || undefined,
+        expiresAt: expiresAtRes.value,
+      };
+    } catch (error: any) {
+      logger.error('Error retrieving stored tokens', error.message || error);
+      return null;
+    }
+  }
+
+  private async clearStoredTokens() {
+    await Promise.all([
+      SecureStoragePlugin.remove({ key: 'id_token' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'access_token' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'refresh_token' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'expires_at' }).catch(() => {}),
+      SecureStoragePlugin.remove({ key: 'email' }).catch(() => {}),
+    ]);
+  }
+})();

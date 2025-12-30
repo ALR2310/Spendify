@@ -1,12 +1,49 @@
 @import 'tailwindcss';
-
 @plugin "daisyui" {
   themes:
     light --default,
-    dark --prefersdark,
-    cupcake,
-    garden,
-    dracula;
+    dark --prefersdark;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-VariableFont.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Italic-VariableFont.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Roboto', system-ui, sans-serif;
+  }
+
+  /* Disable outline on SVG charts (Recharts) */
+  svg:focus {
+    outline: none;
+  }
+
+  svg:focus-visible {
+    outline: none;
+  }
+
+  /*hidden spinner in Chrome, Safari, Edge, Opera */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
 }
 
 @layer utilities {
@@ -19,74 +56,244 @@
     scrollbar-width: none;
   }
 
+  .dock-primary .dock-active {
+    &:after {
+      --dock-active-color: var(--color-primary);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-secondary .dock-active {
+    &:after {
+      --dock-active-color: var(--color-secondary);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-accent .dock-active {
+    &:after {
+      --dock-active-color: var(--color-accent);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-neutral .dock-active {
+    &:after {
+      --dock-active-color: var(--color-neutral);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-info .dock-active {
+    &:after {
+      --dock-active-color: var(--color-info);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-success .dock-active {
+    &:after {
+      --dock-active-color: var(--color-success);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-warning .dock-active {
+    &:after {
+      --dock-active-color: var(--color-warning);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .dock-error .dock-active {
+    &:after {
+      --dock-active-color: var(--color-error);
+      background-color: var(--dock-active-color);
+    }
+  }
+
+  .tabs-border-primary .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-primary);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-secondary .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-secondary);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-accent .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-accent);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-neutral .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-neutral);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-info .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-info);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-success .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-success);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-warning .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-warning);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
+  .tabs-border-error .tab {
+    &:is(.tab-active, [aria-selected='true'], [aria-current='true'], [aria-current='page']):not(
+        .tab-disabled,
+        [disabled]
+      ),
+    &:is(input:checked),
+    &:is(label:has(:checked)) {
+      &:before {
+        --tab-border-color: var(--color-error);
+        border-color: var(--tab-border-color);
+      }
+    }
+  }
+
   .select:focus,
   .select:focus-within,
   .input:focus,
   .input:focus-within {
     --input-color: color-mix(in oklab, var(--color-base-content) 40%, transparent);
   }
-}
 
-@utility container {
-  @variant 2xl {
-    max-width: 80rem;
+  .input-neutral:focus,
+  .input-neutral:focus-within,
+  .select-neutral:focus,
+  .select-neutral:focus-within {
+    --input-color: color-mix(in oklab, var(--color-neutral) 80%, transparent);
+  }
+
+  .input-primary:focus,
+  .input-primary:focus-within,
+  .select-primary:focus,
+  .select-primary:focus-within {
+    --input-color: color-mix(in oklab, var(--color-primary) 80%, transparent);
+  }
+
+  .input-secondary:focus,
+  .input-secondary:focus-within,
+  .select-secondary:focus,
+  .select-secondary:focus-within {
+    --input-color: color-mix(in oklab, var(--color-secondary) 80%, transparent);
+  }
+
+  .input-accent:focus,
+  .input-accent:focus-within,
+  .select-accent:focus,
+  .select-accent:focus-within {
+    --input-color: color-mix(in oklab, var(--color-accent) 80%, transparent);
+  }
+
+  .input-info:focus,
+  .input-info:focus-within,
+  .select-info:focus,
+  .select-info:focus-within {
+    --input-color: color-mix(in oklab, var(--color-info) 80%, transparent);
+  }
+
+  .input-success:focus,
+  .input-success:focus-within,
+  .select-success:focus,
+  .select-success:focus-within {
+    --input-color: color-mix(in oklab, var(--color-success) 80%, transparent);
+  }
+
+  .input-warning:focus,
+  .input-warning:focus-within,
+  .select-warning:focus,
+  .select-warning:focus-within {
+    --input-color: color-mix(in oklab, var(--color-warning) 80%, transparent);
+  }
+
+  .input-error:focus,
+  .input-error:focus-within,
+  .select-error:focus,
+  .select-error:focus-within {
+    --input-color: color-mix(in oklab, var(--color-error) 80%, transparent);
   }
 }
 
-.input-editor {
-  --input-color: color-mix(in oklab, var(--color-base-content) 40%, transparent);
-  border: var(--border) solid #0000;
-  background-color: var(--color-base-100);
-  border-start-start-radius: var(--join-ss, var(--radius-field));
-  border-start-end-radius: var(--join-se, var(--radius-field));
-  border-end-start-radius: var(--join-es, var(--radius-field));
-  border-end-end-radius: var(--join-ee, var(--radius-field));
-  border-color: var(--input-color);
-  box-shadow:
-    0 1px color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000) inset,
-    0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
+.toast-container {
+  padding: 1rem !important;
+  gap: 1rem !important;
 }
 
-.input-editor:focus,
-.input-editor:focus-within {
-  --input-color: color-mix(in oklab, var(--color-base-content) 40%, transparent);
-  outline: 2px solid var(--input-color);
-  outline-offset: 2px;
-  isolation: isolate;
-  z-index: 1;
-}
-
-.react-datepicker {
-  color: var(--color-base-content) !important;
-  border: 1px solid var(--color-base-300) !important;
-  background-color: var(--color-base-100) !important;
-}
-
-.react-datepicker__current-month,
-.react-datepicker__day-name {
-  color: var(--color-base-content) !important;
-}
-
-.react-datepicker__header {
-  background-color: var(--color-base-200) !important;
-}
-
-.react-datepicker__day-name,
-.react-datepicker__day,
-.react-datepicker__time-name {
-  color: var(--color-base-content) !important;
-}
-
-.react-datepicker__day:not([aria-disabled='true']):hover,
-.react-datepicker__month-text:not([aria-disabled='true']):hover,
-.react-datepicker__quarter-text:not([aria-disabled='true']):hover,
-.react-datepicker__year-text:not([aria-disabled='true']):hover {
-  background-color: var(--color-primary) !important;
-}
-
-.react-datepicker__day--keyboard-selected,
-.react-datepicker__month-text--keyboard-selected,
-.react-datepicker__quarter-text--keyboard-selected,
-.react-datepicker__year-text--keyboard-selected {
-  background-color: var(--color-primary) !important;
+.toast-container .Toastify__toast {
+  border-radius: 0.5rem !important;
+  padding: 1rem;
 }

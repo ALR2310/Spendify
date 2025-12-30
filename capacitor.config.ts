@@ -1,13 +1,15 @@
-import { CapacitorConfig } from '@capacitor/cli';
-import dotenv from 'dotenv';
-import path from 'path';
+import 'dotenv/config';
 
-dotenv.config();
+import path from 'path';
+import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.alr.spendwise',
-  appName: 'SpendWise',
+  appId: 'com.alr.spendify',
+  appName: 'spendify',
   webDir: 'dist',
+  server: {
+    allowNavigation: ['accounts.google.com', '*.googleusercontent.com'],
+  },
   plugins: {
     StatusBar: {
       overlaysWebView: false,
@@ -32,8 +34,8 @@ const config: CapacitorConfig = {
     allowMixedContent: true,
     webContentsDebuggingEnabled: true,
     buildOptions: {
-      keystorePath: path.resolve(__dirname, 'release-key.jks'),
-      keystoreAlias: process.env.ANDROID_KEY_ALIAS,
+      keystorePath: path.resolve(__dirname, 'spendify-key.jks'),
+      keystoreAlias: process.env.ANDROID_KEYSTORE_ALIAS,
       keystorePassword: process.env.ANDROID_KEYSTORE_PASSWORD,
       releaseType: 'APK',
       signingType: 'apksigner',

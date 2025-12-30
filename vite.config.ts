@@ -1,43 +1,73 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import { config } from 'dotenv';
+import path from 'path';
 import { defineConfig } from 'vite';
+import { analyzer } from 'vite-bundle-analyzer';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
-import { version } from './package.json';
+import pkg from './package.json' with { type: 'json' };
+
+config({ quiet: true });
+
+const isDev = process.env.NODE_ENV === 'development';
+const port = process.env.VITE_PORT || 2310;
 
 export default defineConfig({
+  clearScreen: true,
   build: {
-    outDir: 'dist',
-    minify: false,
-    cssMinify: false,
+    sourcemap: isDev,
+    minify: !isDev,
+    cssMinify: !isDev,
     emptyOutDir: true,
+    outDir: 'dist',
+    chunkSizeWarningLimit: 5000,
+    target: 'esnext',
     rollupOptions: {
       external: ['jeep-sqlite'],
-      input: {
-        index: resolve(__dirname, 'index.html'),
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'vendor_react';
+          }
+        },
       },
     },
   },
-  server: { port: 8100 },
+  server: {
+    port: Number(port),
+    strictPort: true,
+    host: true,
+    watch: {
+      ignored: ['**/src-tauri/**'],
+    },
+  },
   resolve: {
     alias: {
-      '~': resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   define: {
-    __APP_VERSION__: JSON.stringify(version),
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(pkg.version),
   },
   plugins: [
     react(),
     tailwindcss(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: './src/assets/sql-wasm.wasm',
-          dest: 'assets',
-        },
-      ],
+    analyzer({
+      openAnalyzer: false,
+      analyzerMode: 'static',
     }),
+    ...(isDev
+      ? [
+          viteStaticCopy({
+            targets: [
+              {
+                src: 'src/assets/sql-wasm.wasm',
+                dest: 'assets',
+              },
+            ],
+          }),
+        ]
+      : []),
   ],
 });

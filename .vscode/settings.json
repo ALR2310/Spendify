@@ -1,26 +1,55 @@
 {
     "cSpell.words": [
-        "anatine",
         "apksigner",
-        "downloadjs",
+        "appconfig",
+        "armeabi",
+        "AUTOINCREMENT",
+        "emojipicker",
+        "googleauth",
+        "googledrive",
         "gradlew",
-        "nosqlite",
-        "Retryable",
-        "VITE",
-        "zulu"
+        "Insertable",
+        "Introspector",
+        "khỏe",
+        "konsta",
+        "kysely",
+        "Kysely",
+        "monthpicker",
+        "recurrings",
+        "spendify",
+        "tauri",
+        "TAURI",
+        "Updateable",
+        "VITE"
     ],
+    "eslint.useFlatConfig": true,
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
     },
     "i18n-ally.localesPaths": [
-        "src/assets/locale"
+        "src/assets/locales"
     ],
     "i18n-ally.keystyle": "nested",
     "i18n-ally.sourceLanguage": "en",
-    "github.copilot.chat.codeGeneration.instructions": [
+    "github.copilot.chat.commitMessageGeneration.instructions": [
         {
-            "file": "./.vscode/daisyui.md"
+            "text": "Use conventional commit format: type(scope): description."
+        },
+        {
+            "text": "Use types: feat, fix, docs, style, refactor, perf, test, chore, ci."
+        },
+        {
+            "text": "Limit 50 characters or less."
+        },
+        {
+            "text": "Write in present tense (e.g., 'add', not 'added')."
+        },
+        {
+            "text": "Short but enough context."
+        },
+        {
+            "text": "Focus on main changes only, avoid trivial details."
         }
-    ]
+    ],
 }

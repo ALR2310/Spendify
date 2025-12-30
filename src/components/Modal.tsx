@@ -1,115 +1,108 @@
-import { forwardRef } from 'react';
+import { forwardRef, ReactNode, useImperativeHandle, useState } from 'react';
 
 interface ButtonProps {
-  text?: string;
+  label?: string;
   show?: boolean;
-  width?: string;
-  color?: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error' | 'soft';
-  size?: 'sm' | 'md' | 'lg';
+  className?: string;
   onClick?: () => void | Promise<void>;
 }
-interface ModalProps {
-  title?: string;
-  titlePosition?: 'left' | 'center' | 'right';
-  btnShow?: boolean;
-  className?: string;
-  children?: React.ReactNode;
-  iconClose?: boolean;
-  btnOk?: ButtonProps;
-  btnCancel?: ButtonProps;
-  allowBtnCloseModal?: boolean;
-  backdropClose?: boolean;
-  width?: string;
+
+interface ClassNames {
+  modal?: string;
+  modalBox?: string;
 }
 
-const ConfirmClassMap = {
-  color: {
-    primary: 'btn-primary',
-    secondary: 'btn-secondary',
-    accent: 'btn-accent',
-    info: 'btn-info',
-    success: 'btn-success',
-    warning: 'btn-warning',
-    error: 'btn-error',
-    soft: 'btn-soft',
-  },
-  size: { sm: 'btn-sm', md: 'btn-md', lg: 'btn-lg' },
-  titlePosition: { left: 'text-left', center: 'text-center', right: 'text-right' },
-};
+interface ModalProps {
+  title?: ReactNode;
+  className?: string;
+  classNames?: ClassNames;
+  buttonSubmit?: ButtonProps;
+  buttonCancel?: ButtonProps;
+  backdropClose?: boolean;
+  iconClose?: boolean;
+  onClose?: () => void;
+  children?: ReactNode;
+}
 
-const Modal = forwardRef<HTMLDialogElement, ModalProps>(
+interface ModalRef {
+  showModal: () => void;
+  close: () => void;
+}
+
+const Modal = forwardRef<ModalRef, ModalProps>(
   (
     {
       title,
-      titlePosition = 'left',
+      className = '',
+      classNames = { modal: '', modalBox: '' },
+      buttonSubmit,
+      buttonCancel,
+      backdropClose = true,
+      iconClose = true,
+      onClose,
       children,
-      btnShow = true,
-      className,
-      iconClose = false,
-      btnOk,
-      btnCancel,
-      allowBtnCloseModal = true,
-      backdropClose = false,
-      width,
     },
     ref,
   ) => {
+    const [open, setOpen] = useState(false);
+
+    const handleClose = () => {
+      setOpen(false);
+      if (onClose) {
+        onClose();
+      }
+    };
+
+    useImperativeHandle(ref, () => ({
+      showModal: () => setOpen(true),
+      close: () => handleClose(),
+    }));
+
     return (
-      <dialog ref={ref} className={`modal ${className}`}>
-        <div className="modal-box p-4" style={{ maxWidth: width }}>
+      <div className={`modal outline-none ${open ? 'modal-open' : ''} ${classNames.modal} ${className}`}>
+        <div className={`modal-box outline-none ${classNames.modalBox}`}>
           {iconClose && (
-            <form method="dialog">
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={handleClose}>
+              ✕
+            </button>
           )}
-          <h3 className={`text-lg font-bold ${ConfirmClassMap.titlePosition[titlePosition]}`}>{title}</h3>
-          <div>{children}</div>
-          {btnShow && (
-            <div className="modal-action mt-0">{renderButtons({ allowBtnCloseModal, btnCancel, btnOk })}</div>
+
+          {title && <div className="text-lg font-bold mb-4">{title}</div>}
+          {children}
+
+          {(buttonSubmit?.show !== false || buttonCancel?.show !== false) && (
+            <div className="modal-action">
+              {buttonCancel?.show !== false && (
+                <button
+                  className={`btn w-24 ${buttonCancel?.className || 'btn-soft'}`}
+                  onClick={() => {
+                    if (buttonCancel?.onClick) buttonCancel.onClick();
+                    else setOpen(false);
+                  }}
+                >
+                  {buttonCancel?.label || 'Cancel'}
+                </button>
+              )}
+
+              {buttonSubmit?.show !== false && (
+                <button
+                  className={`btn w-24 ${buttonSubmit?.className || 'btn-success'}`}
+                  onClick={() => {
+                    if (buttonSubmit?.onClick) buttonSubmit.onClick();
+                    else setOpen(false);
+                  }}
+                >
+                  {buttonSubmit?.label || 'OK'}
+                </button>
+              )}
+            </div>
           )}
         </div>
-        {backdropClose && (
-          <form method="dialog" className="modal-backdrop">
-            <button>close</button>
-          </form>
-        )}
-      </dialog>
+        {backdropClose && <div className="modal-backdrop cursor-pointer" onClick={handleClose} />}
+      </div>
     );
   },
 );
 
-const renderButtons = ({ allowBtnCloseModal, btnCancel, btnOk }: ModalProps) => {
-  const Wrapper = allowBtnCloseModal ? 'form' : 'div';
-  const wrapperProps = allowBtnCloseModal ? { method: 'dialog', className: 'flex gap-3' } : { className: 'flex gap-3' };
-
-  return (
-    <Wrapper {...wrapperProps}>
-      {btnCancel?.show !== false && (
-        <button
-          className={`btn ${ConfirmClassMap.color[btnCancel?.color || 'soft']} ${
-            ConfirmClassMap.size[btnCancel?.size || '']
-          }`}
-          style={{ width: btnCancel?.width || '90px' }}
-          onClick={btnCancel?.onClick}
-        >
-          {btnCancel?.text || 'Cancel'}
-        </button>
-      )}
-      {btnOk?.show !== false && (
-        <button
-          className={`btn ${ConfirmClassMap.color[btnOk?.color || 'primary']} ${
-            ConfirmClassMap.size[btnOk?.size || '']
-          }`}
-          style={{ width: btnOk?.width || '90px' }}
-          onClick={btnOk?.onClick}
-        >
-          {btnOk?.text || 'OK'}
-        </button>
-      )}
-    </Wrapper>
-  );
-};
-
+export type { ModalRef };
 export default Modal;
-export { ConfirmClassMap };
-export type { ModalProps };
