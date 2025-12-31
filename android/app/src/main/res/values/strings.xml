@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">spendify</string>
-    <string name="title_activity_main">spendify</string>
+    <string name="app_name">Spendify</string>
+    <string name="title_activity_main">Spendify</string>
     <string name="package_name">com.alr.spendify</string>
     <string name="custom_url_scheme">com.alr.spendify</string>
 </resources>

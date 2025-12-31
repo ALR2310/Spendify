@@ -5,7 +5,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.alr.spendify',
-  appName: 'spendify',
+  appName: 'Spendify',
   webDir: 'dist',
   server: {
     allowNavigation: ['accounts.google.com', '*.googleusercontent.com'],
