@@ -25,9 +25,9 @@
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^7.0.2",
-    "@capacitor/android": "7.4.4",
+    "@capacitor/android": "8.0.0",
     "@capacitor/app": "7.1.1",
-    "@capacitor/core": "7.4.4",
+    "@capacitor/core": "8.0.0",
     "@capacitor/file-transfer": "^1.0.8",
     "@capacitor/filesystem": "^7.1.6",
     "@capacitor/preferences": "^7.0.3",
